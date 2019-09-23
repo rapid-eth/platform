@@ -1,7 +1,7 @@
 {
   "name": "@rapid/3box-platform",
   "version": "1.0.0",
-  "homepage": "https://horizin.github.io/demo",
+  "homepage": "https://rapid-eth.github.io/3box-platform",
   "private": true,
   "scripts": {
     "start": "react-scripts start",

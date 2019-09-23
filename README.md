@@ -32,7 +32,7 @@
 
 ## Setup
 
-Manage the Lerna packaging and hoisting process.
+Manage the Lerna packaging and hoisting
 
 ```js
 "workspaces": {
