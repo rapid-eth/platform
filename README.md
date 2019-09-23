@@ -1,4 +1,4 @@
-# Horizin User Interface
+# Rapid Platform
 
 [![build status](https://img.shields.io/travis/com/KamesCG/horizin-ui.svg)](https://travis-ci.com/KamesCG/horizin-ui)
 [![code coverage](https://img.shields.io/codecov/c/github/KamesCG/horizin-ui.svg)](https://codecov.io/gh/KamesCG/horizin-ui)
@@ -32,20 +32,23 @@
 
 ## Setup
 
-Add new packages to the workspace array.
+Manage the Lerna packaging and hoisting process.
 
 ```js
 "workspaces": {
   "packages": [
-    "packages/apps/*",
-    "packages/components",
-    "packages/react-context-portal",
+    "packages/applications/*",
+    "packages/components/*",
+    "packages/external/*",
+    "packages/libraries/*",
     "packages/storybook"
   ],
   "nohoist": [
     "**/webpack-dev-server",
-    "**/babel-loader",
-    "**/babel-jest"
+      "**/babel-loader",
+      "**/babel-jest",
+      "**/cross-env",
+      "**/@react-workspaces/react-scripts"
   ]
 },
 ```
