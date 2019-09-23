@@ -1,0 +1,39 @@
+{
+  "name": "3box-components",
+  "homepage": "http://rapid-eth.io",
+  "nodemonConfig": {
+    "ignore": [
+      "dist/*"
+    ],
+    "delay": "500"
+  },
+  "watch": [
+    "src/",
+    "src/BoxCredentials",
+    "src/BoxLoginButton",
+    "src/BoxLoginProfile",
+    "src/BoxMemberAdd",
+    "src/BoxModeratorAdd",
+    "src/BoxOpenSpace",
+    "src/BoxProfile",
+    "src/BoxSpaceList",
+    "src/BoxSpaceManage",
+    "src/BoxThreadCreate",
+    "src/BoxThreadComment",
+    "src/BoxThreadJoin",
+    "src/BoxThreadList",
+    "src/BoxThreadManage",
+    "src/BoxThreadManageDetails",
+    "src/BoxThreadManagePeople",
+    "src/BoxThreadPost",
+    "src/BoxThreadPostCreate",
+    "src/BoxThreadPostDelete",
+    "src/BoxThreadPostList",
+    "src/Popover.jsx",
+    "src/utilities"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js,json, jsx"
+}

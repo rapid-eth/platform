@@ -1,0 +1,25 @@
+{
+  "name": "@kames/dao-system",
+  "homepage": "http://rapid-eth.io",
+  "nodemonConfig": {
+    "ignore": [
+      "dist/*"
+    ],
+    "delay": "500"
+  },
+  "watch": [
+    "src/",
+    "src/components/ProfileCreate",
+    "src/components/CommunityCreate",
+    "src/components/CommunityList",
+    "src/components/GuildCreate",
+    "src/components/GuildList",
+    "src/components/QuestCreate",
+    "src/components/QuestList",
+    "src/utilities"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js, json, jsx"
+}

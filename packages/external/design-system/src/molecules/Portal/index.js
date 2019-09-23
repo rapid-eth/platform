@@ -1,0 +1,1 @@
+export const portal = require('@horizin/react-context-portal')
