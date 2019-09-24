@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from "@reach/router"
-import { Button, Box, Flex, Heading, Span, Form, Field } from '@horizin/design-system';
+import { Button, Form, Field } from '@horizin/design-system';
 
 const QuestRinkebyFaucet = ({ box, threadName, ...props }) => {
   const onSubmit = async (values) => {
