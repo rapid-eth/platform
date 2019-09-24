@@ -10,10 +10,54 @@
 
 ## Table of Contents
 
+* [Packages](#packages)
 * [Install](#install)
 * [Usage](#usage)
 * [Contributors](#contributors)
 * [License](#license)
+
+## Packages
+* @rapid-eth/3box-platform
+
+### Install
+
+The development environment is managed via Lerna. Libraries and modules are seperated into individual packages and managed individually. However, during development all dependencies are managed locally. Creating an enjoyable developer experience.
+
+*Get Started*
+The easiest way to first get started is to run the monorepo init command.
+
+`yarn ; yarn $`
+
+The init command (`yarn $`) will setup all package dependencies, and run the `watch` and `start` commands in parrelel. Allowing developers to quickly start editing files and reviewing changes in the default start application.
+
+The `yarn $` should only be run when the monorep needs to be completely rebuilt.
+
+On consecutive development sessions running the command `yarn dev` will restart the development envrionment. 
+
+Developers can run tests, build and watch process for all packages from the root level. Minimal terminal count.
+
+```
+$ yarn watch // Watch file changes and build dist package.
+$ yarn build // Build dist package.
+$ yarn test // Run code coverage tests.
+```
+
+To review the full list of developer commands review the package.json file.
+```
+"scripts": {
+  "bootstrap": "lerna bootstrap",
+  "build": "lerna run build",
+  "clean": "lerna clean",
+  "deploy": " lerna run deploy",
+  "watch": "lerna run --parallel watch",
+  "start": "lerna run start",
+  "dev": "yarn watch > /dev/null | yarn start",
+  "$": "yarn clean ; yarn bootstrap ; yarn setupPackages ; yarn dev",
+  "setup": "yarn clean ; yarn bootstrap ; yarn setupPackages ; yarn dev",
+  "setupPackages": "lerna exec -- yarn install",
+  "test": "FORCE_COLOR=true lerna run lint && CI=true FORCE_COLOR=true lerna run test -- --coverage"
+}
+```
 
 ## Contents
 
