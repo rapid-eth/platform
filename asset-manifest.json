@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/consenquest/static/css/main.bc750f35.chunk.css",
+    "main.js": "/consenquest/static/js/main.8b4816d6.chunk.js",
+    "main.js.map": "/consenquest/static/js/main.8b4816d6.chunk.js.map",
+    "runtime~main.js": "/consenquest/static/js/runtime~main.856ca6fb.js",
+    "runtime~main.js.map": "/consenquest/static/js/runtime~main.856ca6fb.js.map",
+    "static/js/2.14e7d466.chunk.js": "/consenquest/static/js/2.14e7d466.chunk.js",
+    "static/js/2.14e7d466.chunk.js.map": "/consenquest/static/js/2.14e7d466.chunk.js.map",
+    "index.html": "/consenquest/index.html",
+    "precache-manifest.f320b8f679cddc4c0e076e756e77cd90.js": "/consenquest/precache-manifest.f320b8f679cddc4c0e076e756e77cd90.js",
+    "service-worker.js": "/consenquest/service-worker.js",
+    "static/css/main.bc750f35.chunk.css.map": "/consenquest/static/css/main.bc750f35.chunk.css.map"
+  }
+}
