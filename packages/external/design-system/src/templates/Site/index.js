@@ -2,7 +2,7 @@
 import React from "react"
 import styled from 'styled-components'
 import { Box, Flex } from '../../index'
-import { PortalInjection } from '@horizin/react-context-portal/dist'
+import { PortalInjection } from '@horizin/react-hooks-portal/dist'
 
 /* --- Local Dependencies --- */
 export const HeaderStyled = styled(Box)`
@@ -44,27 +44,27 @@ FooterStyled.defaultProps = {
 }
 
 export const SiteHeader = ({ children, ...props }) =>
-<PortalInjection id='site--header'>
- <Box {...props}>
-   {children}
- </Box>
-</PortalInjection>
+  <PortalInjection id='site--header'>
+    <Box {...props}>
+      {children}
+    </Box>
+  </PortalInjection>
 
 export const SiteMain = ({ children, ...props }) =>
-<PortalInjection id='site--main'>
- {children}
-</PortalInjection>
+  <PortalInjection id='site--main'>
+    {children}
+  </PortalInjection>
 
 export const SiteFooter = ({ children, ...props }) =>
-<PortalInjection id='site--footer'>
- {children}
-</PortalInjection>
+  <PortalInjection id='site--footer'>
+    {children}
+  </PortalInjection>
 
 export default ({ children }) =>
-<Flex column className='site' minHeight={'100vh'}>
-  <HeaderStyled/>
+  <Flex column className='site' minHeight={'100vh'}>
+    <HeaderStyled />
     <MainStyled column >
       {children}
     </MainStyled>
-  <FooterStyled/>
-</Flex>
+    <FooterStyled />
+  </Flex>

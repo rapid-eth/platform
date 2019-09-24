@@ -2,7 +2,7 @@
 import React from "react"
 import styled from 'styled-components'
 import { Box, Flex } from '../../index'
-import { PortalInjection } from '@horizin/react-context-portal/dist'
+import { PortalInjection } from '@horizin/react-hooks-portal/dist'
 /* --- Local Dependencies --- */
 export const AsideStyled = styled(Box)`
   background-color: #1e1e2d;
@@ -62,34 +62,34 @@ MainInnerStyled.defaultProps = {
 }
 
 export const Header = ({ children, ...props }) =>
-<PortalInjection id='dashboard--header'>
- {children}
-</PortalInjection>
+  <PortalInjection id='dashboard--header'>
+    {children}
+  </PortalInjection>
 
 export const Main = ({ children, ...props }) =>
-<PortalInjection id='dashboard--main'>
-  {children}
-</PortalInjection>
+  <PortalInjection id='dashboard--main'>
+    {children}
+  </PortalInjection>
 
 export const MainInner = ({ children, ...props }) =>
-<PortalInjection id='dashboard--main-inner'>
-  {children}
-</PortalInjection>
+  <PortalInjection id='dashboard--main-inner'>
+    {children}
+  </PortalInjection>
 
 export const Aside = ({ children, ...props }) =>
-<PortalInjection id='dashboard--aside'>
- {children}
-</PortalInjection>
+  <PortalInjection id='dashboard--aside'>
+    {children}
+  </PortalInjection>
 
 export default ({ children }) =>
-<Flex className='dashboard' height={'100vh'} overflow='hidden'>
-  <AsideStyled/>
-  
-  <MainStyled column >
-    <HeaderStyled/>
-    <MainInnerStyled id='dashboard--main-inner'/>
-    {/* <HeaderStyled/> */}
-    
+  <Flex className='dashboard' height={'100vh'} overflow='hidden'>
+    <AsideStyled />
+
+    <MainStyled column >
+      <HeaderStyled />
+      <MainInnerStyled id='dashboard--main-inner' />
+      {/* <HeaderStyled/> */}
+
       {children}
-  </MainStyled>
-</Flex>
+    </MainStyled>
+  </Flex>

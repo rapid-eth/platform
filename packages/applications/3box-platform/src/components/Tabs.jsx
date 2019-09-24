@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Card, Flex, Heading, Image } from '@horizin/design-system';
-import { Tab, TabList, TabPanel, TabPanelWrapper, TabsDesignSystem } from '@horizin/react-context-tabs'
+import { Tab, TabList, TabPanel, TabPanelWrapper, TabsDesignSystem } from '@horizin/react-hooks-tabs'
 import {
   GuildCreate, ProfileCreate,
   QuestList, QuestCreate

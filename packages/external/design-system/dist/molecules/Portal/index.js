@@ -5,6 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.portal = void 0;
 
-var portal = require('@horizin/react-context-portal');
+var portal = require('@horizin/react-hooks-portal');
 
 exports.portal = portal;

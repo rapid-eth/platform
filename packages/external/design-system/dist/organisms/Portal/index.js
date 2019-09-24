@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _reactContextPortal = require("@horizin/react-context-portal");
+var _reactHooksPortal = require("@horizin/react-hooks-portal");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23,7 +23,7 @@ var Portal = (_ref) => {
   } = _ref,
       props = _objectWithoutProperties(_ref, ["styled"]);
 
-  return _react.default.createElement(_reactContextPortal.PortalProvider, null, (0, _reactContextPortal.PortalWithContext)(props => _react.default.createElement(_reactContextPortal.PortalComponent, _extends({
+  return _react.default.createElement(_reactHooksPortal.PortalProvider, null, (0, _reactHooksPortal.PortalWithContext)(props => _react.default.createElement(_reactHooksPortal.PortalComponent, _extends({
     label: "Portal",
     className: "portal",
     activeClassName: "is-active",

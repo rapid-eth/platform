@@ -23,8 +23,8 @@
     "styled-components": "^4.3.2"
   },
   "dependencies": {
-    "@horizin/react-context-portal": "^1.0.0",
-    "@horizin/react-context-tabs": "^1.0.0",
+    "@horizin/react-hooks-portal": "^1.0.0",
+    "@horizin/react-hooks-tabs": "^1.0.0",
     "@reach/router": "^1.2.1",
     "@react-workspaces/react-scripts": "3.0.1-alpha-07",
     "@storybook/react": "^5.2.0-alpha.35",

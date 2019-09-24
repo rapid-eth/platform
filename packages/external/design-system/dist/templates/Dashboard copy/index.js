@@ -11,7 +11,7 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _index = require("../../index");
 
-var _dist = require("@horizin/react-context-portal/dist");
+var _dist = require("@horizin/react-hooks-portal/dist");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -75,7 +75,7 @@ var Header = (_ref) => {
   var {
     children
   } = _ref,
-      props = _objectWithoutProperties(_ref, ["children"]);
+    props = _objectWithoutProperties(_ref, ["children"]);
 
   return _react.default.createElement(_dist.PortalInjection, {
     id: "dashboard--header"
@@ -88,7 +88,7 @@ var Main = (_ref2) => {
   var {
     children
   } = _ref2,
-      props = _objectWithoutProperties(_ref2, ["children"]);
+    props = _objectWithoutProperties(_ref2, ["children"]);
 
   return _react.default.createElement(_dist.PortalInjection, {
     id: "dashboard--main"
@@ -101,7 +101,7 @@ var Aside = (_ref3) => {
   var {
     children
   } = _ref3,
-      props = _objectWithoutProperties(_ref3, ["children"]);
+    props = _objectWithoutProperties(_ref3, ["children"]);
 
   return _react.default.createElement(_dist.PortalInjection, {
     id: "dashboard--aside"

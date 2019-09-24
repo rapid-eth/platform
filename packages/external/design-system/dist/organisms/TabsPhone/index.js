@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _dist = require("@horizin/design-system/dist");
 
-var _reactContextTabs = require("@horizin/react-context-tabs");
+var _reactHooksTabs = require("@horizin/react-hooks-tabs");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
@@ -108,7 +108,7 @@ var Desktop = (_ref3) => {
   } = _ref3;
   // const statenes = useState(0);
   // const [index, setIndex] = statenes
-  return _react.default.createElement(_reactContextTabs.Tabs, {
+  return _react.default.createElement(_reactHooksTabs.Tabs, {
     className: "tabs simple"
   }, _react.default.createElement(_dist.Flex, {
     alignCenter: true

@@ -11,7 +11,7 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _index = require("../../index");
 
-var _dist = require("@horizin/react-context-portal/dist");
+var _dist = require("@horizin/react-hooks-portal/dist");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

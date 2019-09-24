@@ -8,7 +8,7 @@ import { Card, Button, Box, Flex, Image, Dashboard, Site, Portal, Menu, Form, Fi
 // Organisms
 import { TabsPhone } from '@horizin/design-system';
 
-import { Tabs, TabsDesignSystem } from '@horizin/react-context-tabs'
+import { Tabs, TabsDesignSystem } from '@horizin/react-hooks-tabs'
 import { SiteHeader, SiteMain, SiteFooter } from '@horizin/design-system/dist/templates/Site';
 
 import {

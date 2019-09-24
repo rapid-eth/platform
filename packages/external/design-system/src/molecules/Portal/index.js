@@ -1,1 +1,1 @@
-export const portal = require('@horizin/react-context-portal')
+export const portal = require('@horizin/react-hooks-portal')

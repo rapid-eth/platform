@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _dist = require("@horizin/react-context-portal/dist");
+var _dist = require("@horizin/react-hooks-portal/dist");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

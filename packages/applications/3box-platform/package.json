@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "@horizin/design-system": "^1.0.0",
-    "@horizin/react-context-portal": "^1.0.0",
-    "@horizin/react-context-tabs": "^1.0.0",
+    "@horizin/react-hooks-portal": "^1.0.0",
+    "@horizin/react-hooks-tabs": "^1.0.0",
     "@kames/3box-components": "^1.0.0",
     "@kames/3box-hooks": "^1.0.0",
     "@kames/dao-system": "^1.0.0",

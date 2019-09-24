@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _reactContextTabs = require("@horizin/react-context-tabs");
+var _reactHooksTabs = require("@horizin/react-hooks-tabs");
 
 var _atoms = require("../../atoms");
 
@@ -64,18 +64,18 @@ var _default = (_ref3) => {
     column: true,
     flex: 2,
     px: 20
-  }, _react.default.createElement(_reactContextTabs.TabList, {
+  }, _react.default.createElement(_reactHooksTabs.TabList, {
     id: id,
     tabIdSelected: "first",
     template: props.variant
-  }, tabs && Array.isArray(tabs) && tabs.length > 0 && tabs.map(tab => _react.default.createElement(_reactContextTabs.Tab, {
+  }, tabs && Array.isArray(tabs) && tabs.length > 0 && tabs.map(tab => _react.default.createElement(_reactHooksTabs.Tab, {
     id: id,
     tabId: tab.tabId
   }, _react.default.createElement(tabComponent, _objectSpread({}, tab)))))), _react.default.createElement(_atoms.Box, {
     flex: 5
-  }, _react.default.createElement(_reactContextTabs.TabPanelWrapper, {
+  }, _react.default.createElement(_reactHooksTabs.TabPanelWrapper, {
     p: 20
-  }, panels && Array.isArray(panels) && panels.length > 0 && panels.map((panel, index) => _react.default.createElement(_reactContextTabs.TabPanel, {
+  }, panels && Array.isArray(panels) && panels.length > 0 && panels.map((panel, index) => _react.default.createElement(_reactHooksTabs.TabPanel, {
     id: id,
     tabId: panel.tabId
   }, _react.default.isValidElement(panel.component) ? panel.component : _react.default.createElement(panelComponent, _objectSpread({}, panel.component)))))));
