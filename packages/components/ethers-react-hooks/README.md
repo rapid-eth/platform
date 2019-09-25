@@ -11,19 +11,19 @@
 The 3Box React Hooks library helps manage frontend interactions with 3Box - decentralized identity storage.
 
 ```
-npm install @kames/3box-hooks
+npm install @rapid/ethers-hooks
 
 
 ```
 
 ### Example
 ```js
-import { BoxProvider } from '@kames/3box-hooks/dist'
+import { EthersProvider } from '@rapid/ethers-hooks'
 
 <App>
-  <BoxProvider>
+  <EthersProvider>
     ...
-  </BoxProvider>
+  </EthersProvider>
 </App>
 ```
 
