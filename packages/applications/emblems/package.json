@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "emblems-react-module": "file:../../components/emblems-react-module",
+    "emblems-react-module": "emblems-react-module",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.2"
