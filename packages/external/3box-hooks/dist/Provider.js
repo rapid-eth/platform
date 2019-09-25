@@ -360,9 +360,7 @@ var Provider = (_ref) => {
   (0, _react.useEffect)(() => {
     if (state.async && state.async.threads) {
       try {
-        console.log(state.async.threads);
         var threadSelected = state.async.threads[Object.keys(state.async.threads)[0]];
-        console.log(threadSelected);
 
         if (threadSelected) {
           var runEffect =
@@ -416,7 +414,6 @@ var Provider = (_ref) => {
     if (state.async && state.async.posts) {
       try {
         var postSelected = state.async.posts[Object.keys(state.async.posts)[0]];
-        console.log(postSelected, 'postSelected');
 
         if (postSelected && state.threads[postSelected.threadName]) {
           var runEffect =

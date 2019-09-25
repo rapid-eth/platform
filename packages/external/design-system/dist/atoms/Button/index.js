@@ -98,6 +98,10 @@ var Button = (0, _styledComponents.default)(_Box.default)(_templateObject(), (0,
       bg: 'secondary',
       color: 'white'
     },
+    dark: {
+      bg: '#29323a',
+      color: 'white'
+    },
     blue: {
       bg: 'blue',
       color: 'white'

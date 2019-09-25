@@ -8,10 +8,10 @@ import { Home } from "../views/Site";
 
 const SiteRoutes = ({ styled, ...props }) =>
   <Site>
-    <SiteHeader>
+    {/* <SiteHeader>
       <Branding />
-    </SiteHeader>
-    
+    </SiteHeader> */}
+
     <SiteMain>
 
       <Router>

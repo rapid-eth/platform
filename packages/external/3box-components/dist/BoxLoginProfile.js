@@ -80,9 +80,7 @@ var LoginPopover = (_ref2) => {
   } = _ref2,
       props = _objectWithoutProperties(_ref2, ["box", "styled"]);
 
-  return _react.default.createElement(_designSystem.Box, null, _react.default.createElement(_BoxProfile.default, {
-    box: box
-  }));
+  return _react.default.createElement(_designSystem.Box, null);
 };
 
 var ButtonLogin = (_ref3) => {

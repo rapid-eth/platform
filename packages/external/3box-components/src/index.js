@@ -14,7 +14,9 @@ export { default as BoxThreadManagePeople } from './BoxThreadManagePeople'
 
 
 export { default as BoxThreadCreate } from './BoxThreadCreate'
+export { default as BoxThreadJoin } from './BoxThreadJoin'
 export { default as BoxThreadPost } from './BoxThreadPost'
 export { default as BoxThreadPostCreate } from './BoxThreadPostCreate'
 export { default as BoxThreadPostDelete } from './BoxThreadPostDelete'
 export { default as BoxThreadPostList } from './BoxThreadPostList'
+export { default as BoxThreadPostRetrieve } from './BoxThreadPostRetrieve'

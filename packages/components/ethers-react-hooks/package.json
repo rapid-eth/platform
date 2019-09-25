@@ -1,18 +1,19 @@
 {
-  "name": "@horizin/react-hooks-portal",
-  "description": "React Portal System",
+  "name": "@rapid/ethers-react",
+  "description": "Ethers React Hooks",
   "version": "1.0.0",
   "author": "Kames <info@kamescg.com> (https://www.kamescg.com)",
-  "keywords": [
-    "react-context-portal"
-  ],
+  "homepage": "https://github.com/rapid-eth/ethers-react-hooks",
   "main": "dist/index.js",
-  "main:src": "dist/index.js",
+  "main:src": "src/index.js",
+  "keywords": [
+    "ethers-react-hooks"
+  ],
+  "license": "MIT",
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src --out-dir dist",
     "bundle": "webpack --config ./config/webpack.config.js",
-    "develop": "nodemon --ignore './lib/' --exec cross-env BABEL_ENV=production babel src --out-dir dist",
-    "watch": "nodemon --ignore dist/ --exec cross-env BABEL_ENV=production babel src --out-dir dist",
+    "watch": "nodemon --ignore ./dist --exec cross-env BABEL_ENV=production babel src --out-dir dist",
     "test": "npm run lint && npm run ava",
     "test-coverage": "npm run lint && npm run nyc",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
@@ -20,13 +21,12 @@
     "nyc": "cross-env NODE_ENV=test nyc ava"
   },
   "peerDependencies": {
-    "@horizin/design-system": "^1.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "idx": "^2.5.6",
+    "ethers": "^4.0.37",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
@@ -52,6 +52,16 @@
     "remark-preset-github": "latest",
     "xo": "latest"
   },
+  "engines": {
+    "node": ">=8.3"
+  },
+  "bugs": {
+    "url": "https://github.com/rapid-eth/ethers-react-hooks/issues",
+    "email": "info@kamescg.com"
+  },
+  "contributors": [
+    "Kames <info@kamescg.com> (https://www.kamescg.com)"
+  ],
   "ava": {
     "failFast": true,
     "verbose": true,
@@ -104,6 +114,10 @@
     "plugins": [
       "preset-github"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rapid-eth/ethers-react-hooks"
   },
   "xo": {
     "prettier": false,

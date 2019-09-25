@@ -1,44 +1,37 @@
-/* eslint-disable react/jsx-sort-props */
-/* eslint-disable new-cap */
 import React from 'react';
-import { Card, Box, Button, Flex, Site, Menu, Heading, Paragraph, Markdown } from '@horizin/design-system/dist'
-import { SiteHeader} from '@horizin/design-system/dist/templates/Site'
-import MenuDefault from '../../components/MenuDefault'
+import { Box, Button, Flex, Heading, Paragraph, Markdown } from '@horizin/design-system/dist'
 import { Container, Image } from '@horizin/design-system/dist/atoms';
+import { BoxThreadPostRetrieve } from '@kames/3box-components/dist'
 
 const QuestItem = ({ title, tagline, summary, content, image, images, imageBackgroud, imageFeatured, token, collectible, styled, ...props}) =>
-<Site>
-  <SiteHeader>
-    <MenuDefault />	
-  </SiteHeader>
-  <Box gradient='gray' py={[100]}>
-    <Container maxWidth={[720]} >
-      <Flex>
-        <Box flex={1} textCenter>
-          <Image circle card src={image} opacity={1} maxWidth={90} />
-          <Heading mega thin noMargin>{title}</Heading>
-          <Heading lg normal  my={20}>{tagline}</Heading>
-          <Paragraph sm normal>{summary}</Paragraph>
-           <Flex fullWidth evenly>
-             <Button variant='green' >Start Quest</Button>
-             <Button variant='orange' >Share Quest</Button>
-           </Flex> 
-        </Box>
-      </Flex>
-    </Container>
-  </Box>
-  <Box>
-    <Container width={[1]} maxWidth={720} py={50} >
-      {/* <Image src={imageFeatured}/> */}
-      <Markdown>
-        {content}
-      </Markdown>
-    </Container>
-  </Box>
-        
-</Site>
-
-
+<>
+<Box gradient='gray' py={[100]}>
+  <Container maxWidth={[720]} >
+    <Flex>
+      <Box flex={1} textCenter>
+        <Image circle card src={image} opacity={1} maxWidth={90} />
+        <Heading mega thin noMargin>{title}</Heading>
+        <Heading lg normal  my={20}>{tagline}</Heading>
+        <Paragraph sm normal>{summary}</Paragraph>
+          <Flex fullWidth evenly>
+            <Button variant='green' >Start Quest</Button>
+            <Button variant='orange' >Share Quest</Button>
+          </Flex> 
+      </Box>
+    </Flex>
+  </Container>
+</Box>
+<Box>
+  <Container width={[1]} maxWidth={720} py={50} >
+    
+    {/* <Image src={imageFeatured}/> */}
+    <Markdown>
+      {content}
+    </Markdown>
+  </Container>
+</Box>
+</>
+    
 const contentExample = `
 
 # A Large Title
@@ -61,4 +54,6 @@ QuestItem.defaultProps = {
   imageBackgroud: 'https://images.unsplash.com/photo-1533988902751-0fad628013cb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80'
 }
 
-export default QuestItem
+// export default QuestItem
+export default ({ id }) => <BoxThreadPostRetrieve postId={id} component={QuestItem} />
+

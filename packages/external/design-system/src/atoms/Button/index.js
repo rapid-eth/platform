@@ -50,6 +50,10 @@ ${
         bg: 'secondary',
         color: 'white',
       },
+      dark: {
+        bg: '#29323a',
+        color: 'white',
+      },
       blue: {
         bg: 'blue',
         color: 'white',

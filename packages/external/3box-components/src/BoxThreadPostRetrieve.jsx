@@ -1,25 +1,31 @@
 /* --- Global Dependencies --- */
-import React from 'react'
-import { Button, Span, Flex } from '@horizin/design-system'
+import React, { useEffect, useState } from 'react'
 import { BoxWrapper } from '@kames/3box-hooks/dist'
+
 /* --- React Component --- */
-const BoxThreadJoin = ({ box, variant, threadAddress, threadName, space, children, ...props }) => 
-box.instance
-? <Button xs variant={variant} onClick={()=>box.joinThread({
-    threadAddress: threadAddress,
-    threadName: threadName,
-    space: space
-  })}>
-    Join Thread
-  </Button>
-: null
+const BoxThreadPostRetrieve = ({ box, variant, component, postId, threadAddress, threadName, space, children, ...props }) => {
+  const [ message, setMessage ] = useState(undefined)
+  useEffect( () => {
+    if(box.instance && postId) {
+      const runEffect = async () => {
+        const ipfs = await box.static.getIPFS()
+        const threadPost = await ipfs.dag.get(postId)
+        if (threadPost) {
+          setMessage(threadPost.value.payload.value.message)
+        }
+      };
+      runEffect();
+    }
+  }, [postId])
 
-BoxThreadJoin.defaultProps = {
-  variant: 'green'
+  return (
+    !message 
+      ? null 
+      :React.createElement(component, { ...message } )
+  )
 }
-
 
 export default props =>
 <BoxWrapper>
-  <BoxThreadJoin {...props} />
+  <BoxThreadPostRetrieve {...props} />
 </BoxWrapper>

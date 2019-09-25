@@ -21,6 +21,12 @@ Object.defineProperty(exports, "QuestCreate", {
     return _QuestCreate.default;
   }
 });
+Object.defineProperty(exports, "QuestMiniCreate", {
+  enumerable: true,
+  get: function get() {
+    return _QuestMiniCreate.default;
+  }
+});
 Object.defineProperty(exports, "QuestList", {
   enumerable: true,
   get: function get() {
@@ -33,6 +39,8 @@ var _GuildCreate = _interopRequireDefault(require("./components/GuildCreate"));
 var _ProfileCreate = _interopRequireDefault(require("./components/ProfileCreate"));
 
 var _QuestCreate = _interopRequireDefault(require("./components/QuestCreate"));
+
+var _QuestMiniCreate = _interopRequireDefault(require("./components/QuestMiniCreate"));
 
 var _QuestList = _interopRequireDefault(require("./components/QuestList"));
 

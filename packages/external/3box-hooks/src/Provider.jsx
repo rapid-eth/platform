@@ -311,9 +311,7 @@ const Provider = ({ children, ...props}) => {
   useEffect(() => {
     if (state.async && state.async.threads) {
       try {
-        console.log(state.async.threads)
         const threadSelected = state.async.threads[Object.keys(state.async.threads)[0]]
-        console.log(threadSelected)
         if(threadSelected) {
           const runEffect = async () => {
             let thread, members, moderators
@@ -353,10 +351,8 @@ const Provider = ({ children, ...props}) => {
     if (state.async && state.async.posts) {
       try {
         const postSelected = state.async.posts[Object.keys(state.async.posts)[0]]
-        console.log(postSelected, 'postSelected')
         if(postSelected && state.threads[postSelected.threadName]) {
           const runEffect = async () => {
-
             let posts
             switch (postSelected.type) {
               case 'threadPost':

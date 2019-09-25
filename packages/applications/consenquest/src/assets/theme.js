@@ -12,7 +12,6 @@ const theme = {
     white: ['#FFF'],
     rust: ['#b34a4a'],
     orange: ['#ffa319', '#eb9617'],
-    // purple: ['#4e3d63', '#b294d8'],
     purple: ['#9983AD', '#8068A3', '#8068A3', '#252C68'],
     turquoise: ['#3ba0ac', '#00eec4', '#00d2ad', '#00b49d', '#009885'], //https://www.color-hex.com/color-palette/64616
     red: ['#d12c51', '#bb2445', '#a21232', '#c72c2c', '	#ba3030'], // https://www.color-hex.com/color-palette/7080
@@ -119,7 +118,7 @@ const theme = {
 
   },
   shadows: {
-    
+
     0: '0 1px 3px rgba(0,0,0,0.09), 0 1px 2px rgba(0,0,0,0.14)',
     1: '0 2px 4px rgba(0,0,0,0.04), 0 2px 3px rgba(0,0,0,0.10)',
     2: '0px -3px 6px rgba(139, 139, 136, 0.09), 0px 7px 8px rgba(131, 131, 131, 0.28)',

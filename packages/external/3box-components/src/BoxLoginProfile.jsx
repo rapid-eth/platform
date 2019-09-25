@@ -32,7 +32,7 @@ export default ({ box, children, styled, ...props }) =>
 
 const LoginPopover = ({ box, styled, ...props }) =>
   <Box>
-    <BoxProfile box={box} />
+    {/* <BoxProfile box={box} /> */}
   </Box>
 
 

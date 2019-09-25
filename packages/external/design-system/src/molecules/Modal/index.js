@@ -2,7 +2,7 @@
 import React from "react";
 
 /* --- Local Dependencies --- */
-import { PortalProvider, PortalComponent, PortalWithContext, PortalApi } from '@horizin/react-hooks-portal/dist'
+import { PortalProvider, PortalApi } from '@horizin/react-hooks-portal/dist'
 
 /* ------- Component ------- */
 export default ({

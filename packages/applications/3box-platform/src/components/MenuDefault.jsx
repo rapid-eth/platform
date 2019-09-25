@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from "@reach/router"
 import { Button, Box, Flex, Heading, Span } from '@horizin/design-system';
-import { BoxProvider, BoxWrapper } from '@kames/3box-hooks/dist'
-import {
-  BoxLoginButton, BoxProfile, BoxLoginProfile,
-  BoxSpaceManage, BoxThreadList,
-} from '@kames/3box-components/dist'
+import { BoxWrapper } from '@kames/3box-hooks/dist'
+import { BoxLoginProfile } from '@kames/3box-components/dist'
+
+console.log(BoxWrapper, 'BoxLoginProfile')
 
 const MenuDefault = ({ styled, ...props }) =>
   <Flex between alignCenter>

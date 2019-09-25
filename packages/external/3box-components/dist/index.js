@@ -69,6 +69,12 @@ Object.defineProperty(exports, "BoxThreadCreate", {
     return _BoxThreadCreate.default;
   }
 });
+Object.defineProperty(exports, "BoxThreadJoin", {
+  enumerable: true,
+  get: function get() {
+    return _BoxThreadJoin.default;
+  }
+});
 Object.defineProperty(exports, "BoxThreadPost", {
   enumerable: true,
   get: function get() {
@@ -91,6 +97,12 @@ Object.defineProperty(exports, "BoxThreadPostList", {
   enumerable: true,
   get: function get() {
     return _BoxThreadPostList.default;
+  }
+});
+Object.defineProperty(exports, "BoxThreadPostRetrieve", {
+  enumerable: true,
+  get: function get() {
+    return _BoxThreadPostRetrieve.default;
   }
 });
 
@@ -116,6 +128,8 @@ var _BoxThreadManagePeople = _interopRequireDefault(require("./BoxThreadManagePe
 
 var _BoxThreadCreate = _interopRequireDefault(require("./BoxThreadCreate"));
 
+var _BoxThreadJoin = _interopRequireDefault(require("./BoxThreadJoin"));
+
 var _BoxThreadPost = _interopRequireDefault(require("./BoxThreadPost"));
 
 var _BoxThreadPostCreate = _interopRequireDefault(require("./BoxThreadPostCreate"));
@@ -123,5 +137,7 @@ var _BoxThreadPostCreate = _interopRequireDefault(require("./BoxThreadPostCreate
 var _BoxThreadPostDelete = _interopRequireDefault(require("./BoxThreadPostDelete"));
 
 var _BoxThreadPostList = _interopRequireDefault(require("./BoxThreadPostList"));
+
+var _BoxThreadPostRetrieve = _interopRequireDefault(require("./BoxThreadPostRetrieve"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

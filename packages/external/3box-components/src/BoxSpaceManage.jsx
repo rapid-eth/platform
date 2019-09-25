@@ -4,9 +4,9 @@ import React from 'react'
 import { Button, Span, Heading, Flex } from '@horizin/design-system'
 import BoxLoginButton from './BoxLoginButton'
 import BoxOpenSpace from './BoxOpenSpace'
-
+import { BoxWrapper } from '@kames/3box-hooks/dist'
 /* --- React Component --- */
-export default ({ box, space, children, ...props }) => 
+const BoxSpaceManage = ({ box, space, children, ...props }) => 
 !box.isLoggedIn
 ? <IsNotLoggedIn box={box} isLoggedIn={box.isLoggedIn} open={box.open} />
 : box.spaces[space]
@@ -77,3 +77,8 @@ class SpaceIsOpen extends React.Component {
       null
   )}
 }
+
+export default ({ ...props }) =>
+<BoxWrapper>
+  <BoxSpaceManage {...props} />
+</BoxWrapper>
