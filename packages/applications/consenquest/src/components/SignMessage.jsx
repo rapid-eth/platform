@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
-import { Box, Flex, Button } from '@horizin/design-system'
-import { ethers, Ethers, EthersWrapper } from '@rapid/ethers-react'
-
-console.log(Ethers.Consumer, 'EthersWrapper')
+import React from 'react';
+import { Button } from '@horizin/design-system'
+import { EthersWrapper } from '@rapid/ethers-react'
 
 const SignMessageButton = ({ ethers, styled, ...props}) => {
   return (

@@ -121,6 +121,14 @@ const SignMessageForm = ({ ethers, styled, ...props }) => {
   );
 }
 
+const EthereumEnable = ({ ethers, styled, ...props }) => {
+  return (
+    <>
+      <Button variant='dark' onClick={() => ethers.enable()} >Enable Ethereum</Button>
+    </>
+  )
+}
+
 const SignMessageButton = ({ ethers, styled, ...props }) => {
   const signature = ethers.signatures && ethers.signatures['magic']
   return (
@@ -179,10 +187,16 @@ export const SignPledgeFormInputs = () =>
     <SignPledgeForm />
   </EthersWrapper>
 
+export const EthereumEnableMetaMask = () =>
+  <EthersWrapper>
+    <EthereumEnable />
+  </EthersWrapper>
+
 export default {
   ContractDeployTokenERC20,
   SignMessage,
   SignMessageFormInputs,
   SignPledgeFormInputs,
+  EthereumEnableMetaMask,
   SignatureList
 }

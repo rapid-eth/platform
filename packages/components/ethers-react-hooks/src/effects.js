@@ -4,6 +4,12 @@ import { ethers } from 'ethers'
 const effects = (callUseEffect, state, dispatch) => {
 
   /**
+   * @function EthereumEnable
+   */
+  callUseEffect( () => { 
+    window.ethereum.enable()
+  }, [state.enable])
+  /**
    * @function SetAddress
    */
   callUseEffect( () => { 
@@ -61,7 +67,24 @@ const effects = (callUseEffect, state, dispatch) => {
         try {
           const wallet = state.wallet
           if (wallet) {
-            const signature = await wallet.signMessage(message)
+            // const signature = await wallet.signMessage(message)
+            const provider = new ethers.providers.Web3Provider(window.web3.currentProvider);
+            const MSG = [
+              {
+                  type: 'string',
+                  name: 'Message',
+                  value: 'hell world'
+              },
+              {
+                  type: 'uint256',
+                  name:'num',
+                  value: 10
+              }
+          ]
+            const signature = await provider.send(
+              'eth_signTypedData',
+              [MSG, window.ethereum.selectedAddress],
+            );
             dispatch({
               type: 'SIGN_MESSAGE_SUCCESS',
               input: {
@@ -72,6 +95,7 @@ const effects = (callUseEffect, state, dispatch) => {
             })
           }
         } catch (error) {
+          console.log(error)
           dispatch({
             type: 'SIGN_MESSAGE_FAILURE',
             input: {
@@ -116,6 +140,43 @@ const effects = (callUseEffect, state, dispatch) => {
       runEffect();
     }
 	}, [state.store.deploy])
+  
+  /**
+   * @function InitializeContract
+   * @description INIT_CONTRACT_REQUEST
+   */
+  callUseEffect( () => {
+    
+    if(state.store.contracts && state.store.contracts.length > 0) {
+      const runEffect = async() => {
+        let contract, deployed, transaction
+        const request = state.store.contracts[0]
+        const { payload } = request
+        try {
+          const wallet = state.wallet
+          if(wallet) {
+            contract = new ethers.Contract(payload.address, payload.abi, wallet)
+            dispatch({
+              type: 'INIT_CONTRACT_SUCCESS',
+              id: request.id,
+              delta: request.id,
+              payload: contract,
+              contractType: payload.contractType
+            })
+          }
+        } catch (error) {
+          console.log(error)
+          dispatch({
+            type: 'INIT_CONTRACT_FAILURE',
+            id: request.id,
+            delta: request.id,
+            payload: error
+          })
+        }
+      }
+      runEffect();
+    }
+	}, [state.store.contracts])
 
 }
 

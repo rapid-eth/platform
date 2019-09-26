@@ -7,7 +7,7 @@
     "react-context-portal"
   ],
   "main": "dist/index.js",
-  "main:src": "dist/index.js",
+  "main:src": "src/index.js",
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src --out-dir dist",
     "bundle": "webpack --config ./config/webpack.config.js",

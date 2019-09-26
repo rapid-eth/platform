@@ -5,24 +5,24 @@ import { variant } from 'styled-system'
 
 const Span = styled(Text)`
 ${ props =>
-  variant({
-    variants: {
-      tag: {
-        borderColor: '#ffffff45',
-        borderWidth: 1,
-        borderStyle: 'inset',
-        borderRadius: 80,
-        bg: props.highlight,
-        padding: 2,
-        px: 3,
-        color: '#FFF',
-        textTransform: 'uppercase',
-        fontWeight: 700,
-        fontSize: 0
+    variant({
+      variants: {
+        tag: {
+          borderColor: '#ffffff45',
+          borderWidth: 1,
+          borderStyle: 'inset',
+          borderRadius: 80,
+          bg: props.highlight,
+          padding: 2,
+          px: 3,
+          color: '#FFF',
+          textTransform: 'uppercase',
+          fontWeight: 700,
+          fontSize: 0
+        }
       }
-    }
-  })
-}
+    })
+  }
 
 ${is('center')`
   display: block;
@@ -32,7 +32,7 @@ ${is('center')`
 
 Span.defaultProps = {
   as: 'span',
-  display: 'inline-block'
+  display: 'inline-block',
 }
 
 export default Span

@@ -27,7 +27,7 @@ const DashboardView = ({ variant, ...props }) =>
 
 	<MainInner>
 		<Router>
-			<Overview path='/' />
+			<Overview path='/dashboard/*' />
 		</Router>
 	</MainInner>
 </Dashboard>

@@ -1,4 +1,11 @@
 {
+  "plugins": [
+    ["babel-plugin-rewrite-require", {
+      "aliases": {
+        "crypto": "crypto-browserify"
+      }
+    }]
+  ],
   "presets": [
     "@babel/preset-react",
     [

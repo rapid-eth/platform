@@ -13,8 +13,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var effects = (callUseEffect, state, dispatch) => {
   /**
+   * @function EthereumEnable
+   */
+  callUseEffect(() => {
+    window.ethereum.enable();
+  }, [state.enable]);
+  /**
    * @function SetAddress
    */
+
   callUseEffect(() => {
     var address = window.ethereum.selectedAddress;
 
@@ -83,7 +90,18 @@ var effects = (callUseEffect, state, dispatch) => {
             var wallet = state.wallet;
 
             if (wallet) {
-              var signature = yield wallet.signMessage(message);
+              // const signature = await wallet.signMessage(message)
+              var provider = new _ethers.ethers.providers.Web3Provider(window.web3.currentProvider);
+              var MSG = [{
+                type: 'string',
+                name: 'Message',
+                value: 'hell world'
+              }, {
+                type: 'uint256',
+                name: 'num',
+                value: 10
+              }];
+              var signature = yield provider.send('eth_signTypedData', [MSG, window.ethereum.selectedAddress]);
               dispatch({
                 type: 'SIGN_MESSAGE_SUCCESS',
                 input: {
@@ -94,6 +112,7 @@ var effects = (callUseEffect, state, dispatch) => {
               });
             }
           } catch (error) {
+            console.log(error);
             dispatch({
               type: 'SIGN_MESSAGE_FAILURE',
               input: {
@@ -156,6 +175,55 @@ var effects = (callUseEffect, state, dispatch) => {
       runEffect();
     }
   }, [state.store.deploy]);
+  /**
+   * @function InitializeContract
+   * @description INIT_CONTRACT_REQUEST
+   */
+
+  callUseEffect(() => {
+    if (state.store.contracts && state.store.contracts.length > 0) {
+      var runEffect =
+      /*#__PURE__*/
+      function () {
+        var _ref4 = _asyncToGenerator(function* () {
+          var contract, deployed, transaction;
+          var request = state.store.contracts[0];
+          var {
+            payload
+          } = request;
+
+          try {
+            var wallet = state.wallet;
+
+            if (wallet) {
+              contract = new _ethers.ethers.Contract(payload.address, payload.abi, wallet);
+              dispatch({
+                type: 'INIT_CONTRACT_SUCCESS',
+                id: request.id,
+                delta: request.id,
+                payload: contract,
+                contractType: payload.contractType
+              });
+            }
+          } catch (error) {
+            console.log(error);
+            dispatch({
+              type: 'INIT_CONTRACT_FAILURE',
+              id: request.id,
+              delta: request.id,
+              payload: error
+            });
+          }
+        });
+
+        return function runEffect() {
+          return _ref4.apply(this, arguments);
+        };
+      }();
+
+      runEffect();
+    }
+  }, [state.store.contracts]);
 };
 
 var _default = effects;
@@ -171,7 +239,7 @@ exports.default = _default;
 var networkRouting =
 /*#__PURE__*/
 function () {
-  var _ref4 = _asyncToGenerator(function* (network) {
+  var _ref5 = _asyncToGenerator(function* (network) {
     switch (network) {
       case 'json':
         return window.ethers.providers.json;
@@ -191,7 +259,7 @@ function () {
   });
 
   return function networkRouting(_x) {
-    return _ref4.apply(this, arguments);
+    return _ref5.apply(this, arguments);
   };
 }();
 

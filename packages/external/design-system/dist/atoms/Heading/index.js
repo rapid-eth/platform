@@ -127,7 +127,9 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var Heading = (0, _styledComponents.default)(_Text.default)(_templateObject(), (0, _styledIs.default)('noMargin')(_templateObject2()), (0, _styledIs.default)('pointer')(_templateObject3()), (0, _styledIs.default)('xs')(_templateObject4()), (0, _styledIs.default)('sm')(_templateObject5()), (0, _styledIs.default)('md')(_templateObject6()), (0, _styledIs.default)('lg')(_templateObject7()), (0, _styledIs.default)('xl')(_templateObject8()), (0, _styledIs.default)('xxl')(_templateObject9()), (0, _styledIs.default)('mega')(_templateObject10()), (0, _styledIs.default)('center')(_templateObject11()));
 Heading.defaultProps = {
-  as: 'h3'
+  as: 'h3',
+  m: 0,
+  mb: 10
 };
 var _default = Heading;
 exports.default = _default;

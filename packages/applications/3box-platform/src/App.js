@@ -18,7 +18,7 @@ const MasterRoute = props =>
 			<BoxProvider>
 				{/* Top Level Routing */}
 				<Router>
-					
+
 					<SiteView path="/*" />
 					<DashboardView path="/dashboard/*" />
 				</Router>

@@ -69,6 +69,52 @@ const reducerActions = (state, action) => {
       }
 
       /* ----------------------- */
+      /* Contract Initialize     */
+      /* ----------------------- */
+        case 'INIT_CONTRACT_REQUEST':
+          return {
+            ...state,
+            store: {
+              ...state.store,
+              contracts: [
+                ...state.store.contracts,
+                {
+                  payload,
+                  type,
+                  id: delta || hashCode(payload),
+                  delta: delta || hashCode(payload),
+                }
+              ]
+            }
+          }
+
+        case 'INIT_CONTRACT_SUCCESS':
+          return {
+            ...state,
+            store: {
+              ...state.store,
+              contracts: []
+            },
+            contracts: {
+            ...state.contracts,
+              [id]:{
+                id,
+                contractType: action.contractType,
+                ...payload,
+                }
+              }
+        }
+
+        case 'INIT_CONTRACT_FAILURE':
+          return {
+            ...state,
+            store: {
+              ...state.store,
+              contracts: []
+            }
+          }
+
+      /* ----------------------- */
       /* Contract Deployment     */
       /* ----------------------- */
       case 'DEPLOY_CONTRACT_REQUEST':
@@ -109,14 +155,14 @@ const reducerActions = (state, action) => {
                 ...state.store,
                 deploy: filtered
               },
-              deployed: {
+              deployed: [
                 ...state.deployed,
-                [id]: {
+                {
                   ...payload,
                   type: 'contractDeployed',
                   status: true
                 }
-              }
+              ]
             }
 
     default:

@@ -40,16 +40,34 @@ var Provider = (_ref) => {
   var initialState = (0, _react.useContext)(_Context.default);
   var [state, dispatch] = (0, _react.useReducer)(_reducer.default, initialState);
   (0, _effects.default)(_react.useEffect, state, dispatch);
-  console.log(state, 'Ethers State');
+  console.log(state, 'Ethers State Loaded');
   return _react.default.createElement(_Context.default.Provider, {
     value: _objectSpread({}, state, {
       dispatch: dispatch,
-      deployContract: (_ref2) => {
+      enable: () => window.ethereum.enable(),
+      initContract: (_ref2) => {
+        var {
+          abi,
+          address,
+          contractType,
+          delta
+        } = _ref2;
+        return dispatch({
+          type: 'INIT_CONTRACT_REQUEST',
+          payload: {
+            abi,
+            address,
+            contractType
+          },
+          delta: delta || address
+        });
+      },
+      deployContract: (_ref3) => {
         var {
           contract,
           delta,
           values
-        } = _ref2;
+        } = _ref3;
         return dispatch({
           type: 'DEPLOY_CONTRACT_REQUEST',
           payload: {

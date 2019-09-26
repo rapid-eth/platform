@@ -5,6 +5,8 @@
   "author": "Kames <info@kamescg.com> (https://www.kamescg.com)",
   "homepage": "https://github.com/kamescg/react-3box-components",
   "license": "MIT",
+  "main": "dist/index.js",
+  "main:src": "src/index.js",
   "keywords": [
     "npm"
   ],
@@ -92,7 +94,6 @@
       "git add"
     ]
   },
-  "main": "index.js",
   "nyc": {
     "check-coverage": true,
     "lines": 80,

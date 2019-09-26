@@ -7,7 +7,12 @@ exports.default = void 0;
 
 var _react = require("react");
 
+var _ethers = require("ethers");
+
+var crypto = require('crypto-browserify');
+
 var Context = (0, _react.createContext)({
+  instance: _ethers.ethers,
   store: {
     contracts: [],
     deploy: [],
@@ -16,6 +21,7 @@ var Context = (0, _react.createContext)({
     wallets: []
   },
   address: undefined,
+  deployed: [],
   walletShortened: undefined,
   wallet: undefined,
   signMessage: () => {},

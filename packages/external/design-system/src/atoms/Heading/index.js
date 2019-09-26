@@ -3,7 +3,7 @@ import is from 'styled-is';
 import Text from '../Text'
 
 const Heading = styled(Text)
-`
+  `
 ${is('noMargin')`
   margin: 0;
 `};
@@ -40,6 +40,8 @@ ${is('center')`
 
 Heading.defaultProps = {
   as: 'h3',
+  m: 0,
+  mb: 10
 }
 
 export default Heading

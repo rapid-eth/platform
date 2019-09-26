@@ -13,10 +13,8 @@ const QuestRinkebyFaucet = ({ box, threadName, ...props }) => {
         method: 'POST',
         body: JSON.stringify(values)
       });
-      console.log(response)
       if (response.json) {
         const JSONResponse = await response.json();
-        console.log(JSONResponse)
       }
     } catch (error) {
       console.log(error)

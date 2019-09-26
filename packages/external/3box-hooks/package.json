@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "author": "Kames <info@kamescg.com> (https://www.kamescg.com)",
   "homepage": "https://github.com/rapid-eth/3box-hooks",
+  "main": "dist/index.js",
+  "main:src": "src/index.js",
   "keywords": [
     "3box-hooks"
   ],
@@ -92,7 +94,6 @@
       "git add"
     ]
   },
-  "main": "index.js",
   "nyc": {
     "check-coverage": true,
     "lines": 80,

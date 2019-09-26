@@ -79,6 +79,44 @@ var reducerActions = (state, action) => {
 
     /* ----------------------- */
 
+    /* Contract Initialize     */
+
+    /* ----------------------- */
+
+    case 'INIT_CONTRACT_REQUEST':
+      return _objectSpread({}, state, {
+        store: _objectSpread({}, state.store, {
+          contracts: [...state.store.contracts, {
+            payload,
+            type,
+            id: delta || (0, _utilities.hashCode)(payload),
+            delta: delta || (0, _utilities.hashCode)(payload)
+          }]
+        })
+      });
+
+    case 'INIT_CONTRACT_SUCCESS':
+      return _objectSpread({}, state, {
+        store: _objectSpread({}, state.store, {
+          contracts: []
+        }),
+        contracts: _objectSpread({}, state.contracts, {
+          [id]: _objectSpread({
+            id,
+            contractType: action.contractType
+          }, payload)
+        })
+      });
+
+    case 'INIT_CONTRACT_FAILURE':
+      return _objectSpread({}, state, {
+        store: _objectSpread({}, state.store, {
+          contracts: []
+        })
+      });
+
+    /* ----------------------- */
+
     /* Contract Deployment     */
 
     /* ----------------------- */
@@ -111,12 +149,10 @@ var reducerActions = (state, action) => {
         store: _objectSpread({}, state.store, {
           deploy: filtered
         }),
-        deployed: _objectSpread({}, state.deployed, {
-          [id]: _objectSpread({}, payload, {
-            type: 'contractDeployed',
-            status: true
-          })
-        })
+        deployed: [...state.deployed, _objectSpread({}, payload, {
+          type: 'contractDeployed',
+          status: true
+        })]
       });
 
     default:

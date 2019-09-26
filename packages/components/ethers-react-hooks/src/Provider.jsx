@@ -8,11 +8,23 @@ const Provider = ({ children, ...props }) => {
   const initialState = useContext(Context)
   const [state, dispatch] = useReducer(reducerActions, initialState);
   ProviderEffects(useEffect, state, dispatch)
-  console.log(state, 'Ethers State')
+  
+  console.log(state, 'Ethers State Loaded')
+
   return (
     <Context.Provider value={{
       ...state,
       dispatch: dispatch,
+      enable: () => window.ethereum.enable(),
+      initContract: ({ abi, address, contractType, delta }) => dispatch({
+        type: 'INIT_CONTRACT_REQUEST',
+        payload: {
+          abi,
+          address,
+          contractType
+        },
+        delta: delta || address
+      }),
       deployContract: ({contract, delta, values}) => dispatch({
         type: 'DEPLOY_CONTRACT_REQUEST',
         payload: {

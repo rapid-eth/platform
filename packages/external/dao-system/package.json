@@ -5,6 +5,8 @@
   "author": "Kames <info@kamescg.com> (https://www.kamescg.com)",
   "homepage": "https://github.com/kamescg/dao-system",
   "license": "MIT",
+  "main": "dist/index.js",
+  "main:src": "src/index.js",
   "keywords": [
     "dao",
     "ethereum",
@@ -96,7 +98,6 @@
       "git add"
     ]
   },
-  "main": "index.js",
   "nyc": {
     "check-coverage": true,
     "lines": 80,

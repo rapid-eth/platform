@@ -15,7 +15,7 @@
     "test": "FORCE_COLOR=true lerna run lint && CI=true FORCE_COLOR=true lerna run test -- --coverage"
   },
   "workspaces": {
-    "package-entry": "main",
+    "package-entry": "main:src",
     "packages": [
       "packages/applications/*",
       "packages/components/*",
