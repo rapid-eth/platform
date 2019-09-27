@@ -36,7 +36,7 @@ function _templateObject9() {
 }
 
 function _templateObject8() {
-  var data = _taggedTemplateLiteral(["\n    flex-wrap: wrap;\n    & > * {\n      flex: 1;\n      width: 45%;\n      margin-right: 5%;\n      max-width: 50%;\n    }\n    & > *:nth-child(2n) {\n      margin-right: 0;\n    }\n\n    & > *:nth-child(n+3) {\n      margin-top: 20px;\n    }\n    \n    & > *:nth-child(n+3):last-of-type {\n      margin-right: 50px;\n    }\n\n    ", " {\n      & > * {\n        margin: 0;\n        width: 100;\n      }\n    }\n\n  "]);
+  var data = _taggedTemplateLiteral(["\n    flex-wrap: wrap;\n    & > * {\n      flex: 1;\n      width: 45%;\n      margin-right: 5%;\n      max-width: 50%;\n    }\n    & > *:nth-child(2n) {\n      margin-right: 0;\n    }\n  "]);
 
   _templateObject8 = function _templateObject8() {
     return data;
@@ -117,7 +117,7 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var Flex = (0, _styledComponents.default)(_Box.default)(_templateObject(), (0, _styledIs.default)('between')(_templateObject2()), (0, _styledIs.default)('evenly')(_templateObject3()), (0, _styledIs.default)('center')(_templateObject4()), (0, _styledIs.default)('jc')(_templateObject5()), (0, _styledIs.default)('ac')(_templateObject6()), (0, _styledIs.default)('full')(_templateObject7()), (0, _styledIs.default)('gutter2')(_templateObject8(), (0, _styledBreakpoints.down)('tablet')), (0, _styledIs.default)('gutter3')(_templateObject9()), (0, _styledIs.default)('gutter4')(_templateObject10(), (0, _styledBreakpoints.down)('desktop'), (0, _styledBreakpoints.down)('tablet')));
+var Flex = (0, _styledComponents.default)(_Box.default)(_templateObject(), (0, _styledIs.default)('between')(_templateObject2()), (0, _styledIs.default)('evenly')(_templateObject3()), (0, _styledIs.default)('center')(_templateObject4()), (0, _styledIs.default)('jc')(_templateObject5()), (0, _styledIs.default)('ac')(_templateObject6()), (0, _styledIs.default)('full')(_templateObject7()), (0, _styledIs.default)('gutter2')(_templateObject8()), (0, _styledIs.default)('gutter3')(_templateObject9()), (0, _styledIs.default)('gutter4')(_templateObject10(), (0, _styledBreakpoints.down)('desktop'), (0, _styledBreakpoints.down)('tablet')));
 Flex.propTypes = {};
 Flex.defaultProps = {
   width: 'auto'

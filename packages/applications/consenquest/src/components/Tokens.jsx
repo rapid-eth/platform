@@ -112,7 +112,7 @@ const ERC20TokenInitialize = ({ ethers, contractAddress, contractType, delta, st
  * @param {Object} props props
  * @returns {Object} Form Component 
  */
-const ERC20TokenTransfer = ({ ethers, contractName, delta, styled, ...props }) => {
+const ERC20TokenTransfer = ({ address, amount, ethers, contractName, delta, styled, ...props }) => {
   const [state, setState] = useState()
   const [deploying, setDeploying] = useState(false)
 
@@ -134,29 +134,90 @@ const ERC20TokenTransfer = ({ ethers, contractName, delta, styled, ...props }) =
     <Form callback={onSubmit} setState={setState} >
       <Field
         name="amount"
+        label='Amount'
+        defaultValue={amount}
         placeholder="Amount"
       />
       <Field
         name="address"
+        label='Address'
+        defaultValue={address}
         placeholder="Address"
       />
       {
         deploying
           ? <Span>Sending Tokens</Span>
-          : <Button sm type="submit" variant='green'>Send Tokens</Button>
+          : <Button sm type="submit" variant='green' fullWidth>Send Tokens</Button>
       }
     </Form>
   );
 }
 
 
-export const ERC20TokenTransferStateful = () =><EW><ERC20TokenTransfer /></EW>
-export const ERC20TokenInitializeStateful = () =><EW><ERC20TokenInitialize /></EW>
-export const TokenInitListStateful = () =><EW><TokenInitList /></EW>
+// Constructor
+// (
+//     string  memory _tokenName,
+//     string memory _tokenSymbol,
+//     uint8   _decimalUnits,
+//     uint256 _cap
+// )
+const ContractDeployToken = ({ ethers, delta, styled, ...props }) => {
+  const [state, setState] = useState()
+  const [deploying, setDeploying] = useState(false)
+
+  const onSubmit = async (values) => {
+    ethers.deployContract({
+      delta,
+      contract: MintableToken,
+      values: [
+        values.name,
+        values.symbol,
+        Number(values.amount || 18),
+      ]
+    })
+    setDeploying(true)
+  }
+
+  return (
+    <Form callback={onSubmit} setState={setState} >
+      <Field
+        name="name"
+        placeholder="Name (DEV Token)"
+      />
+      <Field
+        name="symbol"
+        placeholder="Symbol (DEV)"
+      />
+      <Field
+        name="decimals"
+        placeholder="Decimals (0-18)"
+      />
+      <Field
+        name="amount"
+        placeholder="Amount (1,000,000)"
+      />
+      <Field
+        name="image"
+        placeholder="Image"
+      />
+      {
+        deploying
+          ? <Span>Deploying Token</Span>
+          : <Button sm fullWidth type="submit" variant='green'>Create Token</Button>
+      }
+    </Form>
+  );
+}
+
+export const ERC20TokenTransferStateful = props =><EW><ERC20TokenTransfer {...props} /></EW>
+export const ERC20TokenInitializeStateful = props =><EW><ERC20TokenInitialize {...props} /></EW>
+export const TokenInitListStateful = props =><EW><TokenInitList {...props} /></EW>
+export const ContractDeployTokenStateful = props =><EW><ContractDeployToken {...props} /></EW>
 
 
 export default {
-  ERC20TokenTransfer,
-  ERC20TokenInitialize,
+  ContractDeployTokenStateful,
+  ERC20TokenTransferStateful,
+  ERC20TokenInitializeStateful,
   TokenInitListStateful
 }

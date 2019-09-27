@@ -20,7 +20,7 @@ const MenuDefault = ({ styled, ...props }) =>
   </Flex>
 
   <Flex alignCenter justifyEnd flex={1} width={.5}>
-    <Link to='/dashboard'><Span sm  bg='green' variant='tag' mx={10}>Dashboard</Span></Link>
+    <Link to='/atm'><Span sm  bg='green' variant='tag' mx={10}>Decentralized ATM</Span></Link>
     <Box alignSelf='flex-end'>
       <Button xs >Login</Button>
     </Box>

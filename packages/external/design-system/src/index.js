@@ -32,6 +32,7 @@ export { default as Portal } from './organisms/Portal';
 export { default as Menu } from './organisms/Menu';
 export { default as TabsHorizontal } from './organisms/Tabs';
 export { default as TabsPhone } from './organisms/TabsPhone';
+export { default as QRReader } from './organisms/QRReader';
 
 // Templates
 export { default as Hero } from './templates/Hero';

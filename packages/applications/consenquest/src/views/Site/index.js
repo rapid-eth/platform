@@ -1,4 +1,6 @@
-export { default as Home } from './Home'
 export { default as Advanced } from './Advanced'
+export { default as ATM } from './ATM'
+export { default as ContractConnect } from './ContractConnect'
+export { default as Home } from './Home'
 export { default as Beginner } from './Beginner'
 export { default as Intermediate } from './Intermediate'

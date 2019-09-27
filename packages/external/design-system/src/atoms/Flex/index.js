@@ -56,22 +56,6 @@ const Flex = styled(Box)`
     & > *:nth-child(2n) {
       margin-right: 0;
     }
-
-    & > *:nth-child(n+3) {
-      margin-top: 20px;
-    }
-    
-    & > *:nth-child(n+3):last-of-type {
-      margin-right: 50px;
-    }
-
-    ${down('tablet')} {
-      & > * {
-        margin: 0;
-        width: 100;
-      }
-    }
-
   `};
 
   // Gutter 3

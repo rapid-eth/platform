@@ -43,6 +43,7 @@ const Home = ({ styled, ...props }) =>
         </Flex>
       </Flex>
     </Flex>
+    
     <Box gradient='purpink' gradientDir='140' py={100}>
       <BackgroundImage ratio={.55} src='https://images.ui8.net/uploads/preview_6_1569070974155.png' opacity={0.2} />
       <Container mt={[-190]}>

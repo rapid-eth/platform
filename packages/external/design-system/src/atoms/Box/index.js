@@ -8,7 +8,7 @@ import is from 'styled-is';
 import { withoutProps, ignoreList } from '../../utils'
 
 const Box = styled(withoutProps(ignoreList)('div'))
-  `
+  `s
 box-sizing: border-box;
 /* --------------- */
 /*      System     */

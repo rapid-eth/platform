@@ -183,6 +183,12 @@ Object.defineProperty(exports, "TabsPhone", {
     return _TabsPhone.default;
   }
 });
+Object.defineProperty(exports, "QRReader", {
+  enumerable: true,
+  get: function get() {
+    return _QRReader.default;
+  }
+});
 Object.defineProperty(exports, "Hero", {
   enumerable: true,
   get: function get() {
@@ -405,6 +411,8 @@ var _Menu = _interopRequireDefault(require("./organisms/Menu"));
 var _Tabs = _interopRequireDefault(require("./organisms/Tabs"));
 
 var _TabsPhone = _interopRequireDefault(require("./organisms/TabsPhone"));
+
+var _QRReader = _interopRequireDefault(require("./organisms/QRReader"));
 
 var _Hero = _interopRequireDefault(require("./templates/Hero"));
 

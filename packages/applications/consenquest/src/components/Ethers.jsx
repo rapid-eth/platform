@@ -128,7 +128,6 @@ const GeneratePrivateKey = ({ ethers, delta, styled, ...props }) => {
       {
       <>
         <Button sm mb={20} fullWidth type="submit" variant='green'>Click to Generate New Wallet</Button>
-        <Span xs center my={10}>Download Metamask to Create Permanent Wallet</Span>
       </>
       }
     </Form>

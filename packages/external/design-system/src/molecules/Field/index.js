@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Box } from '../../index'
 import Input from '../../atoms/Input';
 import Error from './message';
+import { Span } from '../../../dist/atoms';
 
 /* --- Component --- */
 export default ({
@@ -11,11 +12,11 @@ export default ({
   name, label, placeholder, error, errors, register, validation,
   component, styled, ...props 
 }) =>
-!register ? <div>no register</div> :
+!register ? null :
 <>
   {
     label &&
-    <label>{label}</label>
+    <Span xs as='label' my='5px' >{label}</Span>
   }
   <Box>
     {

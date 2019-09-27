@@ -4,7 +4,10 @@ import { Site } from '@horizin/design-system'
 import { SiteHeader, SiteFooter, SiteMain } from '@horizin/design-system/dist/templates/Site'
 import { Branding, Footer } from "../components";
 
-import { Home, Beginner, Intermediate, Advanced } from "../views/Site";
+import {
+    Home, Beginner, Intermediate, Advanced,
+    ATM, ContractConnect
+  } from "../views/Site";
 
 const SiteRoutes = ({ styled, ...props }) =>
   <Site>
@@ -19,6 +22,10 @@ const SiteRoutes = ({ styled, ...props }) =>
         <Beginner path='/beginner/*' />
         <Intermediate path='/intermediate/*' />
         <Advanced path='/advanced/*' />
+        <ATM path='/atm/*' />
+        <ContractConnect path='/contracts/*' />
+        <ContractConnect path='/quests/*' />
+        <ContractConnect path='/admin/*' />
       </Router>
 
     </SiteMain>

@@ -138,7 +138,7 @@ const theme = {
     darkHover: '0 13px 21px -4px #a09ccf',
     // input: '1px 1px 1px rgba(0, 0, 0, 0.22)',
     sunset: '0px -6px 7px -5px #d6d6d6, 3px -4px 3px -3px #ca2ea5, 0px -4px 3px -2px #dc050f, -5px -4px 4px -6px #f3932f',
-    shadowBlue: '0px -6px 7px -5px #d6d6d6, 3px -4px 3px -3px #066ebe, 0px -4px 3px -2px #2cc7b1, -5px -4px 4px -6px #46eca4',
+    blue: '0px -6px 7px -5px #d6d6d6, 3px -4px 3px -3px #066ebe, 0px -4px 3px -2px #2cc7b1, -5px -4px 4px -6px #46eca4',
     // Inset
     insetBottom: [
       'inset 0 -15px 15px -15px rgba(0,0,0,0.45)',
