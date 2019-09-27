@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { Box, Flex, Form, Field, Button, Text, Span } from '@horizin/design-system'
+import { Box, Flex, Form, Field, Button, Text, Span, Label } from '@horizin/design-system'
 import { EthersWrapper } from '@rapid/ethers-react'
 import { Heading } from '@horizin/design-system/dist/atoms';
 
@@ -97,33 +97,42 @@ const ContractDeployToken = ({ ethers, delta, styled, ...props }) => {
  * @returns {Object} Form Component 
  */
 const GeneratePrivateKey = ({ ethers, delta, styled, ...props }) => {
-  const [wallet, setWallet] = useState()
-  const [deploying, setDeploying] = useState(false)
-  
+  const [wallet, setWallet] = useState({})
   // Form Submit Handler
   const onSubmit = async (values) => {
     const wallet = ethers.instance.Wallet.createRandom()
-    console.log(wallet, 'wallet')
     setWallet(wallet)
-    setDeploying(true)
   }
 
   return (
+    <>
     <Form callback={onSubmit} >
+      <label>Address</label>
       <Field
-        name="password"
-        placeholder="Password (MyVeySecureSecretLongPassword)"
+        name="address"
+        value={wallet.address}
+        placeholder="Address"
       />
+      <label>Private Key</label>
       <Field
-        name="entropy"
-        placeholder="Entropy (95886710124787235687293489576...)"
+        name="privateKey"
+        value={wallet.privateKey}
+        placeholder="Private Key"
+      />
+      <label>Mnemonic Phrase</label>
+      <Field
+        name="mnemonic"
+        value={wallet.mnemonic}
+        placeholder="Mnemonic Phrase"
       />
       {
-        deploying
-          ? <Span bg='green' variant='tag'>Creating Wallet</Span>
-          : <Button sm type="submit" variant='green' fullWidth>Generate Wallet</Button>
+      <>
+        <Button sm mb={20} fullWidth type="submit" variant='green'>Click to Generate New Wallet</Button>
+        <Span xs center my={10}>Download Metamask to Create Permanent Wallet</Span>
+      </>
       }
     </Form>
+    </>
   );
 }
 

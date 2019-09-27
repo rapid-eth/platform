@@ -55,37 +55,20 @@ const Home = ({ styled, ...props }) =>
       </Flex>
     </Flex>
 
-    <Box gradient='blue' py={100}>
-      <BackgroundImage ratio={.35} src='https://images.ui8.net/uploads/preview_6_1569070974155.png' opacity={.1} />
-      <Container py={100} maxWidth={700}>
-        <Flex column center my={30}>
-          <Box color='white' maxWidth={500} fullWidth textCenter>
-            <Heading xl>Connect to a Smart Contract</Heading>
-            <ERC20TokenInitializeStateful />
-          </Box>
-        </Flex>
-        <TokenInitListStateful />
-        <ContractDeployListStateful />
-      </Container>
-    </Box>
+    <Flex color='white' my={30}>
+          
+          <Flex column center flex={2} maxWidth={500}>
+            <Button>3ID Login</Button>
+          </Flex>
 
-    <Box>
-      <Container py={80}>
-        <Flex alignCenter>
-          <Flex column flex={1} p={40}>
-            <Heading xxl noMargin>Create A <strong><em>You</em></strong> Token</Heading>
-            <Span fontSize={3} normal>Launch a digital token to represent you on an Ethereum blockchain.</Span>
-            <Box mt={50} maxWidth={300}>
-              <ContractDeployTokenERC20 />
+          <Box flex={3}>
+            <Box p={40} textCenter>
+              <Heading xl>Create A Decentralized Identity</Heading>
+              <Heading md as='h5'>A unique address just for you. <strong>A digital <em>You</em>.</strong></Heading>
             </Box>
-          </Flex>
-          <Flex column center flex={1}>
-            <Image card circle src='https://images.ui8.net/uploads/sms_send_and_recive_coin_1526963064333.jpg' />
-            {/* <Image card circle src='https://images.ui8.net/uploads/2_1529684097775.jpg' /> */}
-          </Flex>
+          </Box>
+
         </Flex>
-      </Container>
-    </Box>
 
 
     <Box>

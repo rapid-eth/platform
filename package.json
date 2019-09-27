@@ -21,6 +21,7 @@
       "packages/components/*",
       "packages/external/*",
       "packages/libraries/*",
+      "packages/build/*",
       "packages/storybook"
     ],
     "nohoist": [
