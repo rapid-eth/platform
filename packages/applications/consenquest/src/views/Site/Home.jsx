@@ -1,107 +1,156 @@
 import React from 'react';
-import { Flex, Heading, Image, BackgroundImage, Paragraph, Box, Container, Button } from '@horizin/design-system';
+import { Buton, Blockquote,
+  Loading, Span, Modal, Flex, Heading, Image, BackgroundImage, Tabs, Popover,
+  Paragraph, Box, Container, Button, Card, HorizontalRule, Panel, Absolute, Link
+} from '@horizin/design-system';
 
 import {
-  SignPledgeFormInputs,
-  EthereumEnableMetaMask
-} from "../../components/Signatures";
-import Span from '@horizin/design-system/dist/atoms/Span';
+  BoxAccess, BoxThreadPostList, BoxSpaceOpen,
+  BoxLoginCard, BoxLoginButton, BoxVerified } from '@kames/3box-components/dist'
+
+import EtheruemFeatures from './EthereumFeatures'
 
 
 const Home = ({ styled, ...props }) =>
-  <>
-    <Flex fullWidth minHeight='100vh' >
 
-      <Flex column flex={1} px={200} pt={200} >
-        <Heading mega noMargin>1 Million Developers</Heading>
-        <Span normal fontSize={4}>Join The Web3 Guild. <strong>Develop the Future.</strong></Span>
-        <Paragraph sm>
-          Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec dolor sapien, gravida eu dapibus eu, rutrum in nulla. Vestibulum in dapibus nisl.
-            </Paragraph>
-        <Flex fullWidth mt={30}>
-          <EthereumEnableMetaMask />
-        </Flex>
+  <>
+    <Flex fullWidth >
+
+      <Flex center column flex={3} py={50} minHeight='600px' >
+        <Absolute layout='bottomRight' m={3}>
+          <Span thin tag='white' xxs ><strong><a href='#'>Contribute to DEVLand</a></strong></Span>
+        </Absolute>
+        <Box px={200}>
+          <Popover />
+          <Heading xl heavy><Span md thin>ETHEREUM MISSION</Span><br/><Span heavy>1 Million Developers</Span> </Heading>
+          <Paragraph mt={3}>
+            <strong>A core feature of blockchain is composability.</strong> Help compose the future of Ethereum - contribute to an Open Catalog of smart contracts and libraries. 
+          </Paragraph>
+          <Flex alignCenter>
+            <Span xs tag='blue'>Beginner</Span><br/>
+            <Span xxs  mx={3}>Enble Web3 Browser</Span>
+          </Flex>
+          <Flex alignCenter mt={3}>
+            <Span xs tag='green'>Intermediate</Span><br/>
+            <Span xxs mx={3}>Smart Contract Playground</Span>
+          </Flex>
+          <Flex alignCenter mt={3}>
+            <Span xs tag='red'>Advanced</Span><br/>
+            <Span xxs normal mx={3}>Submit Open Source Project</Span>
+          </Flex>
+          
+        </Box>
       </Flex>
 
-      <Flex flex={1} pt={100} >
-        <BackgroundImage ratio={.35} src='https://images.ui8.net/uploads/preview_7_1569070970063.png' />
-        <Flex column flex={1} p={40}>
-          <Flex center column card mt={50} ml={-160} width={300} p={30}>
-            <Flex card circle maxWidth={120} boxShadow='sunset' mt={-80}>
-              <Image maxWidth={80} src='https://icon-library.net/images/ethereum-icon/ethereum-icon-4.jpg' />
-            </Flex>
-
-            <Heading my={10} center>Web3 Pledge</Heading>
-            <Paragraph xs center>
-              Curabitur dolor ligula, dictum auctor lacus mollis, lacinia tristique magna.
-                </Paragraph>
-
-            <SignPledgeFormInputs fullWidth />
-
-            <Span xs my={15}>596 Signed Pledges</Span>
-          </Flex>
+      <Flex boxShadow='insetLeftHeavy' gradient='blue' flex={2} py={50}  >
+        <BackgroundImage opacity={.86} ratio={.35} src='https://static.vecteezy.com/system/resources/previews/000/202/998/original/ethereum-currency-illustration-based-on-world-map-background-vector.jpg' />
+        <Flex center column mt={50} ml={-160} p={30}>
+          <BoxLoginCard />
         </Flex>
+        <Absolute layout='bottomLeft' mb={3} >
+          <Box mx={3}>
+            <Span xxs tag='green'><Span fontWeight={700}><strong>Join 10,000+ Active Developers</strong></Span></Span>
+          </Box>
+        </Absolute>
+        <Absolute layout='topRight' mr={155} mt={220} ><Loading type='ripple' /></Absolute>
+        <Absolute layout='topRight' mr={200} mt={420} ><Loading type='ripple' /></Absolute>
+        <Absolute layout='topRight' mr={30} mt={190} ><Loading type='ripple' /></Absolute>
       </Flex>
     </Flex>
-    
-    <Box gradient='purpink' gradientDir='140' py={100}>
-      <BackgroundImage ratio={.55} src='https://images.ui8.net/uploads/preview_6_1569070974155.png' opacity={0.2} />
-      <Container mt={[-190]}>
-        <Flex gutter3>
+    <DeveloperStatus />
+    <Box py={40}>
 
-          <Box card boxShadow='sunset'>
-            <Flex center column>
-              <Flex card circle maxWidth={120} boxShadow='sunset' mt={-80}>
-                <Image maxWidth={80} src='https://static.thenounproject.com/png/1709925-200.png' />
+      <Container>
+        <Flex alignCenter p={4}>
+          <Box flex={3} p={5}>
+            <Heading lg heavy>Discover the <Span>"Ah-Ha"</Span> moment</Heading>
+            <Heading md thin>Find what makes blockchain great. <strong><em>Composability</em></strong>.</Heading>
+            <Paragraph>
+              The Ethereum Blockchain is a global computer. The computer provides the building blocks for crafting composable functions.
+            </Paragraph>
+            <Paragraph>
+              <em><strong>The power is immense.</strong> What can be built is <strong>extraordinary</strong>.</em>
+            </Paragraph>
+            <Paragraph>
+              Discover the blockchain "ah-ha" moment by first understanding why <strong>global composability is world changing</strong>. 
+            </Paragraph>
+            <Span pointer tag='green' >
+              <Flex alignCenter>
+                <Image maxWidth={28} circle mx={2} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />
+                <Link to='/discover' >
+                  <Span mx={3}>Discover <Span><strong> Your Ah-Ha </strong></Span> Moment</Span>
+                </Link>
               </Flex>
-              <Heading xl thin >Beginner</Heading>
-              <Heading xs heavy>Get Started with the Basics</Heading>
-              <Paragraph xs center>
-                Vivamus eget placerat tortor. Proin hendrerit, tortor a sodales accumsan, turpis lacus venenatis purus, non accumsan sapien dolor sit amet arcu. Ut elit est, placerat et sodales id, aliquam ac odio.
-              </Paragraph>
-              <Button  my={30} variant='green'>Learn the Basics</Button>
-            </Flex>
+              </Span>
           </Box>
-          
-          <Box card boxShadow='sunset'>
-            <Flex center column>
-              <Flex card circle maxWidth={120} boxShadow='sunset' mt={-80}>
-                <Image maxWidth={80} src='https://static.thenounproject.com/png/1808096-200.png' />
-              </Flex>
-              <Heading xl thin >Intermediate</Heading>
-              <Heading xs heavy>Get Started with the Basics</Heading>
-              <Paragraph xs center>
-                Vivamus eget placerat tortor. Proin hendrerit, tortor a sodales accumsan, turpis lacus venenatis purus, non accumsan sapien dolor sit amet arcu. Ut elit est, placerat et sodales id, aliquam ac odio.
-              </Paragraph>
-              <Button  my={30} variant='green'>Deploy Contracts</Button>
-            </Flex>
-          </Box>
-          
-          <Box card boxShadow='sunset'>
-            <Flex center column>
-              <Flex card circle maxWidth={120} boxShadow='sunset' mt={-80}>
-                <Image maxWidth={80} src='https://static.thenounproject.com/png/1941859-200.png' />
-              </Flex>
-              <Heading xl thin >Advanced</Heading>
-              <Heading xs heavy>Get Started with the Basics</Heading>
-              <Paragraph xs center>
-                Vivamus eget placerat tortor. Proin hendrerit, tortor a sodales accumsan, turpis lacus venenatis purus, non accumsan sapien dolor sit amet arcu. Ut elit est, placerat et sodales id, aliquam ac odio.
-              </Paragraph>
-              <Button my={30} variant='green'>Submit History</Button>
-            </Flex>
-          </Box>
-
+          <Flex flex={2}>
+           <Box>
+              <Image
+                maxWidth={600} rounded card p={1} 
+                borderRadius={140}
+                src={'https://images.ui8.net/uploads/blockchain_platform_5_1527438188551.jpg'}/>
+           </Box>
+          </Flex>
         </Flex>
-        <Box textCenter color='white' mt={70}>
-          <Heading md as='h4'>1,000,000 DEV Available (Limited Supply)</Heading>
-          <Heading sm as='h6'>Earn DEV Token for Introducing Developers</Heading>
-          <Button p={50} my={30} styled={{p: 40}} variant='blue'><Heading lg my={30}>Generate Affiliate Link</Heading></Button>
-          <Paragraph heavy>
-            Earn DEV tokens and access to projects by introducing developers to Web3 Land.
-          </Paragraph>
-        </Box>
-      </Container>    
+      </Container>
+      
     </Box>
   </>
+
+const DeveloperStatus = ({ styled, ...props}) => { 
+ return(
+  <Box color='white' bg='dark' gradient='black' p={4} >
+    <Flex alignCenter between width='100%'>
+      <Flex>
+        <Span xxs tag='green'>Status: Enabled</Span>
+        <Span xxs tag='white' mx={3}>Address: 0xfA6...a48cE</Span>
+        <Span xxs tag='white'>Network: Rinkeby</Span>
+      </Flex>
+      <Flex>
+        <Span sm  >Earn DEV - Refer A Friend</Span>
+      </Flex>
+      <Flex>
+        <Panel
+            content={<div>hello</div>}
+            styled={{
+            }}
+            >
+          <Button sm mx={1} variant='red'>Manage Profile</Button>
+        </Panel>
+        <Modal
+            content={<div>hello</div>}
+            styled={{
+            }}
+            >
+          <Button sm mx={1}>Share Status Update</Button>
+        </Modal>
+      </Flex>
+    </Flex>
+  </Box>
+)}
+
+const CodeEditor = ({ styled, ...props}) => { 
+ return(
+  <Flex fullWidth >
+    
+
+    <Flex gradient='black' flex={1} py={50}  >
+      <BackgroundImage ratio={.35} src='https://blockexplorer.com/news/wp-content/uploads/2018/08/ethereum-logo.jpg' opacity={.2} />
+      <Flex center column mt={50} ml={-90} p={30}>
+        <Image src={'https://i.imgur.com/0iBDGhY.jpg'} maxWidth={700} rounded card p={1} />
+      </Flex>
+    </Flex>
+
+    <Flex center column flex={1} py={50} >
+      <Box px={140}>
+        <Heading xxl heavy><Span md thin>Smart Contracts Templates</Span></Heading>
+        <Heading sm heavy>Get started now. Start experimenting with blockchain today.</Heading>
+        <Paragraph mt={3}>
+          <strong>The core feature of blockchain is composability.</strong> Help compose the future of Ethereum - contribute to an Open Catalog of smart contracts and decentralized libraries for everyone to use. 
+        </Paragraph>
+      </Box>
+    </Flex>
+  </Flex>
+)}
 
 export default Home

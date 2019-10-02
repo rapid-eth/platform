@@ -58,6 +58,80 @@ const Home = ({ styled, ...props }) =>
     </Flex>
 
 
+    <Box gradient='purpink' gradientDir='140' py={100}>
+      <BackgroundImage ratio={.55} src='https://images.ui8.net/uploads/preview_6_1569070974155.png' opacity={0.2} />
+      <Container mt={[-190]}>
+        <Flex gutter3>
+
+          <Box card boxShadow='sunset'>
+            <Flex center column>
+              <Flex card circle maxWidth={120} boxShadow='sunset' mt={-80}>
+                <Image maxWidth={80} src='https://static.thenounproject.com/png/1709925-200.png' />
+              </Flex>
+              <Heading xl thin >Beginner</Heading>
+              <Heading xs heavy>Get Started with the Basics</Heading>
+              <Paragraph xs center>
+                Vivamus eget placerat tortor. Proin hendrerit, tortor a sodales accumsan, turpis lacus venenatis purus, non accumsan sapien dolor sit amet arcu. Ut elit est, placerat et sodales id, aliquam ac odio.
+              </Paragraph>
+              <Button  my={30} variant='green'>Learn the Basics</Button>
+            </Flex>
+          </Box>
+          
+          <Box card boxShadow='sunset'>
+            <Flex center column>
+              <Flex card circle maxWidth={120} boxShadow='sunset' mt={-80}>
+                <Image maxWidth={80} src='https://static.thenounproject.com/png/1808096-200.png' />
+              </Flex>
+              <Heading xl thin >Intermediate</Heading>
+              <Heading xs heavy>Get Started with the Basics</Heading>
+              <Paragraph xs center>
+                Vivamus eget placerat tortor. Proin hendrerit, tortor a sodales accumsan, turpis lacus venenatis purus, non accumsan sapien dolor sit amet arcu. Ut elit est, placerat et sodales id, aliquam ac odio.
+              </Paragraph>
+              <Button  my={30} variant='green'>Deploy Contracts</Button>
+            </Flex>
+          </Box>
+          
+          <Box card boxShadow='sunset'>
+            <Flex center column>
+              <Flex card circle maxWidth={120} boxShadow='sunset' mt={-80}>
+                <Image maxWidth={80} src='https://static.thenounproject.com/png/1941859-200.png' />
+              </Flex>
+              <Heading xl thin >Advanced</Heading>
+              <Heading xs heavy>Get Started with the Basics</Heading>
+              <Paragraph xs center>
+                Vivamus eget placerat tortor. Proin hendrerit, tortor a sodales accumsan, turpis lacus venenatis purus, non accumsan sapien dolor sit amet arcu. Ut elit est, placerat et sodales id, aliquam ac odio.
+              </Paragraph>
+              <Button my={30} variant='green'>Submit History</Button>
+            </Flex>
+          </Box>
+
+        </Flex>
+        <Box mt={70}>
+        <Box width={700} mx='auto'>
+          <Blockquote card>
+            <Heading xl heavy>Global Virtual Machine</Heading>
+              <em>When I discovered Ethereum, I realized that it used a virtual machine that spanned the globe: a world computer. And even better, I could write programs for that world computer. As soon as I realized the implications of this technology I knew this was what I would be doing for the rest of my career.</em>
+              <Flex alignCenter justifyEnd>
+                <Box textRight>
+                  <Heading md heavy>Daniel Ellison</Heading>
+                  <Heading sm thin>Hardware Engineer Extraordinaire!</Heading>
+                </Box>
+                <Image mx={10} variant='avatar' src='https://pbs.twimg.com/profile_images/925445911181869056/9ZSadlR9_400x400.jpg' />
+              </Flex>
+          </Blockquote> 
+        </Box>
+        </Box>
+        <Box textCenter color='white' mt={70}>
+          <Heading md as='h4'>1,000,000 DEV Available (Limited Supply)</Heading>
+          <Heading sm as='h6'>Earn DEV Token for Introducing Developers</Heading>
+          <Button p={50} my={30} styled={{p: 40}} variant='blue'>Refer A Friend</Button>
+          <Paragraph heavy>
+            Earn DEV tokens and access to projects by introducing developers to Web3 Land.
+          </Paragraph>
+        </Box>
+      </Container>    
+    </Box>
+
     <Flex center column gradient='purpink' gradientDir='45' py={[150]}>
       {/* <BackgroundImage ratio={.35} src='https://images.ui8.net/uploads/preview_6_1569070974155.png' opacity={.12} /> */}
       <Container >

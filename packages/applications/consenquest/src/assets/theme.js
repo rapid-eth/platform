@@ -23,10 +23,10 @@ const theme = {
   },
   colors: {
     // Brand Color Styles
-    primary: '#2855de',
+    primary: '#dc448dcf',
     secondary: '#09272a',
     tertiary: '#F45C43',
-
+    dark: '#29323a',
     // Generic color Styles
     blue: '#3a95ee',
     blueLight: '#466fec',
@@ -49,6 +49,7 @@ const theme = {
     rust: '#b34a4a',
     orange: '#c67a18',
     purple: '#716aca',
+    purpleDark: '#2e2e48',
     turquoise: '#3ba0ac',
     whiteOpaque: 'rgba(255,255,255, 0.7)'
   },
@@ -77,6 +78,7 @@ const theme = {
     orange: ['#ffa319', '#fb3306'],
     orangish: ['#ffb123', '#e9a100'],
     red: ['#ef473a', '#cb2d3e'],
+    cloudy: ['#FFF', '#e7e3e3'], 
     white: ['#FFF', '#fefefe'],
   },
   textShadow: {
@@ -134,7 +136,7 @@ const theme = {
     cardHover: '5px 7px 26px -5px #e1e1f059, 5px -6px 17px -5px #e1e1f0ba',
     // light: '5px 7px 26px -5px #e1e1f0',
     light: '1px 3px 4px 0px #afafc06e',
-    lightHover: '0 3px 16px -4px #a09ccf',
+    lightHover: '0 3px 16px -4px #a09ccfa3',
     darkHover: '0 13px 21px -4px #a09ccf',
     // input: '1px 1px 1px rgba(0, 0, 0, 0.22)',
     sunset: '0px -6px 7px -5px #d6d6d6, 3px -4px 3px -3px #ca2ea5, 0px -4px 3px -2px #dc050f, -5px -4px 4px -6px #f3932f',
@@ -166,7 +168,10 @@ const theme = {
       '9px 0px 10px 0px rgba(0,0,0,0.19)',
     ],
     insetLeftLight: [
-      'inset 10px 0px 15px 0px rgba(0, 0, 0, 0.24)',
+      'inset 10px 0px 15px 0px rgba(0, 0, 0, 0.25)',
+    ],
+    insetLeftHeavy: [
+      'inset 10px 0px 15px 0px rgba(0, 0, 0, 0.55)',
     ],
   },
   fonts: {
@@ -175,7 +180,7 @@ const theme = {
     button: "Open Sans' ,-apple-system,BlinkMacSystemFont,'Segoe UI',Ubuntu,Cantarell,'Helvetica Neue',sans-serif",
   },
   fontFamily: {
-    default: "Roboto,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif",
+    default: "Roboto,-apple-system,BlinkMacSystemFont,'Segoe UI', Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif",
     heading: "Akrobat,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif",
     button: "Roboto,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif"
   },

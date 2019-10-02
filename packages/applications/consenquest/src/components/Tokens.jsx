@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import { Box, Flex, Form, Field, Button, Text, Span, Heading } from '@horizin/design-system'
+import {
+  Box, Flex, Form, Field, Button, Text, Span, Heading,
+  Toast, QRReader
+} from '@horizin/design-system'
 import { EthersWrapper as EW } from '@rapid/ethers-react'
 
 // Contracts

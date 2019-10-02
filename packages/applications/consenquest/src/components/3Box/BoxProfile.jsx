@@ -10,8 +10,8 @@ const shadowSunset = '0px -6px 7px -5px #d6d6d6, 3px -4px 3px -3px #ca2ea5, 0px 
 
 const Card = ({
   address, title, role, employer, job, id, to,
-  actionLabel, content, summary, image, images, imageFeatured,
-}) => 
+  actionLabel, content, summary, image, images, imageFeatured
+}) => (
 <Box cardHover  p={0}>
   <Flex column height='100%' >
     <Flex column flex={1} p={2} minHeight={140}>
@@ -57,6 +57,7 @@ const Card = ({
     </Box>
   </Flex>
 </Box>
+)
 
 Card.defaultProps = {
   title: 'Joe Lubin',

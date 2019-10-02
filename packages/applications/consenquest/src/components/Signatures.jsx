@@ -122,9 +122,12 @@ const SignMessageForm = ({ ethers, styled, ...props }) => {
 }
 
 const EthereumEnable = ({ ethers, styled, ...props }) => {
+  const actionHandler = props => {
+  }
+
   return (
     <>
-      <Button variant='dark' onClick={() => ethers.enable()} >Enable Ethereum</Button>
+      <Button variant='dark' onClick={actionHandler} >Enable Ethereum</Button>
     </>
   )
 }

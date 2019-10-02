@@ -1,14 +1,40 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Flex, Form, Field, Button, Text, Span, Label } from '@horizin/design-system'
 import { EthersWrapper } from '@rapid/ethers-react'
 import { Heading } from '@horizin/design-system/dist/atoms';
 
 // Contracts
-import ERC20 from '../contracts/ERC20'
 import MintableToken from '../contracts/MintableToken'
-import CappedMintableToken from '../contracts/CappedMintableToken'
 
+/**
+ * @function ContractInitialize
+ * @param {Object} props props
+ * @returns {Object} Form Component 
+ */
+export const ContractInitialize = ({ contract, abi, address, contractType, ethers, styled, ...props}) => {
+  const [ loaded, setLoaded ] = useState()
+  useEffect( () => { 
+    console.log(abi, contract, 'setting contract')
+    if(!loaded && (abi || contract)) {
+      ethers.initContract({
+        address,
+        contractType,
+        abi: abi || contract.abi || undefined
+      })
+      setLoaded(true)
+    }
+  }, [ loaded, ethers, abi, contract, address, contractType ])
+  return (
+    <Box>
+    {
+      loaded
+      ? null
+      : null
+    }
+    </Box>
+  )
+}
 
 /**
  * @function ContractDeployList
@@ -151,8 +177,14 @@ export const GeneratePrivateKeyStateful = () =>
   <GeneratePrivateKey />
 </EthersWrapper>
 
+export const ContractInitializeStateful = props =>
+<EthersWrapper>
+  <ContractInitialize {...props} />
+</EthersWrapper>
+
 
 export default {
+  ContractInitializeStateful,
   ContractDeployTokenERC20,
   ContractDeployListStateful,
   GeneratePrivateKeyStateful
