@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _images = require("assets/images");
-
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _styledSystem = require("styled-system");
@@ -80,10 +78,11 @@ function _templateObject() {
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 /* --------------------------- Styled Component ----------------------------- */
-var HorizontalRule = _styledComponents.default.hr(_templateObject(), (0, _styledTheme.palette)('grayscale', 1, true), _styledSystem.boxShadow, _styledSystem.borderColor, _styledSystem.space, _styledSystem.width, (0, _styledIs.default)('thin')(_templateObject2()), (0, _styledIs.default)('dash')(_templateObject3()), (0, _styledIs.default)('center')(_templateObject4()), (0, _styledIs.default)('iconic')(_templateObject5(), _images.logoEthereumOpaque, (0, _styledTheme.palette)('grayscale', 1, true)), (0, _styledIs.default)('or')(_templateObject6(), (0, _styledTheme.palette)('grayscale', 1, true)));
+var HorizontalRule = _styledComponents.default.hr(_templateObject(), (0, _styledTheme.palette)('grayscale', 1, true), _styledSystem.boxShadow, _styledSystem.borderColor, _styledSystem.space, _styledSystem.width, (0, _styledIs.default)('thin')(_templateObject2()), (0, _styledIs.default)('dash')(_templateObject3()), (0, _styledIs.default)('center')(_templateObject4()), (0, _styledIs.default)('iconic')(_templateObject5(), '', (0, _styledTheme.palette)('grayscale', 1, true)), (0, _styledIs.default)('or')(_templateObject6(), (0, _styledTheme.palette)('grayscale', 1, true)));
 
 HorizontalRule.defaultProps = {
   borderColor: 'grayLine',
+  mx: 0,
   width: 1,
   style: {
     borderImageSlice: 1

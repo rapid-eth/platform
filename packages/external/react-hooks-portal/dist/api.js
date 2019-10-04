@@ -5,8 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var Api = {
-  open: null,
-  hide: null
+  open: () => {},
+  hide: () => {}
 };
 var _default = Api;
 exports.default = _default;

@@ -2,6 +2,13 @@ import box from '3box/dist/3box';
 import { createContext } from 'react';
 
 const Context = createContext({
+  store: {
+    spaces: {},
+    threads: [],
+    profiles: {},
+    gets: {},
+    sets: {},
+  },
   async: {
     spaces: {},
     threads: {},
@@ -13,6 +20,7 @@ const Context = createContext({
   isDebugging: false,
   isInitialized: false,
   isRequestOpen: false,
+  isLoginAuto: true,
   isLoggedIn: false,
   isLoggingIn: false,
   isLoggingOut: false,

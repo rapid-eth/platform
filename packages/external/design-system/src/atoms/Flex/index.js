@@ -89,30 +89,6 @@ const Flex = styled(Box)`
       margin-top: 30px;
     }
 
-    ${down('desktop')} {
-      flex-wrap: wrap;
-      & > * {
-        width: 45%;
-        margin-right: 30px;
-      }
-      & > *:nth-child(2) {
-        margin-right: 0;
-      }
-
-      & > *:nth-child(n+3) {
-        margin-top: 20px;
-      }
-    }
-
-    ${down('tablet')} {
-      & > * {
-        margin: 0;
-        width: 100% !important;
-      }
-      & > *:nth-child(n+1) {
-        margin-top: 10px;
-      }
-    }
   `};
 
 `
@@ -121,7 +97,7 @@ Flex.propTypes = {
 }
 
 Flex.defaultProps = {
-  width: 'auto'
+
 }
 
 export default Flex

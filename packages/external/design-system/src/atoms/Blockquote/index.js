@@ -25,7 +25,7 @@ ${is('card')`
     // right: -70px;
     // top: -70px;
     // bottom: -70px;
-    z-index: 0;
+    z-index: -1;
   }
 
   &::after {

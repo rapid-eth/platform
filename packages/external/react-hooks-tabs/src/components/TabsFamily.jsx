@@ -3,6 +3,7 @@ import Context from "../Context";
 
 export default ({
   children,
+  tabGroup,
   ...props
 }) => {
   const state = useContext(Context)
@@ -14,7 +15,7 @@ export default ({
   useEffect( () => {
     state.dispatch({
       type: 'registerTabsFamily',
-      id: props.id
+      tabGroup: tabGroup
     })
   }, [state.dispatch])
 

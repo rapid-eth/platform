@@ -4,6 +4,16 @@ const reducerActions = (state, action) => {
   let filtered
   const { input, delta, id, payload, type } = action
   switch (action.type) {
+    case 'SET_PROVIDER':
+      return {
+        ...state,
+        provider: payload
+      }
+    case 'SET_PROVIDER_STATUS':
+      return {
+        ...state,
+        providerStatus: payload
+      }
     case 'SET_ADDRESS':
       return {
         ...state,
@@ -19,6 +29,19 @@ const reducerActions = (state, action) => {
           ...state,
           wallet: payload
         }
+    case 'SIGN_TYPED_MESSAGE_REQUEST':
+      return {
+        ...state,
+        store: {
+          ...state.store,
+          messages: [
+            ...state.store.messages,
+            {
+              ...action,
+            }
+          ]
+        }
+      }
     case 'SIGN_MESSAGE_REQUEST':
       return {
         ...state,
@@ -27,14 +50,13 @@ const reducerActions = (state, action) => {
           messages: [
             ...state.store.messages,
             {
-              message: input,
-              id: delta || hashCode(input),
+              ...action,
             }
           ]
         }
       }
     case 'SIGN_MESSAGE_SUCCESS':
-      filtered = state.store.messages.filter( msg => msg.id !== input.id )
+      filtered = state.store.messages.filter( msg => msg.id !== action.id )
       return {
         ...state,
         store: {
@@ -43,20 +65,18 @@ const reducerActions = (state, action) => {
         },
         signatures: {
           ...state.signatures,
-          [input.id]: {
-            ...input,
-            type: 'signature',
-            status: true
+          [action.id]: {
+            ...action
           }
         }
       }
     case 'SIGN_MESSAGE_FAILURE':
-      filtered = state.store.messages.filter( msg => msg.id !== input.id )
+      filtered = state.store.messages.filter( msg => msg.id !== action.id )
       return {
         ...state,
         store: {
           ...state.store,
-          messages: filtered
+          messages: []
         },
         signatures: {
           ...state.signatures,

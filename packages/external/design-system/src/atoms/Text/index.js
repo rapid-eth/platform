@@ -43,6 +43,9 @@ const Text = styled(Box)
     font-weight: 900;
   `}
 
+  ${is('xxs')`
+    font-size: 10px;
+  `};
   ${is('xs')`
     font-size: 12px;
   `};

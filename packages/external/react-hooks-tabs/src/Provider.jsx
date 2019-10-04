@@ -9,7 +9,7 @@ function reducerActions(state, action) {
         ...state,
         tabs: {
           ...state.tabs,
-          [action.id]: {
+          [action.tabGroup]: {
             selectedTabId: action.tabId
           }
         }
@@ -20,7 +20,7 @@ function reducerActions(state, action) {
         ...state,
         tabs: {
           ...state.tabs,
-          [action.id]: {
+          [action.tabGroup]: {
             selectedTabId: undefined
           }
         }

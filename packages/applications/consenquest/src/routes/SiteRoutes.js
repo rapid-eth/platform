@@ -5,13 +5,15 @@ import { Site } from '@horizin/design-system'
 import { SiteHeader, SiteFooter } from '@horizin/design-system/dist/templates/Site'
 import { Branding, Footer } from "../components";
 import {
-    Home, Beginner, Intermediate, Advanced, Quests, Quest,
+    Home, Beginner, Intermediate, Advanced,
     ATM, ContractConnect, PledgeList, Account, Community, Resources, Compose,
   } from "../views/Site";
 
 import { Start } from '../pages/Guided'
 import AdventurePages from '../pages/Adventure'
 import CMS from '../pages/CMS'
+import Quest from '../pages/Quest'
+import Quests from '../pages/Quests'
 
 const SiteRoutes = ({ styled, ...props }) =>
   <Site>
@@ -27,12 +29,12 @@ const SiteRoutes = ({ styled, ...props }) =>
         {/* Guided */}
         <Start path='/discover' />
         <AdventurePages path='/adventure/*' />
+        <Quest path='/quest/*' />
+        <Quests path='/quests/*' />
         <CMS path='/cms/*' />
 
 
         <Account path='/account/*' />
-        <Quest path='/quest/*' />
-        <Quests path='/quests/*' />
         <Compose path='/composability/*' />
         <Resources path='/resources/*' />
         <Community path='/adventure/*' />

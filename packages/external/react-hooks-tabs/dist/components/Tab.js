@@ -45,8 +45,28 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var TabStyled = (0, _styledComponents.default)(_designSystem.Span)(_templateObject(), props => (0, _styledSystem.variant)({
+var TabStyled = (0, _styledComponents.default)(_designSystem.Flex)(_templateObject(), props => (0, _styledSystem.variant)({
   variants: {
+    tab: {
+      bg: props.colorBackground,
+      borderRadius: '0',
+      cursor: 'pointer',
+      flex: 1,
+      textAlign: 'center',
+      p: 3,
+      "&.isSelected": {
+        bg: props.colorBackgroundSelected,
+        color: props.colorSelected,
+        fontWeight: 700
+      },
+      "&:hover": {
+        bg: props.colorBackgroundHover
+      },
+      "&.isSelected:hover": {
+        bg: props.colorBackgroundSelected,
+        color: props.colorSelected
+      }
+    },
     default: {
       borderRadius: '0',
       px: 10,
@@ -120,6 +140,7 @@ var TabStyled = (0, _styledComponents.default)(_designSystem.Span)(_templateObje
 var Tab = (_ref) => {
   var {
     id,
+    tabGroup,
     disabled,
     hoverActivate,
     tabId,
@@ -128,7 +149,7 @@ var Tab = (_ref) => {
     styled,
     children
   } = _ref,
-      props = _objectWithoutProperties(_ref, ["id", "disabled", "hoverActivate", "tabId", "variant", "className", "styled", "children"]);
+      props = _objectWithoutProperties(_ref, ["id", "tabGroup", "disabled", "hoverActivate", "tabId", "variant", "className", "styled", "children"]);
 
   var state = (0, _react.useContext)(_Context.default);
   var {
@@ -140,7 +161,7 @@ var Tab = (_ref) => {
     tabVariant
   } = state; // Grab Data from Global state.
 
-  var isSelected = tabs && tabs[id] && tabs[id].selectedTabId === tabId; // Check IF selected tab.
+  var isSelected = tabs && tabs[tabGroup] && tabs[tabGroup].selectedTabId === tabId; // Check IF selected tab.
 
   var template = variant || variantDefault; // Ranked variant input. 
 
@@ -158,7 +179,7 @@ var Tab = (_ref) => {
     }),
     onClick: () => dispatch({
       type: 'setTabSelected',
-      id: id,
+      tabGroup: tabGroup,
       tabId: tabId
     }),
     onMouseEnter: () => !hoverActivate ? null : dispatch({
@@ -181,15 +202,16 @@ Tab.propTypes = {
 };
 Tab.defaultProps = {
   color: 'inherit',
-  colorSelected: 'blue',
+  colorSelected: 'white',
   colorHover: 'blue',
   colorBackground: 'transparent',
-  colorBackgroundSelected: 'white',
+  colorBackgroundSelected: 'primary',
   colorBackgroundHover: 'rgba(255,255,255, 0.25)',
   colorHighlight: 'white',
   colorHighlightSelected: 'blue',
   colorHighlightHover: 'blue',
-  display: 'inline-block'
+  display: 'inline-block',
+  variant: 'tab'
 };
 var _default = Tab;
 exports.default = _default;

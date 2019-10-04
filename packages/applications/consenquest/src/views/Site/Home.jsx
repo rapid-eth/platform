@@ -57,11 +57,18 @@ const Home = ({ styled, ...props }) =>
         <Absolute layout='topRight' mr={30} mt={190} ><Loading type='ripple' /></Absolute>
       </Flex>
     </Flex>
-    <DeveloperStatus />
+    {/* <DeveloperStatus /> */}
     <Box py={40}>
 
       <Container>
         <Flex alignCenter p={4}>
+        <Flex flex={2}>
+           <Box width='150%' ml='-50%'>
+              <Image
+                maxWidth={600} borderRadius='0 100px 100px 0' p={1} 
+                src={'https://images.ui8.net/uploads/blockchain_platform_5_1527438188551.jpg'}/>
+           </Box>
+          </Flex>
           <Box flex={3} p={5}>
             <Heading lg heavy>Discover the <Span>"Ah-Ha"</Span> moment</Heading>
             <Heading md thin>Find what makes blockchain great. <strong><em>Composability</em></strong>.</Heading>
@@ -83,14 +90,41 @@ const Home = ({ styled, ...props }) =>
               </Flex>
               </Span>
           </Box>
+          
+        </Flex>
+      </Container>
+      <Container>
+        <Flex alignCenter p={4}>
+          <Box flex={3} p={5}>
+            <Heading lg heavy>Quest to <Span> Collect Precious DEV</Span> Token</Heading>
+            <Heading md thin>Earn reputation in the developer community. <strong><em>Earn DEV</em></strong>.</Heading>
+            <Paragraph>
+              The Ethereum Blockchain is a global computer. The computer provides the building blocks for crafting composable functions.
+            </Paragraph>
+            <Paragraph>
+              <em><strong>The power is immense.</strong> What can be built is <strong>extraordinary</strong>.</em>
+            </Paragraph>
+            <Paragraph>
+              Discover the blockchain "ah-ha" moment by first understanding why <strong>global composability is world changing</strong>. 
+            </Paragraph>
+            <Span pointer tag='green' >
+              <Flex alignCenter>
+                <Image maxWidth={28} circle mx={2} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />
+                <Link to='/discover' >
+                  <Span mx={3}>Discover <Span><strong> Your Ah-Ha </strong></Span> Moment</Span>
+                </Link>
+              </Flex>
+              </Span>
+          </Box>
+
           <Flex flex={2}>
-           <Box>
+           <Box width='150%' mr='-50%'>
               <Image
-                maxWidth={600} rounded card p={1} 
-                borderRadius={140}
-                src={'https://images.ui8.net/uploads/blockchain_platform_5_1527438188551.jpg'}/>
+                maxWidth={600} borderRadius='100px 0 0 100px' p={1} 
+                src='https://images.ui8.net/uploads/blockchain_platform_3_1527438195999.jpg'/>
            </Box>
           </Flex>
+          
         </Flex>
       </Container>
       

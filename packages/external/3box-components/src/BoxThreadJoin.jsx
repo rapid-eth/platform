@@ -1,46 +1,75 @@
 /* --- Global Dependencies --- */
-import React, { useState } from 'react'
-import { Button, Span } from '@horizin/design-system'
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { Box, Button, Span } from '@horizin/design-system'
 import { BoxWrapper } from '@kames/3box-hooks/dist'
 
 /* --- React Component --- */
-const BoxThreadJoin = ({ box, variant, threadAddress, threadName, space, children, styled, ...props }) => {
+const BoxOpenSpace = ({ box, auto, space, threadAddress, threadName, styled, styledLoading, componentLoading, children, ...props }) => {
   const [ loading, setLoading ] = useState(false)
-  return (
-    box.instance
-    ? <Span
-        onClick={()=>{
-          box.joinThread({
-          threadAddress: threadAddress,
-          threadName: threadName,
-          space: space
-        });
 
-        setLoading(true)
-      }}
-      >
-        {
-          loading
-          ? <Button variant={variant}><Span>Loading Thread...</Span></Button>
-          :children ? children :
-          <Button
-            variant={variant}
-            {...styled}
-            >
-            {label}
-          </Button>
-        }
-      </Span>
+  /**
+   * @function ComponentActionHandler
+   * @description Handle component click event. 
+   */
+  const actionHandler = () => {
+    box.joinThread({
+      threadAddress: threadAddress,
+      threadName: threadName,
+      members: props.members,
+      firstModerator: props.firstModerator,
+      space: space,
+      options: props.options
+    });
+    setLoading(true)
+  }
+
+  /**
+   * @function AutoEffect
+   * @description Automatically connect to space without requiring use input.
+   */
+  useEffect(() => {
+    if(auto) {
+      box.joinThread({
+        threadAddress: threadAddress,
+        threadName: threadName,
+        space: space
+      });
+      setLoading(true)
+    }
+  }, [auto])
+
+  return (
+    !auto ? loading 
+      ? componentLoading ? componentLoading :
+        <Box fullWidth>
+          <Button {...styledLoading}>Loading Space...</Button>
+        </Box>
+      : children ? <Span onClick={actionHandler}>{children}</Span>
+        :<Box fullWidth onClick={actionHandler}>
+          <Button {...styled}>open <strong>{space}</strong> space</Button>
+        </Box>
     : null
   )
 }
 
-BoxThreadJoin.defaultProps = {
-  label: 'Join Thread',
-  variant: 'green'
+BoxOpenSpace.defaultProps = {
+  threadName: undefined,
+  labelLoading: 'Loading Space...',
+  styled: {
+    fontWeight: 'normal',
+    width: '100%'
+  },
+  styledLoading: {
+    width: '100%'
+  },
+}
+
+BoxOpenSpace.propTypes = {
+  space: PropTypes.string.isRequired,
 }
 
 export default props =>
 <BoxWrapper>
-  <BoxThreadJoin {...props} />
+  <BoxOpenSpace {...props} />
 </BoxWrapper>

@@ -34,12 +34,19 @@ var BoxThreadPostDelete = (_ref) => {
   var clickHandler =
   /*#__PURE__*/
   function () {
-    var _ref2 = _asyncToGenerator(function* (threadName, postId) {
-      box.threadPostDelete(threadName, postId);
+    var _ref3 = _asyncToGenerator(function* (_ref2) {
+      var {
+        threadName,
+        postId
+      } = _ref2;
+      box.threadPostDelete({
+        threadName,
+        postId
+      });
     });
 
-    return function clickHandler(_x, _x2) {
-      return _ref2.apply(this, arguments);
+    return function clickHandler(_x) {
+      return _ref3.apply(this, arguments);
     };
   }();
 

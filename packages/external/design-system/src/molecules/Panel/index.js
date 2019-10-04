@@ -1,17 +1,20 @@
 /* --- Global Dependencies --- */
 import React from "react";
-import { PortalProvider, PortalComponent, PortalWithContext, PortalApi } from '@horizin/react-hooks-portal/dist'
-
-/* ------- Component ------- */
+import { PortalContext } from '@horizin/react-hooks-portal'
 export default ({
   content,
-  children,
-  position
-}) =>
-  <>
-    <PortalProvider>
-      <span onClick={() => PortalApi.open(content, 'panel', position)}>
-        {children}
-      </span>
-    </PortalProvider>
-  </>
+  id,
+  label,
+  styled,
+  children
+}) =>(
+<PortalContext>
+  {
+    portal => (
+    <span onClick={() => portal.openPanel({ content, label, id, styled })}>
+      {children}
+    </span>
+    )
+  }
+</PortalContext>
+)

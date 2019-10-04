@@ -4,13 +4,33 @@ import classNames from "classnames";
 import styled from 'styled-components'
 import { variant } from 'styled-system'
 import is from 'styled-is'
-import { Span } from '@horizin/design-system'
+import { Flex } from '@horizin/design-system'
 
 import Context from "../Context";
-const TabStyled = styled(Span)`
+const TabStyled = styled(Flex)`
 ${ props =>
   variant({
     variants: {
+      tab: {
+        bg: props.colorBackground,
+        borderRadius: '0',
+        cursor: 'pointer',
+        flex: 1,
+        textAlign: 'center',
+        p: 3,
+        "&.isSelected": {
+          bg: props.colorBackgroundSelected,
+          color: props.colorSelected,
+          fontWeight: 700,
+        },
+        "&:hover": {
+          bg: props.colorBackgroundHover,
+        },
+        "&.isSelected:hover": {
+          bg: props.colorBackgroundSelected,
+          color: props.colorSelected,
+        }
+      },
       default: {
         borderRadius: '0',
         px: 10,
@@ -103,6 +123,7 @@ display: inline-block;
 
 const Tab = ({
   id,
+  tabGroup,
   disabled,
   hoverActivate,
   tabId,
@@ -115,7 +136,7 @@ const Tab = ({
 
   const state = useContext(Context)
   const { dispatch, variantDefault, inputs, tabs, selectedTabId, tabVariant } = state // Grab Data from Global state.
-  const isSelected = tabs && tabs[id] && tabs[id].selectedTabId === tabId; // Check IF selected tab.
+  const isSelected = tabs && tabs[tabGroup] && tabs[tabGroup].selectedTabId === tabId; // Check IF selected tab.
   const template = variant || variantDefault // Ranked variant input. 
   const inputSelected = inputs && inputs[template] ? inputs[template] : {} // Check global inputs for template type.
 
@@ -127,7 +148,7 @@ const Tab = ({
         isDisabled: disabled,
         isSelected
       })}
-      onClick={()=> dispatch({type: 'setTabSelected', id: id, tabId: tabId})}
+      onClick={()=> dispatch({type: 'setTabSelected', tabGroup: tabGroup, tabId: tabId})}
       onMouseEnter={( ()=> !hoverActivate ? null : dispatch({type: 'setTabSelected', tabId: tabId}) )}
     >
       {children}
@@ -152,15 +173,16 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   color: 'inherit',
-  colorSelected: 'blue',
+  colorSelected: 'white',
   colorHover: 'blue',
   colorBackground: 'transparent',
-  colorBackgroundSelected: 'white',
+  colorBackgroundSelected: 'primary',
   colorBackgroundHover: 'rgba(255,255,255, 0.25)',
   colorHighlight: 'white',
   colorHighlightSelected: 'blue',
   colorHighlightHover: 'blue',
   display: 'inline-block',
+  variant: 'tab'
 }
 
 export default Tab;

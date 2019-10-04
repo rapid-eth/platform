@@ -24,6 +24,16 @@ var reducerActions = (state, action) => {
   } = action;
 
   switch (action.type) {
+    case 'SET_PROVIDER':
+      return _objectSpread({}, state, {
+        provider: payload
+      });
+
+    case 'SET_PROVIDER_STATUS':
+      return _objectSpread({}, state, {
+        providerStatus: payload
+      });
+
     case 'SET_ADDRESS':
       return _objectSpread({}, state, {
         address: input
@@ -39,35 +49,36 @@ var reducerActions = (state, action) => {
         wallet: payload
       });
 
+    case 'SIGN_TYPED_MESSAGE_REQUEST':
+      return _objectSpread({}, state, {
+        store: _objectSpread({}, state.store, {
+          messages: [...state.store.messages, _objectSpread({}, action)]
+        })
+      });
+
     case 'SIGN_MESSAGE_REQUEST':
       return _objectSpread({}, state, {
         store: _objectSpread({}, state.store, {
-          messages: [...state.store.messages, {
-            message: input,
-            id: delta || (0, _utilities.hashCode)(input)
-          }]
+          messages: [...state.store.messages, _objectSpread({}, action)]
         })
       });
 
     case 'SIGN_MESSAGE_SUCCESS':
-      filtered = state.store.messages.filter(msg => msg.id !== input.id);
+      filtered = state.store.messages.filter(msg => msg.id !== action.id);
       return _objectSpread({}, state, {
         store: _objectSpread({}, state.store, {
           messages: filtered
         }),
         signatures: _objectSpread({}, state.signatures, {
-          [input.id]: _objectSpread({}, input, {
-            type: 'signature',
-            status: true
-          })
+          [action.id]: _objectSpread({}, action)
         })
       });
 
     case 'SIGN_MESSAGE_FAILURE':
-      filtered = state.store.messages.filter(msg => msg.id !== input.id);
+      filtered = state.store.messages.filter(msg => msg.id !== action.id);
       return _objectSpread({}, state, {
         store: _objectSpread({}, state.store, {
-          messages: filtered
+          messages: []
         }),
         signatures: _objectSpread({}, state.signatures, {
           [input.id]: _objectSpread({}, input, {

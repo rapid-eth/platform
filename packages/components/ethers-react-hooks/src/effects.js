@@ -7,8 +7,26 @@ const effects = (callUseEffect, state, dispatch) => {
    * @function EthereumEnable
    */
   callUseEffect( () => { 
-    window.ethereum.enable()
+    // window.ethereum.enable()
   }, [state.enable])
+  
+  /**
+   * @function ProviderMonitor
+   */
+  callUseEffect( () => { 
+    if(window.web3 && window.web3.currentProvider) {
+      dispatch({
+        type: 'SET_PROVIDER',
+        payload: window.web3.currentProvider
+      })
+    } else {
+      dispatch({
+        type: 'SET_PROVIDER_STATUS',
+        payload: undefined
+      })
+    }
+  }, [window.web3.currentProvider])
+
   /**
    * @function SetAddress
    */
@@ -60,40 +78,33 @@ const effects = (callUseEffect, state, dispatch) => {
    */
   callUseEffect( () => {
     
-    if(state.store.messages && state.store.messages.length > 0) {
+    if(state.provider && state.wallet && state.store.messages && state.store.messages.length > 0) {
       const runEffect = async() => {
         const messageRequest = state.store.messages[0]
-        const message = messageRequest.message
         try {
-          const wallet = state.wallet
-          if (wallet) {
-            // const signature = await wallet.signMessage(message)
-            const provider = new ethers.providers.Web3Provider(window.web3.currentProvider);
-            const MSG = [
-              {
-                  type: 'string',
-                  name: 'Message',
-                  value: 'hell world'
-              },
-              {
-                  type: 'uint256',
-                  name:'num',
-                  value: 10
-              }
-          ]
-            const signature = await provider.send(
-              'eth_signTypedData',
-              [MSG, window.ethereum.selectedAddress],
-            );
-            dispatch({
-              type: 'SIGN_MESSAGE_SUCCESS',
-              input: {
+            let signature
+            switch (messageRequest.type) {
+              case 'SIGN_TYPED_MESSAGE_REQUEST':
+                signature = await state.provider.send(
+                  'eth_signTypedData',
+                  [
+                    messageRequest.payload,
+                    state.address
+                  ],
+                );
+                break;
+              default:
+                signature = await state.wallet.signMessage(messageRequest.payload)
+                break;
+            }
+            if(signature) {
+              dispatch({
+                type: 'SIGN_MESSAGE_SUCCESS',
                 id: messageRequest.id,
-                message,
+                payload: messageRequest.payload,
                 signature
-              }
-            })
-          }
+              })
+            }
         } catch (error) {
           console.log(error)
           dispatch({
@@ -107,7 +118,7 @@ const effects = (callUseEffect, state, dispatch) => {
       }
       runEffect();
     }
-	}, [state.store.messages])
+	}, [state.store.messages, state.provider, state.wallet])
   
   /**
    * @function DeployContract
@@ -154,6 +165,7 @@ const effects = (callUseEffect, state, dispatch) => {
         const { payload } = request
         try {
           const wallet = state.wallet
+          console.log('store contracts', wallet)
           if(wallet) {
             contract = new ethers.Contract(payload.address, payload.abi, wallet)
             dispatch({
@@ -176,7 +188,7 @@ const effects = (callUseEffect, state, dispatch) => {
       }
       runEffect();
     }
-	}, [state.store.contracts])
+	}, [state.wallet, state.store.contracts])
 
 }
 

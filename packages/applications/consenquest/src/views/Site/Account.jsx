@@ -5,17 +5,27 @@ import {
   BoxAccess, BoxThreadPostList, BoxProfileRetrieve, BoxThreadPostDelete,
    BoxLoginCardVanity
 } from '@kames/3box-components/dist'
+
+import {
+  BoxGetSpace,
+} from '@kames/3box-components/dist'
+
 import { Tab, TabList, TabPanel } from '@horizin/react-hooks-tabs'
-import { TeamCreate } from '@kames/dao-system'
+import { QuestCatalogList, TeamCreate } from '@kames/dao-system'
 import {
   FormWebLandStatus
 } from "../../components/3Box";
 
 import DateTime from 'luxon/src/datetime.js'
 import Paragraph from '@horizin/design-system/dist/atoms/Paragraph';
+// CMS Global Configs
+const ROOT = process.env.REACT_APP_DEFAULT_ROOT
+const SPACE = process.env.REACT_APP_DEFAULT_SPACE
+const INDEX = process.env.REACT_APP_DEFAULT_INDEX
 
 const Account = ({ styled, ...props }) =>
   <>
+  <BoxGetSpace space={SPACE} access='public' address={ROOT}  />
     {/* Header */}
     <Flex gradient='purpink' gradientDir='140' minHeight={300}>
       <BackgroundImage
@@ -78,10 +88,10 @@ const Account = ({ styled, ...props }) =>
             <Tab tabId='profile'>PROFILE</Tab>
             <Tab tabId='emblems'>EMBLEMS</Tab>
             <Tab tabId='updates'>UPDATES</Tab>
-            {/* <Tab tabId='social'>SOCIAL</Tab> */}
           </TabList>
             <Box p={4}>
             <TabPanel tabGroup='account' tabId='profile'>
+              <QuestCatalogList space={SPACE} address='0xfA67ddE98346d6033f3Da0b157b70fe8434a48cE' />
               <AccountProfileTab />
             </TabPanel>
             <TabPanel tabGroup='account' tabId='social'>

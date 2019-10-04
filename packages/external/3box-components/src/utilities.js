@@ -6,3 +6,6 @@ export const GenerateImage = image => {
   : null
   return imageipfs
 }
+
+
+export const GenerateImagefromHash = image => `https://ipfs.io/ipfs/${image}`

@@ -1,16 +1,23 @@
 /* --- Global Dependencies --- */
 import React from "react";
-import { PortalProvider, PortalApi } from '@horizin/react-hooks-portal/dist'
+import { PortalContext } from '@horizin/react-hooks-portal'
 
-/* ------- Component ------- */
 export default ({
   content,
-  children
-}) =>
-  <>
-    <PortalProvider>
-      <span onClick={() => PortalApi.open(content, 'toast')}>
-        {children}
-      </span>
-    </PortalProvider>
-  </>
+  id,
+  label,
+  styled,
+  closeTimer,
+  closeOnClick,
+  children,
+}) => (
+    <PortalContext>
+      {
+        portal => (
+          <span onClick={() => portal.openToast({ content, closeTimer, closeOnClick, label, id, styled })}>
+            {children}
+          </span>
+        )
+      }
+    </PortalContext>
+  )

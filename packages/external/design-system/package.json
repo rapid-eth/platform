@@ -11,6 +11,8 @@
     "lint": "eslint ./src/**/*.js --max-warnings=0 --format=codeframe"
   },
   "peerDependencies": {
+    "@horizin/react-hooks-portal": "^1.0.0",
+    "@horizin/react-hooks-tabs": "^1.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "styled-components": ">= 3"
@@ -38,7 +40,9 @@
     "react-dom": "^16.8.6",
     "react-hook-form": "^3.23.10",
     "react-qr-reader": "^2.2.1",
+    "react-qr-svg": "^2.2.1",
     "react-responsive": "^8.0.1",
+    "react-tiny-popover": "^3.4.5",
     "rebass": "^4.0.5",
     "styled-breakpoints": "^6.9.0",
     "styled-by": "^0.3.0",

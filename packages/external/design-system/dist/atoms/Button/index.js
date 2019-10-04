@@ -70,7 +70,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\nbox-shadow: 0 6px 8px -5px rgba(88,103,221,0.15);\nborder-width: 0px;\nborder-style: solid;\nborder-radius: .25rem;\ncursor: pointer;\ndisplay: inline-flex;\nalign-items: center;\nfont-size: 1rem;\nfont-weight: 470;\njustify-content: center;\nline-height: 1.5;\nletter-spacing: 0.015em;\npadding: .65rem 1rem;\npadding-left: 2.5rem;\npadding-right: 2.5rem;\nvertical-align: middle;\ntransition: top 1s;\ntext-align: center;\noutline: 0!important;\n\n", "\n", "\n\n", ";\n\n\n\n", ";\n  \n  ", ";\n\n", ";\n\n", ";\n\n&:hover {\n\n  box-shadow: 0 2px 6px 0 rgba(0,0,0,.1);\n  transition: top 1s;\n  top: -1px;\n}\n\n// Button States\n&:active {\n  top: -3px;\n}\n"]);
+  var data = _taggedTemplateLiteral(["\n  box-shadow: 0 6px 8px -5px rgba(88,103,221,0.15);\n  border-width: 0px;\n  border-style: solid;\n  border-radius: .25rem;\n  display: inline-flex;\n  align-items: center;\n  font-size: 1rem;\n  font-weight: 470;\n  justify-content: center;\n  line-height: 1.5;\n  letter-spacing: 0.015em;\n  padding: .65rem 1rem;\n  padding-left: 2.5rem;\n  padding-right: 2.5rem;\n  vertical-align: middle;\n  transition: top 1s;\n  text-align: center;\n  outline: 0!important;\n\n", "\n", "\n\n", ";\n\n\n\n", ";\n  \n  ", ";\n\n", ";\n\n", ";\n\n&:hover {\n\n  box-shadow: 0 2px 6px 0 rgba(0,0,0,.1);\n  transition: top 1s;\n  top: -1px;\n}\n\n// Button States\n&:active {\n  top: -3px;\n}\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -86,6 +86,9 @@ var Gradient = (gradient, direction, theme) => "\nbackground: ".concat((0, _idx.
 var Button = (0, _styledComponents.default)(_Box.default)(_templateObject(), (0, _styledSystem.variant)({
   variants: {
     white: {
+      borderColor: '#eeeded',
+      borderWidth: 1,
+      borderStyle: 'solid',
       color: '#3e3e3e',
       bg: '#FFF'
     },

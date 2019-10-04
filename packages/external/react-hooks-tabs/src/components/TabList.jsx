@@ -24,6 +24,7 @@ ${
 
 const TabList = ({
   id,
+  tabGroup,
   tabIdSelected,
   template,
   isActive,
@@ -40,7 +41,7 @@ const TabList = ({
   useEffect(() => {
     state.dispatch({
       type: 'setTabSelected',
-      id: id,
+      tabGroup: tabGroup,
       tabId: tabIdSelected
     })
   }, [state.dispatch])
@@ -49,8 +50,8 @@ const TabList = ({
     <TabListStyled flexDirection='row' variant={variant} {...styled} {...props}>
       {
         children && Array.isArray(children)
-          ? children.map(child => React.isValidElement(child) ? React.cloneElement(child, { id, variant: template }) : null)
-          : React.cloneElement(children, { id, variant: template })
+          ? children.map(child => React.isValidElement(child) ? React.cloneElement(child, { tabGroup, variant: template }) : null)
+          : React.cloneElement(children, { tabGroup, variant: template })
       }
     </TabListStyled>
   )

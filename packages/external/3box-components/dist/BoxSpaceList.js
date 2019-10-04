@@ -31,7 +31,7 @@ var BoxLoginButton = (_ref) => {
   } = _ref,
       props = _objectWithoutProperties(_ref, ["box", "variant", "to", "styled", "children"]);
 
-  return !box.spaces ? _react.default.createElement(_designSystem.Span, styledNoData, "No Spaces Available") : _react.default.createElement(_react.default.Fragment, null, Object.keys(box.spaces).map(space => {
+  return !box.spaces ? _react.default.createElement(_designSystem.Span, styled, "No Spaces Available") : _react.default.createElement(_react.default.Fragment, null, Object.keys(box.spaces).map(space => {
     var isEnabled = box.spaces[space];
     return _react.default.createElement(_designSystem.Flex, _extends({
       card: true,

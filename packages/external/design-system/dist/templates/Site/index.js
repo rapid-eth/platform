@@ -20,7 +20,7 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  background-color: #1e1e2d;\n  background-image: -webkit-linear-gradient( 180deg, #1e1e2d, #31314e);\n  background-image: linear-gradient( 0deg, #1e1e2d, #31314e);\n  color: #FFF;\n"]);
+  var data = _taggedTemplateLiteral(["\n  background-color: #1e1e2d;\n  background-image: -webkit-linear-gradient( 180deg, #1e1e2d, #31314e);\n  background-image: linear-gradient( 0deg, #1e1e2d, #31314e);\n  border-top: 3px solid #dc448d;\n  color: #FFF;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;

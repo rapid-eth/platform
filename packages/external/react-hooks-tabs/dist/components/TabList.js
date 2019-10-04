@@ -57,6 +57,7 @@ var TabListStyled = (0, _styledComponents.default)(_designSystem.Flex)(_template
 var TabList = (_ref) => {
   var {
     id,
+    tabGroup,
     tabIdSelected,
     template,
     isActive,
@@ -64,7 +65,7 @@ var TabList = (_ref) => {
     children,
     styled
   } = _ref,
-      props = _objectWithoutProperties(_ref, ["id", "tabIdSelected", "template", "isActive", "variant", "children", "styled"]);
+      props = _objectWithoutProperties(_ref, ["id", "tabGroup", "tabIdSelected", "template", "isActive", "variant", "children", "styled"]);
 
   var state = (0, _react.useContext)(_Context.default);
   /**
@@ -75,7 +76,7 @@ var TabList = (_ref) => {
   (0, _react.useEffect)(() => {
     state.dispatch({
       type: 'setTabSelected',
-      id: id,
+      tabGroup: tabGroup,
       tabId: tabIdSelected
     });
   }, [state.dispatch]);
@@ -83,10 +84,10 @@ var TabList = (_ref) => {
     flexDirection: "row",
     variant: variant
   }, styled, props), children && Array.isArray(children) ? children.map(child => _react.default.isValidElement(child) ? _react.default.cloneElement(child, {
-    id,
+    tabGroup,
     variant: template
   }) : null) : _react.default.cloneElement(children, {
-    id,
+    tabGroup,
     variant: template
   }));
 };

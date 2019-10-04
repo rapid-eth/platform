@@ -41,37 +41,6 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-_react.default.createElement(_atoms.Flex, {
-  ac: true,
-  zIndex: 10
-}, _react.default.createElement(_atoms.Box, null, _react.default.createElement(Avatar, {
-  src: loginLogo,
-  width: 40,
-  borderRadius: 9999
-})), _react.default.createElement(_atoms.Flex, {
-  center: true,
-  column: true,
-  zIndex: 5
-}, _react.default.createElement(_atoms.Span, {
-  xs: true,
-  pointer: true,
-  zIndex: 0,
-  bg: "#eb9400",
-  color: "white",
-  borderRadius: "0 5px px 0",
-  px: 10,
-  py: "5px",
-  ml: '-10px'
-}, isLoading ? _react.default.createElement(_atoms.Span, {
-  pl: 10,
-  pr: 10
-}, "Loading...") : _react.default.createElement(_atoms.Span, {
-  pl: 10,
-  pr: 10
-}, "Login"))));
-/* --- React Component --- */
-
-
 var _default = (_ref) => {
   var {
     children,

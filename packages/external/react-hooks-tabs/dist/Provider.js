@@ -32,7 +32,7 @@ function reducerActions(state, action) {
     case 'setTabSelected':
       return _objectSpread({}, state, {
         tabs: _objectSpread({}, state.tabs, {
-          [action.id]: {
+          [action.tabGroup]: {
             selectedTabId: action.tabId
           }
         })
@@ -41,7 +41,7 @@ function reducerActions(state, action) {
     case 'registerTabsFamily':
       return _objectSpread({}, state, {
         tabs: _objectSpread({}, state.tabs, {
-          [action.id]: {
+          [action.tabGroup]: {
             selectedTabId: undefined
           }
         })

@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _dist = require("@horizin/react-hooks-portal/dist");
+var _reactHooksPortal = require("@horizin/react-hooks-portal");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15,11 +15,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _default = (_ref) => {
   var {
     content,
+    id,
+    label,
+    styled,
+    closeTimer,
+    closeOnClick,
     children
   } = _ref;
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_dist.PortalProvider, null, _react.default.createElement("span", {
-    onClick: () => _dist.PortalApi.open(content, 'toast')
-  }, children)));
+  return _react.default.createElement(_reactHooksPortal.PortalContext, null, portal => _react.default.createElement("span", {
+    onClick: () => portal.openToast({
+      content,
+      closeTimer,
+      closeOnClick,
+      label,
+      id,
+      styled
+    })
+  }, children));
 };
 
 exports.default = _default;

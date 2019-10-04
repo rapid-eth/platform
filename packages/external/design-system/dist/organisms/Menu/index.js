@@ -36,7 +36,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  padding: 20px;\n\n  & .grandchild {\n    opacity: 0.75;\n  }\n\n  & .grandchild:hover {\n    opacity: 1;\n  }\n\n  &:hover {\n    background: rgba(0,0,0, 0.035);\n    opacity: 1;\n\n    & .child {\n      opacity: 1;\n    }\n  \n  }\n\n  & ul {\n    margin: 0;\n    margin-top: 10px;\n    padding-left: 25px;\n  }\n\n  & li {\n    opacity: 0.75;\n    font-size: 12px;\n    margin-bottom: 0;\n    margin-top: 7px;\n\n    &:hover {\n      opacity: 1;\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  padding: 4px;\n\n  & .grandchild {\n    opacity: 0.75;\n  }\n\n  & .grandchild:hover {\n    opacity: 1;\n  }\n\n  &:hover {\n    background: rgba(0,0,0, 0.035);\n    opacity: 1;\n\n    & .child {\n      opacity: 1;\n    }\n  \n  }\n\n  & ul {\n    margin: 0;\n    margin-top: 10px;\n    padding-left: 25px;\n  }\n\n  & li {\n    opacity: 0.75;\n    font-size: 12px;\n    margin-bottom: 0;\n    margin-top: 7px;\n\n    &:hover {\n      opacity: 1;\n    }\n  }\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -82,8 +82,7 @@ var MenuItem = (_ref) => {
   }, _react.default.createElement(StyledMenuItem, {
     alignCenter: true,
     ac: true,
-    fullWidth: true,
-    px: 10
+    fullWidth: true
   }, icon && icon, _react.default.createElement(WrapperLink, {
     p: 10,
     styled: {
@@ -114,15 +113,15 @@ var MenuItem = (_ref) => {
   }, _react.default.createElement(_index.Span, {
     fontSize: [1],
     transform: isOpen ? 'rotate(90deg)' : ''
-  }, isOpen ? '▶' : '▶'))), isOpen && children && children.map(c => _react.default.createElement(ChildContainer, {
+  }, isOpen ? '▶' : '▶'))), true && children && children.map(c => _react.default.createElement(ChildContainer, {
     column: true
   }, _react.default.createElement(_index.Flex, {
-    mb: "8px"
+    mb: "3px"
   }, c.icon && c.icon, _react.default.createElement(WrapperLink, {
     styled: {
       borderBottom: '2px solid',
       borderColor: '#e3e3e3',
-      p: 10,
+      p: 1,
       width: '100%'
     },
     active: {

@@ -1,49 +1,62 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Context from './Context';
-import Api from './api';
-
-class Provider extends Component {
-  constructor(props) {
-    super(props);
-
-    this.open = (Content, position, positionStyle) =>
-      this.setState({
-        isOpen: true,
-        Content: Content,
-        position,
-        positionStyle,
-      });
-
-    this.close = () => this.setState({ isOpen: false });
-
-    this.state = {
-      isOpen: false,
-      close: this.close,
-      open: this.open,
-      position: 'modal',
-      Content: () => null,
-    };
-
-    Api.close = this.close;
-    Api.open = this.open;
-  }
-
-  render() {
-    return (
-      <Context.Provider value={this.state}>
-        {this.props.children}
-      </Context.Provider>
-    );
-  }
+import React, { useContext, useReducer, useEffect } from "react";
+import Context from "./Context";
+import reducerActions from "./reducer";
+import ProviderEffects from './effects'
+const Provider = ({ children, ...props }) => {
+  const initialState = useContext(Context)
+  const [state, dispatch] = useReducer(reducerActions, initialState);
+  ProviderEffects(useEffect, state, dispatch)
+  
+  console.log(state, 'Panel Provider')
+  return (
+    <Context.Provider value={{
+      ...state,
+      id: new Date(),
+      dispatch: dispatch,
+      closeModals: () => dispatch({
+        type: 'CLOSE_PORTAL',
+        instance: 'modals'
+      }),
+      closePanels: () => dispatch({
+        type: 'CLOSE_PORTAL',
+        instance: 'panels'
+      }),
+      closeToast: ({id}) => dispatch({
+        type: 'CLOSE_PORTAL',
+        instance: 'toasts',
+        id
+      }),
+      openModal: ({ content, label, styled, styledLabel, variant, }) => dispatch({
+        type: 'OPEN_PORTAL',
+        instance: 'modals',
+        content,
+        label,
+        variant,
+        styled,
+        styledLabel
+      }),
+      openPanel: ({ content, label, styled, styledLabel }) => dispatch({
+        type: 'OPEN_PORTAL',
+        instance: 'panels',
+        content,
+        label,
+        styled,
+        styledLabel
+      }),
+      openToast: ({ content, label, styled, styledLabel, closeTimer, closeOnClick }) => dispatch({
+        type: 'OPEN_PORTAL',
+        instance: 'toasts',
+        content,
+        closeOnClick,
+        closeTimer,
+        label,
+        styled,
+        styledLabel
+      })
+    }}>
+      {children}
+    </Context.Provider>
+  );
 }
-
-Provider.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array,
-    PropTypes.string,
-  ]),
-};
 
 export default Provider;

@@ -12,6 +12,13 @@ var _react = require("react");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Context = (0, _react.createContext)({
+  store: {
+    spaces: {},
+    threads: [],
+    profiles: {},
+    gets: {},
+    sets: {}
+  },
   async: {
     spaces: {},
     threads: {}
@@ -23,6 +30,7 @@ var Context = (0, _react.createContext)({
   isDebugging: false,
   isInitialized: false,
   isRequestOpen: false,
+  isLoginAuto: true,
   isLoggedIn: false,
   isLoggingIn: false,
   isLoggingOut: false,

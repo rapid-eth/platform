@@ -13,8 +13,18 @@ var _Box = _interopRequireDefault(require("../Box"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _templateObject20() {
+function _templateObject21() {
   var data = _taggedTemplateLiteral(["\n    word-break: break-all;\n  "]);
+
+  _templateObject21 = function _templateObject21() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject20() {
+  var data = _taggedTemplateLiteral(["\n    text-transform: uppercase;\n  "]);
 
   _templateObject20 = function _templateObject20() {
     return data;
@@ -24,7 +34,7 @@ function _templateObject20() {
 }
 
 function _templateObject19() {
-  var data = _taggedTemplateLiteral(["\n    text-transform: uppercase;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    font-size: 42px;\n  "]);
 
   _templateObject19 = function _templateObject19() {
     return data;
@@ -34,7 +44,7 @@ function _templateObject19() {
 }
 
 function _templateObject18() {
-  var data = _taggedTemplateLiteral(["\n    font-size: 42px;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    font-size: 36px;\n  "]);
 
   _templateObject18 = function _templateObject18() {
     return data;
@@ -44,7 +54,7 @@ function _templateObject18() {
 }
 
 function _templateObject17() {
-  var data = _taggedTemplateLiteral(["\n    font-size: 36px;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    font-size: 22px;\n  "]);
 
   _templateObject17 = function _templateObject17() {
     return data;
@@ -54,7 +64,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["\n    font-size: 22px;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    font-size: 14px;\n  "]);
 
   _templateObject16 = function _templateObject16() {
     return data;
@@ -64,7 +74,7 @@ function _templateObject16() {
 }
 
 function _templateObject15() {
-  var data = _taggedTemplateLiteral(["\n    font-size: 14px;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    font-size: 12px;\n  "]);
 
   _templateObject15 = function _templateObject15() {
     return data;
@@ -74,7 +84,7 @@ function _templateObject15() {
 }
 
 function _templateObject14() {
-  var data = _taggedTemplateLiteral(["\n    font-size: 12px;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    font-size: 10px;\n  "]);
 
   _templateObject14 = function _templateObject14() {
     return data;
@@ -204,7 +214,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  ", ";\n  ", ";\n  ", ";\n\n  ", "\n  ", "\n  ", "\n  ", "\n\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n\n  ", ";\n  ", ";\n  ", ";\n  ", ";\n  ", ";\n\n  ", ";\n\n  ", "\n"]);
+  var data = _taggedTemplateLiteral(["\n  ", ";\n  ", ";\n  ", ";\n\n  ", "\n  ", "\n  ", "\n  ", "\n\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n\n  ", ";\n  ", ";\n  ", ";\n  ", ";\n  ", ";\n  ", ";\n\n  ", ";\n\n  ", "\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -215,7 +225,7 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var Text = (0, _styledComponents.default)(_Box.default)(_templateObject(), (0, _styledIs.default)('center')(_templateObject2()), (0, _styledIs.default)('right')(_templateObject3()), (0, _styledIs.default)('pointer')(_templateObject4()), (0, _styledIs.default)('block')(_templateObject5()), (0, _styledIs.default)('inlineBlock')(_templateObject6()), (0, _styledIs.default)('round')(_templateObject7()), (0, _styledIs.default)('circle')(_templateObject8()), (0, _styledIs.default)('thin')(_templateObject9()), (0, _styledIs.default)('normal')(_templateObject10()), (0, _styledIs.default)('strong')(_templateObject11()), (0, _styledIs.default)('heavy')(_templateObject12()), (0, _styledIs.default)('thick')(_templateObject13()), (0, _styledIs.default)('xs')(_templateObject14()), (0, _styledIs.default)('sm')(_templateObject15()), (0, _styledIs.default)('md')(_templateObject16()), (0, _styledIs.default)('lg')(_templateObject17()), (0, _styledIs.default)('xl')(_templateObject18()), (0, _styledIs.default)('uppercase')(_templateObject19()), (0, _styledIs.default)('wordBreakAll')(_templateObject20()));
+var Text = (0, _styledComponents.default)(_Box.default)(_templateObject(), (0, _styledIs.default)('center')(_templateObject2()), (0, _styledIs.default)('right')(_templateObject3()), (0, _styledIs.default)('pointer')(_templateObject4()), (0, _styledIs.default)('block')(_templateObject5()), (0, _styledIs.default)('inlineBlock')(_templateObject6()), (0, _styledIs.default)('round')(_templateObject7()), (0, _styledIs.default)('circle')(_templateObject8()), (0, _styledIs.default)('thin')(_templateObject9()), (0, _styledIs.default)('normal')(_templateObject10()), (0, _styledIs.default)('strong')(_templateObject11()), (0, _styledIs.default)('heavy')(_templateObject12()), (0, _styledIs.default)('thick')(_templateObject13()), (0, _styledIs.default)('xxs')(_templateObject14()), (0, _styledIs.default)('xs')(_templateObject15()), (0, _styledIs.default)('sm')(_templateObject16()), (0, _styledIs.default)('md')(_templateObject17()), (0, _styledIs.default)('lg')(_templateObject18()), (0, _styledIs.default)('xl')(_templateObject19()), (0, _styledIs.default)('uppercase')(_templateObject20()), (0, _styledIs.default)('wordBreakAll')(_templateObject21()));
 Text.defaultProps = {
   fontFamily: 'Ubuntu',
   fontWeight: 'normal',

@@ -1,0 +1,41 @@
+{
+  "name": "rapid-dev-coin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./test/test.sh",
+    "deploy": "NETWORK=rinkeby node ./deploy/index.js",
+    "dev-deploy": "NETWORK=ganache node ./deploy/index.js",
+    "deploy-verify": "NETWORK=rinkeby node ./deploy/verify.js",
+    "dev-deploy-verify": "NETWORK=ganache node ./deploy/verify.js",
+    "decryptSecrets": "openssl aes-256-cbc -d -in secrets.json.aes -out secrets.json",
+    "encryptSecrets": "openssl aes-256-cbc -salt -in secrets.json -out secrets.json.aes",
+    "postDeploy": "NETWORK=rinkeby node ./deploy/postDeploy.js",
+    "compile": "./untruffle/compile.sh; node ./untruffle/buildContractJSON.js",
+    "task": "NETWORK=rinkeby node ./local/task.js",
+    "dev-task": "node ./local/dev-task.js"
+  },
+  "author": "Joe Bernitt",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^2.3.0",
+    "ethers": "^4.0.27",
+    "ipfs-http-client": "^32.0.1",
+    "lodash": "^4.17.15",
+    "module-alias": "^2.2.0"
+  },
+  "devDependencies": {
+    "json-loader": "^0.5.7",
+    "mocha": "^6.1.4",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@contracts": "build/contracts",
+    "@deployed": "build/deployed",
+    "@local": "./local",
+    "@utils": "utils/index.js"
+  }
+}

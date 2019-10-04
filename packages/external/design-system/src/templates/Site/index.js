@@ -34,6 +34,7 @@ export const FooterStyled = styled(Box)`
   background-color: #1e1e2d;
   background-image: -webkit-linear-gradient( 180deg, #1e1e2d, #31314e);
   background-image: linear-gradient( 0deg, #1e1e2d, #31314e);
+  border-top: 3px solid #dc448d;
   color: #FFF;
 `
 

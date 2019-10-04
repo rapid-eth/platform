@@ -55,12 +55,13 @@ var Default = (_ref4) => {
 
 var Example = (_ref5) => {
   var {
+    children,
     mobile,
     tablet,
     desktop,
     defaults
   } = _ref5;
-  return _react.default.createElement("div", null, desktop && _react.default.createElement(Desktop, null, desktop), tablet && _react.default.createElement(Tablet, null, tablet), mobile && _react.default.createElement(Mobile, null, mobile), defaults && _react.default.createElement(Default, null, defaults));
+  return _react.default.createElement("div", null, desktop && _react.default.createElement(Desktop, null, desktop), tablet && _react.default.createElement(Tablet, null, tablet), mobile && _react.default.createElement(Mobile, null, mobile), _react.default.createElement(Default, null, children));
 };
 
 var _default = Example;

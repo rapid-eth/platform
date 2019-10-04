@@ -8,7 +8,7 @@ import {
 const shadowBlue = '0px -6px 7px -5px #d6d6d6, 3px -4px 3px -3px #066ebe, 0px -4px 3px -2px #2cc7b1, -5px -4px 4px -6px #46eca4'
 const shadowSunset = '0px -6px 7px -5px #d6d6d6, 3px -4px 3px -3px #ca2ea5, 0px -4px 3px -2px #dc050f, -5px -4px 4px -6px #f3932f'
 
-const Card = ({ title, tagline, id, to, actionLabel, content, summary, image, images, imageFeatured, }) => 
+const Card = ({ id, to, title, tagline, content, summary, image, imageFeatured, }) => 
 <Box cardHover  p={0}>
   <Flex column height='100%' >
     <Flex column flex={1} p={15} minHeight={120}>

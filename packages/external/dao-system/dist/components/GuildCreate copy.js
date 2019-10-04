@@ -74,8 +74,9 @@ var BoxThreadPostCreate = (_ref) => {
   }), _react.default.createElement(_designSystem.Button, {
     type: "submit",
     sm: true,
-    variant: "green"
-  }, "Create Post")));
+    variant: "green",
+    fullWidth: true
+  }, "Create Guild")));
 };
 
 var _default = props => _react.default.createElement(_dist.BoxWrapper, null, _react.default.createElement(BoxThreadPostCreate, props));

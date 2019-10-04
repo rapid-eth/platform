@@ -59,8 +59,7 @@ var _default = (_ref3) => {
 
   tabComponent = tabComponent ? tabComponent : DefaultComp;
   panelComponent = panelComponent ? panelComponent : PanelDefault;
-  console.log(panels, 'pannels');
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_atoms.Flex, {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactHooksTabs.Tabs, null, _react.default.createElement(_atoms.Flex, {
     column: true,
     flex: 2,
     px: 20
@@ -75,10 +74,10 @@ var _default = (_ref3) => {
     flex: 5
   }, _react.default.createElement(_reactHooksTabs.TabPanelWrapper, {
     p: 20
-  }, panels && Array.isArray(panels) && panels.length > 0 && panels.map((panel, index) => _react.default.createElement(_reactHooksTabs.TabPanel, {
-    id: id,
+  }, panels && Array.isArray(panels) && panels.length > 0 && panels.map(panel => _react.default.createElement(_reactHooksTabs.TabPanel, {
+    key: panel.tabId,
     tabId: panel.tabId
-  }, _react.default.isValidElement(panel.component) ? panel.component : _react.default.createElement(panelComponent, _objectSpread({}, panel.component)))))));
+  }, panel.component))))));
 };
 
 exports.default = _default;

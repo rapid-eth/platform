@@ -31,25 +31,30 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var BackgroundImage = _styledComponents.default.div(_templateObject(), props => "\n  background-image: ".concat(props.src ? "url(".concat(props.src, ")") : null, ";\n  background-size: cover;\n  background-position: ").concat(props.position ? props.position : 'center', ";\n  padding-bottom: ").concat((props.ratio || 3 / 4) * 100 + '%', ";\n  height: 100%;\n  width: 100%;\n"));
+var BackgroundImage = (0, _styledComponents.default)(_Box.default)(_templateObject(), props => "\n  background-image: ".concat(props.src ? "url(".concat(props.src, ")") : null, ";\n  padding-bottom: ").concat((props.ratio || 3 / 4) * 100 + '%', ";\n  height: 100%;\n  width: 100%;\n"));
+BackgroundImage.defaultProps = {
+  backgroundPosition: 'center',
+  backgroundSize: 'cover'
+};
 /* ------ Component ------ */
-
 
 var _default = (_ref) => {
   var {
     src,
-    ratio
+    ratio,
+    styledContainer,
+    styled
   } = _ref,
-      props = _objectWithoutProperties(_ref, ["src", "ratio"]);
+      props = _objectWithoutProperties(_ref, ["src", "ratio", "styledContainer", "styled"]);
 
   return _react.default.createElement(_Box.default, _extends({
     absolute: true,
     fill: true,
     overflow: "hidden"
-  }, props), _react.default.createElement(BackgroundImage, {
+  }, styledContainer), _react.default.createElement(BackgroundImage, _extends({
     src: src,
     ratio: ratio
-  }));
+  }, styled, props)));
 };
 
 exports.default = _default;

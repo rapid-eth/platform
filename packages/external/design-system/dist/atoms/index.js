@@ -45,6 +45,12 @@ Object.defineProperty(exports, "Container", {
     return _Container.default;
   }
 });
+Object.defineProperty(exports, "HorizontalRule", {
+  enumerable: true,
+  get: function get() {
+    return _HorizontalRule.default;
+  }
+});
 Object.defineProperty(exports, "Flex", {
   enumerable: true,
   get: function get() {
@@ -101,6 +107,8 @@ var _Box = _interopRequireDefault(require("./Box"));
 var _Button = _interopRequireDefault(require("./Button"));
 
 var _Container = _interopRequireDefault(require("./Container"));
+
+var _HorizontalRule = _interopRequireDefault(require("./HorizontalRule"));
 
 var _Flex = _interopRequireDefault(require("./Flex"));
 

@@ -17,9 +17,10 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 var _default = (_ref) => {
   var {
-    children
+    children,
+    tabGroup
   } = _ref,
-      props = _objectWithoutProperties(_ref, ["children"]);
+      props = _objectWithoutProperties(_ref, ["children", "tabGroup"]);
 
   var state = (0, _react.useContext)(_Context.default);
   /**
@@ -30,7 +31,7 @@ var _default = (_ref) => {
   (0, _react.useEffect)(() => {
     state.dispatch({
       type: 'registerTabsFamily',
-      id: props.id
+      tabGroup: tabGroup
     });
   }, [state.dispatch]);
   return children;

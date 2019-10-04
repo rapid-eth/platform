@@ -1,3 +1,4 @@
+
 import React, { useContext, useReducer, useEffect } from "react";
 import Context from "./Context";
 import reducerActions from "./reducer";
@@ -9,13 +10,32 @@ const Provider = ({ children, ...props }) => {
   const [state, dispatch] = useReducer(reducerActions, initialState);
   ProviderEffects(useEffect, state, dispatch)
   
-  console.log(state, 'Ethers State Loaded')
+  console.log(state, 'Ethers State')
+  const stringToArrayPath = data => typeof data === 'string' ? data.split('.') : data
+  const idxx = (state, nest) =>
+  [state, ...stringToArrayPath(nest)]
+  .reduce((branch, index) => {
+    if(typeof index === 'string' && branch) {
+      return branch[index]
+    } else {
+      nest = index
+    }
+  })
 
   return (
     <Context.Provider value={{
       ...state,
       dispatch: dispatch,
+      selector: (select) => idxx(state, select),
       enable: () => window.ethereum.enable(),
+      setProvider: ({provider, delta}) => dispatch({
+        type: 'SET_PROVIDER',
+        payload: provider,
+      }),
+      setProviderStatus: ({provider, delta}) => dispatch({
+        type: 'SET_PROVIDER',
+        payload: provider,
+      }),
       initContract: ({ abi, address, contractType, delta }) => dispatch({
         type: 'INIT_CONTRACT_REQUEST',
         payload: {
@@ -38,10 +58,15 @@ const Provider = ({ children, ...props }) => {
         input: bytecode,
         delta: delta || hashCode(abi)
       }),
-      signMessage: (message, delta) => dispatch({
+      signMessageTyped: ({message, delta}) => dispatch({
+        type: 'SIGN_TYPED_MESSAGE_REQUEST',
+        payload: message,
+        id: delta || hashCode(message.toString())
+      }),
+      signMessage: ({ message, delta }) => dispatch({
         type: 'SIGN_MESSAGE_REQUEST',
-        input: message,
-        delta
+        payload: message,
+        id: delta || hashCode(message)
       }),
       sendTransaction: (transaction, delta) => dispatch({
         type: 'SIGN_TRANSACTION_REQUEST',

@@ -55,7 +55,7 @@ var isAddress = address => {
 
 exports.isAddress = isAddress;
 
-var isChecksumAddress = function isChecksumAddress(address) {
+var isChecksumAddress = address => {
   // Check each case
   address = address.replace('0x', '');
 

@@ -16,7 +16,7 @@ const StyledMenuItem = styled(Flex)`
 `
 
 const ChildContainer = styled(Flex)`
-  padding: 20px;
+  padding: 4px;
 
   & .grandchild {
     opacity: 0.75;
@@ -70,7 +70,7 @@ const MenuItem = ({ children, label, to,  icon, isOpen, setOpen, vertical, ...pr
 return (
   vertical
   ?<Flex column fullWidth width={1}>
-    <StyledMenuItem alignCenter ac fullWidth px={10}>
+    <StyledMenuItem alignCenter ac fullWidth>
     {icon && icon}
       <WrapperLink
         p={10}
@@ -95,17 +95,17 @@ return (
       }
     </StyledMenuItem>
 
-  { isOpen && children &&
+  { true && children &&
     children.map( c =>
     <ChildContainer column> 
 
-      <Flex mb='8px'>
+      <Flex mb='3px'>
         {c.icon && c.icon}
         <WrapperLink
         styled={{
           borderBottom: '2px solid',
           borderColor: '#e3e3e3',
-          p: 10,
+          p: 1,
           width: '100%'
         }}
         active={{

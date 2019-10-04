@@ -8,27 +8,28 @@ import BoxProfile from './BoxProfile'
 
 /* --- React Component --- */
 export default ({ box, children, styled, ...props }) =>
-  <Flex ac zIndex={10} {...styled}>
-    <Flex center column>
-      <Span xs pointer bg='blue' color='white' borderRadius='5px 0 0 5px' px={10} py='5px' mr={'-10px'} onClick={box.login}>
-        {
-          !box.instance
-            ? <ButtonLogin box={box} />
-            : <BoxProfileName box={box} />
-        }
-      </Span>
-    </Flex>
-    <Box width='unset'>
-      <Modal content={<LoginPopover box={box} />}>
-        {
-          idx(box.profile, _ => _.image) &&
-            box.instance
-            ? <Image variant='avatar' width={40} opacity={1} src={GenerateImage(idx(box.profile, _ => _.image))} />
-            : <Image variant='avatar' width={40} opacity={0.7} src={GenerateImage(idx(box.profile, _ => _.image))} />
-        }
-      </Modal>
-    </Box>
+!box ? null :
+<Flex ac zIndex={10} {...styled}>
+  <Flex center column>
+    <Span xs pointer bg='blue' color='white' borderRadius='5px 0 0 5px' px={10} py='5px' mr={'-10px'} onClick={box.login}>
+      {
+        !box.instance
+          ? <ButtonLogin box={box} />
+          : <BoxProfileName box={box} />
+      }
+    </Span>
   </Flex>
+  <Box width='unset'>
+    <Modal content={<LoginPopover box={box} />}>
+      {
+        idx(box.profile, _ => _.image) &&
+          box.instance
+          ? <Image variant='avatar' width={40} opacity={1} src={GenerateImage(idx(box.profile, _ => _.image))} />
+          : <Image variant='avatar' width={40} opacity={0.7} src={GenerateImage(idx(box.profile, _ => _.image))} />
+      }
+    </Modal>
+  </Box>
+</Flex>
 
 const LoginPopover = ({ box, styled, ...props }) =>
   <Box>

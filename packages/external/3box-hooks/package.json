@@ -21,12 +21,16 @@
     "nyc": "cross-env NODE_ENV=test nyc ava"
   },
   "peerDependencies": {
+    "@horizin/react-hooks-portal": "^1.0.0",
+    "@rapid/ethers-react": "^1.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
   "dependencies": {
     "3box": "^1.10.10",
+    "@horizin/react-hooks-portal": "^1.0.0",
     "classnames": "^2.2.6",
+    "luxon": "^1.19.3",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {

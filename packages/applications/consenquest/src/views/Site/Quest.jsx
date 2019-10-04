@@ -2,9 +2,8 @@ import React from 'react';
 import { Button, Card, BackgroundGradient, Markdown, Flex, Heading, Image, BackgroundImage, Paragraph, Box, Container, Panel, Link, Span } from '@horizin/design-system';
 
 import {
-  BoxComments,
-  BoxAccess, BoxThreadPostList, BoxSpaceOpen, BoxProfileRetrieve, BoxThreadPostDelete,
-  BoxLoginCard, BoxLoginButton, BoxVerified } from '@kames/3box-components/dist'
+  BoxComments, BoxAccess
+} from '@kames/3box-components/dist'
   
 import {
   FormWebLandStatus

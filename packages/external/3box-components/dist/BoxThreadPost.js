@@ -28,6 +28,7 @@ var BoxThreadPosts = (_ref) => {
   var {
     box,
     message,
+    post,
     author,
     timestamp,
     threadName,
@@ -35,13 +36,13 @@ var BoxThreadPosts = (_ref) => {
     children,
     styled
   } = _ref,
-      props = _objectWithoutProperties(_ref, ["box", "message", "author", "timestamp", "threadName", "postId", "children", "styled"]);
+      props = _objectWithoutProperties(_ref, ["box", "message", "post", "author", "timestamp", "threadName", "postId", "children", "styled"]);
 
   return _react.default.createElement(_designSystem.Flex, _extends({
     card: true,
     column: true,
     mb: 10
-  }, styled), _react.default.createElement(_designSystem.Box, null, _react.default.createElement(_designSystem.Card, message), _react.default.createElement(_designSystem.Box, {
+  }, styled), _react.default.createElement(_designSystem.Box, null, _react.default.createElement(_designSystem.Box, {
     card: true,
     mt: 20
   }, _react.default.createElement(_designSystem.Heading, {
@@ -51,14 +52,32 @@ var BoxThreadPosts = (_ref) => {
     data: message
   }))), _react.default.createElement(_designSystem.Box, {
     mt: 20
+  }, _react.default.createElement(_designSystem.Flex, {
+    column: true
   }, _react.default.createElement(_designSystem.Label, {
     styled: {
       fontSize: 2
     },
     noMargin: true,
     label: 'author'
-  }, author)), _react.default.createElement(_designSystem.Flex, {
-    alignEnd: true
+  }, author), _react.default.createElement(_designSystem.Box, {
+    my: 2
+  }, _react.default.createElement(_designSystem.Label, {
+    styled: {
+      fontSize: 2
+    },
+    noMargin: true,
+    label: 'timestamp'
+  }, timestamp)), _react.default.createElement(_designSystem.Label, {
+    styled: {
+      fontSize: 1,
+      ml: 20
+    },
+    noMargin: true,
+    label: 'post id'
+  }, postId))), _react.default.createElement(_designSystem.Flex, {
+    alignEnd: true,
+    mt: 15
   }, _react.default.createElement(_BoxThreadPostDelete.default, {
     threadName: threadName,
     postId: postId

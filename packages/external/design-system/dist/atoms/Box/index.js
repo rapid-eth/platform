@@ -19,8 +19,28 @@ var _utils = require("../../utils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _templateObject48() {
+function _templateObject50() {
+  var data = _taggedTemplateLiteral(["\n    & > * {\n      align-self: baseline;\n    }\n  "]);
+
+  _templateObject50 = function _templateObject50() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject49() {
   var data = _taggedTemplateLiteral(["\n    align-items: stretch;\n  "]);
+
+  _templateObject49 = function _templateObject49() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject48() {
+  var data = _taggedTemplateLiteral(["\n    align-items: baseline;\n  "]);
 
   _templateObject48 = function _templateObject48() {
     return data;
@@ -30,7 +50,7 @@ function _templateObject48() {
 }
 
 function _templateObject47() {
-  var data = _taggedTemplateLiteral(["\n    align-items: baseline;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    align-items: center;\n  "]);
 
   _templateObject47 = function _templateObject47() {
     return data;
@@ -40,7 +60,7 @@ function _templateObject47() {
 }
 
 function _templateObject46() {
-  var data = _taggedTemplateLiteral(["\n    align-items: center;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    align-items: flex-end;\n  "]);
 
   _templateObject46 = function _templateObject46() {
     return data;
@@ -50,7 +70,7 @@ function _templateObject46() {
 }
 
 function _templateObject45() {
-  var data = _taggedTemplateLiteral(["\n    align-items: flex-end;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    align-items: flex-start;\n  "]);
 
   _templateObject45 = function _templateObject45() {
     return data;
@@ -60,7 +80,7 @@ function _templateObject45() {
 }
 
 function _templateObject44() {
-  var data = _taggedTemplateLiteral(["\n    align-items: flex-start;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    align-content: stretch; /* default */\n  "]);
 
   _templateObject44 = function _templateObject44() {
     return data;
@@ -70,7 +90,7 @@ function _templateObject44() {
 }
 
 function _templateObject43() {
-  var data = _taggedTemplateLiteral(["\n    align-content: stretch; /* default */\n  "]);
+  var data = _taggedTemplateLiteral(["\n    align-content: space-around;\n  "]);
 
   _templateObject43 = function _templateObject43() {
     return data;
@@ -80,7 +100,7 @@ function _templateObject43() {
 }
 
 function _templateObject42() {
-  var data = _taggedTemplateLiteral(["\n    align-content: space-around;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    align-content: space-between;\n  "]);
 
   _templateObject42 = function _templateObject42() {
     return data;
@@ -90,7 +110,7 @@ function _templateObject42() {
 }
 
 function _templateObject41() {
-  var data = _taggedTemplateLiteral(["\n    align-content: space-between;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    align-content: center;\n  "]);
 
   _templateObject41 = function _templateObject41() {
     return data;
@@ -100,7 +120,7 @@ function _templateObject41() {
 }
 
 function _templateObject40() {
-  var data = _taggedTemplateLiteral(["\n    align-content: center;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    align-content: flex-end;\n  "]);
 
   _templateObject40 = function _templateObject40() {
     return data;
@@ -110,7 +130,7 @@ function _templateObject40() {
 }
 
 function _templateObject39() {
-  var data = _taggedTemplateLiteral(["\n    align-content: flex-end;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    align-content: flex-start;\n  "]);
 
   _templateObject39 = function _templateObject39() {
     return data;
@@ -120,7 +140,7 @@ function _templateObject39() {
 }
 
 function _templateObject38() {
-  var data = _taggedTemplateLiteral(["\n    align-content: flex-start;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    justify-content: space-around;\n  "]);
 
   _templateObject38 = function _templateObject38() {
     return data;
@@ -130,7 +150,7 @@ function _templateObject38() {
 }
 
 function _templateObject37() {
-  var data = _taggedTemplateLiteral(["\n    justify-content: space-around;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    justify-content: space-between;\n  "]);
 
   _templateObject37 = function _templateObject37() {
     return data;
@@ -140,7 +160,7 @@ function _templateObject37() {
 }
 
 function _templateObject36() {
-  var data = _taggedTemplateLiteral(["\n    justify-content: space-between;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    justify-content: center;\n  "]);
 
   _templateObject36 = function _templateObject36() {
     return data;
@@ -150,7 +170,7 @@ function _templateObject36() {
 }
 
 function _templateObject35() {
-  var data = _taggedTemplateLiteral(["\n    justify-content: center;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    justify-content: flex-end;\n  "]);
 
   _templateObject35 = function _templateObject35() {
     return data;
@@ -160,7 +180,7 @@ function _templateObject35() {
 }
 
 function _templateObject34() {
-  var data = _taggedTemplateLiteral(["\n    justify-content: flex-end;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    justify-content: flex-start; /* default */\n  "]);
 
   _templateObject34 = function _templateObject34() {
     return data;
@@ -170,7 +190,7 @@ function _templateObject34() {
 }
 
 function _templateObject33() {
-  var data = _taggedTemplateLiteral(["\n    justify-content: flex-start; /* default */\n  "]);
+  var data = _taggedTemplateLiteral(["\n    flex-wrap: wrap-reverse;\n  "]);
 
   _templateObject33 = function _templateObject33() {
     return data;
@@ -180,7 +200,7 @@ function _templateObject33() {
 }
 
 function _templateObject32() {
-  var data = _taggedTemplateLiteral(["\n    flex-wrap: wrap-reverse;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    flex-wrap: wrap;\n  "]);
 
   _templateObject32 = function _templateObject32() {
     return data;
@@ -190,7 +210,7 @@ function _templateObject32() {
 }
 
 function _templateObject31() {
-  var data = _taggedTemplateLiteral(["\n    flex-wrap: wrap;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    flex-wrap: nowrap; /* default */\n  "]);
 
   _templateObject31 = function _templateObject31() {
     return data;
@@ -200,7 +220,7 @@ function _templateObject31() {
 }
 
 function _templateObject30() {
-  var data = _taggedTemplateLiteral(["\n    flex-wrap: nowrap; /* default */\n  "]);
+  var data = _taggedTemplateLiteral(["\n    flex-direction: column-reverse;\n  "]);
 
   _templateObject30 = function _templateObject30() {
     return data;
@@ -210,7 +230,7 @@ function _templateObject30() {
 }
 
 function _templateObject29() {
-  var data = _taggedTemplateLiteral(["\n    flex-direction: column-reverse;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    flex-direction: column;\n  "]);
 
   _templateObject29 = function _templateObject29() {
     return data;
@@ -220,7 +240,7 @@ function _templateObject29() {
 }
 
 function _templateObject28() {
-  var data = _taggedTemplateLiteral(["\n    flex-direction: column;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    flex-direction: row-reverse;\n  "]);
 
   _templateObject28 = function _templateObject28() {
     return data;
@@ -230,7 +250,7 @@ function _templateObject28() {
 }
 
 function _templateObject27() {
-  var data = _taggedTemplateLiteral(["\n    flex-direction: row-reverse;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    flex-direction: row; /* default */\n  "]);
 
   _templateObject27 = function _templateObject27() {
     return data;
@@ -240,7 +260,7 @@ function _templateObject27() {
 }
 
 function _templateObject26() {
-  var data = _taggedTemplateLiteral(["\n    flex-direction: row; /* default */\n  "]);
+  var data = _taggedTemplateLiteral(["\n    text-align: right;\n  "]);
 
   _templateObject26 = function _templateObject26() {
     return data;
@@ -250,7 +270,7 @@ function _templateObject26() {
 }
 
 function _templateObject25() {
-  var data = _taggedTemplateLiteral(["\n    text-align: right;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    text-align: center;\n  "]);
 
   _templateObject25 = function _templateObject25() {
     return data;
@@ -260,7 +280,7 @@ function _templateObject25() {
 }
 
 function _templateObject24() {
-  var data = _taggedTemplateLiteral(["\n    text-align: center;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    text-transform: uppercase;\n  "]);
 
   _templateObject24 = function _templateObject24() {
     return data;
@@ -270,7 +290,7 @@ function _templateObject24() {
 }
 
 function _templateObject23() {
-  var data = _taggedTemplateLiteral(["\n    text-transform: uppercase;\n  "]);
+  var data = _taggedTemplateLiteral(["\n  border-radius: 0 !important;\n"]);
 
   _templateObject23 = function _templateObject23() {
     return data;
@@ -280,7 +300,7 @@ function _templateObject23() {
 }
 
 function _templateObject22() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: 0 !important;\n"]);
+  var data = _taggedTemplateLiteral(["\n  border-radius: 99999px;\n"]);
 
   _templateObject22 = function _templateObject22() {
     return data;
@@ -290,7 +310,7 @@ function _templateObject22() {
 }
 
 function _templateObject21() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: 99999px;\n"]);
+  var data = _taggedTemplateLiteral(["\n  border-radius: 0 0 15px 15px !important;\n"]);
 
   _templateObject21 = function _templateObject21() {
     return data;
@@ -300,7 +320,7 @@ function _templateObject21() {
 }
 
 function _templateObject20() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: 0 0 15px 15px !important;\n"]);
+  var data = _taggedTemplateLiteral(["\n  border-radius: 15px 15px 0 0 !important;\n"]);
 
   _templateObject20 = function _templateObject20() {
     return data;
@@ -310,7 +330,7 @@ function _templateObject20() {
 }
 
 function _templateObject19() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: 15px 15px 0 0 !important;\n"]);
+  var data = _taggedTemplateLiteral(["\n  border-radius: 40px;\n"]);
 
   _templateObject19 = function _templateObject19() {
     return data;
@@ -320,7 +340,7 @@ function _templateObject19() {
 }
 
 function _templateObject18() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: 40px;\n"]);
+  var data = _taggedTemplateLiteral(["\n  border-radius: 8px 8px 0 0 !important;\n"]);
 
   _templateObject18 = function _templateObject18() {
     return data;
@@ -330,7 +350,7 @@ function _templateObject18() {
 }
 
 function _templateObject17() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: 8px 8px 0 0 !important;\n"]);
+  var data = _taggedTemplateLiteral(["\n  border-radius: 0 0 8px 8px !important;\n"]);
 
   _templateObject17 = function _templateObject17() {
     return data;
@@ -340,7 +360,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: 0 0 8px 8px !important;\n"]);
+  var data = _taggedTemplateLiteral(["\n  border-radius: 8px;\n"]);
 
   _templateObject16 = function _templateObject16() {
     return data;
@@ -350,7 +370,7 @@ function _templateObject16() {
 }
 
 function _templateObject15() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: 8px;\n"]);
+  var data = _taggedTemplateLiteral(["\n  cursor: pointer;\n"]);
 
   _templateObject15 = function _templateObject15() {
     return data;
@@ -360,7 +380,7 @@ function _templateObject15() {
 }
 
 function _templateObject14() {
-  var data = _taggedTemplateLiteral(["\n  cursor: pointer;\n"]);
+  var data = _taggedTemplateLiteral(["\n  word-break: break-all;\n"]);
 
   _templateObject14 = function _templateObject14() {
     return data;
@@ -370,7 +390,7 @@ function _templateObject14() {
 }
 
 function _templateObject13() {
-  var data = _taggedTemplateLiteral(["\n  word-break: break-all;\n"]);
+  var data = _taggedTemplateLiteral(["\n  margin: 0px !important;\n"]);
 
   _templateObject13 = function _templateObject13() {
     return data;
@@ -380,7 +400,7 @@ function _templateObject13() {
 }
 
 function _templateObject12() {
-  var data = _taggedTemplateLiteral(["\n  margin: 0px !important;\n"]);
+  var data = _taggedTemplateLiteral(["\n  padding: 0px !important;\n"]);
 
   _templateObject12 = function _templateObject12() {
     return data;
@@ -390,7 +410,7 @@ function _templateObject12() {
 }
 
 function _templateObject11() {
-  var data = _taggedTemplateLiteral(["\n  padding: 0px !important;\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: fixed !important;\n"]);
 
   _templateObject11 = function _templateObject11() {
     return data;
@@ -400,7 +420,7 @@ function _templateObject11() {
 }
 
 function _templateObject10() {
-  var data = _taggedTemplateLiteral(["\n  position: fixed !important;\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: absolute !important;\n"]);
 
   _templateObject10 = function _templateObject10() {
     return data;
@@ -410,7 +430,7 @@ function _templateObject10() {
 }
 
 function _templateObject9() {
-  var data = _taggedTemplateLiteral(["\n  position: absolute !important;\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: relative\n"]);
 
   _templateObject9 = function _templateObject9() {
     return data;
@@ -420,7 +440,7 @@ function _templateObject9() {
 }
 
 function _templateObject8() {
-  var data = _taggedTemplateLiteral(["\n  position: relative\n"]);
+  var data = _taggedTemplateLiteral(["\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n"]);
 
   _templateObject8 = function _templateObject8() {
     return data;
@@ -430,7 +450,7 @@ function _templateObject8() {
 }
 
 function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n"]);
+  var data = _taggedTemplateLiteral(["\n  width: 100%;\n"]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -440,7 +460,7 @@ function _templateObject7() {
 }
 
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n  width: 100%;\n"]);
+  var data = _taggedTemplateLiteral(["\n  background: #f3f3f3;\n  padding: 15px;\n  border-radius: 10px 10px 0 0;\n  margin-top: -16px;\n  margin-left: -16px;\n  margin-right: -16px;\n  margin-bottom: 10px;\n"]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -450,7 +470,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  background: #f3f3f3;\n  padding: 15px;\n  border-radius: 10px 10px 0 0;\n  margin-top: -16px;\n  margin-left: -16px;\n  margin-right: -16px;\n  margin-bottom: 10px;\n"]);
+  var data = _taggedTemplateLiteral(["\n    border-radius: 20px 5px 20px 10px;\n    text-transform: uppercase;\n    font-weight: normal;\n    fontSize: 0;\n    padding: 8px;\n    &:hover {\n      color: #FFF;\n      top: -1px;\n    }\n  "]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -460,7 +480,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n&:hover {\n  box-shadow: ", ";\n}\n"]);
+  var data = _taggedTemplateLiteral(["\n&:hover {\n  box-shadow: ", ";\n  transform: scale(1.025);\n}\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -490,7 +510,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["s\nbox-sizing: border-box;\n/* --------------- */\n/*      System     */\n/* --------------- */\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n/* --------------- */\n/*     Card     */\n/* --------------- */\n", ";\n\n", "\n\n", ";\n\n", "\n\n/* --------------- */\n/*     General     */\n/* --------------- */\n", "\n", "\n", "\n", "\n", "\n\n", "\n\n", "\n\n", "\n\n", "\n\n\n\n/* --------------- */\n/*     Helpers     */\n/* --------------- */\n", ";\n\n", ";\n", ";\n", ";\n\n", ";\n", ";\n", ";\n\n", ";\n\n\n", ";\n\n  /* --------------- */\n  /*       Text      */\n  /* --------------- */\n  ", ";\n  ", ";\n  ", ";\n\n  /* --------------- */\n  /*     Gradient     */\n  /* --------------- */\n  ", "\n  &:hover {\n    ", "\n    ", "\n  }\n\n\n  /* --------------- */\n  /*     General     */\n  /* --------------- */\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  /* --------------- */\n  /*       Wrap      */\n  /* --------------- */\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  /* --------------- */\n  /*     Justify     */\n  /* --------------- */\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  /* --------------- */\n  /*      Align      */\n  /* --------------- */\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n  ", "\n", "\n", "\n", "\n"]);
+  var data = _taggedTemplateLiteral(["box-sizing: border-box;\n", "\n", "\n", "\n/* --------------- */\n/*     Card     */\n/* --------------- */\n", ";\n\n", "\n\n", ";\n\n", "\n  ", "\n  ", ";\n/* --------------- */\n/*     General     */\n/* --------------- */\n", "\n", "\n", "\n", "\n", "\n\n", "\n\n", "\n\n", "\n\n", "\n\n\n\n/* --------------- */\n/*     Helpers     */\n/* --------------- */\n", ";\n\n", ";\n", ";\n", ";\n\n", ";\n", ";\n", ";\n\n", ";\n\n\n", ";\n\n  /* --------------- */\n  /*       Text      */\n  /* --------------- */\n  ", ";\n  ", ";\n  ", ";\n\n  /* --------------- */\n  /*     Gradient     */\n  /* --------------- */\n  ", "\n  &:hover {\n    ", "\n    ", "\n  }\n\n\n  /* --------------- */\n  /*     General     */\n  /* --------------- */\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  /* --------------- */\n  /*       Wrap      */\n  /* --------------- */\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  /* --------------- */\n  /*     Justify     */\n  /* --------------- */\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  /* --------------- */\n  /*      Align      */\n  /* --------------- */\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n\n  ", ";\n  \n  ", ";\n\n  /* --------------- */\n  /*      System     */\n  /* --------------- */\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -501,14 +521,7 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var Box = (0, _styledComponents.default)((0, _utils.withoutProps)(_utils.ignoreList)('div'))(_templateObject(), (0, _styledSystem.system)({
-  opacity: {
-    property: 'opacity'
-  },
-  transform: {
-    property: 'transform'
-  }
-}), _styledSystem.layout, _styledSystem.flexbox, _styledSystem.grid, _styledSystem.background, _styledSystem.typography, _styledSystem.position, (0, _styledIs.default)('card')(_templateObject2(), props => props.theme.gradient['white'][0], props => props.gradientDir ? props.gradientDir : '180', props => "".concat(props.theme.gradient['white'][0], ", ").concat(props.theme.gradient['white'][1]), props => props.gradientDir ? props.gradientDir : '180', props => "".concat(props.theme.gradient['white'][0], ", ").concat(props.theme.gradient['white'][1]), props => "box-shadow: ".concat(props.theme.shadows[0], ";")), (0, _styledIs.default)('shadowMedium')(_templateObject3(), props => "box-shadow: ".concat(props.theme.shadows[4], ";")), (0, _styledIs.default)('cardHover')(_templateObject4(), props => (0, _idx.default)(props, _ => _.theme.shadows['lightHover'])), (0, _styledSystem.variant)({
+var Box = (0, _styledComponents.default)((0, _utils.withoutProps)(_utils.ignoreList)('div'))(_templateObject(), _styledSystem.flexbox, _styledSystem.grid, _styledSystem.position, (0, _styledIs.default)('card')(_templateObject2(), props => props.theme.gradient['white'][0], props => props.gradientDir ? props.gradientDir : '180', props => "".concat(props.theme.gradient['white'][0], ", ").concat(props.theme.gradient['white'][1]), props => props.gradientDir ? props.gradientDir : '180', props => "".concat(props.theme.gradient['white'][0], ", ").concat(props.theme.gradient['white'][1]), props => "box-shadow: ".concat(props.theme.shadows[0], ";")), (0, _styledIs.default)('shadowMedium')(_templateObject3(), props => "box-shadow: ".concat(props.theme.shadows[4], ";")), (0, _styledIs.default)('cardHover')(_templateObject4(), props => (0, _idx.default)(props, _ => _.theme.shadows['lightHover'])), (0, _styledSystem.variant)({
   prop: 'layout',
   variants: {
     toast: {
@@ -549,7 +562,44 @@ var Box = (0, _styledComponents.default)((0, _utils.withoutProps)(_utils.ignoreL
       maxWidth: 360
     }
   }
-}), (0, _styledIs.default)('cardHeader')(_templateObject5()), (0, _styledIs.default)('fullWidth')(_templateObject6()), (0, _styledIs.default)('fill')(_templateObject7()), (0, _styledIs.default)('relative')(_templateObject8()), (0, _styledIs.default)('absolute')(_templateObject9()), (0, _styledIs.default)('fixed')(_templateObject10()), (0, _styledIs.default)('noPadding')(_templateObject11()), (0, _styledIs.default)('noMargin')(_templateObject12()), (0, _styledIs.default)('wordBreakAll')(_templateObject13()), (0, _styledIs.default)('pointer')(_templateObject14()), (0, _styledIs.default)('rounded')(_templateObject15()), (0, _styledIs.default)('borderRoundedBottom')(_templateObject16()), (0, _styledIs.default)('borderRoundedTop')(_templateObject17()), (0, _styledIs.default)('curved')(_templateObject18()), (0, _styledIs.default)('borderCurvedTop')(_templateObject19()), (0, _styledIs.default)('borderCurvedBottom')(_templateObject20()), (0, _styledIs.default)('circle')(_templateObject21()), (0, _styledIs.default)('borderNone')(_templateObject22()), (0, _styledIs.default)('uppercase')(_templateObject23()), (0, _styledIs.default)('textCenter')(_templateObject24()), (0, _styledIs.default)('textRight')(_templateObject25()), props => props.gradient && (0, _idx.default)(props, _ => _.theme.gradient[props.gradient]) ? "\n      background: ".concat((0, _idx.default)(props, _ => _.theme.gradient[props.gradient][0]), ";\n      background-image: -webkit-linear-gradient(").concat(props.gradientDir ? props.gradientDir : '180', "deg , ").concat((0, _idx.default)(props, _ => _.theme.gradient[props.gradient]), ");\n      background-image: linear-gradient(").concat(props.gradientDir ? props.gradientDir : '180', "deg , ").concat((0, _idx.default)(props, _ => _.theme.gradient[props.gradient]), ");\n      ") : null, props => (0, _idx.default)(props, _ => _.hover.boxShadow) && "box-shadow: ".concat((0, _idx.default)(props, _ => _.theme.shadows[props.hover.boxShadow]), ";"), props => (0, _idx.default)(props, _ => _.hover.zIndex) > 0 && "z-index: ".concat(props.hover.zIndex), (0, _styledIs.default)('row')(_templateObject26()), (0, _styledIs.default)('rowReverse')(_templateObject27()), (0, _styledIs.default)('column')(_templateObject28()), (0, _styledIs.default)('columnReverse')(_templateObject29()), (0, _styledIs.default)('nowrap')(_templateObject30()), (0, _styledIs.default)('wrap')(_templateObject31()), (0, _styledIs.default)('wrapReverse')(_templateObject32()), (0, _styledIs.default)('justifyStart')(_templateObject33()), (0, _styledIs.default)('justifyEnd')(_templateObject34()), (0, _styledIs.default)('justifyCenter')(_templateObject35()), (0, _styledIs.default)('justifyBetween')(_templateObject36()), (0, _styledIs.default)('justifyAround')(_templateObject37()), (0, _styledIs.default)('contentStart')(_templateObject38()), (0, _styledIs.default)('contentEnd')(_templateObject39()), (0, _styledIs.default)('contentCenter')(_templateObject40()), (0, _styledIs.default)('contentSpaceBetween')(_templateObject41()), (0, _styledIs.default)('contentSpaceAround')(_templateObject42()), (0, _styledIs.default)('contentStretch')(_templateObject43()), (0, _styledIs.default)('alignStart')(_templateObject44()), (0, _styledIs.default)('alignEnd')(_templateObject45()), (0, _styledIs.default)('alignCenter')(_templateObject46()), (0, _styledIs.default)('alignBaseline')(_templateObject47()), (0, _styledIs.default)('alignStretch')(_templateObject48()), _styledSystem.border, _styledSystem.color, _styledSystem.shadow, _styledSystem.space);
+}), (0, _styledSystem.variant)({
+  prop: 'gem',
+  variants: {
+    white: {
+      background: 'linear-gradient(120deg ,#FFF,#efe8dc)',
+      borderColor: '#64627e80',
+      borderWidth: 2,
+      borderStyle: 'solid',
+      color: '#3e3e3e',
+      bg: '#FFF',
+      "&:hover": {
+        color: '#3e3e3e !important'
+      }
+    },
+    primary: {
+      bg: 'primary',
+      color: '#ffffffe6'
+    },
+    secondary: {
+      bg: 'secondary',
+      color: '#ffffffe6'
+    },
+    tertiary: {
+      bg: 'tertiary',
+      color: '#ffffffe6'
+    }
+  }
+}), (0, _styledIs.default)('gem')(_templateObject5()), (0, _styledIs.default)('cardHeader')(_templateObject6()), (0, _styledIs.default)('fullWidth')(_templateObject7()), (0, _styledIs.default)('fill')(_templateObject8()), (0, _styledIs.default)('relative')(_templateObject9()), (0, _styledIs.default)('absolute')(_templateObject10()), (0, _styledIs.default)('fixed')(_templateObject11()), (0, _styledIs.default)('noPadding')(_templateObject12()), (0, _styledIs.default)('noMargin')(_templateObject13()), (0, _styledIs.default)('wordBreakAll')(_templateObject14()), (0, _styledIs.default)('pointer')(_templateObject15()), (0, _styledIs.default)('rounded')(_templateObject16()), (0, _styledIs.default)('borderRoundedBottom')(_templateObject17()), (0, _styledIs.default)('borderRoundedTop')(_templateObject18()), (0, _styledIs.default)('curved')(_templateObject19()), (0, _styledIs.default)('borderCurvedTop')(_templateObject20()), (0, _styledIs.default)('borderCurvedBottom')(_templateObject21()), (0, _styledIs.default)('circle')(_templateObject22()), (0, _styledIs.default)('borderNone')(_templateObject23()), (0, _styledIs.default)('uppercase')(_templateObject24()), (0, _styledIs.default)('textCenter')(_templateObject25()), (0, _styledIs.default)('textRight')(_templateObject26()), props => props.gradient && (0, _idx.default)(props, _ => _.theme.gradient[props.gradient]) ? "\n      background: ".concat((0, _idx.default)(props, _ => _.theme.gradient[props.gradient][0]), ";\n      background-image: -webkit-linear-gradient(").concat(props.gradientDir ? props.gradientDir : '180', "deg , ").concat((0, _idx.default)(props, _ => _.theme.gradient[props.gradient]), ");\n      background-image: linear-gradient(").concat(props.gradientDir ? props.gradientDir : '180', "deg , ").concat((0, _idx.default)(props, _ => _.theme.gradient[props.gradient]), ");\n      ") : null, props => (0, _idx.default)(props, _ => _.hover.boxShadow) && "box-shadow: ".concat((0, _idx.default)(props, _ => _.theme.shadows[props.hover.boxShadow]), ";"), props => (0, _idx.default)(props, _ => _.hover.zIndex) > 0 && "z-index: ".concat(props.hover.zIndex), (0, _styledIs.default)('row')(_templateObject27()), (0, _styledIs.default)('rowReverse')(_templateObject28()), (0, _styledIs.default)('column')(_templateObject29()), (0, _styledIs.default)('columnReverse')(_templateObject30()), (0, _styledIs.default)('nowrap')(_templateObject31()), (0, _styledIs.default)('wrap')(_templateObject32()), (0, _styledIs.default)('wrapReverse')(_templateObject33()), (0, _styledIs.default)('justifyStart')(_templateObject34()), (0, _styledIs.default)('justifyEnd')(_templateObject35()), (0, _styledIs.default)('justifyCenter')(_templateObject36()), (0, _styledIs.default)('justifyBetween')(_templateObject37()), (0, _styledIs.default)('justifyAround')(_templateObject38()), (0, _styledIs.default)('contentStart')(_templateObject39()), (0, _styledIs.default)('contentEnd')(_templateObject40()), (0, _styledIs.default)('contentCenter')(_templateObject41()), (0, _styledIs.default)('contentSpaceBetween')(_templateObject42()), (0, _styledIs.default)('contentSpaceAround')(_templateObject43()), (0, _styledIs.default)('contentStretch')(_templateObject44()), (0, _styledIs.default)('alignStart')(_templateObject45()), (0, _styledIs.default)('alignEnd')(_templateObject46()), (0, _styledIs.default)('alignCenter')(_templateObject47()), (0, _styledIs.default)('alignBaseline')(_templateObject48()), (0, _styledIs.default)('alignStretch')(_templateObject49()), (0, _styledIs.default)('baselineChildren')(_templateObject50()), (0, _styledSystem.system)({
+  opacity: {
+    property: 'opacity'
+  },
+  transform: {
+    property: 'transform'
+  },
+  cursor: {
+    property: 'cursor'
+  }
+}), _styledSystem.border, _styledSystem.background, _styledSystem.typography, _styledSystem.color, _styledSystem.shadow, _styledSystem.space, _styledSystem.layout);
 Box.propTypes = {
   curved: _propTypes.default.string,
   rounded: _propTypes.default.string,

@@ -1,19 +1,14 @@
-import Provider from "./Provider";
-import Injection from "./Portal";
-import Component from "./Component";
-import withContext from "./withContext";
-import Api from "./api.js";
+// Hooks, Reducers and State 
+export { default as PortalApi } from './api'
+export { default as PortalProvider } from './Provider'
+export { default as PortalContext } from './Context'
 
-export const PortalProvider = Provider
-export const PortalComponent = Component
-export const PortalInjection = Injection
-export const PortalWithContext = withContext
-export const PortalApi = Api
-
-export default {
-  PortalProvider,
-  PortalComponent,
-  PortalInjection,
-  PortalWithContext,
-  PortalApi,
-}
+// Components
+export { default as PortalWithContext } from './components/PortalConsumer'
+export { default as PortalWithContextPassed } from './components/PortalConsumerPassed'
+export { default as PortalCreate } from './components/PortalCreate'
+export { default as PortalInjection } from './components/PortalCreate'
+export { default as PortalInstance } from './components/PortalInstance'
+export { default as PortalTree } from './components/PortalTree'
+export { default as PortalComponent } from './components/PortalTypes'
+export { default as PortalPositioned } from './components/PortalPositioned'

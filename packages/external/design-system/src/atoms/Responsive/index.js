@@ -19,7 +19,7 @@ const Default = ({ children }) => {
   return isNotMobile ? children : null
 }
  
-const Example = ({ mobile, tablet, desktop, defaults }) => (
+const Example = ({ children, mobile, tablet, desktop, defaults }) => (
   <div>
     {
       desktop &&
@@ -34,8 +34,7 @@ const Example = ({ mobile, tablet, desktop, defaults }) => (
       <Mobile>{mobile}</Mobile>
     }
     {
-      defaults &&
-      <Default>{ defaults }</Default>
+      <Default>{ children }</Default>
     }
   </div>
 )

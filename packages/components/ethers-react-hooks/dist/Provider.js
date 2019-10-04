@@ -40,18 +40,50 @@ var Provider = (_ref) => {
   var initialState = (0, _react.useContext)(_Context.default);
   var [state, dispatch] = (0, _react.useReducer)(_reducer.default, initialState);
   (0, _effects.default)(_react.useEffect, state, dispatch);
-  console.log(state, 'Ethers State Loaded');
+  console.log(state, 'Ethers State');
+
+  var stringToArrayPath = data => typeof data === 'string' ? data.split('.') : data;
+
+  var idxx = (state, nest) => [state, ...stringToArrayPath(nest)].reduce((branch, index) => {
+    if (typeof index === 'string' && branch) {
+      return branch[index];
+    } else {
+      nest = index;
+    }
+  });
+
   return _react.default.createElement(_Context.default.Provider, {
     value: _objectSpread({}, state, {
       dispatch: dispatch,
+      selector: select => idxx(state, select),
       enable: () => window.ethereum.enable(),
-      initContract: (_ref2) => {
+      setProvider: (_ref2) => {
+        var {
+          provider,
+          delta
+        } = _ref2;
+        return dispatch({
+          type: 'SET_PROVIDER',
+          payload: provider
+        });
+      },
+      setProviderStatus: (_ref3) => {
+        var {
+          provider,
+          delta
+        } = _ref3;
+        return dispatch({
+          type: 'SET_PROVIDER',
+          payload: provider
+        });
+      },
+      initContract: (_ref4) => {
         var {
           abi,
           address,
           contractType,
           delta
-        } = _ref2;
+        } = _ref4;
         return dispatch({
           type: 'INIT_CONTRACT_REQUEST',
           payload: {
@@ -62,12 +94,12 @@ var Provider = (_ref) => {
           delta: delta || address
         });
       },
-      deployContract: (_ref3) => {
+      deployContract: (_ref5) => {
         var {
           contract,
           delta,
           values
-        } = _ref3;
+        } = _ref5;
         return dispatch({
           type: 'DEPLOY_CONTRACT_REQUEST',
           payload: {
@@ -82,11 +114,28 @@ var Provider = (_ref) => {
         input: bytecode,
         delta: delta || (0, _utilities.hashCode)(abi)
       }),
-      signMessage: (message, delta) => dispatch({
-        type: 'SIGN_MESSAGE_REQUEST',
-        input: message,
-        delta
-      }),
+      signMessageTyped: (_ref6) => {
+        var {
+          message,
+          delta
+        } = _ref6;
+        return dispatch({
+          type: 'SIGN_TYPED_MESSAGE_REQUEST',
+          payload: message,
+          id: delta || (0, _utilities.hashCode)(message.toString())
+        });
+      },
+      signMessage: (_ref7) => {
+        var {
+          message,
+          delta
+        } = _ref7;
+        return dispatch({
+          type: 'SIGN_MESSAGE_REQUEST',
+          payload: message,
+          id: delta || (0, _utilities.hashCode)(message)
+        });
+      },
       sendTransaction: (transaction, delta) => dispatch({
         type: 'SIGN_TRANSACTION_REQUEST',
         input: transaction,

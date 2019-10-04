@@ -14,30 +14,32 @@ background-image: linear-gradient(${direction ? direction : '180'}deg , ${idx(th
 
 const Button = styled(Box)
 `
-box-shadow: 0 6px 8px -5px rgba(88,103,221,0.15);
-border-width: 0px;
-border-style: solid;
-border-radius: .25rem;
-cursor: pointer;
-display: inline-flex;
-align-items: center;
-font-size: 1rem;
-font-weight: 470;
-justify-content: center;
-line-height: 1.5;
-letter-spacing: 0.015em;
-padding: .65rem 1rem;
-padding-left: 2.5rem;
-padding-right: 2.5rem;
-vertical-align: middle;
-transition: top 1s;
-text-align: center;
-outline: 0!important;
+  box-shadow: 0 6px 8px -5px rgba(88,103,221,0.15);
+  border-width: 0px;
+  border-style: solid;
+  border-radius: .25rem;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 470;
+  justify-content: center;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+  padding: .65rem 1rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  vertical-align: middle;
+  transition: top 1s;
+  text-align: center;
+  outline: 0!important;
 
 ${
   variant({
     variants: {
       white: {
+        borderColor: '#eeeded',
+        borderWidth: 1,
+        borderStyle: 'solid',
         color: '#3e3e3e',
         bg: '#FFF',
       },

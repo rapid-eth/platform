@@ -31,36 +31,44 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
+var internalLabel = ['radio', 'checkbox'];
 /* --- Component --- */
-var _default = (_ref) => {
+
+var Field = (_ref) => {
   var {
-    type = 'text',
-    name,
+    inputAs,
     label,
-    placeholder,
     error,
     errors,
     register,
     validation,
     component,
-    styled
+    styled,
+    children
   } = _ref,
-      props = _objectWithoutProperties(_ref, ["type", "name", "label", "placeholder", "error", "errors", "register", "validation", "component", "styled"]);
+      props = _objectWithoutProperties(_ref, ["inputAs", "label", "error", "errors", "register", "validation", "component", "styled", "children"]);
 
-  return !register ? null : _react.default.createElement(_react.default.Fragment, null, label && _react.default.createElement(_atoms.Span, {
+  return !register ? null : _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_index.Box, null, !component ? _react.default.createElement(_react.default.Fragment, null, !internalLabel.includes(props.type) && label && _react.default.createElement(_atoms.Span, {
     xs: true,
     as: "label",
     my: "5px"
-  }, label), _react.default.createElement(_index.Box, null, !component ? _react.default.createElement(_Input.default, _extends({
+  }, label), _react.default.createElement(_Input.default, _extends({
     ref: register(_objectSpread({}, validation)),
-    name: name,
-    placeholder: placeholder
-  }, styled, props)) : component, errors[name] && errors[name].message && _react.default.createElement(_message.default, {
+    label: label,
+    variant: props.type,
+    as: inputAs
+  }, styled, props)), internalLabel.includes(props.type) && label && _react.default.createElement(_atoms.Span, {
+    xs: true,
+    as: "label",
+    my: "5px"
+  }, label)) : component, errors[props.name] && errors[props.name].message && _react.default.createElement(_message.default, {
     floating: true,
-    name: name,
+    name: props.name,
     error: error,
     className: "input-error"
-  }, errors[name].message)));
+  }, errors[props.name].message)));
 };
 
+Field.defaultProps = {};
+var _default = Field;
 exports.default = _default;

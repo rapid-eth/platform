@@ -5,23 +5,31 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _idx = _interopRequireDefault(require("idx"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _Context = _interopRequireDefault(require("./Context"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _reactHooksPortal = require("@horizin/react-hooks-portal");
+
+var _atoms = require("@horizin/design-system/dist/atoms");
+
+var _effects = _interopRequireDefault(require("./effects"));
+
+var _utilities = require("./utilities");
+
+var _reducer = _interopRequireDefault(require("./reducer"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -29,161 +37,13 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var reducerActions = (state, action) => {
-  switch (action.type) {
-    case 'setProfile':
-      return _objectSpread({}, state, {
-        profile: action.profile
-      });
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
-    case 'setAddress':
-      return _objectSpread({}, state, {
-        address: action.address // addressShortened: utilities.shortenAddress(action.address, 7)
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-      });
-
-    case 'open':
-      return _objectSpread({}, state, {
-        isLoggingIn: true
-      });
-
-    case 'logout':
-      return _objectSpread({}, state, {
-        isLoggingOut: true
-      });
-
-    case 'OPEN_SUCCESS':
-      return _objectSpread({}, state, {
-        profile: action.profile,
-        instance: action.profileInstance,
-        spaces: action.spaces,
-        isLoggingIn: false,
-        isLoggedIn: true
-      });
-
-    case 'OPEN_FAILURE':
-      return _objectSpread({}, state);
-
-    case 'LOGOUT_SUCCESS':
-      return _objectSpread({}, state, {
-        box: undefined,
-        profile: undefined,
-        instance: undefined,
-        isLoggedIn: false,
-        spaces: {},
-        threads: {}
-      });
-
-    case 'LOGOUT_FAILURE':
-      return state;
-
-    case 'openSpace':
-      return _objectSpread({}, state, {
-        async: {
-          spaces: {
-            [action.space]: true
-          }
-        }
-      });
-
-    case 'OPEN_SPACE_SUCCESS':
-      return _objectSpread({}, state, {
-        spaces: _objectSpread({}, state.spaces, {
-          [action.space]: {
-            instance: action.instance,
-            threads: action.threads
-          }
-        })
-      });
-
-    case 'joinThread':
-      return _objectSpread({}, state, {
-        async: {
-          threads: {
-            [action.threadName]: {
-              space: action.space,
-              threadName: action.threadName,
-              threadAddress: action.threadAddress
-            }
-          }
-        }
-      });
-
-    case 'JOIN_THREAD_SUCCESS':
-      return _objectSpread({}, state, {
-        threads: _objectSpread({}, state.threads, {
-          [action.threadName]: {
-            instance: action.instance,
-            posts: action.posts,
-            members: action.members,
-            moderators: action.moderators
-          }
-        }) // spaces: {
-        //   ...state.spaces,
-        //   [action.space]: {
-        //     ...state.spaces[action.space],
-        //     threads: [
-        //       ...state.spaces[action.space].threads,
-        //       {
-        //         address: action.instance._address,
-        //         firstModerator: action.instance._firstModerator,
-        //         members: action.instance._members,
-        //         name: action.instance._name
-        //       }
-        //     ]
-        //   }
-        // }
-
-      });
-
-    case 'threadPost':
-      return _objectSpread({}, state, {
-        async: {
-          posts: {
-            [action.threadName]: {
-              type: action.type,
-              threadName: action.threadName,
-              post: action.post
-            }
-          }
-        }
-      });
-
-    case 'threadPostDelete':
-      return _objectSpread({}, state, {
-        async: {
-          posts: {
-            [action.postId]: {
-              type: action.type,
-              threadName: action.threadName,
-              postId: action.postId
-            }
-          }
-        }
-      });
-
-    case 'THREAD_POST_SUCCESS':
-      return _objectSpread({}, state, {
-        threads: {
-          [action.threadName]: _objectSpread({}, state.threads[action.threadName], {
-            posts: action.posts
-          })
-        }
-      });
-
-    case 'THREAD_POST_DELETE_SUCCESS':
-      return _objectSpread({}, state, {
-        threads: {
-          [action.threadName]: _objectSpread({}, state.threads[action.threadName], {
-            posts: action.posts
-          })
-        }
-      });
-
-    default:
-      throw new Error('No Reducer Type Set');
-  }
-};
+var ComponentTest = props => _react.default.createElement(_atoms.Box, {
+  card: true
+}, "Welcome back.");
 
 var Provider = (_ref) => {
   var {
@@ -191,296 +51,164 @@ var Provider = (_ref) => {
   } = _ref,
       props = _objectWithoutProperties(_ref, ["children"]);
 
+  var portal = (0, _react.useContext)(_reactHooksPortal.PortalContext);
   var initialState = (0, _react.useContext)(_Context.default);
-  var reducer = (0, _react.useReducer)(reducerActions, initialState); // Fix ReferenceError: exports is not defined
+  var reducer = (0, _react.useReducer)(_reducer.default, initialState); // Fix ReferenceError: exports is not defined
 
   var state = reducer[0];
   var dispatch = reducer[1];
   console.log(state, 'Box Provider State');
-  /**
-   * @function setAddress
-   * @description Set global address parameter in 3box instance.
-   */
+  (0, _effects.default)(_react.useEffect, state, dispatch);
 
-  (0, _react.useEffect)(() => {
-    dispatch({
-      type: "setAddress",
-      address: window.ethereum.selectedAddress
-    });
-  }, [window.ethereum.selectedAddress]);
-  /**
-   * @function setProfile
-   * @description Set global address parameter in 3box instance.
-   */
+  var stringToArrayPath = data => typeof data === 'string' ? data.split('.') : data;
 
-  (0, _react.useEffect)(() => {
-    try {
-      if (state.address) {
-        state.instance.getProfile(state.address).then(profile => {
-          console.log(profile, 'profileprofileprofile');
-          dispatch({
-            type: "setProfile",
-            profile
-          });
-        });
-      }
-    } catch (error) {
-      console.log(error);
+  var idxx = (state, nest) => [state, ...stringToArrayPath(nest)].reduce((branch, index) => {
+    if (typeof index === 'string' && branch) {
+      return branch[index];
+    } else {
+      nest = index;
     }
-  }, [state.address]);
-  /**
-   * @function OpenBox
-   * @description Manage Login
-   */
+  });
 
-  (0, _react.useEffect)(() => {
-    try {
-      if (state.address && state.isLoggingIn) {
-        var runEffect =
-        /*#__PURE__*/
-        function () {
-          var _ref2 = _asyncToGenerator(function* () {
-            var profileInstance = yield state.instance.openBox(state.address, window.web3.currentProvider);
-            var profile = state.profile ? state.profile : yield state.instance.getProfile(state.address);
-            var list = yield state.instance.listSpaces(state.address);
-            var spaces = {};
-            list.forEach(element => {
-              spaces[element] = undefined;
-            });
-            dispatch({
-              type: "OPEN_SUCCESS",
-              profile: profile,
-              profileInstance: profileInstance,
-              spaces
-            });
-          });
-
-          return function runEffect() {
-            return _ref2.apply(this, arguments);
-          };
-        }();
-
-        runEffect();
-      }
-    } catch (error) {
-      console.log(error);
-      dispatch({
-        type: "OPEN_FAILURE",
-        err: 'Failed'
-      });
-    }
-  }, [state.isLoggingIn]);
-  /**
-   * @function CloseBox
-   * @description Manage Logout
-   */
-
-  (0, _react.useEffect)(() => {
-    if (state.isLoggingOut) {
-      try {
-        state.instance.logout().then(res => {
-          dispatch({
-            type: "LOGOUT_SUCCESS"
-          });
-        });
-      } catch (error) {
-        console.log(error);
-        dispatch({
-          type: "LOGOUT_FAILURE"
-        });
-      }
-    }
-  }, [state.isLoggingOut]);
-  /**
-   * @function OpenSpace
-   * @description Open Space
-   */
-
-  (0, _react.useEffect)(() => {
-    if (state.async && state.async.spaces) {
-      var spaceSelected = Object.keys(state.async.spaces)[0];
-
-      if (spaceSelected) {
-        var runEffect =
-        /*#__PURE__*/
-        function () {
-          var _ref3 = _asyncToGenerator(function* () {
-            var space = yield state.instance.openSpace(spaceSelected);
-            var threads = yield space.subscribedThreads();
-            dispatch({
-              type: "OPEN_SPACE_SUCCESS",
-              instance: space,
-              space: spaceSelected,
-              threads
-            });
-          });
-
-          return function runEffect() {
-            return _ref3.apply(this, arguments);
-          };
-        }();
-
-        runEffect();
-      }
-    }
-  }, [state.async.spaces]);
-  /**
-   * @function ThreadPostDelete
-   * @description Open Space
-   */
-
-  (0, _react.useEffect)(() => {
-    if (state.async && state.async.threads) {
-      var threadSelected = Object.keys(state.async.threads)[2];
-
-      if (threadSelected) {
-        var runEffect =
-        /*#__PURE__*/
-        function () {
-          var _ref4 = _asyncToGenerator(function* () {
-            dispatch({
-              type: "THREAD_DELETE_SUCCESS"
-            });
-          });
-
-          return function runEffect() {
-            return _ref4.apply(this, arguments);
-          };
-        }();
-
-        runEffect();
-      }
-    }
-  }, [state.async.threads]);
-  /**
-   * @function JoinThread
-   * @description Open Space
-   */
-
-  (0, _react.useEffect)(() => {
-    if (state.async && state.async.threads) {
-      try {
-        var threadSelected = state.async.threads[Object.keys(state.async.threads)[0]];
-
-        if (threadSelected) {
-          var runEffect =
-          /*#__PURE__*/
-          function () {
-            var _ref5 = _asyncToGenerator(function* () {
-              var thread, members, moderators;
-
-              if (threadSelected.threadAddress) {
-                thread = yield state.spaces[threadSelected.space].instance.joinThreadByAddress(threadSelected.threadAddress, threadSelected.options);
-              } else {
-                thread = yield state.spaces[threadSelected.space].instance.joinThread(threadSelected.threadName, threadSelected.options);
-              }
-
-              var posts = yield thread.getPosts();
-
-              if (thread._members) {
-                members = yield thread.listMembers();
-                moderators = yield thread.listModerators();
-              }
-
-              dispatch({
-                type: "JOIN_THREAD_SUCCESS",
-                instance: thread,
-                threadName: threadSelected.threadName,
-                posts,
-                members,
-                moderators,
-                space: threadSelected.space
-              });
-            });
-
-            return function runEffect() {
-              return _ref5.apply(this, arguments);
-            };
-          }();
-
-          runEffect();
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }, [state.async, state.async.threads]);
-  /**
-   * @function ThreadPost
-   * @description Add Post to Thread
-   */
-
-  (0, _react.useEffect)(() => {
-    if (state.async && state.async.posts) {
-      try {
-        var postSelected = state.async.posts[Object.keys(state.async.posts)[0]];
-
-        if (postSelected && state.threads[postSelected.threadName]) {
-          var runEffect =
-          /*#__PURE__*/
-          function () {
-            var _ref6 = _asyncToGenerator(function* () {
-              var posts;
-
-              switch (postSelected.type) {
-                case 'threadPost':
-                  yield state.threads[postSelected.threadName].instance.post(postSelected.post);
-                  posts = yield state.threads[postSelected.threadName].instance.getPosts();
-                  console.log(posts, 'posts');
-                  dispatch({
-                    type: "THREAD_POST_SUCCESS",
-                    threadName: postSelected.threadName,
-                    posts
-                  });
-                  break;
-
-                case 'threadPostDelete':
-                  yield state.threads[postSelected.threadName].instance.deletePost(postSelected.postId);
-                  posts = yield state.threads[postSelected.threadName].instance.getPosts();
-                  dispatch({
-                    type: "THREAD_POST_DELETE_SUCCESS",
-                    threadName: postSelected.threadName,
-                    posts
-                  });
-                  break;
-
-                default:
-                  break;
-              }
-            });
-
-            return function runEffect() {
-              return _ref6.apply(this, arguments);
-            };
-          }();
-
-          runEffect();
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }, [state.async, state.async.posts]);
   return _react.default.createElement(_Context.default.Provider, {
     value: _objectSpread({}, state, {
       dispatch: dispatch,
+      selector: select => idxx(state, select),
+      enable: function () {
+        var _enable = _asyncToGenerator(function* () {
+          var accounts = yield window.ethereum.enable();
+          var address = accounts[0];
+
+          if (address) {
+            dispatch({
+              type: "setAddress",
+              address,
+              addressShortened: (0, _utilities.shortenAddress)(address, 6),
+              addressTrimmed: address.substring(0, 10)
+            });
+          }
+        });
+
+        function enable() {
+          return _enable.apply(this, arguments);
+        }
+
+        return enable;
+      }(),
       open: () => dispatch({
         type: 'open'
       }),
       logout: () => dispatch({
         type: 'logout'
       }),
+      get: (_ref2) => {
+        var {
+          key,
+          access,
+          space
+        } = _ref2;
+        return dispatch({
+          type: 'GET_REQUEST',
+          space,
+          access,
+          key
+        });
+      },
+      set: (_ref3) => {
+        var {
+          keys,
+          key,
+          insert,
+          inputs,
+          access,
+          space,
+          append,
+          update
+        } = _ref3;
+        return dispatch({
+          type: 'SET_REQUEST',
+          append: insert || append,
+          keys,
+          key,
+          inputs,
+          access: access || access,
+          space,
+          update
+        });
+      },
+      remove: (_ref4) => {
+        var {
+          key,
+          access,
+          space
+        } = _ref4;
+        return dispatch({
+          type: 'REMOVE_REQUEST',
+          key,
+          access,
+          space
+        });
+      },
+      delete: (_ref5) => {
+        var {
+          key,
+          keyChild,
+          inputs,
+          access,
+          space,
+          append
+        } = _ref5;
+        return dispatch({
+          type: 'DELETE_REQUEST',
+          key,
+          keyChild,
+          access,
+          space
+        });
+      },
+      getSpace: (_ref6) => {
+        var {
+          address,
+          space
+        } = _ref6;
+        return dispatch({
+          type: 'GET_SPACE_REQUEST',
+          address,
+          space
+        });
+      },
       openSpace: space => dispatch({
         type: 'openSpace',
         space
       }),
-      joinThread: (_ref7) => {
+      getProfile: address => dispatch({
+        type: 'GET_PROFILE_REQUEST',
+        address
+      }),
+      getThread: (_ref7) => {
+        var {
+          space,
+          threadName,
+          firstModerator,
+          members,
+          options
+        } = _ref7;
+        return dispatch({
+          type: 'GET_THREAD_REQUEST',
+          space,
+          threadName,
+          firstModerator,
+          members,
+          options
+        });
+      },
+      joinThread: (_ref8) => {
         var {
           threadName,
           threadAddress,
           space,
           options
-        } = _ref7;
+        } = _ref8;
         return dispatch({
           type: 'joinThread',
           threadName,
@@ -489,22 +217,22 @@ var Provider = (_ref) => {
           space
         });
       },
-      threadPost: (_ref8) => {
+      threadPost: (_ref9) => {
         var {
           threadName,
           post
-        } = _ref8;
+        } = _ref9;
         return dispatch({
           type: 'threadPost',
           threadName,
           post
         });
       },
-      threadPostDelete: (_ref9) => {
+      threadPostDelete: (_ref10) => {
         var {
           threadName,
           postId
-        } = _ref9;
+        } = _ref10;
         return dispatch({
           type: 'threadPostDelete',
           threadName,

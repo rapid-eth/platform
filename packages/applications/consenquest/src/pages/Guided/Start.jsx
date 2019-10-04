@@ -16,7 +16,7 @@ const Page = ({ styled, ...props }) => {
           <Image src='https://cdn4.iconfinder.com/data/icons/cryptocoins/227/ETH-512.png' maxWidth={30}/>
         </Flex></Heading>
         <Flex center column>
-          <Heading xxl heavy>The Ethereum Adventure</Heading>
+          <Heading xxl heavy>The Ethereum Journey</Heading>
           <Heading md thin>Discover What Makes Blockchain Great</Heading>
         </Flex>
         <Box textCenter>

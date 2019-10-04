@@ -7,7 +7,7 @@ import { BoxWrapper } from '@kames/3box-hooks/dist'
 const BoxLoginButton = ({ box, variant, to, styled, children, ...props }) => {
   return (
     !box.spaces
-    ? <Span {...styledNoData}>No Spaces Available</Span>
+    ? <Span {...styled}>No Spaces Available</Span>
     : <>
         {
           Object.keys(box.spaces).map( space =>{

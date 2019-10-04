@@ -28,7 +28,7 @@ Span.defaultProps = {
   as: 'p',
   fontFamily: 'Ubuntu',
   fontWeight: 'normal',
-  lineHeight: 'normal'
+  lineHeight: '1.5em'
 };
 var _default = Span;
 exports.default = _default;

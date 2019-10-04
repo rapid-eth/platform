@@ -9,6 +9,8 @@
   },
   "watch": [
     "src/",
+    "src/BoxAccess",
+    "src/BoxLoginAvatar",
     "src/BoxCredentials",
     "src/BoxLoginButton",
     "src/BoxLoginProfile",
@@ -16,6 +18,7 @@
     "src/BoxModeratorAdd",
     "src/BoxOpenSpace",
     "src/BoxProfile",
+    "src/BoxProfileRetrieve",
     "src/BoxSpaceList",
     "src/BoxSpaceManage",
     "src/BoxThreadCreate",
@@ -29,6 +32,7 @@
     "src/BoxThreadPostCreate",
     "src/BoxThreadPostDelete",
     "src/BoxThreadPostList",
+    "src/BoxVerified.jsx",
     "src/Popover.jsx",
     "src/utilities"
   ],

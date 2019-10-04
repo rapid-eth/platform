@@ -17,15 +17,13 @@ var shadowSunset = '0px -6px 7px -5px #d6d6d6, 3px -4px 3px -3px #ca2ea5, 0px -4
 
 var Card = (_ref) => {
   var {
-    title,
-    tagline,
     id,
     to,
-    actionLabel,
+    title,
+    tagline,
     content,
     summary,
     image,
-    images,
     imageFeatured
   } = _ref;
   return _react.default.createElement(_index.Box, {

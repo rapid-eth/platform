@@ -10,7 +10,7 @@ Span.defaultProps = {
   as: 'p',
   fontFamily: 'Ubuntu',
   fontWeight: 'normal',
-  lineHeight: 'normal'
+  lineHeight: '1.5em'
 }
 
 export default Span

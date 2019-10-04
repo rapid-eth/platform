@@ -16,24 +16,6 @@ import { Absolute, Box, Button, Flex, Heading, Span } from 'atoms'
 import { Link, Tab } from 'molecules'
 import { Panel, Popover, Modal, Branch } from 'components'
 
-<Flex ac zIndex={10}>
-                  <Box>
-                    <Avatar src={loginLogo} width={40} borderRadius={9999} />
-                  </Box>
-                <Flex center column zIndex={5}>
-                  <Span
-                  xs pointer zIndex={0} bg='#eb9400' color='white' borderRadius='0 5px px 0' px={10} py='5px' ml={'-10px'}
-                  >
-                    {
-                      isLoading
-                      ? <Span pl={10} pr={10}>Loading...</Span>
-                      : <Span pl={10} pr={10}>Login</Span>
-                    }
-                    
-                  </Span>
-                </Flex>
-                </Flex>
-
 /* --- React Component --- */
 export default ({ children, styled, ...props }) => {
   return (

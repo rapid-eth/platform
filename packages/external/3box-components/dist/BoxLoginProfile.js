@@ -32,7 +32,7 @@ var _default = (_ref) => {
   } = _ref,
       props = _objectWithoutProperties(_ref, ["box", "children", "styled"]);
 
-  return _react.default.createElement(_designSystem.Flex, _extends({
+  return !box ? null : _react.default.createElement(_designSystem.Flex, _extends({
     ac: true,
     zIndex: 10
   }, styled), _react.default.createElement(_designSystem.Flex, {

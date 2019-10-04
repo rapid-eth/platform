@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GenerateImage = void 0;
+exports.GenerateImagefromHash = exports.GenerateImage = void 0;
 
 var _idx = _interopRequireDefault(require("idx"));
 
@@ -17,3 +17,7 @@ var GenerateImage = image => {
 };
 
 exports.GenerateImage = GenerateImage;
+
+var GenerateImagefromHash = image => "https://ipfs.io/ipfs/".concat(image);
+
+exports.GenerateImagefromHash = GenerateImagefromHash;

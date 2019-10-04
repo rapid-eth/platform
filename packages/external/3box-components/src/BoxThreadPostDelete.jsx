@@ -6,8 +6,8 @@ import { BoxWrapper } from '@kames/3box-hooks/dist'
 /* --- React Component --- */
 const BoxThreadPostDelete = ({ threadName, postId, box, variant, children, ...props }) =>
 {
-  const clickHandler = async (threadName, postId) => {
-    box.threadPostDelete(threadName, postId)
+  const clickHandler = async ({threadName, postId}) => {
+    box.threadPostDelete({threadName, postId})
   }
   return (
     box.instance

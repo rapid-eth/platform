@@ -9,12 +9,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _classnames = _interopRequireDefault(require("classnames"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _styledSystem = require("styled-system");
-
 var _designSystem = require("@horizin/design-system");
 
 var _Context = _interopRequireDefault(require("../Context"));
@@ -33,14 +27,13 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 var TabPanel = (_ref) => {
   var {
-    id,
+    tabGroup,
     isActive,
     tabId,
     variant,
-    children,
     styled
   } = _ref,
-      props = _objectWithoutProperties(_ref, ["id", "isActive", "tabId", "variant", "children", "styled"]);
+      props = _objectWithoutProperties(_ref, ["tabGroup", "isActive", "tabId", "variant", "styled"]);
 
   var state = (0, _react.useContext)(_Context.default);
   var {
@@ -49,18 +42,21 @@ var TabPanel = (_ref) => {
     tabs
   } = state; // Grab Data from Global state.
 
-  var isSelected = tabs && tabs[id] && tabs[id].selectedTabId === tabId; // Check IF selected tab.
+  var isSelected = tabs && tabs[tabGroup] && tabs[tabGroup].selectedTabId === tabId; // Check IF selected tab.
   // const isSelected = selectedTabId === tabId; // Check IF selected tab.
 
   return isSelected ? _react.default.createElement(_designSystem.Box, _extends({
     isActive: isActive,
     variant: variant
-  }, styled, props), children) : null;
+  }, styled, props)) : null;
 };
 
 TabPanel.propTypes = {
   isActive: _propTypes.default.bool,
-  variant: _propTypes.default.string
+  tabId: _propTypes.default.string,
+  tabGroup: _propTypes.default.string,
+  variant: _propTypes.default.string,
+  styled: _propTypes.default.object
 };
 var _default = TabPanel;
 exports.default = _default;

@@ -1,6 +1,6 @@
 {
   "name": "@horizin/react-hooks-portal",
-  "homepage": "http://rapid-eth.io",
+  "homepage": "http://horizin.io",
   "nodemonConfig": {
     "ignore": [
       "dist/*",
@@ -11,15 +11,22 @@
   "watch": [
     "src/",
     "src/api.js",
-    "src/Component.jsx",
     "src/Context.js",
+    "src/effects.js",
     "src/index.js",
+    "src/PortalContext.jsx",
     "src/Provider.jsx",
-    "src/withContext.jsx",
-    "src/withContextPassed.jsx"
+    "src/reducer.js",
+    "src/components/PortalConsumer.jsx",
+    "src/components/PortalConsumerPassed.jsx",
+    "src/components/PortalCreate.jsx",
+    "src/components/PortalInstance.jsx",
+    "src/components/PortalTree.jsx",
+    "src/withContextPassedPositioned.jsx",
+    "src/withContextPassedTypes.jsx"
   ],
   "env": {
     "NODE_ENV": "development"
   },
-  "ext": "js,json"
+  "ext": "js,json, jsx"
 }

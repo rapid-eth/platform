@@ -15,9 +15,25 @@ var effects = (callUseEffect, state, dispatch) => {
   /**
    * @function EthereumEnable
    */
-  callUseEffect(() => {
-    window.ethereum.enable();
+  callUseEffect(() => {// window.ethereum.enable()
   }, [state.enable]);
+  /**
+   * @function ProviderMonitor
+   */
+
+  callUseEffect(() => {
+    if (window.web3 && window.web3.currentProvider) {
+      dispatch({
+        type: 'SET_PROVIDER',
+        payload: window.web3.currentProvider
+      });
+    } else {
+      dispatch({
+        type: 'SET_PROVIDER_STATUS',
+        payload: undefined
+      });
+    }
+  }, [window.web3.currentProvider]);
   /**
    * @function SetAddress
    */
@@ -78,37 +94,32 @@ var effects = (callUseEffect, state, dispatch) => {
    */
 
   callUseEffect(() => {
-    if (state.store.messages && state.store.messages.length > 0) {
+    if (state.provider && state.wallet && state.store.messages && state.store.messages.length > 0) {
       var runEffect =
       /*#__PURE__*/
       function () {
         var _ref2 = _asyncToGenerator(function* () {
           var messageRequest = state.store.messages[0];
-          var message = messageRequest.message;
 
           try {
-            var wallet = state.wallet;
+            var signature;
 
-            if (wallet) {
-              // const signature = await wallet.signMessage(message)
-              var provider = new _ethers.ethers.providers.Web3Provider(window.web3.currentProvider);
-              var MSG = [{
-                type: 'string',
-                name: 'Message',
-                value: 'hell world'
-              }, {
-                type: 'uint256',
-                name: 'num',
-                value: 10
-              }];
-              var signature = yield provider.send('eth_signTypedData', [MSG, window.ethereum.selectedAddress]);
+            switch (messageRequest.type) {
+              case 'SIGN_TYPED_MESSAGE_REQUEST':
+                signature = yield state.provider.send('eth_signTypedData', [messageRequest.payload, state.address]);
+                break;
+
+              default:
+                signature = yield state.wallet.signMessage(messageRequest.payload);
+                break;
+            }
+
+            if (signature) {
               dispatch({
                 type: 'SIGN_MESSAGE_SUCCESS',
-                input: {
-                  id: messageRequest.id,
-                  message,
-                  signature
-                }
+                id: messageRequest.id,
+                payload: messageRequest.payload,
+                signature
               });
             }
           } catch (error) {
@@ -130,7 +141,7 @@ var effects = (callUseEffect, state, dispatch) => {
 
       runEffect();
     }
-  }, [state.store.messages]);
+  }, [state.store.messages, state.provider, state.wallet]);
   /**
    * @function DeployContract
    * @description SIGN_MESSAGE_REQUEST
@@ -194,6 +205,7 @@ var effects = (callUseEffect, state, dispatch) => {
 
           try {
             var wallet = state.wallet;
+            console.log('store contracts', wallet);
 
             if (wallet) {
               contract = new _ethers.ethers.Contract(payload.address, payload.abi, wallet);
@@ -223,7 +235,7 @@ var effects = (callUseEffect, state, dispatch) => {
 
       runEffect();
     }
-  }, [state.store.contracts]);
+  }, [state.wallet, state.store.contracts]);
 };
 
 var _default = effects;

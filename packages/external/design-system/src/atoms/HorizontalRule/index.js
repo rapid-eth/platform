@@ -1,7 +1,6 @@
 /* --- Global Dependencies --- */
 
 /* --- Local Dependencies --- */
-import { logoEthereumOpaque } from 'assets/images'
 import styled  from 'styled-components'
 import { borderColor, boxShadow, space, width } from 'styled-system'
 import { palette } from 'styled-theme'
@@ -32,7 +31,7 @@ const HorizontalRule = styled.hr`
   ${is('iconic')`
     &:after {
       background-color: #FFF;
-      background-image: url('${logoEthereumOpaque}');
+      background-image: url('${''}');
       background-size: 10px;
       background-position:  center;
       background-repeat: no-repeat
@@ -74,6 +73,7 @@ const HorizontalRule = styled.hr`
 
 HorizontalRule.defaultProps = {
   borderColor: 'grayLine',
+  mx: 0,
   width: 1,
   style: {
     borderImageSlice: 1

@@ -8,25 +8,9 @@ import is from 'styled-is';
 import { withoutProps, ignoreList } from '../../utils'
 
 const Box = styled(withoutProps(ignoreList)('div'))
-  `s
-box-sizing: border-box;
-/* --------------- */
-/*      System     */
-/* --------------- */
-${system({
-    opacity: {
-      property: 'opacity',
-    },
-    transform: {
-      property: 'transform',
-    },
-
-  })}
-${layout}
+`box-sizing: border-box;
 ${flexbox}
 ${grid}
-${background}
-${typography}
 ${position}
 /* --------------- */
 /*     Card     */
@@ -48,6 +32,7 @@ ${is('shadowMedium')`
 ${is('cardHover')`
 &:hover {
   box-shadow: ${props => idx(props, _ => _.theme.shadows['lightHover'])};
+  transform: scale(1.025);
 }
 `};
 
@@ -95,7 +80,48 @@ ${
     }
   })
   }
-
+  ${
+    variant({
+      prop: 'gem',
+      variants: {
+        white: {
+          background: 'linear-gradient(120deg ,#FFF,#efe8dc)',
+          borderColor: '#64627e80',
+          borderWidth: 2,
+          borderStyle: 'solid',
+          color: '#3e3e3e',
+          bg: '#FFF',
+          "&:hover": {
+            color: '#3e3e3e !important',
+          }
+        },
+        primary: {
+          bg: 'primary',
+          color: '#ffffffe6'
+        },
+        secondary: {
+          bg: 'secondary',
+          color: '#ffffffe6'
+        },
+        tertiary: {
+          bg: 'tertiary',
+          color: '#ffffffe6'
+        },
+    
+      }
+      })
+    }
+  ${is('gem')`
+    border-radius: 20px 5px 20px 10px;
+    text-transform: uppercase;
+    font-weight: normal;
+    fontSize: 0;
+    padding: 8px;
+    &:hover {
+      color: #FFF;
+      top: -1px;
+    }
+  `};
 /* --------------- */
 /*     General     */
 /* --------------- */
@@ -315,10 +341,35 @@ ${is('borderNone')`
   ${is('alignStretch')`
     align-items: stretch;
   `};
+  
+  ${is('baselineChildren')`
+    & > * {
+      align-self: baseline;
+    }
+  `};
+
+  /* --------------- */
+  /*      System     */
+  /* --------------- */
+  ${system({
+    opacity: {
+      property: 'opacity',
+    },
+    transform: {
+      property: 'transform',
+    },
+    cursor: {
+      property: 'cursor',
+    },
+  
+  })}
   ${border}
-${color}
-${shadow}
-${space}
+  ${background}
+  ${typography}
+  ${color}
+  ${shadow}
+  ${space}
+  ${layout}
 `
 
 Box.propTypes = {

@@ -46,7 +46,7 @@ export const isAddress =  address => {
  * @param {String} address the given HEX adress
  * @return {Boolean}
 */
-var isChecksumAddress = function (address) {
+const isChecksumAddress = (address) => {
   // Check each case
   address = address.replace('0x','');
   var addressHash = utils.keccak256(address.toLowerCase());

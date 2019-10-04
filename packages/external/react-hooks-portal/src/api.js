@@ -1,6 +1,6 @@
 const Api = {
-  open: null,
-  hide: null,
+  open: () => {},
+  hide: () => {}
 };
 
 export default Api;
