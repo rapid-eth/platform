@@ -37,7 +37,7 @@ export default () => {
 							mobile={<MobileLayout />}
 						>
 							<>
-								<Router >
+								<Router primary >
 									<SiteView path="/*" />
 									<DashboardView path="/dashboard/*" />
 								</Router>

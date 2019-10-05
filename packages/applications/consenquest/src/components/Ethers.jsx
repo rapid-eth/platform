@@ -15,7 +15,6 @@ import MintableToken from '../contracts/MintableToken'
 export const ContractInitialize = ({ contract, abi, address, contractType, ethers, styled, ...props}) => {
   const [ loaded, setLoaded ] = useState()
   useEffect( () => { 
-    console.log(abi, contract, 'setting contract')
     if(!loaded && (abi || contract)) {
       ethers.initContract({
         address,

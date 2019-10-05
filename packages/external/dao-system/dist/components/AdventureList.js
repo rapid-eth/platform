@@ -79,7 +79,7 @@ var Item = (_ref2) => {
     between: true,
     m: 3,
     width: "100%"
-  }, console.log(props, 'adventure item'), _react.default.createElement(_designSystem.Box, null, _react.default.createElement(_designSystem.Heading, null, "id: ", props.id), _react.default.createElement(_designSystem.Heading, {
+  }, _react.default.createElement(_designSystem.Box, null, _react.default.createElement(_designSystem.Heading, null, "id: ", props.id), _react.default.createElement(_designSystem.Heading, {
     sm: true,
     thin: true
   }, "type: ", props.type)), _react.default.createElement(_designSystem.Flex, null, _react.default.createElement(_designSystem.Button, {

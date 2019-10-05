@@ -19,13 +19,13 @@ const Heading = styled(Text)
     font-size: 14px;
   `};
   ${is('md')`
-    font-size: 22px;
+    font-size: 18px;
   `};
   ${is('lg')`
-    font-size: 28px;
+    font-size: 26px;
   `};
   ${is('xl')`
-    font-size: 36px;
+    font-size: 32px;
     line-height: 
   `};
   ${is('xxl')`

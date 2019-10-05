@@ -206,7 +206,9 @@ const LevelThread = ({
           members={props.members}
           firstModerator={props.firstModerator}
           space={space}
-          options={props.optionsThread}
+          options={{
+            members: true
+          }}
           >
             <>
               {

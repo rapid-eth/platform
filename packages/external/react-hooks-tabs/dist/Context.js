@@ -13,6 +13,9 @@ var Context = (0, _react.createContext)({
   variantDefault: undefined,
   setSelectedTabId: () => {
     /* empty */
+  },
+  dispatch: () => {
+    /* empty */
   }
 });
 var _default = Context;

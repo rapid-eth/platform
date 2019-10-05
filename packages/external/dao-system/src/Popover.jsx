@@ -149,7 +149,6 @@ const Open = ({ box, requests,hub,spaces, threads, requestConfirm, requestConfir
 
 const SpacePreview = ({ name, styled, data, instance, ...props}) =>
 <Flex alignCenter between mb={10}>
-  {console.log(props, 'space props')}
   <Heading sm thin slim>{name}</Heading>
   <Panel content={<SpaceStoragePreview data={data}/>}>
     <Button xs white>Space Storage</Button>
@@ -158,10 +157,9 @@ const SpacePreview = ({ name, styled, data, instance, ...props}) =>
 
 const SpaceStoragePreview = ({ data, styled, ...props}) =>
 <Box>
-  {console.log(props, 'space storage props')}
   <Heading>Storage Space</Heading>
   {
-    console.log(data) 
+
   }
   {
     data && Array.isArray(Object.keys(data)) && Object.keys(data).length > 0

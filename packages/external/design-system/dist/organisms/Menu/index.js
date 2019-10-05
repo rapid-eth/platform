@@ -68,29 +68,30 @@ var MenuItem = (_ref) => {
     label,
     to,
     icon,
-    isOpen,
-    setOpen,
     vertical
   } = _ref,
-      props = _objectWithoutProperties(_ref, ["children", "label", "to", "icon", "isOpen", "setOpen", "vertical"]);
+      props = _objectWithoutProperties(_ref, ["children", "label", "to", "icon", "vertical"]);
 
-  // const [isOpen, setOpen] = useState(true);
+  var state = (0, _react.useState)(true);
+  var isOpen = state[0];
+  var setOpen = state[1];
   return vertical ? _react.default.createElement(_index.Flex, {
     column: true,
     fullWidth: true,
     width: 1
   }, _react.default.createElement(StyledMenuItem, {
     alignCenter: true,
-    ac: true,
     fullWidth: true
   }, icon && icon, _react.default.createElement(WrapperLink, {
     p: 10,
     styled: {
+      color: '#788fa5',
+      fontSize: '1.2em',
+      fontWeight: 'normal',
       p: 10
     },
     active: {
-      bg: 'blue',
-      color: 'white'
+      color: '#595959'
     },
     getProps: (_ref2) => {
       var {
@@ -105,7 +106,9 @@ var MenuItem = (_ref) => {
       };
     },
     to: to
-  }, label), children && _react.default.createElement(_index.Span, {
+  }, label),
+  /* Menu Item Children */
+  children && _react.default.createElement(_index.Span, {
     pointer: true,
     width: 30,
     ml: "auto",
@@ -113,52 +116,69 @@ var MenuItem = (_ref) => {
   }, _react.default.createElement(_index.Span, {
     fontSize: [1],
     transform: isOpen ? 'rotate(90deg)' : ''
-  }, isOpen ? '▶' : '▶'))), true && children && children.map(c => _react.default.createElement(ChildContainer, {
+  }, isOpen ? '▶' : '▶'))), isOpen && children && children.map(c => _react.default.createElement(ChildContainer, {
     column: true
-  }, _react.default.createElement(_index.Flex, {
-    mb: "3px"
-  }, c.icon && c.icon, _react.default.createElement(WrapperLink, {
+  }, _react.default.createElement(WrapperLink, {
     styled: {
-      borderBottom: '2px solid',
-      borderColor: '#e3e3e3',
-      p: 1,
+      p: 2,
       width: '100%'
     },
     active: {
-      bg: 'blue',
-      color: 'white'
+      bg: 'rgba(0,0,0, 0.035)'
     },
     className: "child",
     to: c.to
-  }, c.label)), _react.default.createElement(_index.Flex, {
-    column: true
-  }, c.children && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_index.Flex, {
-    column: true,
-    ml: "8px"
-  }, c.children.map(i => _react.default.createElement(WrapperLink, {
-    active: {
-      bg: 'blue',
-      color: 'white'
-    },
-    to: i.to
   }, _react.default.createElement(_index.Flex, {
     alignCenter: true,
-    className: "grandchild",
-    my: "4px"
-  }, i.icon, _react.default.createElement(_index.Span, {
-    fontSize: 1,
-    ml: "8px"
-  }, i.label)))))))))) : _react.default.createElement(_index.Flex, null, _react.default.createElement(WrapperLink, {
+    between: true,
+    px: 2
+  }, _react.default.createElement(_index.Span, {
+    sm: true
+  }, c.label), _react.default.createElement(_index.Span, null, c.icon && c.icon)))))) : _react.default.createElement(Horizontal, null);
+};
+
+var WrapperLink = (_ref3) => {
+  var {
+    to,
+    children,
+    active,
+    styled
+  } = _ref3;
+  return _react.default.createElement(_router.Match, {
+    path: "".concat(to)
+  }, props => props.match ? _react.default.createElement(_index.Link, _extends({
+    fullWidth: true,
+    active: true,
+    to: to
+  }, styled, active), " ", children) : _react.default.createElement(_index.Link, _extends({
+    to: to
+  }, styled), children));
+};
+
+var Horizontal = (_ref4) => {
+  var {
+    styled,
+    label,
+    children,
+    icon,
+    to
+  } = _ref4,
+      props = _objectWithoutProperties(_ref4, ["styled", "label", "children", "icon", "to"]);
+
+  var state = (0, _react.useState)(props.isOpen);
+  var isOpen = state[0];
+  var setOpen = state[1];
+  return _react.default.createElement(_index.Flex, null, _react.default.createElement(WrapperLink, {
     p: 10,
     active: {
       bg: 'blue',
       color: 'white'
     },
-    getProps: (_ref3) => {
+    getProps: (_ref5) => {
       var {
         isCurrent,
         isPartiallyCurrent
-      } = _ref3;
+      } = _ref5;
       return {
         style: {
           background: isPartiallyCurrent ? props.activeBackground : "inherit",
@@ -202,35 +222,17 @@ var MenuItem = (_ref) => {
     ml: "8px"
   }, i.label)))))))));
 };
-
-var WrapperLink = (_ref4) => {
-  var {
-    to,
-    children,
-    active,
-    styled
-  } = _ref4;
-  return _react.default.createElement(_router.Match, {
-    path: "".concat(to)
-  }, props => props.match ? _react.default.createElement(_index.Link, _extends({
-    fullWidth: true,
-    active: true,
-    to: to
-  }, styled, active), " ", children) : _react.default.createElement(_index.Link, _extends({
-    to: to
-  }, styled), children));
-};
 /* ------- Component ------- */
 
 
-var _default = (_ref5) => {
+var _default = (_ref6) => {
   var {
     items,
     label,
     vertical,
     fullWidth
-  } = _ref5,
-      props = _objectWithoutProperties(_ref5, ["items", "label", "vertical", "fullWidth"]);
+  } = _ref6,
+      props = _objectWithoutProperties(_ref6, ["items", "label", "vertical", "fullWidth"]);
 
   return _react.default.createElement(_index.Flex, _extends({
     column: true,

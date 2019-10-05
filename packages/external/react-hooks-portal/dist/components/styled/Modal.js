@@ -79,8 +79,10 @@ Modal.defaultProps = {
 var ModalInner = (0, _styledComponents.default)(_dist.Flex)(_templateObject2(), (0, _styledSystem.variant)({
   variants: {
     default: {
-      height: '100%',
-      width: '100%'
+      center: true,
+      column: true,
+      height: '50%',
+      width: '50%'
     },
     fullScreen: {
       width: '100%',
@@ -159,6 +161,7 @@ var ModalActions = (_ref) => {
   }, "X")), _react.default.createElement(_dist.Flex, {
     column: true,
     flex: 1,
+    height: "100%",
     fullWidth: true
   }, content && _react.default.isValidElement(content) ? _react.default.cloneElement(content) : content)))));
 };

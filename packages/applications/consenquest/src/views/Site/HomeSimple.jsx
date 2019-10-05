@@ -15,8 +15,6 @@ import {
   EthStateAccess,
 } from "../../components/Ethereum";
 
-console.log(FormWebLandStatus, 'FormWebLandStatus')
-
 const Home = ({ styled, ...props }) =>
 
   <>

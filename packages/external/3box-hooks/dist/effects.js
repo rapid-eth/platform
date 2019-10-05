@@ -264,7 +264,7 @@ var effects = (callUseEffect, state, dispatch) => {
               var threads;
               var space = yield state.instance.openSpace(spaceSelected);
 
-              if (space) {
+              if (space.all) {
                 threads = yield space.subscribedThreads();
               }
 
@@ -637,6 +637,7 @@ var effects = (callUseEffect, state, dispatch) => {
               try {
                 var read;
                 read = yield state.static.getThread(space, threadName, firstModerator, members, options);
+                console.log(read, 'THREAD GOT');
                 dispatch({
                   type: 'GET_THREAD_SUCCESS',
                   space,
@@ -701,8 +702,9 @@ var effects = (callUseEffect, state, dispatch) => {
     if (state.async && state.async.threads) {
       try {
         var threadSelected = state.async.threads[Object.keys(state.async.threads)[0]];
+        console.log(threadSelected, 'threadSelected');
 
-        if (threadSelected) {
+        if (threadSelected && state.spaces[threadSelected.space].instance) {
           var runEffect =
           /*#__PURE__*/
           function () {
@@ -715,6 +717,7 @@ var effects = (callUseEffect, state, dispatch) => {
                 thread = yield state.spaces[threadSelected.space].instance.joinThread(threadSelected.threadName, threadSelected.options);
               }
 
+              console.log(thread, 'thread got');
               var posts = yield thread.getPosts();
 
               if (thread._members) {

@@ -49,7 +49,7 @@ console.log(moduleBoilerplate.renderName());
 ## Contributors
 
 | Name      | Website                   |
-| --------- | ------------------------- |
+| --------- | --------------------------- |
 | **Kames** | <https://www.kamescg.com> |
 
 

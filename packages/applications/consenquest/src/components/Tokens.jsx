@@ -38,7 +38,6 @@ const ContractDeployed = ({ contract, styled, ...props}) => {
           const symbol = await props.symbol()
           const name = await props.name()
           const decimals = await props.decimals()
-          console.log(decimals, 'contract deployed')
           setContractDetails({
             symbol,
             name,

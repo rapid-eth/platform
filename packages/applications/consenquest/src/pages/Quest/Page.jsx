@@ -1,146 +1,157 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
-import { BackgroundImage, Flex, Card, HorizontalRule, Box, Menu, Heading,  Button, Toast, Container, Panel, Span, Absolute, Image, BackgroundGradient, Link, Markdown } from '@horizin/design-system';
+import { BackgroundImage, Paragraph, Flex, Box, Heading, Container, Span, Absolute, Image, BackgroundGradient, Markdown, Button, Panel } from '@horizin/design-system';
+import { Tab, TabList, TabPanel } from '@horizin/react-hooks-tabs'
+
+import AdventureSelector from './AdventureSelector'
 import {
-  BoxComments, BoxAccess
-} from '@kames/3box-components/dist'
-import Paragraph from '@horizin/design-system/dist/atoms/Paragraph';
+  CommentPublish, CommentList, 
+  QuestSelector, QuestCatalogAdd
+} from '@kames/dao-system'
+import { BoxAccess } from '@kames/3box-components/dist';
 
-const Account = ({ styled, ...props }) =>(
-<Flex column>
-  <Flex center column py={[5]} >
-    <BackgroundGradient gradient='blue'/>
-    <BackgroundImage opacity={.2} ratio={.35} src={props.imageCover} />
-    <Container maxWidth={1280}>
+// CMS Global Configs
+const ROOT = process.env.REACT_APP_DEFAULT_ROOT
+const SPACE = process.env.REACT_APP_DEFAULT_SPACE
 
-      <Flex alignCenter color='white'>
-        <Flex flex={4}>
-          <Box textCenter px={5}>
-            <Image circle card maxWidth={140} boxShadow='sunset' src={props.image} />
-            <Heading xl>{props.name}</Heading>
-            <Heading sm>{props.tagline}</Heading>
-          </Box>
-        </Flex>
-        <Flex between color='white' flex={7} >
-          <Flex between pr={5} width='100%'>
-            <Box textCenter opacity={.6} >
-              <Span circle card mega color='charcoal' my={2} md heavy >1</Span>
-              <Heading>Setup Web3 Browser</Heading>
-              <Heading sm>Get connected to Ethereum</Heading>
-            </Box>
-            <Box textCenter>
-              <Span circle card mega color='charcoal' my={2} md heavy >2</Span>
-              <Heading>Create Wallet</Heading>
-              <Heading sm>Get connected to Ethereum</Heading>
-            </Box>
-            <Box textCenter opacity={.6} >
-              <Span circle card mega color='charcoal' my={2} md heavy >3</Span>
-              <Heading>Sign Message</Heading>
-              <Heading sm>Get connected to Ethereum</Heading>
-            </Box>
+const QuestPage = ({ styled, ...props }) =>
+  <Box width='100%'>
+    {/* Header */}
+    <Flex gradient='black' gradientDir='140' minHeight={380}>
+      <BackgroundImage
+        boxShadow='sunset' overflow='hidden' ratio={.3} opacity={.27}
+        src={'https://images.ui8.net/uploads/blockchain_platform_6_1527438185419.jpg'} />
+        <Container maxWidth='90%' >
+          <Flex fullWidth height='100%'>
+            
+            <Flex color='white' flex={7}>
+              <Absolute m={3}>
+                <Flex>
+                  <QuestSelector
+                    alias={props.metadata && props.metadata.siblingPrevious}
+                    component={QuestStepper}
+                    label='Previous'
+                  />
+                  <QuestSelector
+                    alias={props.metadata && props.metadata.siblingNext}
+                    component={QuestStepper}
+                    label='Next'
+                  />
+                </Flex>
+              </Absolute>
+              <Box alignSelf='flex-end' justifySelf='flex-end' ml='auto' textRight p={4}>
+                {
+                  props.tag &&
+                  <Span xxs tag='green' m={2}>{props.tag}</Span>
+                }
+                <Heading right xxl>{props.name}</Heading>
+              </Box>
+
+            </Flex>
+            <Flex flex={3}>
+              
+            </Flex>
           </Flex>
+        </Container>
+    </Flex>
+
+    {/* Main */}
+    <Container maxWidth='90%' >
+      <Flex>
+        <Flex width='100%'>
+
+          <Box flex={7}>
+          <TabList tabGroup='account' tabIdSelected='details'>
+            <Tab tabId='details'>Details</Tab>
+            <Tab tabId='quests'>Instructions</Tab>
+            <Tab tabId='help'>Help</Tab>
+          </TabList>
+            
+            <Box py={4} pr={4}>
+            <TabPanel tabGroup='account' tabId='details'>
+              <Flex wrap mx={-3}>
+                {
+                  props.references && props.references.data &&
+                  props.references.data
+                  .map((quest, index) => (
+                    <AdventureQuestPreview key={quest} alias={quest} count={++index} styled={{p: 3, width: .5}} />
+                  ))
+                }
+              </Flex>
+            </TabPanel>
+            <TabPanel tabGroup='account' tabId='details'>
+              {
+                props.description &&
+                <Markdown>
+                  {props.description}
+                </Markdown>
+              }
+            </TabPanel>
+            <TabPanel tabGroup='account' tabId='help'>
+              <CommentList space={SPACE} threadName={props.alias} firstModerator={ROOT} />
+
+              <BoxAccess
+                spaceAuto
+                level='thread'
+                space={SPACE}
+                threadName={props.alias}
+                optionsThread={{
+                  members: false,
+                  firstModerator: ROOT
+                }}
+              >
+                <CommentPublish 
+                  firstModerator={ROOT} threadName={props.alias} space={SPACE}
+                />
+              </BoxAccess>
+            </TabPanel>
+            </Box>
+
+          </Box>
+
+
+          <Flex flex={3} gradientDir='145' width='100%' >
+           
+            <AdventurePanel {...props} styled={{mt: -280}} />
+            
+          </Flex>
+    
         </Flex>
+        
       </Flex>
     </Container>
-  </Flex>
-  <Container maxWidth={'100%'}>
-    <Flex width='100%' >
-      <Box gradient='gray' flex={4}>
-        <Box p={4}>
-          <Box textCenter>
-            <Heading lg heavy>Leaderboard</Heading>
-          </Box>
-          <Box my={3}>
-            <ProfileLineItem />
-            <ProfileLineItem />
-            <ProfileLineItem />
-            <HorizontalRule dash center />
-            <Heading sm center >Leaderboard</Heading>
-          </Box>
-        </Box>
-      </Box>
-
-      <Flex column flex={7}>
-        <Box px={5} px={5} py={4}>
-            {props.description &&
-              <Markdown>
-                {props.description}
-              </Markdown>
-            }
-          <Box card>
-            <Heading>comments</Heading>
-            <BoxAccess
-                space='web3'
-                threadName={props.threadName}
-              >
-                <BoxComments
-                  threadName={props.alias} component={<div>hello</div>}
-                  space='web3' members={false}
-                />
-            </BoxAccess>
-          </Box>
-        </Box>
-      </Flex>
-      <Flex flex={3}>
-        <Flex column p={3}>
-            <Box card>
-              <Heading>Step 1. Do This</Heading>
-              <Heading xs>Get Started with the Basics</Heading>
-              <Paragraph xs>
-                Vivamus nisi mauris, iaculis vitae lacinia in, bibendum et orci. Nulla tincidunt diam et interdum porttitor. Nam eu iaculis massa.
-              </Paragraph>
-            </Box>
-            <Box card my={3}>
-              <Heading>Step 2. Do This</Heading>
-              <Heading xs>Get Started with the Basics</Heading>
-              <Paragraph xs>
-                Vivamus nisi mauris, iaculis vitae lacinia in, bibendum et orci. Nulla tincidunt diam et interdum porttitor. Nam eu iaculis massa.
-              </Paragraph>
-            </Box>
-            <Box card>
-              <Heading>Step 3. Do This</Heading>
-              <Heading xs>Get Started with the Basics</Heading>
-              <Paragraph xs>
-                Vivamus nisi mauris, iaculis vitae lacinia in, bibendum et orci. Nulla tincidunt diam et interdum porttitor. Nam eu iaculis massa.
-              </Paragraph>
-            </Box>
-          </Flex>
-      </Flex>
-
-    </Flex>
-  </Container>
-</Flex>
-)
+  </Box>
 
 
-Account.defaultProps = {
+QuestPage.defaultProps = {
   members: false,
 }
 
-Account.propTypes = {
+QuestPage.propTypes = {
   members: PropTypes.bool,
   space: PropTypes.string.isRequired,
 }
 
+const QuestStepper = ({ ...props}) => { 
+  return(
+   <Flex alignCenter mx={3} {...props.styled}>
+     <Flex column center>
+       <Span><Image circle card p={2} src={props.image} maxWidth={55} /></Span>
+       <Span xxs>{props.label} Quest</Span>
+     </Flex>
+     <Box ml={3}>
+       <Heading md heavy noMargin>{props.name} </Heading>
+       <Heading sm>{props.tagline}</Heading>
+     </Box>
+   </Flex>
+ )
+ }
 
  const AdventureQuestPreview = ({ index, alias, title, summary, tag, category, image, styled, ...props}) => { 
   return(
-    <Box>
-      <Flex column card cardHover p={4} >
-        <Heading xs>Step {index}.</Heading>
-        <Heading>{title}</Heading>
-        <Paragraph xs>
-          {summary}
-        </Paragraph>
-        <Flex>
-          <Link to={`/quest/${alias}`}>
-            <Button xs mt='auto' justifySelf='flex-end'>View</Button>
-          </Link>
-          <Button xs variant='red' mt='auto' mx={3} justifySelf='flex-end'>Start</Button>
-        </Flex>
-        <Absolute layout='topRight' m={-2}>
-          <Span xxs tag='green'>{tag}</Span>
-        </Absolute>
+    <Box {...styled}>
+      <Flex column card cardHover p={3} >
+        <AdventureSelector alias={alias} count={props.count} />
       </Flex>
     </Box>
  )
@@ -148,18 +159,7 @@ Account.propTypes = {
  
  AdventureQuestPreview.defaultProps = {
    index: 1,
-   alias: 'test',
    title: 'Start The Quest',
-   summary: 'Suspendisse justo nunc, fermentum id finibus non, luctus vel urna. Proin ac tortor leo. Fusce quis metus sit amet libero tempor malesuada non ut turpis. Phasellus cursus nec tortor rhoncus commodo. Vivamus varius tellus at diam ultricies consectetur. Nam blandit dapibus aliquet.',
-   category: 'Beginner',
-   tag: 'smart contract',
-   reward: {
-     token: '0x',
-     title: 'Compose Master',
-     type: 'OpenEmblem',
-     summary: 'In diam ante, pulvinar eu congue in, accumsan sed est. Integer lobortis leo sed lorem',
-   },
-   image: 'https://image.flaticon.com/icons/svg/1673/1673612.svg',
    styled: {
      minWidth: 140
    }
@@ -204,38 +204,63 @@ Account.propTypes = {
    styled: PropTypes.object,
  }
 
-
- const ProfileLineItem = ({
-  alias,
-  address, title, tagline, id, to, name,
-  actionLabel, content, summary, image, images, imageFeatured,
-  styled, ...props
-}) => { 
+const AdventurePanel = ({ styled, ...props}) => { 
  return(
-  <Flex alignCenter between card flex={1} m={2} width='100%'>
-    <Flex>
-      <Span><Image variant='avatar' width={36} src={image} /></Span>
-      <Box ml={2}>
-        <Box>
-          <Heading noMargin sm>
-            {name}
-          </Heading>
-          <Heading noMargin xs>
-            {tagline}
-          </Heading>
-        </Box>
+  <Box width='100%' {...styled}>
+    <Box textCenter>
+      <Span xxs color='white'>Adventures / <strong>{props.title}</strong></Span>
+    </Box>
+  <Flex column flex={1} p={2} minHeight={320} width='100%'>
+    <Flex center column minHeight={230} width='100%'> 
+      <BackgroundGradient gradient='purpink' gradientDir='140 ' /> 
+      <BackgroundImage src={props.image} opacity={0.2} />
+      <Box color='white' textCenter>
+        <Image card circle boxShadow='sunset' src={props.image} maxWidth={140} my={3} />
+        <Heading>{props.name}</Heading>
       </Box>
+        
     </Flex>
-    <Span justifySelf='flex-end' xxs tag='white'>2 Days Ago</Span>
+    <Box gradient='gray' minHeight={200} width='100%'>
+      <Box p={4}>
+      <Box py={3}>
+        <Panel content={<AddQuestToSpace alias={props.alias} />} label='Start Quest'>
+          <Button width='100%' variant='green' mt='auto' justifySelf='flex-end'>Start Quest</Button>
+        </Panel>
+      </Box>
+      <Box card maxHeight={280} overflow='auto' width='100%'>
+        <Markdown>
+          {props.quote}
+        </Markdown>
+      </Box>
+      </Box>
+    </Box>
   </Flex>
+  </Box>
 )
 }
 
-ProfileLineItem.defaultProps = {
-  name: 'Kames Geraghty',
-  tagline: 'The Baddest JS Developer Around',
-  image: 'https://ipfs.io/ipfs/QmYGh4a6cjH7a3mw9xSYezp2WenGb3d7wj7Wwo9TV44knE'
-}
+const AddQuestToSpace = ({ styled, ...props}) => { 
+  return(
+   <Box width={350} p={4}>
+     <Heading md heavy>Quest Journal</Heading>
+     <Paragraph sm>
+       <strong>Save quests to personal journal.</strong>
+       <br/> Keep track of your journey.
+     </Paragraph>
+ 
+     <BoxAccess
+       spaceAuto threadAuto
+       level='thread'
+       space={SPACE}
+       threadName='quest_catalog'
+       optionsThread={{
+         members: true,
+       }}
+     >
+       <QuestCatalogAdd alias={props.alias} />
+     </BoxAccess>
+   </Box>
+)}
 
 
-export default Account
+export default QuestPage

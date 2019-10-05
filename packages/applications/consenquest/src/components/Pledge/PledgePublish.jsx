@@ -13,10 +13,8 @@ import { BoxWrapper } from '@kames/3box-hooks/dist'
  */
 
 const PledgePublish = ({ box, threadName, message, ...props}) => {
-  console.log(props.ethSelector, 'ethSelector')
   const actionHandler = (values) => {
     try {
-      console.log('posting msg', box)
       const { payload, signature } = props.ethSelector
       box.threadPost({threadName, message: payload, signature})
     } catch (error) {

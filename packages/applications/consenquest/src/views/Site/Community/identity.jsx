@@ -1,36 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types'
 import {
-  BackgroundGradient, BackgroundImage, Flex, Card, Box, Menu,
-  Markdown, Modal,
+  BackgroundImage, Flex, Card, Box, Menu,
   Heading, Image, Link, HorizontalRule, Button, Container, Panel, Span, Paragraph, Toast
 } from '@horizin/design-system';
 
 import {
-  BoxAccess, BoxThreadPostList, BoxSpaceOpen, BoxFormProfileBasics,
-  BoxLoginCard, BoxLoginButton, BoxVerified } from '@kames/3box-components/dist'
+  BoxFormProfileBasics,
+  BoxLoginCard
+} from '@kames/3box-components/dist'
 
 import MenuItems from '../../../static/menus/community'
 
 import TokenDropbox from '../../../contracts/TokenDropbox'
-import {
-  ERC20TokenATMTransferStateful
-} from '../../../components/Tokens'
+
 import {
   ContractInitializeStateful
 } from '../../../components/Ethers'
-import {
-  ContractDeployTokenLockboxStateful
-} from '../../../components/Lockbox'
-
-import {
-  BankAddDelegate,
-  BankFund,
-  BankCertificate,
-  BankRedeem,
-  BankRemoveDelegate,
-  BankVerifyCertificate
-} from '../../../components/Bank'
 
 const Bank = ({ styled, ...props}) => { 
  return(

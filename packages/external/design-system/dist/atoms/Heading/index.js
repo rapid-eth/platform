@@ -64,7 +64,7 @@ function _templateObject9() {
 }
 
 function _templateObject8() {
-  var data = _taggedTemplateLiteral(["\n    font-size: 36px;\n    line-height: \n  "]);
+  var data = _taggedTemplateLiteral(["\n    font-size: 32px;\n    line-height: \n  "]);
 
   _templateObject8 = function _templateObject8() {
     return data;
@@ -74,7 +74,7 @@ function _templateObject8() {
 }
 
 function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n    font-size: 28px;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    font-size: 26px;\n  "]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -84,7 +84,7 @@ function _templateObject7() {
 }
 
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n    font-size: 22px;\n  "]);
+  var data = _taggedTemplateLiteral(["\n    font-size: 18px;\n  "]);
 
   _templateObject6 = function _templateObject6() {
     return data;

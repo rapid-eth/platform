@@ -16,10 +16,11 @@ const BoxOpenSpace = ({ box, auto, space, threadAddress, threadName, styled, sty
     box.joinThread({
       threadAddress: threadAddress,
       threadName: threadName,
-      members: props.members,
       firstModerator: props.firstModerator,
       space: space,
-      options: props.options
+      options: {
+        members: props.members
+      }
     });
     setLoading(true)
   }
@@ -33,7 +34,8 @@ const BoxOpenSpace = ({ box, auto, space, threadAddress, threadName, styled, sty
       box.joinThread({
         threadAddress: threadAddress,
         threadName: threadName,
-        space: space
+        space: space,
+        options: props.options
       });
       setLoading(true)
     }

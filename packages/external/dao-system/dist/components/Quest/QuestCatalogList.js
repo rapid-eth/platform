@@ -15,6 +15,8 @@ var _dist = require("@kames/3box-hooks/dist");
 
 var _dist2 = require("@kames/3box-components/dist");
 
+var _QuestCompleteForm = _interopRequireDefault(require("./components/QuestCompleteForm"));
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -54,7 +56,7 @@ var QuestCatalogAdd = (_ref) => {
         space: props.space,
         threadName: props.threadName,
         firstModerator: props.address,
-        members: props.members
+        members: true
       });
       setDispatch(true);
     }
@@ -63,8 +65,9 @@ var QuestCatalogAdd = (_ref) => {
     column: true
   }, list && Array.isArray(list) && list.map(item => _react.default.createElement(QuestFeaturedItem, _extends({
     box: box,
-    alias: item.message.alias,
-    threadName: props.threadName
+    alias: item.message.data,
+    threadName: props.threadName,
+    postId: item.postId
   }, item)))));
 };
 
@@ -90,25 +93,12 @@ var QuestFeaturedItem = (_ref2) => {
     width: "100%"
   }, _react.default.createElement(QuestSelector, {
     box: box,
+    postId: props.postId,
     alias: props.alias,
     space: "eth",
+    threadName: props.threadName,
     selector: "quest"
-  }), _react.default.createElement(_designSystem.Modal, {
-    content: _react.default.createElement(FeaturedQuestDetails, {
-      threadName: props.threadName,
-      postId: props.postId
-    }),
-    position: "fullScreen",
-    variant: "fullScreen",
-    styled: {
-      position: 'fullScreen',
-      m: 80
-    }
-  }, _react.default.createElement(_designSystem.Span, {
-    justifySelf: "flex-end",
-    xxs: true,
-    tag: "white"
-  }, "View")));
+  }));
 };
 
 var QuestSelector = (_ref3) => {
@@ -119,6 +109,7 @@ var QuestSelector = (_ref3) => {
       props = _objectWithoutProperties(_ref3, ["box", "styled"]);
 
   var [item, setItem] = (0, _react.useState)();
+  console.log(item, 'quest selector');
   /**
    * @function Selector
    */
@@ -129,11 +120,28 @@ var QuestSelector = (_ref3) => {
 
       var _item = list.filter(ITEM => ITEM.alias === props.alias).map(i => i);
 
-      console.log(_item, 'item selection');
       if (_item.length > 0) setItem(_item[0].properties);
     }
   }, [item, box.spaces]);
-  return !item ? 'No Item' : _react.default.createElement(_designSystem.Flex, null, _react.default.createElement(_designSystem.Span, null, _react.default.createElement(_designSystem.Image, {
+  return !item ? _react.default.createElement(_dist2.BoxAccess, {
+    spaceAuto: true,
+    threadAuto: true,
+    level: "thread",
+    space: props.space,
+    threadName: props.threadName,
+    optionsThread: {
+      members: true
+    }
+  }, _react.default.createElement(_dist2.BoxThreadPostDelete, {
+    threadName: props.threadName,
+    postId: props.postId
+  })) : _react.default.createElement(_designSystem.Flex, {
+    between: true,
+    width: "100%"
+  }, _react.default.createElement(_designSystem.Flex, {
+    alignCenter: true,
+    flex: 3
+  }, _react.default.createElement(_designSystem.Span, null, _react.default.createElement(_designSystem.Image, {
     maxWidth: 45,
     src: item.image
   })), _react.default.createElement(_designSystem.Box, {
@@ -141,11 +149,64 @@ var QuestSelector = (_ref3) => {
     textAlign: "left"
   }, _react.default.createElement(_designSystem.Heading, {
     noMargin: true,
-    sm: true
+    sm: true,
+    heavy: true
   }, item.name), _react.default.createElement(_designSystem.Heading, {
     noMargin: true,
     xs: true
-  }, item.tagline)));
+  }, item.tagline))), _react.default.createElement(_designSystem.Flex, {
+    alignCenter: true,
+    flex: 1,
+    justifyContent: "flex-end"
+  }, _react.default.createElement(_designSystem.Link, {
+    to: "/quest/".concat(props.alias)
+  }, _react.default.createElement(_designSystem.Span, {
+    pointer: true,
+    justifySelf: "flex-end",
+    xxs: true,
+    tag: "white"
+  }, "View")), _react.default.createElement(_designSystem.Modal, {
+    content: _react.default.createElement(FeaturedQuestDetails, {
+      threadName: props.threadName,
+      postId: props.postId,
+      item: item
+    }),
+    position: "fullScreen",
+    variant: "fullScreen",
+    styled: {
+      position: 'fullScreen',
+      m: 80
+    }
+  }, _react.default.createElement(_designSystem.Span, {
+    pointer: true,
+    justifySelf: "flex-end",
+    xxs: true,
+    mx: 3,
+    tag: "white"
+  }, "Manage")), _react.default.createElement(_designSystem.Modal, {
+    content: _react.default.createElement(_QuestCompleteForm.default, {
+      threadName: props.threadName,
+      postId: item.postId
+    }),
+    position: "default",
+    variant: "default",
+    styled: {
+      position: 'default',
+      m: 80
+    }
+  }, _react.default.createElement(_designSystem.Span, {
+    pointer: true,
+    xxs: true,
+    justifySelf: "flex-end",
+    mx: 2,
+    tag: "red"
+  }, "Complete"))));
+};
+
+QuestSelector.defaultProps = {
+  space: 'eth',
+  access: 'public',
+  selector: 'quest_catalog'
 };
 
 var FeaturedQuestDetails = (_ref4) => {
@@ -159,14 +220,40 @@ var FeaturedQuestDetails = (_ref4) => {
     width: "100%",
     bg: "white"
   }, _react.default.createElement(_designSystem.Flex, {
+    alignCenter: true,
     gradient: "gray",
     flex: 1
-  }, _react.default.createElement(_designSystem.Box, null, _react.default.createElement(_dist2.BoxThreadPostDelete, {
+  }, _react.default.createElement(_designSystem.Box, {
+    p: 3
+  }, _react.default.createElement(_dist2.BoxAccess, {
+    spaceAuto: true,
+    threadAuto: true,
+    level: "thread",
+    space: "eth",
+    threadName: props.threadName
+  }, _react.default.createElement(_dist2.BoxThreadPostDelete, {
     threadName: props.threadName,
     postId: props.postId
-  }))), _react.default.createElement(_designSystem.Flex, {
-    flex: 4
-  }, _react.default.createElement(_designSystem.Heading, null, "Information")));
+  })))), _react.default.createElement(_designSystem.Flex, {
+    flex: 4,
+    p: 3
+  }, _react.default.createElement(_designSystem.Flex, {
+    alignCenter: true,
+    flex: 3
+  }, _react.default.createElement(_designSystem.Span, null, _react.default.createElement(_designSystem.Image, {
+    maxWidth: 45,
+    src: props.item.image
+  })), _react.default.createElement(_designSystem.Box, {
+    ml: 2,
+    textAlign: "left"
+  }, _react.default.createElement(_designSystem.Heading, {
+    noMargin: true,
+    sm: true,
+    heavy: true
+  }, props.item.name), _react.default.createElement(_designSystem.Heading, {
+    noMargin: true,
+    xs: true
+  }, props.item.tagline)))));
 };
 
 var _default = props => _react.default.createElement(_dist.BoxWrapper, null, _react.default.createElement(QuestCatalogAdd, props));

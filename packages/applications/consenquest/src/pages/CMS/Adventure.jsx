@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types'
 import {
-  Button, Box, Flex, Heading, Image, Span,  Link, Panel, Modal
+  Button, Box, Flex, Heading, Image, Span,  Link, Modal
 } from '@horizin/design-system';
 
 import {
@@ -17,7 +17,6 @@ import {
 // CMS Global Configs
 const ROOT = process.env.REACT_APP_DEFAULT_ROOT
 const SPACE = process.env.REACT_APP_DEFAULT_SPACE
-const INDEX = process.env.REACT_APP_DEFAULT_INDEX
 
 /**
  * @function CMSAdventure

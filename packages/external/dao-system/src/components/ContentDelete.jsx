@@ -9,7 +9,6 @@ const ContentTypeList = ({ box, styled, ...props }) => {
    * @param {String} keyChild 
    */
   const deleteHandler = (keyChild) => {
-    console.log(props, 'deleting')
     box.remove({
       space: props.space,
       key: props.keys,

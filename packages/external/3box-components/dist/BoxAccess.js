@@ -190,6 +190,8 @@ var LevelThread = (_ref4) => {
     members: props.members,
     firstModerator: props.firstModerator,
     space: space,
-    options: props.optionsThread
+    options: {
+      members: true
+    }
   }, _react.default.createElement(_react.default.Fragment, null, componentThread ? componentThread : _react.default.createElement(_designSystem.Button, styledThread, "Join ", threadName, " Thread"))), isLoggedIn && spaceLoaded && threadLoaded && props.children);
 };

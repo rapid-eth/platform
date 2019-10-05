@@ -7,11 +7,8 @@ import { Tabs, TabPanel } from 'react-context-tabs'
 import { verify } from 'meshid-resolver'
 
 import { IoIosNotifications, IoMdGlobe, IoIosCheckbox, IoLogoNoSmoking, IoMdContact, IoMdContacts, IoMdGitNetwork} from 'react-icons/io'
-import { MdNotInterested, MdStoreMallDirectory, MdUpdate } from 'react-icons/md'
-import { FiCheckCircle } from 'react-icons/fi'
 
 /* --- Local Dependencies --- */
-import { BoxContext } from 'context/Providers/BoxProvider'
 import { Absolute, Box, Button, Flex, Heading, Span } from 'atoms'
 import { Link, Tab } from 'molecules'
 

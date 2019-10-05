@@ -53,7 +53,6 @@ var BoxThreadPosts = (_ref) => {
 
     if (posts) {
       posts.then(res => {
-        console.log(res, 'questsss');
         setQuests(res);
       });
     }

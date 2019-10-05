@@ -58,7 +58,6 @@ AdventureList.propTypes = {
 const Item = ({ importHandler, deleteHandler, styled, ...props}) => { 
  return(
   <Flex card between m={3} width='100%'>
-    {console.log(props, 'adventure item')}
     <Box>
       <Heading>id: {props.id}</Heading>
       <Heading sm thin>type: {props.type}</Heading>

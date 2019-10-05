@@ -37,7 +37,6 @@ var ContentTypeList = (_ref) => {
    * @param {String} keyChild 
    */
   var deleteHandler = keyChild => {
-    console.log(props, 'deleting');
     box.remove({
       space: props.space,
       key: props.keys,

@@ -26,7 +26,7 @@ const QuestRoutes = ({ box, styled, ...props}) => {
     {
       listItems && 
       <>
-      <Router primary='false'>
+      <Router primary={false}>
         {
           listItems.map( item => <Page path={`/${item.alias}`} {...item} {...item.properties} /> )
         }

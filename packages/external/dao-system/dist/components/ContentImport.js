@@ -45,7 +45,6 @@ var ContentTypeList = (_ref) => {
     window.fetch(props.url).then(res => {
       if (res.json) {
         res.json().then(jsonified => {
-          console.log(jsonified, 'jsonified');
           box.set({
             space: props.space,
             keys: [props.keys],

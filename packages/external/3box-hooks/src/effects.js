@@ -205,7 +205,7 @@ const effects = (callUseEffect, state, dispatch) => {
           const runEffect = async () => {
             let threads
             const space = await state.instance.openSpace(spaceSelected)
-            if(space) {
+            if(space.all) {
               threads = await space.subscribedThreads()
             }
             dispatch({
@@ -497,6 +497,7 @@ const effects = (callUseEffect, state, dispatch) => {
           try {
             let read
             read = await state.static.getThread(space, threadName, firstModerator, members, options)
+            console.log(read, 'THREAD GOT')
             dispatch({
               type: 'GET_THREAD_SUCCESS',
               space,
@@ -548,7 +549,8 @@ const effects = (callUseEffect, state, dispatch) => {
     if (state.async && state.async.threads) {
       try {
         const threadSelected = state.async.threads[Object.keys(state.async.threads)[0]]
-        if (threadSelected) {
+        console.log(threadSelected, 'threadSelected')
+        if (threadSelected && state.spaces[threadSelected.space].instance) {
           const runEffect = async () => {
             let thread, members, moderators
             if (threadSelected.threadAddress) {
@@ -556,6 +558,7 @@ const effects = (callUseEffect, state, dispatch) => {
             } else {
               thread = await state.spaces[threadSelected.space].instance.joinThread(threadSelected.threadName, threadSelected.options)
             }
+            console.log(thread, 'thread got')
             const posts = await thread.getPosts()
             if (thread._members) {
               members = await thread.listMembers()

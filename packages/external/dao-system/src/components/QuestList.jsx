@@ -19,7 +19,6 @@ const BoxThreadPosts = ({ box, component, to, variant, threadAddress, threadName
     const posts = box.static.getThreadByAddress(threadAddress)
     if (posts) {
       posts.then(res => {
-        console.log(res, 'questsss')
         setQuests(res)
       })
     }

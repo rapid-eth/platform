@@ -322,14 +322,17 @@ var _default = (state, action) => {
     case 'GET_THREAD_REQUEST':
       return _objectSpread({}, state, {
         store: _objectSpread({}, state.store, {
-          threads: [...state.store.threads, action]
+          threads: [// ...state.store.threads,
+          action]
         })
       });
 
     case 'GET_THREAD_SUCCESS':
       if (action.space) {
         return _objectSpread({}, state, {
-          store: _objectSpread({}, state.store),
+          store: _objectSpread({}, state.store, {
+            threads: []
+          }),
           threads: _objectSpread({}, state.threads, {
             [action.threadName]: _objectSpread({}, state.threads[action.threadName], {
               posts: action.payload
@@ -338,8 +341,9 @@ var _default = (state, action) => {
         });
       } else {
         return _objectSpread({}, state, {
-          store: {// threads: []
-          }
+          store: _objectSpread({}, state.store, {
+            threads: []
+          })
         });
       }
 

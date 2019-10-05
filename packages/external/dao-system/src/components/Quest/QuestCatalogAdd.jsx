@@ -12,9 +12,10 @@ const QuestCatalogAdd = ({ box,...props }) => {
       firstModerator: box.address,
       members: true,
       post: {
-        type: 'quest',
         object: 'reference',
-        ref: values.alias,
+        version: '1.0.0.',
+        type: 'quest',
+        data: values.alias,
         meta: {
           notes: values.notes,
           friend: values.friend

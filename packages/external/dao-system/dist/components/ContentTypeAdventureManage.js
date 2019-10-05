@@ -11,8 +11,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _reactHookForm = _interopRequireDefault(require("react-hook-form"));
-
 var _designSystem = require("@horizin/design-system");
 
 var _dist = require("@kames/3box-hooks/dist");

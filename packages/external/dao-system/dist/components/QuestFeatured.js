@@ -207,7 +207,6 @@ var QuestSelector = (_ref6) => {
 
       var _item = list.filter(ITEM => ITEM.alias === props.alias).map(i => i);
 
-      console.log(_item, 'item selection');
       if (_item.length > 0) setItem(_item[0].properties);
     }
   }, [item, box.spaces]);

@@ -18,6 +18,7 @@ import Adventure from './Adventure'
 import Quest from './Quest'
 import Resource from './Resources'
 import Curation from './Curation'
+import Organization from './Organization'
 
 const ROOT = process.env.REACT_APP_DEFAULT_ROOT
 const SPACE = process.env.REACT_APP_DEFAULT_SPACE
@@ -52,6 +53,10 @@ const Page = ({ styled, ...props }) => {
               label: 'Curation',
               to: '/cms/curation'
             },
+            {
+              label: 'Organization',
+              to: '/cms/organization'
+            },
           ]}
         />
       </Flex>
@@ -75,12 +80,13 @@ Page.propTypes = {
 
 const CMSRoutes = ({ styled, ...props}) => { 
  return(
-  <Router>
+  <Router primary={false}>
     <CMSOverview path='/' />
     <CMSAdventures path='/adventures' />
     <CMSQuests path='/quests' />
     <CMSResources path='/resources' />
     <Curation path='/curation' />
+    <Organization path='/organization' />
   </Router>
 )
 }

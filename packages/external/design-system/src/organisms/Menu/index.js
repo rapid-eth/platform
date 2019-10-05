@@ -65,85 +65,87 @@ const LinkStyledChild = styled(Link)`
   }
 `
 
-const MenuItem = ({ children, label, to,  icon, isOpen, setOpen, vertical, ...props }) => {
-// const [isOpen, setOpen] = useState(true);
+const MenuItem = ({ children, label, to,  icon, vertical, ...props }) => {
+const state = useState(true);
+const isOpen = state[0]
+const setOpen = state[1]
+
 return (
   vertical
   ?<Flex column fullWidth width={1}>
-    <StyledMenuItem alignCenter ac fullWidth>
-    {icon && icon}
+    <StyledMenuItem alignCenter fullWidth>
+      {icon && icon}
+
       <WrapperLink
         p={10}
-        styled={{p: 10}}
+        styled={{
+          color: '#788fa5',
+          fontSize: '1.2em',
+          fontWeight: 'normal',
+          p: 10
+        }}
         active={{
-          bg: 'blue',
-          color: 'white'
+          color: '#595959',
         }}
         getProps={({ isCurrent, isPartiallyCurrent }) => ({style:{
-
             background: isPartiallyCurrent ? props.activeBackground : "inherit",
             color: isPartiallyCurrent ? props.activeColor : "inherit"
           }})
         }
-        to={to} >
-          {label}
-        </WrapperLink>
-      { children &&
+        to={to}>
+      {label}
+      </WrapperLink>
+
+      {
+        /* Menu Item Children */
+        children &&
         <Span pointer width={30} ml='auto' onClick={()=>setOpen(!isOpen)}>
           <Span fontSize={[1]} transform={isOpen ? 'rotate(90deg)' : ''}>{isOpen? '▶' : '▶'}</Span>
         </Span>
       }
     </StyledMenuItem>
 
-  { true && children &&
+  { 
+    isOpen && children &&
     children.map( c =>
     <ChildContainer column> 
-
-      <Flex mb='3px'>
-        {c.icon && c.icon}
         <WrapperLink
         styled={{
-          borderBottom: '2px solid',
-          borderColor: '#e3e3e3',
-          p: 1,
+          p: 2,
           width: '100%'
         }}
         active={{
-          bg: 'blue',
-          color: 'white'
+          bg: 'rgba(0,0,0, 0.035)',
         }} className='child' to={c.to}>
-          {c.label}
-        </WrapperLink>
-      </Flex>
-
-
-      <Flex column>
-        { c.children &&
-          <>
-          <Flex column ml='8px'>
-            {c.children.map( i =>
-              <WrapperLink
-
-              active={{
-                bg: 'blue',
-                color: 'white'
-              }} to={i.to}>
-                <Flex alignCenter className='grandchild' my='4px'>
-                  {i.icon}
-                  <Span fontSize={1} ml='8px'>{i.label}</Span>
-                </Flex>
-              </WrapperLink>
-            )}
+          <Flex alignCenter between px={2}>
+            <Span sm>{c.label}</Span>
+            <Span>{c.icon && c.icon}</Span>
           </Flex>
-          </>
-        }
-      </Flex>
+        </WrapperLink>
     </ChildContainer>)
   }
 </Flex>
   
   
-  : <Flex >
+  : <Horizontal />
+)}
+
+const WrapperLink = ({ to, children, active, styled }) => (
+  <Match path={`${to}`}>
+    {props => (
+      props.match
+      ? <Link fullWidth active to={to} {...styled} {...active}> {children}</Link>
+      : <Link to={to} {...styled}>{children}</Link>
+    )}
+  </Match>
+)
+
+const Horizontal = ({ styled, label, children, icon, to, ...props}) => { 
+  const state = useState(props.isOpen);
+  const isOpen = state[0]
+  const setOpen = state[1]
+ return(
+  <Flex >
   <WrapperLink
     p={10}
     active={{
@@ -193,17 +195,9 @@ return (
   </ChildContainer>)
 }
 </Flex>
-)}
-
-const WrapperLink = ({ to, children, active, styled }) => (
-  <Match path={`${to}`}>
-    {props => (
-      props.match
-      ? <Link fullWidth active to={to} {...styled} {...active}> {children}</Link>
-      : <Link to={to} {...styled}>{children}</Link>
-    )}
-  </Match>
 )
+}
+
 
 /* ------- Component ------- */
 export default ({ items, label, vertical, fullWidth, ...props }) => 

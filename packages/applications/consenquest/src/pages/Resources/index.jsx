@@ -1,0 +1,74 @@
+/* --- Global Dependencies --- */
+import React from 'react';
+import {
+  BackgroundImage, Box, HorizontalRule, Flex, Heading, Menu
+} from '@horizin/design-system';
+import {
+  ResourceList, ResourceItemSmall, ResourceItemLarge
+} from '@kames/dao-system'
+import { Tab, TabList, TabPanel } from '@horizin/react-hooks-tabs'
+/* --- Local Dependencies --- */
+import MenuItems from '../../static/menus/resources'
+
+/* --- CMS Global Configs --- */
+const ROOT = process.env.REACT_APP_DEFAULT_ROOT
+const SPACE = process.env.REACT_APP_DEFAULT_SPACE
+
+/**
+ * @function Resource
+ * @description Resource Page
+ * @return {Object} React Component
+ */
+const Resource = () =>
+<Flex minHeight='60vh'>
+  <Flex column gradient='gray' flex={2}>
+      <Flex center column color='white' bg='purpleDark' gradientDir='145' p={4} minHeight={120}>
+        <BackgroundImage
+          opacity={.2} ratio={.4}
+          src='https://images.ui8.net/uploads/blockchain_platform_1_1527438484516.jpg' />
+        <Heading lg>Resources</Heading>
+      </Flex>
+    <Box p={30}>
+      <Menu vertical items={MenuItems} />
+      <Box textCenter>
+        <Heading center>Featured</Heading>
+        <HorizontalRule dash center my={3}/>
+
+      </Box>
+      <Box mt={4}>
+        <Heading center>Popular</Heading>
+        <HorizontalRule dash center my={3}/>
+
+      </Box>
+    </Box>
+  </Flex>
+  <Flex column flex={6}>
+      <TabList tabGroup='account' tabIdSelected='organizations'>
+        <Tab tabId='organizations'>Organizations</Tab>
+        <Tab tabId='libraries'>Libraries</Tab>
+        <Tab tabId='contracts'>Contracts</Tab>
+      </TabList>
+    <Box p={50}>
+      <Heading md heavy>Featured Project</Heading>
+      <HorizontalRule />
+      <ResourceItemLarge
+        properties={{
+          name: 'Gnosis',
+          tagline: 'Decentralized Prediction Market',
+          summary: 'Our prediction market platforms allow anyone to utilize customized forecasting applications. These applications produce an entirely new asset class: conditional tokens, which make event outcomes tradeable and are also a powerful tool for information discovery.',
+          image:'data:image/png;base64,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',
+          imageCover: 'https://static.coindesk.com/wp-content/uploads/2017/04/tech-shine-e1491388538118-860x430.jpg'
+        }}
+      />
+      <Heading md heavy>Project List</Heading>
+      <HorizontalRule />
+      <Flex column>
+        <TabPanel tabGroup='account' tabId='organizations'>
+          <ResourceList address={ROOT} space={SPACE} />
+        </TabPanel>
+      </Flex>
+    </Box>
+  </Flex>
+</Flex>
+
+export default Resource

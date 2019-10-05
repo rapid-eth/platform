@@ -256,7 +256,7 @@ var SpacePreview = (_ref3) => {
     alignCenter: true,
     between: true,
     mb: 10
-  }, console.log(props, 'space props'), _react.default.createElement(_atoms.Heading, {
+  }, _react.default.createElement(_atoms.Heading, {
     sm: true,
     thin: true,
     slim: true
@@ -277,7 +277,7 @@ var SpaceStoragePreview = (_ref4) => {
   } = _ref4,
       props = _objectWithoutProperties(_ref4, ["data", "styled"]);
 
-  return _react.default.createElement(_atoms.Box, null, console.log(props, 'space storage props'), _react.default.createElement(_atoms.Heading, null, "Storage Space"), console.log(data), data && Array.isArray(Object.keys(data)) && Object.keys(data).length > 0 ? _react.default.createElement(_components.Branch, {
+  return _react.default.createElement(_atoms.Box, null, _react.default.createElement(_atoms.Heading, null, "Storage Space"), data && Array.isArray(Object.keys(data)) && Object.keys(data).length > 0 ? _react.default.createElement(_components.Branch, {
     data: data
   }) : _react.default.createElement(_atoms.Flex, {
     center: true,

@@ -1,9 +1,7 @@
 import idx from 'idx';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types'
-import useForm from "react-hook-form";
 import { Box, Button, Flex, Heading, Span } from '@horizin/design-system'
-import { Field } from '@horizin/design-system'
 import { BoxWrapper } from '@kames/3box-hooks/dist'
 
 

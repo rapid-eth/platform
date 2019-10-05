@@ -15,7 +15,6 @@ import { BoxWrapper } from '@kames/3box-hooks/dist'
 const FormWebLandStatus = ({ box, access, space, ...props}) => {
   // Form Submit Handler
   const onSubmit = async (values) => {
-    console.log(values)
     const keys = Object.keys(values)
     const inputs =Object.values(values)
     

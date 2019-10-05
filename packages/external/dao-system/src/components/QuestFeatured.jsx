@@ -149,7 +149,6 @@ const QuestSelector = ({ box, styled, ...props}) => {
     if( !item && idx(box, _=>_.spaces[props.space].public[props.selector])) {
       const list = box.spaces[props.space].public[props.selector]
       const item = list.filter( ITEM => ITEM.alias === props.alias).map(i => i)
-      console.log(item, 'item selection')
       if(item.length > 0) setItem(item[0].properties)
     }
   }, [item, box.spaces])

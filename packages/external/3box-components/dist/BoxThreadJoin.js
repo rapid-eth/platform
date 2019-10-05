@@ -47,10 +47,11 @@ var BoxOpenSpace = (_ref) => {
     box.joinThread({
       threadAddress: threadAddress,
       threadName: threadName,
-      members: props.members,
       firstModerator: props.firstModerator,
       space: space,
-      options: props.options
+      options: {
+        members: props.members
+      }
     });
     setLoading(true);
   };
@@ -65,7 +66,8 @@ var BoxOpenSpace = (_ref) => {
       box.joinThread({
         threadAddress: threadAddress,
         threadName: threadName,
-        space: space
+        space: space,
+        options: props.options
       });
       setLoading(true);
     }

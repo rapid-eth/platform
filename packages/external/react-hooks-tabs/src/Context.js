@@ -5,6 +5,7 @@ const Context = createContext({
   prevSelectedTabId: undefined,
   variantDefault: undefined,
   setSelectedTabId: () => {/* empty */},
+  dispatch: () => {/* empty */},
 });
 
 export default Context;

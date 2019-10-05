@@ -44,8 +44,10 @@ ${
   variant({
     variants: {
       default: {
-        height: '100%',
-        width: '100%'
+        center: true,
+        column: true,
+        height: '50%',
+        width: '50%'
       },
       fullScreen: {
         width: '100%',
@@ -101,7 +103,7 @@ const ModalActions = ({ portal, label, content, styled, styledLabel, variant, va
                   <Span pointer md heavy pointer onClick={closeHandler}>X</Span>
                 </Flex>
               }
-              <Flex column flex={1} fullWidth>
+              <Flex column flex={1} height='100%' fullWidth>
                 {
                   content && React.isValidElement(content)
                     ? React.cloneElement(content)

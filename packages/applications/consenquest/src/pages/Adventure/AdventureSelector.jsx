@@ -1,7 +1,13 @@
 import idx from 'idx'
 import React, { useState, useEffect } from 'react';
-import { Box, Flex, Span, Heading, Image, Absolute, Button, Link } from '@horizin/design-system'
+import { Box, Flex, Span, Heading, Image, Absolute, Button, Link, Panel } from '@horizin/design-system'
 import { BoxWrapper } from '@kames/3box-hooks/dist'
+import { BoxAccess } from '@kames/3box-components/dist'
+import Paragraph from '@horizin/design-system/dist/atoms/Paragraph';
+import { QuestCatalogAdd } from '@kames/dao-system'
+/* --- CMS Global Configs --- */
+const ROOT = process.env.REACT_APP_DEFAULT_ROOT
+const SPACE = process.env.REACT_APP_DEFAULT_SPACE
 
 const AdventureSelector = ({ box, styled, ...props}) => { 
   const [ item, setItem ] = useState()
@@ -35,27 +41,36 @@ const AdventureSelector = ({ box, styled, ...props}) => {
         <Link to={`/quest/${props.alias}`}>
           <Button xs mt='auto' justifySelf='flex-end'>View</Button>
         </Link>
-        <Button xs variant='red' mt='auto' mx={3} justifySelf='flex-end'>Start</Button>
+        <Panel content={<AddQuestToSpace alias={props.alias} />} label='Start Quest'>
+            <Button xs variant='green' mt='auto' mx={3} justifySelf='flex-end'>Start Quest</Button>
+          </Panel>
       </Flex>
     </Flex>
     : 'no deta'
 )}
 
-{/* <Box>
-      <Flex column card cardHover p={4} >
-        <Heading xs>Step {index}.</Heading>
-        <AdventureSelector alias={alias} />
-        <Flex>
-          <Link to={`/quest/${alias}`}>
-            <Button xs mt='auto' justifySelf='flex-end'>View</Button>
-          </Link>
-          <Button xs variant='red' mt='auto' mx={3} justifySelf='flex-end'>Start</Button>
-        </Flex>
-        <Absolute layout='topRight' m={-2}>
-          <Span xxs tag='green'>{tag}</Span>
-        </Absolute>
-      </Flex>
-    </Box> */}
+const AddQuestToSpace = ({ styled, ...props}) => { 
+  return(
+   <Box width={350} p={4}>
+     <Heading md heavy>Quest Journal</Heading>
+     <Paragraph sm>
+       <strong>Save quests to personal journal.</strong>
+       <br/> Keep track of your journey.
+     </Paragraph>
+ 
+     <BoxAccess
+       spaceAuto threadAuto
+       level='thread'
+       space={SPACE}
+       threadName='quest_catalog'
+       optionsThread={{
+         members: true,
+       }}
+     >
+       <QuestCatalogAdd alias={props.alias} />
+     </BoxAccess>
+   </Box>
+)}
 
 AdventureSelector.defaultProps = {
   space: 'eth',

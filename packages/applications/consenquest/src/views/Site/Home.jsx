@@ -21,7 +21,6 @@ const Home = ({ styled, ...props }) =>
           <Span thin tag='white' xxs ><strong><a href='#'>Contribute to DEVLand</a></strong></Span>
         </Absolute>
         <Box px={200}>
-          <Popover />
           <Heading xl heavy><Span md thin>ETHEREUM MISSION</Span><br/><Span heavy>1 Million Developers</Span> </Heading>
           <Paragraph mt={3}>
             <strong>A core feature of blockchain is composability.</strong> Help compose the future of Ethereum - contribute to an Open Catalog of smart contracts and libraries. 
@@ -39,6 +38,7 @@ const Home = ({ styled, ...props }) =>
             <Span xxs normal mx={3}>Submit Open Source Project</Span>
           </Flex>
           
+          <Button xs rounded mt={3} variant='white' width='100%'>Refer a Dev</Button>
         </Box>
       </Flex>
 
@@ -58,6 +58,12 @@ const Home = ({ styled, ...props }) =>
       </Flex>
     </Flex>
     {/* <DeveloperStatus /> */}
+    <Container my={3} maxWidth={800}>
+      <Flex center column>
+        <Image src='https://imgur.com/NhCRGGI.png'/>
+        <Heading>Join Us on the March to 1,000,000 Developers</Heading>
+      </Flex>
+    </Container>
     <Box py={40}>
 
       <Container>
@@ -99,19 +105,13 @@ const Home = ({ styled, ...props }) =>
             <Heading lg heavy>Quest to <Span> Collect Precious DEV</Span> Token</Heading>
             <Heading md thin>Earn reputation in the developer community. <strong><em>Earn DEV</em></strong>.</Heading>
             <Paragraph>
-              The Ethereum Blockchain is a global computer. The computer provides the building blocks for crafting composable functions.
+              Start earning DEV
             </Paragraph>
-            <Paragraph>
-              <em><strong>The power is immense.</strong> What can be built is <strong>extraordinary</strong>.</em>
-            </Paragraph>
-            <Paragraph>
-              Discover the blockchain "ah-ha" moment by first understanding why <strong>global composability is world changing</strong>. 
-            </Paragraph>
-            <Span pointer tag='green' >
+            <Span pointer tag='blue' >
               <Flex alignCenter>
                 <Image maxWidth={28} circle mx={2} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />
                 <Link to='/discover' >
-                  <Span mx={3}>Discover <Span><strong> Your Ah-Ha </strong></Span> Moment</Span>
+                  <Span mx={3}>Earn<Span><strong> DEV </strong></Span> Token</Span>
                 </Link>
               </Flex>
               </Span>

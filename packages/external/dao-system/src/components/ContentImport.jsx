@@ -18,7 +18,7 @@ const ContentTypeList = ({ box, styled, ...props }) => {
       if(res.json) {
         res.json()
         .then( jsonified => {
-          console.log(jsonified, 'jsonified')
+
           box.set({
             space: props.space,
             keys: [props.keys],

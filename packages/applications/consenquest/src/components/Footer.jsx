@@ -10,8 +10,8 @@ const Footer = ({ children, styled, ...props }) =>
     <Flex flex={3}>
         <Flex column maxWidth={260}>
         <Flex alignCenter>
-          <Span><Image bg='white' circle p={10} maxWidth={40} src='https://icon-library.net/images/ethereum-icon/ethereum-icon-4.jpg' /></Span>
-          <Heading md thin ml={10}>Web3<strong>Land</strong></Heading>
+          <Span mr={1}><Image bg='white' circle p={10} maxWidth={32} src='https://icon-library.net/images/ethereum-icon/ethereum-icon-4.jpg' /></Span>
+          <Heading md thin ml={10}>ETH<strong>Land</strong></Heading>
         </Flex>
         <Paragraph xs>
           Adventure the Web 3 Lands. Complete Quests. Make Friends. Decentralize the world!
@@ -28,7 +28,9 @@ const Footer = ({ children, styled, ...props }) =>
       <Flex column mx={50} >
         <Span heavy >Community</Span>
         <HorizontalRule dash my={10} />
+        <Link to='/adventures'><Span sm >Adventures</Span></Link>
         <Link to='/quests'><Span sm >Quests</Span></Link>
+        <Link to='/resources'><Span sm >Resources</Span></Link>
         <Link to='/projects'><Span sm >Projects</Span></Link>
         <Link to='/guilds'><Span sm >Guilds</Span></Link>
       </Flex>

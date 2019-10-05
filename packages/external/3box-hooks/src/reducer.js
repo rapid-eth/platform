@@ -348,7 +348,7 @@ export default (state, action) => {
         store: {
           ...state.store,
           threads: [
-            ...state.store.threads,
+            // ...state.store.threads,
             action,
           ]
         }
@@ -359,7 +359,7 @@ export default (state, action) => {
           ...state,
           store: {
             ...state.store,
-            // threads: []
+            threads: []
           },
           threads: {
             ...state.threads,
@@ -373,7 +373,8 @@ export default (state, action) => {
         return {
           ...state,
           store: {
-            // threads: []
+            ...state.store,
+            threads: []
           }
         };
       }
