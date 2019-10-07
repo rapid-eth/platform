@@ -8,13 +8,14 @@ export default ({
   label,
   styled,
   variant,
+  variantInner,
   position,
   children
 }) =>(
 <PortalContext>
   {
     portal => (
-      <span onClick={() => portal.openModal({ id, content, label, variant, position, styled })}>
+      <span onClick={() => portal.openModal({ id, content, label, variant, variantInner, position, styled })}>
       {children}
     </span>
     )

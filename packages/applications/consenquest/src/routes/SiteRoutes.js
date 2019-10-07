@@ -15,12 +15,14 @@ import Adventures from '../pages/Adventures'
 import CMS from '../pages/CMS'
 import Quest from '../pages/Quest'
 import Quests from '../pages/Quests'
-import Account from '../pages/Account'
+import Profile from '../pages/Profile'
 import Resources from '../pages/Resources'
 import Connect from '../pages/Connect'
 import ConnectInformation from '../pages/ConnectInformation'
+import Account from '../pages/Acccount'
+import Tokens from '../pages/Tokens'
 
-const SiteRoutes = ({ styled, ...props }) =>
+const SiteRoutes = props =>
   <Site>
     <SiteHeader>
       <Branding />
@@ -40,9 +42,12 @@ const SiteRoutes = ({ styled, ...props }) =>
         <CMS path='/cms/*' />
         <Connect path='/connect/:address' />
         <ConnectInformation path='/connect' />
+        <Tokens path='/tokens/*' />
 
-
+        {/* Profiles */}
         <Account path='/account/*' />
+        <Profile path='/profile/:address' />
+
         <Compose path='/composability/*' />
         <Resources path='/resources/*' />
         <Community path='/adventure/*' />

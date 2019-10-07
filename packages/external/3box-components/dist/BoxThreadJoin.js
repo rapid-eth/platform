@@ -47,11 +47,8 @@ var BoxOpenSpace = (_ref) => {
     box.joinThread({
       threadAddress: threadAddress,
       threadName: threadName,
-      firstModerator: props.firstModerator,
       space: space,
-      options: {
-        members: props.members
-      }
+      options: props.options
     });
     setLoading(true);
   };

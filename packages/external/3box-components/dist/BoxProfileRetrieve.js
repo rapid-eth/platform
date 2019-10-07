@@ -66,10 +66,24 @@ var ProfileCard = (_ref2) => {
 
   return profile ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_designSystem.Flex, {
     alignCenter: true
-  }, _react.default.createElement(_designSystem.Span, null, _react.default.createElement(_designSystem.Image, {
-    variant: "avatar",
-    src: (0, _utilities.GenerateImage)((0, _idx.default)(profile, _ => _.image)),
-    width: 48
+  }, _react.default.createElement(_designSystem.Flex, {
+    circle: true,
+    center: true,
+    column: true,
+    boxShadow: 0,
+    p: 2,
+    border: "2px solid #FFF",
+    overflow: "hidden",
+    width: 48,
+    height: 48,
+    maxWidth: 48,
+    maxWidth: 48
+  }, profile.image ? _react.default.createElement(_designSystem.BackgroundImage, {
+    ratio: .5,
+    src: (0, _utilities.GenerateImage)(profile.image)
+  }) : _react.default.createElement(_designSystem.BackgroundImage, {
+    ratio: .5,
+    src: "https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg"
   })), _react.default.createElement(_designSystem.Box, {
     ml: 10
   }, _react.default.createElement(_designSystem.Heading, {
@@ -89,7 +103,7 @@ var ProfileCard = (_ref2) => {
     src: "https://static.thenounproject.com/png/2348501-200.png",
     border: "none",
     bg: "white",
-    width: 70
+    width: 48
   })), _react.default.createElement(_designSystem.Box, {
     ml: 10
   }, _react.default.createElement(_designSystem.Box, {
@@ -102,7 +116,7 @@ var ProfileCard = (_ref2) => {
     bg: "gray",
     p: 1,
     width: 220,
-    mt: 20
+    mt: 10
   })));
 };
 

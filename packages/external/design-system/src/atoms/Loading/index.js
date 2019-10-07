@@ -52,20 +52,20 @@ const Loading = styled(Box)
 &.loading-ring {
   display: inline-block;
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 12px;
+  height: 12px;
 }
 &.loading-ring div {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 51px;
-  height: 51px;
-  margin: 6px;
-  border: 6px solid #fff;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  border: 2px solid #fff;
   border-radius: 50%;
   animation: loading-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+  border-color: #c0c0c0 transparent transparent transparent;
 }
 &.loading-ring div:nth-child(1) {
   animation-delay: -0.45s;

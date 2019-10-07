@@ -77,13 +77,30 @@ var Provider = (_ref) => {
           payload: provider
         });
       },
-      initContract: (_ref4) => {
+
+      /* --- Library ---- */
+      loadContractIntoLibrary: (_ref4) => {
+        var {
+          abi,
+          contractName
+        } = _ref4;
+        return dispatch({
+          type: 'LOAD_CONTRACT_INTO_LIBRARY_REQUEST',
+          payload: {
+            abi,
+            contractName
+          }
+        });
+      },
+
+      /* --- Initialize ---- */
+      initContract: (_ref5) => {
         var {
           abi,
           address,
           contractType,
           delta
-        } = _ref4;
+        } = _ref5;
         return dispatch({
           type: 'INIT_CONTRACT_REQUEST',
           payload: {
@@ -94,12 +111,25 @@ var Provider = (_ref) => {
           delta: delta || address
         });
       },
-      deployContract: (_ref5) => {
+      initContractFromLibrary: (_ref6) => {
+        var {
+          address,
+          contractName
+        } = _ref6;
+        return dispatch({
+          type: 'INIT_CONTRACT_FROM_LIBRARY_REQUEST',
+          payload: {
+            address,
+            contractName
+          }
+        });
+      },
+      deployContract: (_ref7) => {
         var {
           contract,
           delta,
           values
-        } = _ref5;
+        } = _ref7;
         return dispatch({
           type: 'DEPLOY_CONTRACT_REQUEST',
           payload: {
@@ -114,22 +144,22 @@ var Provider = (_ref) => {
         input: bytecode,
         delta: delta || (0, _utilities.hashCode)(abi)
       }),
-      signMessageTyped: (_ref6) => {
+      signMessageTyped: (_ref8) => {
         var {
           message,
           delta
-        } = _ref6;
+        } = _ref8;
         return dispatch({
           type: 'SIGN_TYPED_MESSAGE_REQUEST',
           payload: message,
           id: delta || (0, _utilities.hashCode)(message.toString())
         });
       },
-      signMessage: (_ref7) => {
+      signMessage: (_ref9) => {
         var {
           message,
           delta
-        } = _ref7;
+        } = _ref9;
         return dispatch({
           type: 'SIGN_MESSAGE_REQUEST',
           payload: message,

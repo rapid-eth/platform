@@ -26,12 +26,13 @@ const Provider = ({ children, ...props }) => {
         instance: 'toasts',
         id
       }),
-      openModal: ({ content, label, styled, styledLabel, variant, }) => dispatch({
+      openModal: ({ content, label, styled, styledLabel, variant, variantInner, }) => dispatch({
         type: 'OPEN_PORTAL',
         instance: 'modals',
         content,
         label,
         variant,
+        variantInner,
         styled,
         styledLabel
       }),

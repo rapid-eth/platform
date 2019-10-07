@@ -27,30 +27,6 @@ const BoxVerified = ({box, loadingMessage, display, styled, ...props }) => {
 return !box.verifications
 ? loadingMessage ? <Span>{loadingMessage}</Span> : null
 : <>
-    {/* {
-      Object.keys(box.verifications).map( ver => {
-        if(display.includes(ver)) {
-          switch (ver) {
-            case 'did':
-              return <Span xs><strong>DID: </strong> {box.verifications[ver]} </Span>
-            case 'ethereum':
-              return <Span><strong>Ethereum: </strong> {box.verifications[ver]} </Span>
-            case 'twitter':
-              return <Span>
-                        <strong>Twitter: </strong> <a href={`https://twitter.com/${box.verifications[ver].username}`}>{box.verifications[ver].username}</a>
-                        <Span xs mx={2}><a href={box.verifications[ver].proof}>Proof</a></Span>
-                      </Span>
-            case 'github':
-              return <Span>
-                        <strong>Github: </strong> <a href={`https://github.com/${box.verifications[ver].username}`}>{box.verifications[ver].username}</a>
-                        <Span xs mx={2}><a href={box.verifications[ver].proof}>Proof</a></Span>
-                      </Span>
-            default:
-              return <Span>No Verifications</Span>
-          }
-        }
-      })
-    } */}
     <Flex between>
       {
         !isGithub

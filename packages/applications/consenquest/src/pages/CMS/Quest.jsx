@@ -46,7 +46,7 @@ const Quest = ({ styled, ...props }) => {
               <ContentImport
                 keys='quest' access='public' space={SPACE}
                 update='quest'
-                url='https://raw.githubusercontent.com/ConsenSys/million-devs/content/content/quests/curatedQuestsInit.json?token=AA2AD2UDJCBZLO2RKJOFZFK5T4YLG'
+                url='https://raw.githubusercontent.com/ConsenSys/million-devs/content/content/quests/curatedQuestsInit.json?token=AA2AD2SOO4CPCVPFF727T4C5UTC3U'
               />
             </Span>
             <ContentDelete

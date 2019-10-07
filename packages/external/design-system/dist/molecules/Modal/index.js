@@ -19,6 +19,7 @@ var _default = (_ref) => {
     label,
     styled,
     variant,
+    variantInner,
     position,
     children
   } = _ref;
@@ -28,6 +29,7 @@ var _default = (_ref) => {
       content,
       label,
       variant,
+      variantInner,
       position,
       styled
     })

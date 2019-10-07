@@ -35,11 +35,10 @@ const QuestListComponent = ({ box,...props }) => {
    * @function SetListEffect
    */
   const SetListEffect = () => useEffect( () => {
-    if (!list && idx(box, _=>_.spaces[props.space].public[props.key])) {
-      const list = idx(box, _=>_.spaces[props.space].public[props.key])
-      setList(list) 
+    if (idx(box, _=>_.spaces[props.space].public[props.key])) {
+      setList(idx(box, _=>_.spaces[props.space].public[props.key])) 
     }
-  }, [box.spaces])
+  }, [idx(box, _=>_.spaces[props.space].public[props.key])])
 
   /* -------------------- */
   /* Initialize Effects

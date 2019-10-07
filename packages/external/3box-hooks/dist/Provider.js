@@ -5,15 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _idx = _interopRequireDefault(require("idx"));
-
 var _react = _interopRequireWildcard(require("react"));
 
 var _Context = _interopRequireDefault(require("./Context"));
-
-var _reactHooksPortal = require("@horizin/react-hooks-portal");
-
-var _atoms = require("@horizin/design-system/dist/atoms");
 
 var _effects = _interopRequireDefault(require("./effects"));
 
@@ -21,11 +15,11 @@ var _utilities = require("./utilities");
 
 var _reducer = _interopRequireDefault(require("./reducer"));
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -41,17 +35,12 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-var ComponentTest = props => _react.default.createElement(_atoms.Box, {
-  card: true
-}, "Welcome back.");
-
 var Provider = (_ref) => {
   var {
     children
   } = _ref,
       props = _objectWithoutProperties(_ref, ["children"]);
 
-  var portal = (0, _react.useContext)(_reactHooksPortal.PortalContext);
   var initialState = (0, _react.useContext)(_Context.default);
   var reducer = (0, _react.useReducer)(_reducer.default, initialState); // Fix ReferenceError: exports is not defined
 
@@ -73,7 +62,18 @@ var Provider = (_ref) => {
   return _react.default.createElement(_Context.default.Provider, {
     value: _objectSpread({}, state, {
       dispatch: dispatch,
+      setConfig: config => _objectSpread({}, state.config, {}, config),
       selector: select => idxx(state, select),
+      open: () => dispatch({
+        type: 'OPEN_REQUEST'
+      }),
+      // deprecate
+      login: () => dispatch({
+        type: 'OPEN_REQUEST'
+      }),
+      logout: () => dispatch({
+        type: 'logout'
+      }),
       enable: function () {
         var _enable = _asyncToGenerator(function* () {
           var accounts = yield window.ethereum.enable();
@@ -81,7 +81,7 @@ var Provider = (_ref) => {
 
           if (address) {
             dispatch({
-              type: "setAddress",
+              type: "SET_ADDRESS",
               address,
               addressShortened: (0, _utilities.shortenAddress)(address, 6),
               addressTrimmed: address.substring(0, 10)
@@ -95,104 +95,55 @@ var Provider = (_ref) => {
 
         return enable;
       }(),
-      open: () => dispatch({
-        type: 'open'
+
+      /* -------------------------------- */
+
+      /* Static
+      /* -------------------------------- */
+
+      /* --- Profiles (https://docs.3box.io/api/profiles#get) --- */
+      getProfile: address => dispatch({
+        type: 'GET_PROFILE_REQUEST',
+        address
       }),
-      logout: () => dispatch({
-        type: 'logout'
+      getProfileList: addresses => dispatch({
+        type: 'GET_PROFILE_LIST_REQUEST',
+        address
       }),
-      get: (_ref2) => {
-        var {
-          key,
-          access,
-          space
-        } = _ref2;
-        return dispatch({
-          type: 'GET_REQUEST',
-          space,
-          access,
-          key
-        });
-      },
-      set: (_ref3) => {
-        var {
-          keys,
-          key,
-          insert,
-          inputs,
-          access,
-          space,
-          append,
-          update
-        } = _ref3;
-        return dispatch({
-          type: 'SET_REQUEST',
-          append: insert || append,
-          keys,
-          key,
-          inputs,
-          access: access || access,
-          space,
-          update
-        });
-      },
-      remove: (_ref4) => {
-        var {
-          key,
-          access,
-          space
-        } = _ref4;
-        return dispatch({
-          type: 'REMOVE_REQUEST',
-          key,
-          access,
-          space
-        });
-      },
-      delete: (_ref5) => {
-        var {
-          key,
-          keyChild,
-          inputs,
-          access,
-          space,
-          append
-        } = _ref5;
-        return dispatch({
-          type: 'DELETE_REQUEST',
-          key,
-          keyChild,
-          access,
-          space
-        });
-      },
-      getSpace: (_ref6) => {
+
+      /* --- Spaces (https://docs.3box.io/api/storage#get) --- */
+      getSpace: (_ref2) => {
         var {
           address,
           space
-        } = _ref6;
+        } = _ref2;
         return dispatch({
           type: 'GET_SPACE_REQUEST',
           address,
           space
         });
       },
-      openSpace: space => dispatch({
-        type: 'openSpace',
-        space
-      }),
-      getProfile: address => dispatch({
-        type: 'GET_PROFILE_REQUEST',
-        address
-      }),
-      getThread: (_ref7) => {
+      listSpaces: (_ref3) => {
+        var {
+          address,
+          space
+        } = _ref3;
+        return dispatch({
+          type: 'GET_SPACES_REQUEST',
+          address,
+          space
+        });
+      },
+
+      /* --- Threads (https://docs.3box.io/api/messaging#static-1) --- */
+      getThread: (_ref4) => {
         var {
           space,
           threadName,
           firstModerator,
           members,
           options
-        } = _ref7;
+        } = _ref4;
         return dispatch({
           type: 'GET_THREAD_REQUEST',
           space,
@@ -202,39 +153,174 @@ var Provider = (_ref) => {
           options
         });
       },
-      joinThread: (_ref8) => {
+      getThreadByAddress: (_ref5) => {
+        var {
+          threadAddress
+        } = _ref5;
+        return dispatch({
+          type: 'GET_THREAD_BY_ADDRESS_REQUEST',
+          threadAddress
+        });
+      },
+
+      /* -------------------------------- */
+
+      /* Stateful
+      /* -------------------------------- */
+
+      /* --- Authentication (https://docs.3box.io/api/auth) --- */
+      openSpace: space => dispatch({
+        type: 'OPEN_SPACE_REQUEST',
+        space
+      }),
+
+      /* --- Storage (https://docs.3box.io/api/storage) --- */
+      // Default 3Box CRUD
+      get: (_ref6) => {
+        var {
+          key,
+          access,
+          space
+        } = _ref6;
+        return dispatch({
+          type: 'GET_REQUEST',
+          space,
+          access,
+          key
+        });
+      },
+      set: (_ref7) => {
+        var {
+          keys,
+          key,
+          insert,
+          inputs,
+          access,
+          space,
+          append,
+          update
+        } = _ref7;
+        return dispatch({
+          type: 'SET_REQUEST',
+          append: insert || append,
+          keys,
+          key,
+          inputs,
+          access,
+          space,
+          update
+        });
+      },
+      setMultiple: (_ref8) => {
+        var {
+          space,
+          access,
+          keys,
+          inputs
+        } = _ref8;
+        return dispatch({
+          type: 'SET_MULTIPLE_REQUEST',
+          append: insert || append,
+          keys,
+          inputs,
+          access,
+          space,
+          update
+        });
+      },
+      remove: (_ref9) => {
+        var {
+          key,
+          access,
+          space
+        } = _ref9;
+        return dispatch({
+          type: 'REMOVE_REQUEST',
+          key,
+          access,
+          space
+        });
+      },
+      // Enhanced 3Box CRUD
+
+      /**
+       * @function insert
+       * @description Insert value into object or array.
+       * @todo Support dot notation to merge index and key, plus support lodash deep merge.
+       */
+      insert: (_ref10) => {
+        var {
+          space,
+          access,
+          index,
+          key,
+          value
+        } = _ref10;
+        return dispatch({
+          type: 'INSERT_REQUEST',
+          space,
+          access,
+          index,
+          key,
+          value
+        });
+      },
+
+      /**
+       * @function delete
+       * @description Delete value from object.
+       * @todo Support dot notation to merge index and key.
+       */
+      delete: (_ref11) => {
+        var {
+          space,
+          access,
+          index,
+          key
+        } = _ref11;
+        return dispatch({
+          type: 'DELETE_REQUEST',
+          space,
+          access,
+          index,
+          key
+        });
+      },
+
+      /* --- Messageing (https://docs.3box.io/api/messaging) --- */
+      joinThread: (_ref12) => {
         var {
           threadName,
           threadAddress,
           space,
           options
-        } = _ref8;
+        } = _ref12;
         return dispatch({
-          type: 'joinThread',
-          threadName,
+          type: 'JOIN_THREAD_REQUEST',
+          threadName: threadName,
           threadAddress,
           options,
           space
         });
       },
-      threadPost: (_ref9) => {
+      threadPost: (_ref13) => {
         var {
           threadName,
           post
-        } = _ref9;
+        } = _ref13;
         return dispatch({
-          type: 'threadPost',
+          type: 'THREAD_POST_PUBLISH_REQUEST',
           threadName,
           post
         });
       },
-      threadPostDelete: (_ref10) => {
+      threadPostDelete: (_ref14) => {
         var {
           threadName,
           postId
-        } = _ref10;
+        } = _ref14;
         return dispatch({
-          type: 'threadPostDelete',
+          type: 'THREAD_POST_DELETE_REQUEST',
           threadName,
           postId
         });

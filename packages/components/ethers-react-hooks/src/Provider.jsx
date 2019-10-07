@@ -36,6 +36,17 @@ const Provider = ({ children, ...props }) => {
         type: 'SET_PROVIDER',
         payload: provider,
       }),
+
+      /* --- Library ---- */
+      loadContractIntoLibrary: ({ abi, contractName }) => dispatch({
+        type: 'LOAD_CONTRACT_INTO_LIBRARY_REQUEST',
+        payload: {
+          abi,
+          contractName
+        },
+      }),
+
+      /* --- Initialize ---- */
       initContract: ({ abi, address, contractType, delta }) => dispatch({
         type: 'INIT_CONTRACT_REQUEST',
         payload: {
@@ -44,6 +55,13 @@ const Provider = ({ children, ...props }) => {
           contractType
         },
         delta: delta || address
+      }),
+      initContractFromLibrary: ({ address, contractName }) => dispatch({
+        type: 'INIT_CONTRACT_FROM_LIBRARY_REQUEST',
+        payload: {
+          address,
+          contractName,
+        }
       }),
       deployContract: ({contract, delta, values}) => dispatch({
         type: 'DEPLOY_CONTRACT_REQUEST',

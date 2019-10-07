@@ -6,18 +6,23 @@ import {
   BackgroundImage, Flex, Card, Box, Menu, Heading, HorizontalRule, Button, Toast, Container, Panel, Span, Absolute, Image
 } from '@horizin/design-system';
 import {
-  BoxAccess, BoxThreadPostList, BoxProfileRetrieve, BoxThreadPostDelete,
-   BoxLoginCardVanity, BoxGetSpace
+  BoxAccess, BoxThreadPostList, BoxProfileRetrieve, BoxThreadPostDelete, BoxLoginCardVanity, Messaging, Reference
 } from '@kames/3box-components/dist'
 
 import { Tab, TabList, TabPanel } from '@horizin/react-hooks-tabs'
-import { QuestCatalogList, TeamCreate } from '@kames/dao-system'
+
+import {
+  UserFollow, TeamCreate, QuestCatalogItem,
+} from '@kames/dao-system'
+
 import {
   FormWebLandStatus
 } from "../components/3Box";
 
 import DateTime from 'luxon/src/datetime.js'
 import Paragraph from '@horizin/design-system/dist/atoms/Paragraph';
+import QuestItem from '@kames/dao-system/dist/components/Quest/components/QuestItem';
+
 
 
 // CMS Global Configs
@@ -25,12 +30,12 @@ const ROOT = process.env.REACT_APP_DEFAULT_ROOT
 const SPACE = process.env.REACT_APP_DEFAULT_SPACE
 const Account = ({box, styled, ...props }) =>
   <>
-  <BoxGetSpace space={SPACE} access='public' address={ROOT}  />
+  {/* <BoxGetSpace space={SPACE} access='public' address={ROOT}  /> */}
     {/* Header */}
-    <Flex gradient='purpink' gradientDir='140' minHeight={300}>
-      <BackgroundImage
-        boxShadow='sunset' overflow='hidden' ratio={.3} opacity={.1}
-        src='https://cdn.dribbble.com/users/548267/screenshots/7111037/media/4d7376a05741d008464edb7d126d7334.png' />
+    <Flex gradient='blueDark' gradientDir='140' minHeight={300}>
+      {/* <BackgroundImage
+        boxShadow='dark' overflow='hidden' ratio={.3} opacity={.1}
+        src='https://static.vecteezy.com/system/resources/previews/000/202/998/original/ethereum-currency-illustration-based-on-world-map-background-vector.jpg' /> */}
         <Container maxWidth='90%' >
           <Flex fullWidth height='100%'>
             <Flex flex={3}>
@@ -56,6 +61,7 @@ const Account = ({box, styled, ...props }) =>
                 >
                   <Button>Create Team</Button>
                 </Toast>
+                <UserFollow />
               </Absolute>
 
               <Absolute layout='topRight' m={3}>
@@ -86,9 +92,19 @@ const Account = ({box, styled, ...props }) =>
             <Box p={4}>
             <TabPanel tabGroup='account' tabId='profile'>
               <Heading md heavy>Quest Journal (Active) </Heading>
-              <HorizontalRule my={3} />
-              <QuestCatalogList members space={SPACE} address={box.address} />
-            </TabPanel>
+              <Messaging
+                threadName='quest_catalog'
+                component={Reference}
+                pass={{
+                  space:SPACE, access:'public', index:'quest',
+                  component: QuestCatalogItem,
+                  m: 3,
+                  p: 4
+                }}
+              />
+              
+    
+          </TabPanel>
             <TabPanel tabGroup='account' tabId='social'>
               <AccountSocialTab />
             </TabPanel>

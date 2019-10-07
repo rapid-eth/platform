@@ -13,7 +13,7 @@ const BoxOpenSpace = ({ box, auto, space, styled, styledLoading, componentLoadin
    * @description Handle component click event. 
    */
   const actionHandler = () => {
-    console.log(space, 'space opening')
+    if(typeof space === 'undefined') throw new Error('space undefined')
     box.openSpace(space)
     setLoading(true) 
   }
@@ -23,7 +23,7 @@ const BoxOpenSpace = ({ box, auto, space, styled, styledLoading, componentLoadin
    * @description Automatically connect to space without requiring use input.
    */
   useEffect(() => {
-    if(auto) {
+    if(auto && typeof space !== 'undefined') {
       box.openSpace(space) ; setLoading(true)
     }
   }, [auto])

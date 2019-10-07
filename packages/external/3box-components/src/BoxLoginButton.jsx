@@ -14,8 +14,19 @@ const BoxLoginButton = ({ box, isMenuAvailable, styled, children, ...props }) =>
       }
     }, [box.address])
 
+    /**
+   * @function AutoEffect
+   * @description Automatically connect to space without requiring use input.
+   */
+  useEffect(() => {
+    if(props.auto) {
+      box.open() 
+    }
+  }, [props.auto])
+
+
   return (
-    !box.address 
+    !props.auto ? !box.address 
     ? <Button variant='dark' onClick={box.enable}>
         <Flex alignCenter>
           <Box>
@@ -62,6 +73,7 @@ const BoxLoginButton = ({ box, isMenuAvailable, styled, children, ...props }) =>
           </Button>
         </Flex>
       : null
+    : null
   )
 }
 
@@ -95,6 +107,7 @@ const ButtonLogin = ({ box, isLoggingIn, styled, children, ...props }) => {
 
 BoxLoginButton.defaultProps = {
   isMenuAvailable: true,
+  auto: true
 }
 
 export default props =>

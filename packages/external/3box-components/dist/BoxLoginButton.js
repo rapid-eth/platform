@@ -42,7 +42,17 @@ var BoxLoginButton = (_ref) => {
       setBlockie(block);
     }
   }, [box.address]);
-  return !box.address ? _react.default.createElement(_designSystem.Button, {
+  /**
+  * @function AutoEffect
+  * @description Automatically connect to space without requiring use input.
+  */
+
+  (0, _react.useEffect)(() => {
+    if (props.auto) {
+      box.open();
+    }
+  }, [props.auto]);
+  return !props.auto ? !box.address ? _react.default.createElement(_designSystem.Button, {
     variant: "dark",
     onClick: box.enable
   }, _react.default.createElement(_designSystem.Flex, {
@@ -121,7 +131,7 @@ var BoxLoginButton = (_ref) => {
     lineHeight: "0",
     heavy: true,
     textRight: true
-  }, _react.default.createElement("strong", null, "\u039E"))))))) : null;
+  }, _react.default.createElement("strong", null, "\u039E"))))))) : null : null;
 };
 
 var AccountManage = (_ref2) => {
@@ -165,7 +175,8 @@ var ButtonLogin = (_ref3) => {
 };
 
 BoxLoginButton.defaultProps = {
-  isMenuAvailable: true
+  isMenuAvailable: true,
+  auto: true
 };
 
 var _default = props => _react.default.createElement(_dist.BoxWrapper, null, _react.default.createElement(BoxLoginButton, props));

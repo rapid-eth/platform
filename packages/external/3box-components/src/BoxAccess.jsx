@@ -6,6 +6,7 @@ import { Button, Box } from '@horizin/design-system'
 import { BoxWrapper } from '@kames/3box-hooks/dist'
 import { BoxSpaceOpen, BoxThreadJoin } from './index'
 import BoxLoginButton from './BoxLoginButton'
+import Component from './CMS/Component'
 
 /* --- React Component --- */
 const BoxAccess = ({
@@ -20,7 +21,7 @@ const BoxAccess = ({
     }
     {
       level === 'login' &&
-      <LevelLogin box={box} componentLogin={props.componentLogin} {...props} />
+      <LevelLogin box={box} {...props} />
     }
     {
       level === 'space' &&
@@ -37,7 +38,9 @@ const BoxAccess = ({
 
 BoxAccess.defaultProps = {
   componentLogin: <BoxLoginButton />,
+  componentLoading: <div>ls</div>,
   threadName: undefined,
+  loginAuto: false,
   spaceAuto: false,
   threadAuto: false,
   isisLoginDisabled: true,
@@ -170,15 +173,13 @@ const LevelThread = ({
     }
   }, [idx(box, _=>_.threads[threadName])])
 
-  console.log(spaceLoaded, 'spaceLoaded')
-  console.log(threadLoaded, 'threadLoaded')
  return(
   <>
   {
         !isLoggedIn && !spaceLoaded && !threadLoaded 
         ? componentLogin
           ? componentLogin
-          : isLoginDisabled ? null :  null
+          : <BoxLoginButton auto={props.loginAuto} />
         : null
       }
 
@@ -202,13 +203,9 @@ const LevelThread = ({
         isLoggedIn && spaceLoaded && !threadLoaded &&
         <BoxThreadJoin 
           auto={threadAuto}
-          threadName={threadName}
-          members={props.members}
-          firstModerator={props.firstModerator}
           space={space}
-          options={{
-            members: true
-          }}
+          threadName={threadName}
+          options={props.optionsThread}
           >
             <>
               {
@@ -223,8 +220,9 @@ const LevelThread = ({
 
       {
         
-        isLoggedIn && spaceLoaded && threadLoaded &&
-        props.children
+        isLoggedIn && spaceLoaded && threadLoaded 
+        ? props.children
+        : props.componentLoading ? <Component component={props.componentLoading} /> : null
       }
       
     </>

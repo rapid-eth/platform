@@ -11,38 +11,69 @@ var _react = require("react");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * 3Box Context
+ * @description Global application interface for 3Box.
+ */
 var Context = (0, _react.createContext)({
-  store: {
-    spaces: {},
-    threads: [],
-    profiles: {},
-    gets: {},
-    sets: {}
+  config: {
+    cms: {
+      address: '0xfA67ddE98346d6033f3Da0b157b70fe8434a48cE',
+      space: 'eth'
+    }
   },
-  async: {
+  // Middleware for outbound requests to 3Box
+  requests: [],
+  // Manage dispatched requests.
+  store: {
+    open: {},
+    spaces: [],
+    threads: [],
+    profiles: [],
+    posts: [],
+    gets: [],
+    sets: [],
+    removes: [],
+    inserts: []
+  },
+  // Authentiation data storage.
+  auth: {
+    profile: {},
+    spaces: {}
+  },
+  // General data storage.
+  data: {
+    profiles: {},
     spaces: {},
     threads: {}
   },
+  // Register onUpdate (listening) requests.
+  listening: {},
+  // Deprecate
+  profile: undefined,
+  profiles: {},
+  verified: {},
+  spaces: {},
+  threads: {},
+  // Library
+  instance: _box.default,
+  // Login initializes instances.
+  static: _box.default,
+  utils: _box.default.idUtils,
+  // Global Helpers
   address: undefined,
   addressShortened: undefined,
-  box: undefined,
-  instance: _box.default,
-  isDebugging: false,
+  addressTrimmed: undefined,
+  // Boolean
   isInitialized: false,
   isRequestOpen: false,
   isLoginAuto: true,
   isLoggedIn: false,
   isLoggingIn: false,
   isLoggingOut: false,
-  listening: {},
-  profile: undefined,
-  profiles: {},
-  verified: {},
-  spaces: {},
-  threads: {},
-  requests: [],
-  static: _box.default,
-  utils: _box.default.idUtils,
+  isDebugging: false,
+
+  /* --- Functions --- */
   open: () => {
     /*empty */
   },

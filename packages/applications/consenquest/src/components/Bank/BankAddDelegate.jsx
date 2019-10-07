@@ -22,11 +22,7 @@ const BankAddDelegate = ({ amount, ethers, contractAddress, contractName, delta,
   // Form Submit Handler
   const onSubmit = async (values) => {
     console.log(values)
-    let overrides = {
-
-      // The maximum units of gas for the transaction to use
-      gasLimit: 999000,
-  };
+    let overrides = {gasLimit: 999000};
     ethers.contracts[contractAddress].addDelegate(values.address, overrides)
     setDeploying(true)
   }

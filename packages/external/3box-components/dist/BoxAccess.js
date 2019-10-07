@@ -19,6 +19,8 @@ var _index = require("./index");
 
 var _BoxLoginButton = _interopRequireDefault(require("./BoxLoginButton"));
 
+var _Component = _interopRequireDefault(require("./CMS/Component"));
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -40,8 +42,7 @@ var BoxAccess = (_ref) => {
       props = _objectWithoutProperties(_ref, ["box", "level"]);
 
   return _react.default.createElement(_react.default.Fragment, null, level === 'disabled' && props.children, level === 'login' && _react.default.createElement(LevelLogin, _extends({
-    box: box,
-    componentLogin: props.componentLogin
+    box: box
   }, props)), level === 'space' && _react.default.createElement(LevelSpace, _extends({
     box: box
   }, props)), level === 'thread' && _react.default.createElement(LevelThread, _extends({
@@ -51,7 +52,9 @@ var BoxAccess = (_ref) => {
 
 BoxAccess.defaultProps = {
   componentLogin: _react.default.createElement(_BoxLoginButton.default, null),
+  componentLoading: _react.default.createElement("div", null, "ls"),
   threadName: undefined,
+  loginAuto: false,
   spaceAuto: false,
   threadAuto: false,
   isisLoginDisabled: true,
@@ -179,19 +182,17 @@ var LevelThread = (_ref4) => {
       setThread(true);
     }
   }, [(0, _idx.default)(box, _ => _.threads[threadName])]);
-  console.log(spaceLoaded, 'spaceLoaded');
-  console.log(threadLoaded, 'threadLoaded');
-  return _react.default.createElement(_react.default.Fragment, null, !isLoggedIn && !spaceLoaded && !threadLoaded ? componentLogin ? componentLogin : isLoginDisabled ? null : null : null, isLoggedIn && !spaceLoaded && _react.default.createElement(_index.BoxSpaceOpen, {
+  return _react.default.createElement(_react.default.Fragment, null, !isLoggedIn && !spaceLoaded && !threadLoaded ? componentLogin ? componentLogin : _react.default.createElement(_BoxLoginButton.default, {
+    auto: props.loginAuto
+  }) : null, isLoggedIn && !spaceLoaded && _react.default.createElement(_index.BoxSpaceOpen, {
     auto: spaceAuto,
     space: space
   }, _react.default.createElement(_react.default.Fragment, null, componentSpace ? componentSpace : _react.default.createElement(_designSystem.Button, styledSpace, "open ", space, " space"))), isLoggedIn && spaceLoaded && !threadLoaded && _react.default.createElement(_index.BoxThreadJoin, {
     auto: threadAuto,
-    threadName: threadName,
-    members: props.members,
-    firstModerator: props.firstModerator,
     space: space,
-    options: {
-      members: true
-    }
-  }, _react.default.createElement(_react.default.Fragment, null, componentThread ? componentThread : _react.default.createElement(_designSystem.Button, styledThread, "Join ", threadName, " Thread"))), isLoggedIn && spaceLoaded && threadLoaded && props.children);
+    threadName: threadName,
+    options: props.optionsThread
+  }, _react.default.createElement(_react.default.Fragment, null, componentThread ? componentThread : _react.default.createElement(_designSystem.Button, styledThread, "Join ", threadName, " Thread"))), isLoggedIn && spaceLoaded && threadLoaded ? props.children : props.componentLoading ? _react.default.createElement(_Component.default, {
+    component: props.componentLoading
+  }) : null);
 };

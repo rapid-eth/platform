@@ -1,6 +1,35 @@
+/* eslint-disable complexity */
+import dot from 'dot-prop-immutable-chain'
+
 export default (state, action) => {
   switch (action.type) {
+
+    /* ======================= */
+    /* Initilization
+    /* ======================= */
+
+    case 'SET_ADDRESS':
+      return {
+        ...state,
+        ...action
+      };
+
+    case 'SET_PROFILE':
+      return dot.set(state, 'profile', action.profile)
+
+    /* ======================= */
+    /* Static Requests
+    /* ======================= */
     case 'GET_PROFILE_REQUEST':
+      return dot(state).set(`store.profiles`, [ ...state.store.profiles, action]).value()
+    case 'GET_PROFILE_SUCCESS':
+      return dot(state)
+        .set(`profiles.${action.address}`, action.payload) // Deprecated path
+        .set(`data.profiles.${action.address}`, action.payload) // New path
+        .set(`store.profiles`, state.store.profiles.filter(i => i.address !== action.address))
+        .value()
+    
+    case 'GET_PROFILE_LIST_REQUEST':
       return {
         ...state,
         store: {
@@ -9,46 +38,53 @@ export default (state, action) => {
           }
         }
       };
-    case 'GET_PROFILE_SUCCESS':
-      return {
-        ...state,
-        profiles: {
-          ...state.profiles,
-          [action.id]: action.payload
-        }
-      };
-    case 'setProfile':
-      return {
-        ...state,
-        profile: action.profile,
-      };
-    case 'setAddress':
-      return {
-        ...state,
-        ...action
-      };
-    case 'open':
-      return {
-        ...state,
-        isLoggingIn: true
-      };
-    case 'logout':
+    case 'GET_PROFILE_LIST_SUCCESS':
+      return dot(state)
+        .set(`profiles.${action.address}`, action.payload) // Deprecated path
+        .set(`data.profiles.${action.address}`, action.payload) // New path
+        .set(`store.profiles`, [])
+        .value()
+        .value()
+    
+    /* ======================= */
+    /* AUTHENTICATION
+    /* ======================= */
+    
+    /* OPEN
+    /* ------------------ */
+    case 'OPEN_REQUEST':
+      return dot(state).set(`isLoggingIn`, true).value()
+    case 'OPEN_SUCCESS':
+      return dot(state)
+        .set(`auth.profile`, action.profile) 
+        .set(`auth.verifications`, action.verifications)
+        .set(`auth.spaces`, action.spaces)
+        .set(`instance`, action.instance)
+        .set(`isLogginIn`, false)
+        .set(`isLoggedIn`, true) 
+        .value()
+    case 'OPEN_FAILURE':
+      return state
+
+    case 'OPEN_SPACE_REQUEST':
+      return dot(state).set(`store.open`, [action]).value() 
+
+    case 'OPEN_SPACE_SUCCESS':
+      return dot(state)
+        .set(`spaces.${action.space}.instance`, action.instance) // Deprecated path
+        .set(`spaces.${action.space}.threads`, action.threads) // Deprecated path
+        .set(`auth.spaces.${action.space}.instance`, action.instance) // New path
+        .set(`auth.spaces.${action.space}.threads`, action.threads) // New path
+        .set(`store.open`, [])
+        .value()
+
+
+    /* LOGOUT
+    /* ------------------ */
+    case 'LOGOUT_REQUEST':
       return {
         ...state,
         isLoggingOut: true
-      };
-    case 'OPEN_SUCCESS':
-      return {
-        ...state,
-        profile: action.profile,
-        verifications: action.verified,
-        instance: action.profileInstance,
-        isLoggingIn: false,
-        isLoggedIn: true
-      };
-    case 'OPEN_FAILURE':
-      return {
-        ...state,
       };
     case 'LOGOUT_SUCCESS':
       return {
@@ -60,196 +96,68 @@ export default (state, action) => {
       };
     case 'LOGOUT_FAILURE':
       return state
-    case 'openSpace':
-      return {
-        ...state,
-        async: {
-          spaces: {
-            [action.space]: true
-          }
-        }
-      };
 
     /* ------------------ */
-    /* Space Get                */
+    /* Get Space
     /* ------------------ */
     case 'GET_SPACE_REQUEST':
-      return {
-        ...state,
-        store: {
-          ...state.store,
-          spaces: [
-            action,
-            // ...state.store.gets,
-          ]
-        }
-      };
+        return dot(state).set(`store.spaces`, [ ...state.store.spaces, action]).value()
     case 'GET_SPACE_SUCCESS':
-      if(action.space) {
-        return {
-          ...state,
-          spaces: {
-            ...state.spaces,
-            [action.space]: {
-              ...state.spaces[action.space],
-              [action.access]: {
-                ...action.payload
-              }
-            }
-          }
-        };
-      } else {
-        return {
-          ...state,
-          store: {
-            gets: []
-          }
-        };
-
-      }
+      return dot(state)
+        .set(`spaces.${action.space}.${action.access}`, action.payload) // Deprecated path
+        .set(`data.spaces.${action.space}.${action.access}`, action.payload) // New path
+        .set(`store.spaces`, [])
+        .value()
     case 'GET_SPACE_FAILURE':
-      return {
-        ...state,
-        store: {
-          spaces: []
-        }
-      };
-
-    case 'OPEN_SPACE_SUCCESS':
-      return {
-        ...state,
-        spaces: {
-          ...state.spaces,
-          [action.space]: {
-            ...state.spaces[action.space],
-            instance: action.instance,
-            threads: action.threads
-          }
-        }
-      };
+      return dot(state).set(`store.spaces`, []).value() 
 
     /* ------------------ */
     /* Get                */
     /* ------------------ */
     case 'GET_REQUEST':
-      return {
-        ...state,
-        store: {
-          ...state.store,
-          gets: [
-            action,
-            // ...state.store.gets,
-          ]
-        }
-      };
+      return dot(state).set(`store.gets`, [ ...state.store.gets, action]).value()
     case 'GET_SUCCESS':
       if(action.space) {
-        return {
-          ...state,
-          store: {
-            gets: []
-          },
-          spaces: {
-            ...state.spaces,
-            [action.space]: {
-              ...state.spaces[action.space],
-              [action.access]: {
-                ...state.spaces[action.space][action.access],
-                [action.id]: action.payload
-              }
-            }
-          }
-        };
+        return dot(state)
+        .set(`spaces.${action.space}.${action.access}.${action.id}`, action.payload) // Deprecated path
+        .set(`data.spaces.${action.space}.${action.access}.${action.id}`, action.payload) // New path
+        .set(`store.gets`, [])
+        .value()
       } else {
-        return {
-          ...state,
-          store: {
-            gets: []
-          }
-        };
-
+        return dot(state).set(`store.gets`, []).value() 
       }
     case 'GET_FAILURE':
-      return {
-        ...state,
-        store: {
-          gets: []
-        }
-      };
+      return dot(state).set(`store.gets`, []).value() 
 
     /* ------------------ */
-    /* Set */
+    /* Set
     /* ------------------ */
     case 'SET_REQUEST':
-      return {
-        ...state,
-        store: {
-          ...state.store,
-          sets: [
-            action
-          ]
-        }
-      };
-    case 'SET_REQUEST_SUCCESS':
-      return {
-        ...state,
-        store: {
-          ...state.store,
-          sets: []
-        }
-      };
-    case 'SET_REQUEST_FAILURE':
-      return {
-        ...state,
-        store: {
-          ...state.store,
-          sets: []
-        }
-      };
+      return dot(state).set(`store.sets`, [ ...state.store.sets, action]).value()
+    case 'SET_SUCCESS':
+      return dot(state).set(`store.sets`, []).value() 
+    case 'SET_FAILURE':
+      return dot(state).set(`store.sets`, []).value() 
+    
+    /* ------------------ */
+    /* Insert
+    /* ------------------ */
+    case 'INSERT_REQUEST':
+      return dot(state).set(`store.inserts`, [ ...state.store.inserts, action]).value()
+    case 'INSERT_SUCCESS':
+      return dot(state).set(`store.inserts`, []).value() 
+    case 'INSERT_FAILURE':
+      return dot(state).set(`store.inserts`, []).value() 
 
     /* ------------------ */
     /* Remove                */
     /* ------------------ */
     case 'REMOVE_REQUEST':
-      return {
-        ...state,
-        store: {
-          ...state.store,
-          removes: [
-            action,
-            // ...state.store.removes,
-          ]
-        }
-      };
+      return dot(state).set(`store.removes`, [ ...state.store.removes, action]).value()
     case 'REMOVE_SUCCESS':
-      if(action.space) {
-        return {
-          ...state,
-          spaces: {
-            ...state.spaces,
-            [action.space]: {
-              ...state.spaces[action.space],
-            }
-          }
-        };
-      } else {
-        return {
-          ...state,
-          store: {
-            ...state.store,
-            removes: []
-          }
-        };
-
-      }
+        return dot(state).set(`store.removes`, []).value() 
     case 'REMOVE_FAILURE':
-      return {
-        ...state,
-        store: {
-          ...state.store,
-          removes: []
-        }
-      };
+        return dot(state).set(`store.removes`, []).value() 
     
     /* ------------------ */
     /* Delete             */
@@ -288,152 +196,67 @@ export default (state, action) => {
         };
       }
     case 'DELETE_FAILURE':
-      return {
-        ...state,
-        store: {
-          removes: []
-        }
-      };
+      return dot(state).set(`store.deletes`, []).value() 
     
     /* ------------------ */
     /* Thread             */
     /* ------------------ */
-    case 'joinThread':
-      return {
-        ...state,
-        async: {
-          threads: {
-            [action.threadName]: {
-              ...action
-            }
-          }
-        }
-      };
+    case 'JOIN_THREAD_REQUEST':
+        return dot(state).set(`store.threads`, [ ...state.store.threads, action]).value()
+        
     case 'JOIN_THREAD_SUCCESS':
-      return {
-        ...state,
-        threads: {
-          ...state.threads,
-          [action.threadName]: {
-            instance: action.instance,
-            posts: action.posts,
-            members: action.members,
-            moderators: action.moderators
-          }
-        },
-
-        // spaces: {
-        //   ...state.spaces,
-        //   [action.space]: {
-        //     ...state.spaces[action.space],
-        //     threads: [
-        //       ...state.spaces[action.space].threads,
-        //       {
-        //         address: action.instance._address,
-        //         firstModerator: action.instance._firstModerator,
-        //         members: action.instance._members,
-        //         name: action.instance._name
-        //       }
-        //     ]
-        //   }
-        // }
-      };
+    return dot(state)
+      .set(`threads.${action.threadName}`, action)
+      .set(`data.threads.${action.threadName}`, action)
+      .value()
 
     /* ------------------ */
-    /* Thread Get             */
+    /* Thread Get
     /* ------------------ */
     case 'GET_THREAD_REQUEST':
-      return {
-        ...state,
-        store: {
-          ...state.store,
-          threads: [
-            // ...state.store.threads,
-            action,
-          ]
-        }
-      };
+      return dot(state).set(`store.threads`, [ ...state.store.threads, action]).value()
     case 'GET_THREAD_SUCCESS':
-      if(action.space) {
-        return {
-          ...state,
-          store: {
-            ...state.store,
-            threads: []
-          },
-          threads: {
-            ...state.threads,
-            [action.threadName]: {
-              ...state.threads[action.threadName],
-              posts: action.payload
-            }
-          }
-        };
-      } else {
-        return {
-          ...state,
-          store: {
-            ...state.store,
-            threads: []
-          }
-        };
-      }
+      return dot(state)
+        .set(`threads.${action.threadName}.posts`, action.payload) // Deprecated path
+        .set(`data.threads.${action.threadName}.posts`, action.payload) // New path
+        .set(`store.threads`, [])
+        .value()
     case 'GET_THREAD_FAILURE':
-      return {
-        ...state,
-        store: {
-          threads: []
-        }
-      };  
-    case 'threadPost':
-      return {
-        ...state,
-        async: {
-          posts: {
-            [action.threadName]: {
-              type: action.type,
-              threadName: action.threadName,
-              post: action.post
-            }
-          }
-        }
-      }
-    case 'threadPostDelete':
-      return {
-        ...state,
-        async: {
-          posts: {
-            [action.postId]: {
-              type: action.type,
-              threadName: action.threadName,
-              postId: action.postId
-            }
-          }
-        }
-      }
-    case 'THREAD_POST_SUCCESS':
-      return {
-        ...state,
+      return dot(state).set(`store.threads`, []).value()
 
-        threads: {
-          [action.threadName]: {
-            ...state.threads[action.threadName],
-            posts: action.posts
-          }
-        }
-      }
+    case 'GET_THREAD_BY_ADDRESS_REQUEST':
+      return dot(state).set(`store.threads`, [ ...state.store.threads, action]).value()
+    case 'GET_THREAD_BY_ADDRESS_SUCCESS':
+      return dot(state)
+        .set(`threads.${action.threadName}.posts`, action.payload) // Deprecated path
+        .set(`data.threads.${action.threadName}.posts`, action.payload) // New path
+        .set(`store.threads`, [])
+        .value()
+    case 'GET_THREAD_BY_ADDRESS_FAILURE':
+      return dot(state).set(`store.threads`, []).value() 
+    
+    /* Post Publish
+    /* ------------------ */
+    case 'THREAD_POST_PUBLISH_REQUEST':
+        return dot(state).set(`store.posts`, [ ...state.store.posts, action]).value()
+    case 'THREAD_POST_PUBLISH_SUCCESS':
+      return dot(state)
+        .set(`threads.${action.threadName}.posts`, action.payload) // Deprecated path
+        .set(`data.threads.${action.threadName}.posts`, action.payload) // New path
+        .set(`store.posts`, [])
+        .value()
+    
+    /* Post Delete
+    /* ------------------ */
+    case 'THREAD_POST_DELETE_REQUEST':
+      return dot(state).set(`store.posts`, [ ...state.store.posts, action]).value()
     case 'THREAD_POST_DELETE_SUCCESS':
-      return {
-        ...state,
-
-        threads: {
-          [action.threadName]: {
-            ...state.threads[action.threadName],
-            posts: action.posts
-          }
-        }
-      }
+        return dot(state)
+        .set(`threads.${action.threadName}.posts`, action.payload) // Deprecated path
+        .set(`data.threads.${action.threadName}.posts`, action.payload) // New path
+        .set(`store.posts`, [])
+        .value()
     default:
-      throw new Error('No Reducer Type Set');
+      throw new Error(`No Reducer Type Set ${action.type} `);
   }
 }

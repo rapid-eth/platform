@@ -1,16 +1,16 @@
 /* --- Global Dependencies --- */
 import React from 'react';
 import {
-    HorizontalRule, Span, Flex, Heading, Image, BackgroundImage, Paragraph, Box,  Panel, Link
+    HorizontalRule, Span, Flex, Heading, Image, BackgroundImage, Paragraph, Box,  Panel, Link, Modal
 } from '@horizin/design-system';
 import {
   BoxGetSpace,
-  BoxList,
   BoxAccess,
+  Storage,
 } from '@kames/3box-components/dist'
 import {
   QuestCatalogAdd, QuestFeatured,
-  QuestList,
+  QuestList, QuestItem
 } from '@kames/dao-system'
 
 /* --- CMS Global Configs --- */
@@ -25,8 +25,6 @@ const Home = ({ styled, ...props }) =>
           <Flex center column color='white' bg='purpleDark' gradientDir='145' p={4} minHeight={200}>
             <BackgroundImage opacity={.2} ratio={.4} src='https://images.ui8.net/uploads/blockchain_platform_6_1527438185419.jpg'/>
             <Heading lg>Quests</Heading>
-            <Span tag='green' xxs>Bonus DEVTOKENs Payout</Span>
-            <Span my={2}>Make Prediction on Gnosis</Span>
           </Flex>
         <Box p={30}>
           <Box textCenter>
@@ -45,7 +43,17 @@ const Home = ({ styled, ...props }) =>
         <Box p={50}>
           <BoxGetSpace space={SPACE} access='public' address={ROOT}  />
           <Flex gutter3>
-            <QuestList address={ROOT} space={SPACE}  access='public' id='quest' />
+            {/* <QuestList address={ROOT} space={SPACE}  access='public' id='quest' /> */}
+            <Storage
+              space={SPACE}
+              address={ROOT}
+              selector={`eth.public.quest`}
+              component={QuestItem}
+              styled={{m:3}}
+              pass={{
+                toPrepend: `account/project/`,
+              }}
+            />
           </Flex>
         </Box>
       </Flex>
@@ -70,9 +78,7 @@ const QuestCardMini = ({
           {props.tagline}
         </Paragraph>
       <Flex alignCenter evenly >
-        <Panel content={<AddQuestToSpace alias={props.alias} />} label='Start Quest'>
-          <Span xxs tag='green'>Start Quest</Span>
-        </Panel>
+ */}
         <Link to={`/quest/${props.alias}`}>
           <Span xxs tag='white'>Full Quest</Span>
         </Link>
@@ -98,13 +104,9 @@ const QuestCardMini = ({
 const AddQuestToSpace = ({ styled, ...props}) => { 
  return(
   <Box width={350} p={4}>
-    <Heading md heavy>Quest Journal</Heading>
-    <Paragraph sm>
-      <strong>Save quests to personal journal.</strong>
-      <br/> Keep track of your journey.
-    </Paragraph>
 
-    <BoxAccess
+
+    {/* <BoxAccess
       spaceAuto threadAuto
       level='thread'
       space={SPACE}
@@ -114,7 +116,7 @@ const AddQuestToSpace = ({ styled, ...props}) => {
       }}
     >
       <QuestCatalogAdd alias={props.alias} />
-    </BoxAccess>
+    </BoxAccess> */}
   </Box>
 )
 }

@@ -55,15 +55,15 @@ var Modal = (0, _styledComponents.default)(_dist.Flex)(_templateObject(), (0, _s
       left: 0,
       right: 0,
       top: 0,
-      bottom: 0
+      bottom: 0,
+      overflow: 'auto'
     },
     fullScreen: {
       left: 0,
       right: 0,
       top: 0,
       bottom: 0,
-      borderRadius: 0,
-      overflow: 'auto' // width: '100%',
+      borderRadius: 0 // width: '100%',
       // height: '100%',
 
     }
@@ -71,7 +71,7 @@ var Modal = (0, _styledComponents.default)(_dist.Flex)(_templateObject(), (0, _s
 }));
 Modal.defaultProps = {
   column: true,
-  boxShadow: 0,
+  // boxShadow: 0,
   fixed: true,
   relative: false,
   variant: 'default'
@@ -81,7 +81,7 @@ var ModalInner = (0, _styledComponents.default)(_dist.Flex)(_templateObject2(), 
     default: {
       center: true,
       column: true,
-      height: '50%',
+      height: '70%',
       width: '50%'
     },
     fullScreen: {
@@ -109,6 +109,7 @@ var ModalActions = (_ref) => {
 
   var [isAnimating, setIsAnimating] = (0, _react.useState)(false);
   var [isOpening, setIsOpening] = (0, _react.useState)(false);
+  console.log(variant, 'variantInner');
 
   var closeHandler = () => {
     setIsAnimating(false);
@@ -123,7 +124,6 @@ var ModalActions = (_ref) => {
       setIsAnimating(true);
     }
   }, [isOpening, isAnimating]);
-  console.log(variant, 'varr');
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactTransitionGroup.CSSTransition, {
     in: isAnimating,
     timeout: 300,
@@ -131,18 +131,13 @@ var ModalActions = (_ref) => {
   }, !isOpening ? _react.default.createElement("div", null) : _react.default.createElement(Modal, _extends({
     center: true,
     column: true
-  }, styled, styled, {
-    variant: variant
-  }), // !isOpening ? <div></div> :
-  _react.default.createElement(_dist.BackgroundGradient, {
+  }, styled), _react.default.createElement(_dist.BackgroundGradient, {
     bg: "black",
     fixed: true,
     absolute: false,
-    transform: "scale(2)",
     opacity: .2,
     onClick: closeHandler
   }), _react.default.createElement(ModalInner, {
-    position: variant,
     variant: variantInner
   }, label && _react.default.createElement(_dist.Flex, _extends({
     alignCenter: true,

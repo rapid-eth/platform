@@ -27,11 +27,11 @@ const DAOTeamCreate = ({ box, threadName, privateTeam, styled, ...props }) => {
     if (box.spaces[space]) {
       setComplete(true)
       box.set({
-        inputs: space,
         space: props.space,
+        access: formValues.access ? 'private' : 'public',
         insert: props.alias,
         key: props.key,
-        access: formValues.access ? 'private' : 'public'
+        inputs: space
       })
     }
   }, [box.spaces, space, formValues])

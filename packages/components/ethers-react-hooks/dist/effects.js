@@ -7,6 +7,8 @@ exports.networkRouting = exports.default = void 0;
 
 var _ethers = require("ethers");
 
+var _utilities = require("./utilities");
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -25,7 +27,11 @@ var effects = (callUseEffect, state, dispatch) => {
     if (window.web3 && window.web3.currentProvider) {
       dispatch({
         type: 'SET_PROVIDER',
-        payload: window.web3.currentProvider
+        payload: {
+          injected: window.web3.currentProvider,
+          mainnet: _ethers.ethers.getDefaultProvider(),
+          rinkeby: _ethers.ethers.getDefaultProvider('rinkeby')
+        }
       });
     } else {
       dispatch({
@@ -197,18 +203,19 @@ var effects = (callUseEffect, state, dispatch) => {
       /*#__PURE__*/
       function () {
         var _ref4 = _asyncToGenerator(function* () {
-          var contract, deployed, transaction;
+          var contract;
           var request = state.store.contracts[0];
+          console.log(request, 'contract request');
           var {
             payload
           } = request;
 
           try {
             var wallet = state.wallet;
-            console.log('store contracts', wallet);
 
             if (wallet) {
               contract = new _ethers.ethers.Contract(payload.address, payload.abi, wallet);
+              console.log(request, contract, 'contract loaded');
               dispatch({
                 type: 'INIT_CONTRACT_SUCCESS',
                 id: request.id,
@@ -234,6 +241,30 @@ var effects = (callUseEffect, state, dispatch) => {
       }();
 
       runEffect();
+    }
+  }, [state.wallet, state.store.contracts]);
+  /**
+     * @function LoadContract
+     * @description LOAD_CONTRACT_INTO_LIBRARY_REQUEST
+     */
+
+  callUseEffect(() => {
+    if (state.store.library && state.store.library.length > 0) {
+      var request = state.store.library[0];
+
+      if ((0, _utilities.isAddress)(request.address)) {
+        dispatch({
+          type: 'LOAD_CONTRACT_INTO_LIBRARY_SUCCESS',
+          id: request.id,
+          payload: request.payload
+        });
+      } else {
+        dispatch({
+          type: 'LOAD_CONTRACT_INTO_LIBRARY_FAILURE',
+          id: request.id,
+          payload: 'Invalid smart contract address.'
+        });
+      }
     }
   }, [state.wallet, state.store.contracts]);
 };

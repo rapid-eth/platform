@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "dot-prop-immutable-chain": "^0.0.3",
     "ethers": "^4.0.37",
     "prop-types": "^15.7.2"
   },

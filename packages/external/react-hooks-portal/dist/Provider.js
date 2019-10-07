@@ -67,7 +67,8 @@ var Provider = (_ref) => {
           label,
           styled,
           styledLabel,
-          variant
+          variant,
+          variantInner
         } = _ref3;
         return dispatch({
           type: 'OPEN_PORTAL',
@@ -75,6 +76,7 @@ var Provider = (_ref) => {
           content,
           label,
           variant,
+          variantInner,
           styled,
           styledLabel
         });

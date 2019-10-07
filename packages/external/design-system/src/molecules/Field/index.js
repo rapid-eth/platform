@@ -20,7 +20,7 @@ const Field = ({
 !register ? null :
 <>
   
-  <Box>
+  <Box {...props.styledOuter}>
     {
       !component
       ? <>

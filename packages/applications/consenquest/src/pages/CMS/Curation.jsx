@@ -7,20 +7,24 @@ import {
 import { Tab, TabList, TabPanel } from '@horizin/react-hooks-tabs'
 
 import {
-  BoxGetSpace,
+  BoxGetSpace, Messaging, ReferenceProfile
 } from '@kames/3box-components/dist'
+
 
 import {
   QuestFeatured, QuestFeaturedList, QuestFeaturedListUpdate,
-  ContentImport, ContentDelete
 } from '@kames/dao-system'
+
+import {
+  UserItemCard, UserAddToThread
+} from '@kames/dao-system'
+
 
 import ListItem from './ListItem'
 
 // CMS Global Configs
 const ROOT = process.env.REACT_APP_DEFAULT_ROOT
 const SPACE = process.env.REACT_APP_DEFAULT_SPACE
-const INDEX = process.env.REACT_APP_DEFAULT_INDEX
 
 /**
  * @function CMSCuration
@@ -31,11 +35,47 @@ const Curation = ({ styled, ...props }) => {
   return (
     <Box width='100%'>
       <BoxGetSpace space={SPACE} access='public' address={ROOT}  />
-      <TabList tabGroup='curation' tabIdSelected='adventures'>
+      <TabList tabGroup='curation' tabIdSelected='users'>
+        <Tab tabId='users'>Users</Tab>
         <Tab tabId='adventures'>Adventures</Tab>
         <Tab tabId='quests'>Quests</Tab>
         <Tab tabId='resources'>Resources</Tab>
       </TabList>
+      <TabPanel tabGroup='curation' tabId='users'>
+        <Flex>
+          <Flex gradient='gray' flex={1} p={4}>
+            <TabList tabGroup='curation_users' tabIdSelected='active'>
+              <Flex column>
+                <Span><Tab tabGroup='curation_users' tabId='active'>Active</Tab></Span>
+                <Span><Tab tabGroup='curation_users' tabId='adventures'>Featured</Tab></Span>
+                <Span><Tab tabGroup='curation_users'tabId='quests'>Verified</Tab></Span>
+              </Flex>
+            </TabList>
+          </Flex>
+          <Flex column flex={5}>    
+            <TabPanel tabGroup='curation_users' tabId='active'>
+              <Flex center column gradient='gray' minHeight={200} width='100%'>
+                <UserAddToThread space={SPACE} />
+              </Flex>
+              <Box p={3}>
+                <Flex gutter3>
+                  <Messaging
+                    threadName='users'
+                    component={ReferenceProfile}
+                    pass={{
+                      space: SPACE, threadName: 'users', access: 'public', index:'users',
+                      component: UserItemCard,
+                      m: 3,
+                      p: 4
+                    }}
+                  />
+                </Flex>
+              </Box>
+            </TabPanel>
+            
+          </Flex>
+        </Flex>
+      </TabPanel>
       <TabPanel tabGroup='curation' tabId='adventures'>
         <Flex column width='100%'>
           <Box m={2} flex={1}>

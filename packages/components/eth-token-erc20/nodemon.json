@@ -1,0 +1,20 @@
+{
+  "name": "@rapid/eth-token-erc20",
+  "homepage": "http://rapid-eth.io",
+  "nodemonConfig": {
+    "ignore": [
+      "dist/*",
+      "src/*"
+    ],
+    "delay": "2500"
+  },
+  "watch": [
+    "src/",
+    "src/Transfer.jsx",
+    "src/FieldAddress.jsx"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js,json,jsx"
+}

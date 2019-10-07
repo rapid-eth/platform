@@ -1,5 +1,6 @@
 
 import { ethers } from 'ethers'
+import { isAddress } from './utilities'
 
 const effects = (callUseEffect, state, dispatch) => {
 
@@ -17,7 +18,11 @@ const effects = (callUseEffect, state, dispatch) => {
     if(window.web3 && window.web3.currentProvider) {
       dispatch({
         type: 'SET_PROVIDER',
-        payload: window.web3.currentProvider
+        payload: {
+          injected: window.web3.currentProvider,
+          mainnet: ethers.getDefaultProvider(), 
+          rinkeby: ethers.getDefaultProvider('rinkeby') 
+        }
       })
     } else {
       dispatch({
@@ -160,14 +165,15 @@ const effects = (callUseEffect, state, dispatch) => {
     
     if(state.store.contracts && state.store.contracts.length > 0) {
       const runEffect = async() => {
-        let contract, deployed, transaction
+        let contract
         const request = state.store.contracts[0]
+        console.log(request,  'contract request')
         const { payload } = request
         try {
           const wallet = state.wallet
-          console.log('store contracts', wallet)
           if(wallet) {
             contract = new ethers.Contract(payload.address, payload.abi, wallet)
+            console.log(request,  contract, 'contract loaded')
             dispatch({
               type: 'INIT_CONTRACT_SUCCESS',
               id: request.id,
@@ -187,6 +193,33 @@ const effects = (callUseEffect, state, dispatch) => {
         }
       }
       runEffect();
+    }
+  }, [state.wallet, state.store.contracts])
+  
+/**
+   * @function LoadContract
+   * @description LOAD_CONTRACT_INTO_LIBRARY_REQUEST
+   */
+  callUseEffect( () => {
+    
+    if(state.store.library && state.store.library.length > 0) {
+
+      const request = state.store.library[0]
+
+      if(isAddress(request.address)) {
+        dispatch({
+          type: 'LOAD_CONTRACT_INTO_LIBRARY_SUCCESS',
+          id: request.id,
+          payload: request.payload
+        })
+      } else {
+        dispatch({
+          type: 'LOAD_CONTRACT_INTO_LIBRARY_FAILURE',
+          id: request.id,
+          payload: 'Invalid smart contract address.'
+        })
+      }
+      
     }
 	}, [state.wallet, state.store.contracts])
 

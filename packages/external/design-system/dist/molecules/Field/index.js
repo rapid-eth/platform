@@ -48,7 +48,7 @@ var Field = (_ref) => {
   } = _ref,
       props = _objectWithoutProperties(_ref, ["inputAs", "label", "error", "errors", "register", "validation", "component", "styled", "children"]);
 
-  return !register ? null : _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_index.Box, null, !component ? _react.default.createElement(_react.default.Fragment, null, !internalLabel.includes(props.type) && label && _react.default.createElement(_atoms.Span, {
+  return !register ? null : _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_index.Box, props.styledOuter, !component ? _react.default.createElement(_react.default.Fragment, null, !internalLabel.includes(props.type) && label && _react.default.createElement(_atoms.Span, {
     xs: true,
     as: "label",
     my: "5px"

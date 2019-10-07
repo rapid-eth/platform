@@ -1,6 +1,6 @@
 import idx from 'idx'
 import React, { useState, useEffect } from 'react';
-import { Image, Box, Heading, Flex, Modal, Span, Button, Field, Form, Link, } from '@horizin/design-system'
+import { Image, Box, Heading, Flex, Modal, Span, Link, } from '@horizin/design-system'
 import { BoxWrapper } from '@kames/3box-hooks/dist'
 import { BoxThreadPostDelete, BoxAccess } from '@kames/3box-components/dist'
 
@@ -100,6 +100,7 @@ const QuestSelector = ({ box, styled, ...props}) => {
     :
         <Flex between width='100%'>
           <Flex alignCenter flex={3} >
+
 
             <Span><Image maxWidth={45} src={item.image} /></Span>
             <Box ml={2} textAlign='left'>

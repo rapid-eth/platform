@@ -3,7 +3,7 @@
 import idx from 'idx'
 import React, { useEffect, useState } from "react";
 import { BoxWrapper } from '@kames/3box-hooks/dist'
-import { Absolute, Box, Button, Flex, Image, Heading, Span, Paragraph } from '@horizin/design-system'
+import { Absolute, Box, BackgroundImage, Flex, Image, Heading, Span, Paragraph } from '@horizin/design-system'
 import { GenerateImage } from './utilities'
 
 /* ------- Component ------- */
@@ -37,7 +37,23 @@ const ProfileCard = ({ profile, small, ...props}) => {
     profile
     ?<>
       <Flex alignCenter>
-        <Span><Image variant='avatar' src={GenerateImage(idx(profile, _=>_.image))} width={48}/></Span>
+        <Flex
+          circle center column boxShadow={0} p={2}
+          border="2px solid #FFF"
+          overflow='hidden'
+          width={48} height={48} maxWidth={48} maxWidth={48}
+          >
+            {
+              profile.image
+              ? <BackgroundImage
+                ratio={.5}
+                src={GenerateImage(profile.image)} />
+              : <BackgroundImage
+                ratio={.5}
+                src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' /> 
+            }
+        </Flex>
+
         <Box ml={10}>
           <Heading md heavy noMargin>
             {idx(profile, _=>_.name)}
@@ -47,10 +63,10 @@ const ProfileCard = ({ profile, small, ...props}) => {
       </Flex>
     </>
     : <Flex alignCenter>
-        <Span><Image card circle src='https://static.thenounproject.com/png/2348501-200.png' border='none' bg='white' width={70}/></Span>
+        <Span><Image card circle src='https://static.thenounproject.com/png/2348501-200.png' border='none' bg='white' width={48}/></Span>
         <Box ml={10}>
           <Box borderRadius={40} bg='gray' p={2} width={320} />
-          <Box borderRadius={40} bg='gray' p={1} width={220} mt={20} />
+          <Box borderRadius={40} bg='gray' p={1} width={220} mt={10} />
         </Box>
       </Flex>
   )

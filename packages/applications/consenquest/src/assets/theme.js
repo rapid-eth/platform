@@ -24,7 +24,7 @@ const theme = {
   colors: {
     // Brand Color Styles
     primary: '#dc448dcf',
-    secondary: '#09272a',
+    secondary: '#4855ba',
     tertiary: '#F45C43',
     dark: '#29323a',
     // Generic color Styles

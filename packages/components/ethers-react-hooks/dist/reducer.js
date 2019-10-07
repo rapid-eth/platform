@@ -5,7 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _dotPropImmutableChain = _interopRequireDefault(require("dot-prop-immutable-chain"));
+
 var _utilities = require("./utilities");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -90,11 +94,43 @@ var reducerActions = (state, action) => {
 
     /* ----------------------- */
 
+    /* Contract Loading     */
+
+    /* ----------------------- */
+
+    case 'LOAD_CONTRACT_INTO_LIBRARY_REQUEST':
+      return (0, _dotPropImmutableChain.default)(state).set("store.library", [...state.store.library, action]).value();
+
+    case 'LOAD_CONTRACT_INTO_LIBRARY_SUCCESS':
+      return (0, _dotPropImmutableChain.default)(state).set("library.".concat(action.payload.contractName), action.payload).value();
+
+    case 'LOAD_CONTRACT_INTO_LIBRARY_FAILURE':
+      return (0, _dotPropImmutableChain.default)(state).set("store.library", []).value();
+
+    /* ----------------------- */
+
+    /* Contract Loading     */
+
+    /* ----------------------- */
+
+    case 'LOAD_CONTRACT_REQUEST':
+      console.log(action, 'init contract');
+      return (0, _dotPropImmutableChain.default)(state).set("store.library", [...state.store.contracts, action]).value();
+
+    case 'LOAD_CONTRACT_SUCCESS':
+      return (0, _dotPropImmutableChain.default)(state).set("contracts.".concat(action.payload.contractName), action.payload).value();
+
+    case 'LOAD_CONTRACT_FAILURE':
+      return (0, _dotPropImmutableChain.default)(state).set("store.contracts", []).value();
+
+    /* ----------------------- */
+
     /* Contract Initialize     */
 
     /* ----------------------- */
 
     case 'INIT_CONTRACT_REQUEST':
+      console.log(action, 'init contract');
       return _objectSpread({}, state, {
         store: _objectSpread({}, state.store, {
           contracts: [...state.store.contracts, {
@@ -167,7 +203,7 @@ var reducerActions = (state, action) => {
       });
 
     default:
-      throw new Error('No Reducer Type Set');
+      throw new Error("No Reducer Type Set: ".concat(action.type));
   }
 };
 

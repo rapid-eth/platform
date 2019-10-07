@@ -17,12 +17,16 @@ var Context = (0, _react.createContext)({
     contracts: [],
     deploy: [],
     messages: [],
+    library: [],
     transactions: [],
     wallets: []
   },
-  address: undefined,
+  contracts: {},
+  library: {},
   deployed: [],
-  walletShortened: undefined,
+  address: undefined,
+  addressShortened: undefined,
+  addressTrimmed: undefined,
   wallet: undefined,
   signMessage: () => {},
   sendTrnsaction: () => {}

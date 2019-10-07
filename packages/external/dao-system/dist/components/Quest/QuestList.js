@@ -69,12 +69,10 @@ var QuestListComponent = (_ref) => {
 
 
   var SetListEffect = () => (0, _react.useEffect)(() => {
-    if (!list && (0, _idx.default)(box, _ => _.spaces[props.space].public[props.key])) {
-      var _list = (0, _idx.default)(box, _ => _.spaces[props.space].public[props.key]);
-
-      setList(_list);
+    if ((0, _idx.default)(box, _ => _.spaces[props.space].public[props.key])) {
+      setList((0, _idx.default)(box, _ => _.spaces[props.space].public[props.key]));
     }
-  }, [box.spaces]);
+  }, [(0, _idx.default)(box, _ => _.spaces[props.space].public[props.key])]);
   /* -------------------- */
 
   /* Initialize Effects

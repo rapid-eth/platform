@@ -14,6 +14,7 @@ ${
         right: 0,
         top: 0,
         bottom: 0,
+        overflow: 'auto',
       },
       fullScreen: {
         left: 0,
@@ -21,7 +22,6 @@ ${
         top: 0,
         bottom: 0,
         borderRadius: 0,
-        overflow: 'auto',
         // width: '100%',
         // height: '100%',
       },
@@ -32,7 +32,7 @@ ${
 
 Modal.defaultProps = {
   column: true,
-  boxShadow: 0,
+  // boxShadow: 0,
   fixed: true,
   relative: false,
   variant: 'default'
@@ -46,8 +46,8 @@ ${
       default: {
         center: true,
         column: true,
-        height: '50%',
-        width: '50%'
+        height: '70%',
+        width: '50%',
       },
       fullScreen: {
         width: '100%',
@@ -65,6 +65,7 @@ ModalInner.defaultProps = {
 const ModalActions = ({ portal, label, content, styled, styledLabel, variant, variantInner, id, ...props}) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
+  console.log(variant, 'variantInner')
 
   const closeHandler = () => {
     setIsAnimating(false)
@@ -79,23 +80,15 @@ const ModalActions = ({ portal, label, content, styled, styledLabel, variant, va
       setIsAnimating(true)
     }
   }, [isOpening, isAnimating])
-  console.log(variant, 'varr')
+
   return (
     <>
-      
-
-
       <CSSTransition in={(isAnimating)} timeout={300} classNames="fadeIn">
         {
           !isOpening ? <div></div> :
-          <Modal center column {...styled} {...styled} variant={variant} >
-            {/* <CSSTransition in={(isAnimating)} timeout={300} classNames="fadeIn"> */}
-              {
-                // !isOpening ? <div></div> :
-                <BackgroundGradient bg='black' fixed={true} absolute={false} transform='scale(2)' opacity={.2} onClick={closeHandler} />
-              }
-            {/* </CSSTransition> */}
-           <ModalInner position={variant} variant={variantInner} >
+          <Modal center column {...styled} >
+            <BackgroundGradient bg='black' fixed={true} absolute={false} opacity={.2} onClick={closeHandler} />
+           <ModalInner variant={variantInner} >
               {
                 label &&
                 <Flex alignCenter between fullWidth gradient='gray' p={10} {...styledLabel}>

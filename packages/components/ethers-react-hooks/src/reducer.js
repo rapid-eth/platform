@@ -1,3 +1,4 @@
+import dot from 'dot-prop-immutable-chain'
 import { hashCode } from './utilities'
 
 const reducerActions = (state, action) => {
@@ -89,9 +90,33 @@ const reducerActions = (state, action) => {
       }
 
       /* ----------------------- */
+      /* Contract Loading     */
+      /* ----------------------- */
+      case 'LOAD_CONTRACT_INTO_LIBRARY_REQUEST':
+        return dot(state).set(`store.library`, [ ...state.store.library, action]).value()
+        
+      case 'LOAD_CONTRACT_INTO_LIBRARY_SUCCESS':
+        return dot(state).set(`library.${action.payload.contractName}`, action.payload).value()
+      
+      case 'LOAD_CONTRACT_INTO_LIBRARY_FAILURE':
+        return dot(state).set(`store.library`, []).value() 
+      /* ----------------------- */
+      /* Contract Loading     */
+      /* ----------------------- */
+      case 'LOAD_CONTRACT_REQUEST':
+          console.log(action, 'init contract')
+        return dot(state).set(`store.library`, [ ...state.store.contracts, action]).value()
+        
+      case 'LOAD_CONTRACT_SUCCESS':
+        return dot(state).set(`contracts.${action.payload.contractName}`, action.payload).value()
+      
+      case 'LOAD_CONTRACT_FAILURE':
+        return dot(state).set(`store.contracts`, []).value() 
+      /* ----------------------- */
       /* Contract Initialize     */
       /* ----------------------- */
         case 'INIT_CONTRACT_REQUEST':
+          console.log(action, 'init contract')
           return {
             ...state,
             store: {
@@ -186,7 +211,7 @@ const reducerActions = (state, action) => {
             }
 
     default:
-      throw new Error('No Reducer Type Set');
+      throw new Error(`No Reducer Type Set: ${action.type}`);
   }
 }
 

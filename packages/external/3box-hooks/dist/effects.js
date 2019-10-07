@@ -43,7 +43,7 @@ var effects = (callUseEffect, state, dispatch) => {
   callUseEffect(() => {
     if (state.isLoginAuto && state.address) {
       dispatch({
-        type: 'open'
+        type: 'OPEN_REQUEST'
       });
     }
   }, [state.isLoginAuto, state.address]);
@@ -57,7 +57,7 @@ var effects = (callUseEffect, state, dispatch) => {
 
     if ((0, _utilities.isAddress)(address)) {
       dispatch({
-        type: "setAddress",
+        type: "SET_ADDRESS",
         address,
         addressShortened: (0, _utilities.shortenAddress)(address, 6),
         addressTrimmed: address.substring(0, 10)
@@ -74,7 +74,7 @@ var effects = (callUseEffect, state, dispatch) => {
       if (state.address) {
         state.static.getProfile(state.address).then(profile => {
           dispatch({
-            type: "setProfile",
+            type: "SET_PROFILE",
             profile
           });
         });
@@ -101,7 +101,7 @@ var effects = (callUseEffect, state, dispatch) => {
         /*#__PURE__*/
         function () {
           var _ref = _asyncToGenerator(function* () {
-            var profileInstance = yield state.static.openBox(state.address, window.web3.currentProvider);
+            var instance = yield state.static.openBox(state.address, window.web3.currentProvider);
             var profile = state.profile ? state.profile : yield state.static.getProfile(state.address);
             var list = yield state.static.listSpaces(state.address);
             var verified = yield state.static.getVerifiedAccounts(profile);
@@ -109,18 +109,18 @@ var effects = (callUseEffect, state, dispatch) => {
             list.forEach(element => {
               spaces[element] = undefined;
             });
+            dispatch({
+              type: "OPEN_SUCCESS",
+              profile,
+              instance,
+              spaces,
+              verified
+            });
             portal.openToast({
               label: 'Login Success',
               closeOnClick: true,
               closeTimer: 3000,
               styled: {}
-            });
-            dispatch({
-              type: "OPEN_SUCCESS",
-              profile: profile,
-              profileInstance: profileInstance,
-              spaces,
-              verified
             });
           });
 
@@ -172,18 +172,23 @@ var effects = (callUseEffect, state, dispatch) => {
 
   callUseEffect(() => {
     if (state.store && state.store.profiles) {
-      var spaceSelected = Object.keys(state.store.profiles)[0];
+      var selected = state.store.profiles[0];
 
-      if (spaceSelected) {
+      if (selected) {
         var runEffect =
         /*#__PURE__*/
         function () {
           var _ref2 = _asyncToGenerator(function* () {
-            var profile = yield state.static.getProfile(spaceSelected);
+            var profile = yield state.static.getProfile(selected.address);
+            var verified = yield state.static.getVerifiedAccounts(profile);
+            profile.verifications = verified;
+            profile.address = selected.address;
+            profile.addressShort = (0, _utilities.shortenAddress)(selected.address, 7);
             dispatch({
               type: "GET_PROFILE_SUCCESS",
+              address: selected.address,
               payload: profile,
-              id: spaceSelected
+              id: selected
             });
           });
 
@@ -252,17 +257,17 @@ var effects = (callUseEffect, state, dispatch) => {
    */
 
   callUseEffect(() => {
-    if (state.instance.openSpace, state.async && state.async.spaces) {
-      var spaceSelected = Object.keys(state.async.spaces)[0];
+    if (state.instance && state.store && state.store.open) {
+      var selected = state.store.open[0];
 
-      if (spaceSelected) {
+      if (selected) {
         try {
           var runEffect =
           /*#__PURE__*/
           function () {
             var _ref4 = _asyncToGenerator(function* () {
               var threads;
-              var space = yield state.instance.openSpace(spaceSelected);
+              var space = yield state.instance.openSpace(selected.space);
 
               if (space.all) {
                 threads = yield space.subscribedThreads();
@@ -271,7 +276,7 @@ var effects = (callUseEffect, state, dispatch) => {
               dispatch({
                 type: "OPEN_SPACE_SUCCESS",
                 instance: space,
-                space: spaceSelected,
+                space: selected.space,
                 threads
               });
             });
@@ -287,7 +292,7 @@ var effects = (callUseEffect, state, dispatch) => {
         }
       }
     }
-  }, [state.instance.openSpace, state.async.spaces]);
+  }, [state.instance.openSpace, state.store.open]);
   /* -------------------------------- */
 
   /* Read and Write (CRUD)            */
@@ -351,7 +356,7 @@ var effects = (callUseEffect, state, dispatch) => {
 
                     var list = yield state.spaces[space].instance[access].set(append, listUpdated);
                     dispatch({
-                      type: "SET_REQUEST_SUCCESS",
+                      type: "SET_SUCCESS",
                       payload: list
                     });
 
@@ -366,7 +371,7 @@ var effects = (callUseEffect, state, dispatch) => {
                   } else {
                     yield state.spaces[space].instance[access].setMultiple(keys, inputs);
                     dispatch({
-                      type: "SET_REQUEST_SUCCESS"
+                      type: "SET_SUCCESS"
                     });
 
                     if (selected.update) {
@@ -414,6 +419,69 @@ var effects = (callUseEffect, state, dispatch) => {
     }
   }, [state.store, state.store.sets]);
   /**
+   * @function Insert
+   * @description Insert data into nested object.
+   */
+
+  callUseEffect(() => {
+    if (state.store && state.store.inserts) {
+      try {
+        var selected = state.store.inserts[0];
+
+        if (selected) {
+          var runEffect =
+          /*#__PURE__*/
+          function () {
+            var _ref6 = _asyncToGenerator(function* () {
+              var {
+                space,
+                // Initialize Space
+                access,
+                // Public or Private
+                index,
+                // Root level key
+                key,
+                // Key of inserted property 
+                value // Value of inserted property 
+
+              } = selected;
+
+              try {
+                var list;
+                list = yield state.spaces[space].instance[access].get(index);
+                console.log(list, 'list read');
+
+                var listUpdated = _objectSpread({}, list, {
+                  [key]: value
+                });
+
+                list = yield state.spaces[space].instance[access].set(index, listUpdated);
+                console.log(list, 'list write');
+                dispatch({
+                  type: 'INSERT_SUCCESS'
+                });
+              } catch (error) {
+                console.log(error);
+                dispatch({
+                  type: 'INSERT_FAILURE',
+                  payload: error
+                });
+              }
+            });
+
+            return function runEffect() {
+              return _ref6.apply(this, arguments);
+            };
+          }();
+
+          runEffect();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [state.store.inserts]);
+  /**
    * @function Get
    * @description Manage global get requests.
    */
@@ -428,7 +496,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref6 = _asyncToGenerator(function* () {
+            var _ref7 = _asyncToGenerator(function* () {
               var {
                 space,
                 access,
@@ -467,7 +535,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref6.apply(this, arguments);
+              return _ref7.apply(this, arguments);
             };
           }();
 
@@ -492,7 +560,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref7 = _asyncToGenerator(function* () {
+            var _ref8 = _asyncToGenerator(function* () {
               var {
                 space,
                 access,
@@ -531,7 +599,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref7.apply(this, arguments);
+              return _ref8.apply(this, arguments);
             };
           }();
 
@@ -556,7 +624,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref8 = _asyncToGenerator(function* () {
+            var _ref9 = _asyncToGenerator(function* () {
               var {
                 space,
                 access,
@@ -593,7 +661,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref8.apply(this, arguments);
+              return _ref9.apply(this, arguments);
             };
           }();
 
@@ -618,13 +686,14 @@ var effects = (callUseEffect, state, dispatch) => {
   callUseEffect(() => {
     if (state.store && state.store.threads) {
       try {
-        var selected = state.store.threads[Object.keys(state.store.threads)[0]];
+        var selected = state.store.threads[0];
+        console.log(selected, 'selected thread');
 
         if (selected) {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref9 = _asyncToGenerator(function* () {
+            var _ref10 = _asyncToGenerator(function* () {
               var {
                 space,
                 threadName,
@@ -632,12 +701,11 @@ var effects = (callUseEffect, state, dispatch) => {
                 members,
                 options
               } = selected;
-              console.log(selected, 'thread get selected');
 
               try {
                 var read;
                 read = yield state.static.getThread(space, threadName, firstModerator, members, options);
-                console.log(read, 'THREAD GOT');
+                console.log(read, 'thread read');
                 dispatch({
                   type: 'GET_THREAD_SUCCESS',
                   space,
@@ -654,7 +722,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref9.apply(this, arguments);
+              return _ref10.apply(this, arguments);
             };
           }();
 
@@ -670,54 +738,42 @@ var effects = (callUseEffect, state, dispatch) => {
    * @description Open Space
    */
 
-  callUseEffect(() => {
-    if (state.async && state.async.threads) {
-      var threadSelected = Object.keys(state.async.threads)[2];
-
-      if (threadSelected) {
-        var runEffect =
-        /*#__PURE__*/
-        function () {
-          var _ref10 = _asyncToGenerator(function* () {
-            dispatch({
-              type: "THREAD_DELETE_SUCCESS"
-            });
-          });
-
-          return function runEffect() {
-            return _ref10.apply(this, arguments);
-          };
-        }();
-
-        runEffect();
-      }
-    }
-  }, [state.async.threads]);
+  callUseEffect(() => {// if (state.store && state.store.threads) {
+    //   const selected = Object.keys(state.store.threads)[2]
+    //   if (selected) {
+    //     const runEffect = async () => {
+    //       dispatch({
+    //         type: "THREAD_DELETE_SUCCESS",
+    //       })
+    //     };
+    //     runEffect();
+    //   }
+    // }
+  }, [state.store.threads]);
   /**
    * @function JoinThread
    * @description Open Space
    */
 
   callUseEffect(() => {
-    if (state.async && state.async.threads) {
+    if (state.store && state.store.threads) {
       try {
-        var threadSelected = state.async.threads[Object.keys(state.async.threads)[0]];
-        console.log(threadSelected, 'threadSelected');
+        var selected = state.store.threads[0];
 
-        if (threadSelected && state.spaces[threadSelected.space].instance) {
+        if (selected && state.spaces[selected.space].instance) {
           var runEffect =
           /*#__PURE__*/
           function () {
             var _ref11 = _asyncToGenerator(function* () {
               var thread, members, moderators;
+              console.log(selected, 'thread select');
 
-              if (threadSelected.threadAddress) {
-                thread = yield state.spaces[threadSelected.space].instance.joinThreadByAddress(threadSelected.threadAddress, threadSelected.options);
+              if (selected.threadAddress) {
+                thread = yield state.spaces[selected.space].instance.joinThreadByAddress(selected.threadAddress, selected.options);
               } else {
-                thread = yield state.spaces[threadSelected.space].instance.joinThread(threadSelected.threadName, threadSelected.options);
+                thread = yield state.spaces[selected.space].instance.joinThread(selected.threadName, selected.options);
               }
 
-              console.log(thread, 'thread got');
               var posts = yield thread.getPosts();
 
               if (thread._members) {
@@ -728,11 +784,11 @@ var effects = (callUseEffect, state, dispatch) => {
               dispatch({
                 type: "JOIN_THREAD_SUCCESS",
                 instance: thread,
-                threadName: threadSelected.threadName,
+                threadName: selected.threadName,
                 posts,
                 members,
                 moderators,
-                space: threadSelected.space
+                space: selected.space
               });
             });
 
@@ -747,18 +803,17 @@ var effects = (callUseEffect, state, dispatch) => {
         console.log(error);
       }
     }
-  }, [state.async, state.async.threads]);
+  }, [state.store, state.store.threads]);
   /**
    * @function ThreadPost
    * @description Add Post to Thread
    */
 
   callUseEffect(() => {
-    if (state.async && state.async.posts) {
+    if (state.store && state.store.posts) {
       try {
-        console.log('THREAD STUFF');
-        var postSelected = state.async.posts[Object.keys(state.async.posts)[0]];
-        console.log(postSelected, 'thread post selected');
+        var postSelected = state.store.posts[0];
+        console.log(postSelected, 'postSelected');
 
         if (postSelected && state.threads[postSelected.threadName]) {
           var runEffect =
@@ -768,30 +823,39 @@ var effects = (callUseEffect, state, dispatch) => {
               var posts;
 
               switch (postSelected.type) {
-                case 'threadPost':
+                case 'THREAD_POST_PUBLISH_REQUEST':
                   yield state.threads[postSelected.threadName].instance.post(postSelected.post);
                   posts = yield state.threads[postSelected.threadName].instance.getPosts();
-                  console.log(posts, 'posts');
                   dispatch({
-                    type: "THREAD_POST_SUCCESS",
+                    type: "THREAD_POST_PUBLISH_SUCCESS",
                     threadName: postSelected.threadName,
-                    posts
+                    payload: posts
                   });
                   portal.openToast({
-                    content: _react.default.createElement(_atoms.Span, null, "Post Success"),
+                    content: _react.default.createElement(_atoms.Span, {
+                      xxs: true,
+                      tag: "green"
+                    }, "Publish Success"),
                     closeOnClick: true,
                     closeTimer: 3000
                   });
                   break;
 
-                case 'threadPostDelete':
-                  console.log(postSelected, 'DELETING');
+                case 'THREAD_POST_DELETE_REQUEST':
                   yield state.threads[postSelected.threadName].instance.deletePost(postSelected.postId);
                   posts = yield state.threads[postSelected.threadName].instance.getPosts();
                   dispatch({
                     type: "THREAD_POST_DELETE_SUCCESS",
                     threadName: postSelected.threadName,
-                    posts
+                    payload: posts
+                  });
+                  portal.openToast({
+                    content: _react.default.createElement(_atoms.Span, {
+                      xxs: true,
+                      tag: "red"
+                    }, "Delete Success"),
+                    closeOnClick: true,
+                    closeTimer: 3000
                   });
                   break;
 
@@ -811,7 +875,7 @@ var effects = (callUseEffect, state, dispatch) => {
         console.log(error);
       }
     }
-  }, [state.async, state.async.posts]);
+  }, [state.store, state.store.posts]);
 };
 
 var _default = effects;

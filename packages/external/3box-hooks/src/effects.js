@@ -15,7 +15,7 @@ const effects = (callUseEffect, state, dispatch) => {
    */
   callUseEffect(() => {
     if(state.isLoginAuto && state.address) {
-      dispatch({ type: 'open' })
+      dispatch({ type: 'OPEN_REQUEST' })
     }
   }, [state.isLoginAuto, state.address])
 /**
@@ -26,7 +26,7 @@ const effects = (callUseEffect, state, dispatch) => {
     const address = window.ethereum.selectedAddress
     if(isAddress(address)) {
       dispatch({
-        type: "setAddress",
+        type: "SET_ADDRESS",
         address,
         addressShortened: shortenAddress(address, 6),
         addressTrimmed: address.substring(0, 10)
@@ -46,7 +46,7 @@ const effects = (callUseEffect, state, dispatch) => {
         state.static.getProfile(state.address)
           .then(profile => {
             dispatch({
-              type: "setProfile",
+              type: "SET_PROFILE",
               profile
             })
           })
@@ -69,7 +69,7 @@ const effects = (callUseEffect, state, dispatch) => {
     try {
       if (state.address && state.isLoggingIn) {
         const runEffect = async () => {
-          const profileInstance = await state.static.openBox(state.address, window.web3.currentProvider)
+          const instance = await state.static.openBox(state.address, window.web3.currentProvider)
           const profile = state.profile ? state.profile : await state.static.getProfile(state.address)
           const list = await state.static.listSpaces(state.address)
           const verified = await state.static.getVerifiedAccounts(profile)
@@ -77,18 +77,18 @@ const effects = (callUseEffect, state, dispatch) => {
           list.forEach(element => {
             spaces[element] = undefined
           });
+          dispatch({
+            type: "OPEN_SUCCESS",
+            profile,
+            instance,
+            spaces,
+            verified
+          })
           portal.openToast({
             label: 'Login Success',
             closeOnClick: true,
             closeTimer: 3000,
             styled: {}
-          })
-          dispatch({
-            type: "OPEN_SUCCESS",
-            profile: profile,
-            profileInstance: profileInstance,
-            spaces,
-            verified
           })
         };
         runEffect();
@@ -137,14 +137,19 @@ const effects = (callUseEffect, state, dispatch) => {
    */
   callUseEffect(() => {
     if (state.store && state.store.profiles) {
-      const spaceSelected = Object.keys(state.store.profiles)[0]
-      if (spaceSelected) {
+      const selected = state.store.profiles[0]
+      if (selected) {
         const runEffect = async () => {
-          const profile = await state.static.getProfile(spaceSelected)
+          const profile = await state.static.getProfile(selected.address)
+          const verified = await state.static.getVerifiedAccounts(profile)
+          profile.verifications = verified
+          profile.address = selected.address
+          profile.addressShort = shortenAddress(selected.address, 7)
           dispatch({
             type: "GET_PROFILE_SUCCESS",
+            address: selected.address,
             payload: profile,
-            id: spaceSelected
+            id: selected
           })
         };
         runEffect();
@@ -198,31 +203,30 @@ const effects = (callUseEffect, state, dispatch) => {
    * @description Open Space
    */
   callUseEffect(() => {
-    if (state.instance.openSpace, state.async && state.async.spaces) {
-      const spaceSelected = Object.keys(state.async.spaces)[0]
-      if (spaceSelected) {
+    if (state.instance && state.store && state.store.open) {
+      const selected = state.store.open[0]
+      if (selected) {
         try {
           const runEffect = async () => {
             let threads
-            const space = await state.instance.openSpace(spaceSelected)
+            const space = await state.instance.openSpace(selected.space)
             if(space.all) {
               threads = await space.subscribedThreads()
             }
             dispatch({
               type: "OPEN_SPACE_SUCCESS",
               instance: space,
-              space: spaceSelected,
+              space: selected.space,
               threads
             })
           };
           runEffect();
-          
         } catch (error) {
           console.log(error)
         }
       }
     }
-  }, [state.instance.openSpace, state.async.spaces])
+  }, [state.instance.openSpace, state.store.open])
 
 
   /* -------------------------------- */
@@ -270,7 +274,7 @@ const effects = (callUseEffect, state, dispatch) => {
                 }
                 const list = await state.spaces[space].instance[access].set(append, listUpdated)
                 dispatch({
-                  type: "SET_REQUEST_SUCCESS",
+                  type: "SET_SUCCESS",
                   payload: list
                 })
                 if(selected.update) {
@@ -284,7 +288,7 @@ const effects = (callUseEffect, state, dispatch) => {
               } else {
                 await state.spaces[space].instance[access].setMultiple(keys, inputs)
                 dispatch({
-                  type: "SET_REQUEST_SUCCESS",
+                  type: "SET_SUCCESS",
                 })
                 if(selected.update) {
                   dispatch({
@@ -330,6 +334,50 @@ const effects = (callUseEffect, state, dispatch) => {
       }
     }
   }, [state.store, state.store.sets])
+
+  /**
+   * @function Insert
+   * @description Insert data into nested object.
+   */
+  callUseEffect(() => {
+    if (state.store && state.store.inserts) {
+      try {
+        const selected = state.store.inserts[0]
+        if (selected) {
+          const runEffect = async () => {
+            const {
+              space, // Initialize Space
+              access, // Public or Private
+              index, // Root level key
+              key, // Key of inserted property 
+              value // Value of inserted property 
+            } = selected
+            try {
+              let list
+              list = await state.spaces[space].instance[access].get(index)
+              console.log(list, 'list read')
+              const listUpdated = { ...list, [key]: value }
+              list = await state.spaces[space].instance[access].set(index, listUpdated)
+              console.log(list, 'list write')
+              dispatch({
+                type: 'INSERT_SUCCESS',
+              })
+            } catch (error) {
+              console.log(error)
+              dispatch({
+                type: 'INSERT_FAILURE',
+                payload: error
+              })
+            }
+
+          }
+          runEffect();
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }, [state.store.inserts])
 
   /**
    * @function Get
@@ -489,15 +537,15 @@ const effects = (callUseEffect, state, dispatch) => {
   callUseEffect(() => {
     if (state.store && state.store.threads) {
       try {
-        const selected = state.store.threads[Object.keys(state.store.threads)[0]]
+        const selected = state.store.threads[0]
+        console.log(selected, 'selected thread')
         if (selected) {
         const runEffect = async () => {
           const { space, threadName, firstModerator, members, options } = selected
-          console.log(selected, 'thread get selected')
           try {
             let read
             read = await state.static.getThread(space, threadName, firstModerator, members, options)
-            console.log(read, 'THREAD GOT')
+            console.log(read, 'thread read')
             dispatch({
               type: 'GET_THREAD_SUCCESS',
               space,
@@ -528,37 +576,36 @@ const effects = (callUseEffect, state, dispatch) => {
    * @description Open Space
    */
   callUseEffect(() => {
-    if (state.async && state.async.threads) {
-      const threadSelected = Object.keys(state.async.threads)[2]
-      if (threadSelected) {
-        const runEffect = async () => {
-          dispatch({
-            type: "THREAD_DELETE_SUCCESS",
-          })
-        };
-        runEffect();
-      }
-    }
-  }, [state.async.threads])
+    // if (state.store && state.store.threads) {
+    //   const selected = Object.keys(state.store.threads)[2]
+    //   if (selected) {
+    //     const runEffect = async () => {
+    //       dispatch({
+    //         type: "THREAD_DELETE_SUCCESS",
+    //       })
+    //     };
+    //     runEffect();
+    //   }
+    // }
+  }, [state.store.threads])
 
   /**
    * @function JoinThread
    * @description Open Space
    */
   callUseEffect(() => {
-    if (state.async && state.async.threads) {
+    if (state.store && state.store.threads) {
       try {
-        const threadSelected = state.async.threads[Object.keys(state.async.threads)[0]]
-        console.log(threadSelected, 'threadSelected')
-        if (threadSelected && state.spaces[threadSelected.space].instance) {
+        const selected = state.store.threads[0]
+        if (selected && state.spaces[selected.space].instance) {
           const runEffect = async () => {
             let thread, members, moderators
-            if (threadSelected.threadAddress) {
-              thread = await state.spaces[threadSelected.space].instance.joinThreadByAddress(threadSelected.threadAddress, threadSelected.options)
+            console.log(selected, 'thread select')
+            if (selected.threadAddress) {
+              thread = await state.spaces[selected.space].instance.joinThreadByAddress(selected.threadAddress, selected.options)
             } else {
-              thread = await state.spaces[threadSelected.space].instance.joinThread(threadSelected.threadName, threadSelected.options)
+              thread = await state.spaces[selected.space].instance.joinThread(selected.threadName, selected.options)
             }
-            console.log(thread, 'thread got')
             const posts = await thread.getPosts()
             if (thread._members) {
               members = await thread.listMembers()
@@ -567,11 +614,11 @@ const effects = (callUseEffect, state, dispatch) => {
             dispatch({
               type: "JOIN_THREAD_SUCCESS",
               instance: thread,
-              threadName: threadSelected.threadName,
+              threadName: selected.threadName,
               posts,
               members,
               moderators,
-              space: threadSelected.space
+              space: selected.space
             })
           };
           runEffect();
@@ -580,45 +627,49 @@ const effects = (callUseEffect, state, dispatch) => {
         console.log(error)
       }
     }
-  }, [state.async, state.async.threads])
+  }, [state.store, state.store.threads])
 
   /**
    * @function ThreadPost
    * @description Add Post to Thread
    */
   callUseEffect(() => {
-    if (state.async && state.async.posts) {
+    if (state.store && state.store.posts) {
       try {
-        console.log('THREAD STUFF')
-        const postSelected = state.async.posts[Object.keys(state.async.posts)[0]]
-        console.log(postSelected, 'thread post selected')
+        const postSelected = state.store.posts[0]
+        console.log(postSelected, 'postSelected')
         if (postSelected && state.threads[postSelected.threadName]) {
           const runEffect = async () => {
             let posts
             switch (postSelected.type) {
-              case 'threadPost':
+              case 'THREAD_POST_PUBLISH_REQUEST':
                 await state.threads[postSelected.threadName].instance.post(postSelected.post)
                 posts = await state.threads[postSelected.threadName].instance.getPosts()
-                console.log(posts, 'posts')
                 dispatch({
-                  type: "THREAD_POST_SUCCESS",
+                  type: "THREAD_POST_PUBLISH_SUCCESS",
                   threadName: postSelected.threadName,
-                  posts,
+                  payload: posts,
                 })
                 portal.openToast({
-                  content: <Span>Post Success</Span>,
+                  content: <Span xxs tag='green'>Publish Success</Span>,
                   closeOnClick: true,
                   closeTimer: 3000,
                 })
                 break;
-              case 'threadPostDelete':
-                  console.log(postSelected, 'DELETING')
+
+              
+              case 'THREAD_POST_DELETE_REQUEST':
                 await state.threads[postSelected.threadName].instance.deletePost(postSelected.postId)
                 posts = await state.threads[postSelected.threadName].instance.getPosts()
                 dispatch({
                   type: "THREAD_POST_DELETE_SUCCESS",
                   threadName: postSelected.threadName,
-                  posts,
+                  payload: posts,
+                })
+                portal.openToast({
+                  content: <Span xxs tag='red'>Delete Success</Span>,
+                  closeOnClick: true,
+                  closeTimer: 3000,
                 })
                 break;
 
@@ -632,7 +683,7 @@ const effects = (callUseEffect, state, dispatch) => {
         console.log(error)
       }
     }
-  }, [state.async, state.async.posts])
+  }, [state.store, state.store.posts])
 }
 
 export default effects
