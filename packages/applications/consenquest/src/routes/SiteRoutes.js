@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Link, Redirect, Location } from "@reach/router";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { Site } from '@horizin/design-system'
+import { Site, Span, Box, Flex } from '@horizin/design-system'
 import { SiteHeader, SiteFooter } from '@horizin/design-system/dist/templates/Site'
 import { Branding, Footer } from "../components";
 import {
@@ -63,6 +63,16 @@ const SiteRoutes = props =>
     <SiteFooter>
       <Footer />
     </SiteFooter>
+    <Box fixed bottom={0} right={0} p={3} zIndex={500} >
+      <Flex>
+        <Link to='/contribute'>
+          <Span xxs mr={2} tag='blue'>Contribute</Span> 
+        </Link>
+        <Link to='/feedback'>
+          <Span xxs tag='green'>Feedback</Span> 
+        </Link>
+      </Flex>
+    </Box>
   </Site>
 
 

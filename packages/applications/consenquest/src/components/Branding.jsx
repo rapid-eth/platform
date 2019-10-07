@@ -7,21 +7,33 @@ const Branding = ({ styled, ...props }) =>
 <Flex between alignCenter {...styled}>
   <Flex alignCenter flex={1}>
     <Box>
-      <Link to='/'>
-        <Heading lg thin noMargin>Ξ</Heading><Span xxs>HUB</Span> 
+      <Link to='/' color='#FFF !important' >
+      <Flex alignCenter>
+          <Span circle width={25} mt={1} mr={2}><Image src='https://image.flaticon.com/icons/svg/2165/2165602.svg' /></Span>
+          <Flex column>
+            <Heading fontSize={3} thin noMargin>ETHEREUM</Heading>
+            <Span xxs>1 Million Developers</Span> 
+          </Flex>
+        </Flex>
       </Link>
     </Box>
-    
     <Flex alignCenter between ml={20} >
       <StartJourneyPopover />
     </Flex>
   </Flex>
   <Flex alignCenter justifyEnd flex={1} width={.5}>
-    <Link to='/resources'><Span xxs tag='green' mx={10}>Resources</Span></Link>
-    <BoxLoginProfile />
+    <Link to='/how-it-works'>
+        <Span xxs mr={3}>How It Works</Span>
+    </Link>
+    <Link to='/discover'>
+        <Span xxs tag='green'>Discover</Span>
+    </Link>
+    <Link to='/adventures'>
+      <Span xxs mx={3} tag='blue'>Pick Adventure</Span>
+    </Link>
     <Box alignSelf='flex-end'>
       <Link to='/account'>
-        <Button xs>ΞID</Button>
+        <Button xs>Account</Button>
       </Link>
     </Box>
   </Flex>
@@ -30,9 +42,6 @@ const Branding = ({ styled, ...props }) =>
 const Mobile = ({ styled, ...props }) =>
 <Flex between alignCenter {...styled}>
   <Flex alignCenter flex={1}>
-      {/* <Flex bg='white' p={2} circle maxWidth={50} boxShadow='sunset' mr={10} >
-        <Image maxWidth={20} src='https://icon-library.net/images/ethereum-icon/ethereum-icon-4.jpg' />
-      </Flex> */}
     <Heading thin noMargin fontSize={[3]}>Web<strong>ΞLand</strong></Heading>
   </Flex>
 

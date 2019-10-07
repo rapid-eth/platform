@@ -1,16 +1,10 @@
 import React from 'react';
-import { Buton, Blockquote,
-  Loading, Span, Modal, Flex, Heading, Image, BackgroundImage, Tabs, Popover,
-  Paragraph, Box, Container, Button, Card, HorizontalRule, Panel, Absolute, Link
+import {
+  Loading, Span, Flex, Heading, Image, BackgroundImage, 
+  Paragraph, Box, Container, Absolute, Link
 } from '@horizin/design-system';
 
-import {
-  BoxAccess, BoxThreadPostList, BoxSpaceOpen,
-  BoxLoginCard, BoxLoginButton, BoxVerified } from '@kames/3box-components/dist'
-
-import EtheruemFeatures from './EthereumFeatures'
-
-
+import { BoxLoginCard } from '@kames/3box-components/dist'
 const Home = ({ styled, ...props }) =>
 
   <>
@@ -23,9 +17,10 @@ const Home = ({ styled, ...props }) =>
         <Box px={200}>
           <Heading xl heavy><Span md thin>ETHEREUM MISSION</Span><br/><Span heavy>1 Million Developers</Span> </Heading>
           <Paragraph mt={3}>
-            <strong>A core feature of blockchain is composability.</strong> Help compose the future of Ethereum - contribute to an Open Catalog of smart contracts and libraries. 
+            <strong>A core feature of blockchain is composability.</strong><br/>Help compose the future of Ethereum - contribute to an Open Catalog of smart contracts and libraries. 
           </Paragraph>
-          <Flex alignCenter>
+
+          {/* <Flex alignCenter>
             <Span xs tag='blue'>Beginner</Span><br/>
             <Span xxs  mx={3}>Enble Web3 Browser</Span>
           </Flex>
@@ -36,9 +31,8 @@ const Home = ({ styled, ...props }) =>
           <Flex alignCenter mt={3}>
             <Span xs tag='red'>Advanced</Span><br/>
             <Span xxs normal mx={3}>Submit Open Source Project</Span>
-          </Flex>
+          </Flex> */}
           
-          <Button xs rounded mt={3} variant='white' width='100%'>Refer a Dev</Button>
         </Box>
       </Flex>
 
@@ -58,12 +52,12 @@ const Home = ({ styled, ...props }) =>
       </Flex>
     </Flex>
     {/* <DeveloperStatus /> */}
-    <Container my={3} maxWidth={800}>
+    {/* <Container my={3} maxWidth={800}>
       <Flex center column>
         <Image src='https://imgur.com/NhCRGGI.png'/>
         <Heading>Join Us on the March to 1,000,000 Developers</Heading>
       </Flex>
-    </Container>
+    </Container> */}
     <Box py={40}>
 
       <Container>
@@ -90,8 +84,8 @@ const Home = ({ styled, ...props }) =>
             <Span pointer tag='green' >
               <Flex alignCenter>
                 <Image maxWidth={28} circle mx={2} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />
-                <Link to='/discover' >
-                  <Span mx={3}>Discover <Span><strong> Your Ah-Ha </strong></Span> Moment</Span>
+                <Link to='/discover' color='white' >
+                  <Span color='white !important' mx={3}>Discover <Span><strong> Your Ah-Ha </strong></Span> Moment</Span>
                 </Link>
               </Flex>
               </Span>
@@ -111,7 +105,7 @@ const Home = ({ styled, ...props }) =>
               <Flex alignCenter>
                 <Image maxWidth={28} circle mx={2} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />
                 <Link to='/discover' >
-                  <Span mx={3}>Earn<Span><strong> DEV </strong></Span> Token</Span>
+                  <Span color='white !important' mx={3}>Earn<Span><strong> DEV </strong></Span> Token</Span>
                 </Link>
               </Flex>
               </Span>
@@ -131,60 +125,5 @@ const Home = ({ styled, ...props }) =>
     </Box>
   </>
 
-const DeveloperStatus = ({ styled, ...props}) => { 
- return(
-  <Box color='white' bg='dark' gradient='black' p={4} >
-    <Flex alignCenter between width='100%'>
-      <Flex>
-        <Span xxs tag='green'>Status: Enabled</Span>
-        <Span xxs tag='white' mx={3}>Address: 0xfA6...a48cE</Span>
-        <Span xxs tag='white'>Network: Rinkeby</Span>
-      </Flex>
-      <Flex>
-        <Span sm  >Earn DEV - Refer A Friend</Span>
-      </Flex>
-      <Flex>
-        <Panel
-            content={<div>hello</div>}
-            styled={{
-            }}
-            >
-          <Button sm mx={1} variant='red'>Manage Profile</Button>
-        </Panel>
-        <Modal
-            content={<div>hello</div>}
-            styled={{
-            }}
-            >
-          <Button sm mx={1}>Share Status Update</Button>
-        </Modal>
-      </Flex>
-    </Flex>
-  </Box>
-)}
-
-const CodeEditor = ({ styled, ...props}) => { 
- return(
-  <Flex fullWidth >
-    
-
-    <Flex gradient='black' flex={1} py={50}  >
-      <BackgroundImage ratio={.35} src='https://blockexplorer.com/news/wp-content/uploads/2018/08/ethereum-logo.jpg' opacity={.2} />
-      <Flex center column mt={50} ml={-90} p={30}>
-        <Image src={'https://i.imgur.com/0iBDGhY.jpg'} maxWidth={700} rounded card p={1} />
-      </Flex>
-    </Flex>
-
-    <Flex center column flex={1} py={50} >
-      <Box px={140}>
-        <Heading xxl heavy><Span md thin>Smart Contracts Templates</Span></Heading>
-        <Heading sm heavy>Get started now. Start experimenting with blockchain today.</Heading>
-        <Paragraph mt={3}>
-          <strong>The core feature of blockchain is composability.</strong> Help compose the future of Ethereum - contribute to an Open Catalog of smart contracts and decentralized libraries for everyone to use. 
-        </Paragraph>
-      </Box>
-    </Flex>
-  </Flex>
-)}
 
 export default Home

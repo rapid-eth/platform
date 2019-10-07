@@ -142,7 +142,7 @@ var BoxLoginCard = (_ref) => {
     borderRadius: 30,
     variant: "white",
     p: 4
-  }, "Follow")), _react.default.createElement(_designSystem.Heading, {
+  }, "Follow")), props.biography && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_designSystem.Heading, {
     sm: true,
     heavy: true
   }, "Biography"), _react.default.createElement(_designSystem.Box, {
@@ -151,49 +151,7 @@ var BoxLoginCard = (_ref) => {
     overflow: "auto"
   }, _react.default.createElement(_designSystem.Paragraph, {
     sm: true
-  }, profile && profile.biography)), _react.default.createElement(_designSystem.Box, {
-    card: true,
-    my: 3
-  }, _react.default.createElement(_atoms.HorizontalRule, {
-    iconic: true,
-    my: 10
-  }), _react.default.createElement(_designSystem.Flex, {
-    alignCenter: true,
-    between: true,
-    my: 2
-  }, _react.default.createElement(_designSystem.Span, null, "Followers"), _react.default.createElement(_designSystem.Span, {
-    tag: "white"
-  }, "242")), _react.default.createElement(_atoms.HorizontalRule, {
-    iconic: true,
-    my: 10
-  }), _react.default.createElement(_designSystem.Flex, {
-    alignCenter: true,
-    between: true,
-    my: 2
-  }, _react.default.createElement(_designSystem.Span, null, "Following"), _react.default.createElement(_designSystem.Span, {
-    tag: "white"
-  }, "4")), _react.default.createElement(_atoms.HorizontalRule, {
-    iconic: true,
-    my: 10
-  }), _react.default.createElement(_designSystem.Flex, {
-    alignCenter: true,
-    between: true,
-    my: 2
-  }, _react.default.createElement(_designSystem.Span, null, "Projects"), _react.default.createElement(_designSystem.Span, {
-    tag: "white"
-  }, "2")), _react.default.createElement(_atoms.HorizontalRule, {
-    iconic: true,
-    my: 10
-  }), _react.default.createElement(_designSystem.Flex, {
-    alignCenter: true,
-    between: true,
-    my: 2
-  }, _react.default.createElement(_designSystem.Span, null, "Teams"), _react.default.createElement(_designSystem.Span, {
-    tag: "white"
-  }, "5")), _react.default.createElement(_atoms.HorizontalRule, {
-    iconic: true,
-    my: 10
-  }))))));
+  }, profile && profile.biography)))))));
 };
 
 BoxLoginCard.defaultProps = {
