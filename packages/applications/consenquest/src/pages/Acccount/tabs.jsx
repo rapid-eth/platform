@@ -33,26 +33,21 @@ const Tabs = props => {
   console.log(props, 'tabs props')
   return (
   <>
-    <TabList tabGroup='account' tabIdSelected='network'>
-      <Tab tabId='network'>
-        <Flex alignCenter center>
-          <Span circle card width={38} p={2} ><Image src='https://image.flaticon.com/icons/svg/1679/1679754.svg' /></Span>
-          <Span ml={3}>Network</Span>
-        </Flex>
-      </Tab>
-      <Tab tabId='projects'>
-        <Flex alignCenter center>
-          <Span circle card width={38} p={2} ><Image src='https://image.flaticon.com/icons/svg/1679/1679169.svg' /></Span>
-          <Span ml={3}>Projects</Span>
-        </Flex>
-      </Tab>
+    <TabList tabGroup='account' tabIdSelected='questing'>
       <Tab tabId='questing'>
         <Flex alignCenter center>
           <Span circle card width={38} p={2} ><Image src='https://image.flaticon.com/icons/svg/1673/1673599.svg' /></Span>
           <Span ml={3}>Questing</Span>
         </Flex>
       </Tab>
-    </TabList>
+      <Tab tabId='network'>
+        <Flex alignCenter center>
+          <Span circle card width={38} p={2} ><Image src='https://image.flaticon.com/icons/svg/1679/1679754.svg' /></Span>
+          <Span ml={3}>Network</Span>
+        </Flex>
+      </Tab>
+ 
+   </TabList>
 
     {/* Tabs */}
     <Box p={3}>

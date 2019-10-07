@@ -74,35 +74,17 @@ return(
       <Absolute layout='topRight' mt={-20} mx={3}>
         <Button borderRadius={30} variant='white' p={4}>Follow</Button>
       </Absolute>
-      <Heading sm heavy>Biography</Heading>
-      <Box maxHeight={160} pr={3} overflow='auto'>
-        <Paragraph sm>
-          {profile && profile.biography}
-        </Paragraph>
-      </Box>
-      <Box card my={3}>
-        <HorizontalRule iconic my={10} />
-        <Flex alignCenter between my={2}>
-          <Span>Followers</Span>
-          <Span tag='white'>242</Span>
-        </Flex>
-        <HorizontalRule iconic my={10} />
-        <Flex alignCenter between my={2}>
-          <Span>Following</Span>
-          <Span tag='white'>4</Span>
-        </Flex>
-        <HorizontalRule iconic my={10} />
-        <Flex alignCenter between my={2}>
-          <Span>Projects</Span>
-          <Span tag='white'>2</Span>
-        </Flex>
-        <HorizontalRule iconic my={10} />
-        <Flex alignCenter between my={2}>
-          <Span>Teams</Span>
-          <Span tag='white'>5</Span>
-        </Flex>
-        <HorizontalRule iconic my={10} />
-      </Box>
+      {
+        props.biography &&
+        <>
+          <Heading sm heavy>Biography</Heading>
+          <Box maxHeight={160} pr={3} overflow='auto'>
+            <Paragraph sm>
+              {profile && profile.biography}
+            </Paragraph>
+          </Box>
+        </>
+      }
       </Box>
       </Box>
     </Box>

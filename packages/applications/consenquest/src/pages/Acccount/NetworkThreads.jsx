@@ -4,9 +4,7 @@ import PropTypes from 'prop-types'
 
 /* --- Local Dependencies --- */
 import ThreadAPI from './threadAPI'
-import {
-  Access
-} from '@kames/3box-components/dist'
+const APPRENTICES = process.env.REACT_APP_FLAG_APPRENTICES
 const NetworkThreads = props => { 
  return(
   <>
@@ -18,12 +16,15 @@ const NetworkThreads = props => {
       threadName={`${props.address.toLowerCase()}`}
       address={props.address}
       />
-    <ThreadAPI
-      label='Apprentices'
-      summary='Registered via Connection Link'
-      threadName={`${props.address.toLowerCase()}_apprentices`}
-      address={props.address}
-      />
+      {/* {
+        APPRENTICES &&
+        <ThreadAPI
+        label='Apprentices'
+        summary='Registered via Connection Link'
+        threadName={`${props.address.toLowerCase()}_apprentices`}
+        address={props.address}
+        />
+      } */}
   </>
 )}
 

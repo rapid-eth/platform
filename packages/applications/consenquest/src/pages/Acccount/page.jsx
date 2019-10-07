@@ -280,68 +280,6 @@ return(
    </>
 )}
 
-/**
- * @function AccountSocialTab
- * @param {Object} props Standard React Props
- * @returns {Function} React component
- */
-const AccountSocialTab = ({ styled, ...props}) => { 
-return(
-   <>
-     <Heading lg>Social</Heading>
-   </>
-)}
-
-/**
- * @function AccountEmblemsTab
- * @param {Object} props Standard React Props
- * @returns {Function} React component
- */
-const AccountEmblemsTab = ({ styled, ...props}) => { 
-return(
-   <>
-      <Box card my={4}>
-       <Box overflow='auto' maxWidth={800}>
-         <Flex p={3}>
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-         </Flex>
-       </Box>
-       <Absolute layout='topRight' m={-2}>
-         <Button sm tag='green'>Kudos</Button>
-       </Absolute>
-     </Box>
- 
-     <Box card my={4}>
-       <Box overflow='auto' maxWidth={800}>
-         <Flex p={3}>
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-           <EmblemCardMini />
-         </Flex>
-       </Box>
-       <Absolute layout='topRight' m={-2}>
-         <Button sm tag='green'>Open Emblems</Button>
-       </Absolute>
-     </Box>
-   </>
-)}
-
 const EarnCollectibles = () => { 
  return(
   <Flex alignCenter>
