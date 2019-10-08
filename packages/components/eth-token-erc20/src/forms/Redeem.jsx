@@ -52,7 +52,6 @@ const Redeem = ({ amount, ethers, contractAddress, contractName, delta, styled, 
    * @description Display component state to user.
    */
   const StatusEffect = () =>useEffect( () => { 
-    console.log(props.address, 'redeem address')
     if(ethers.contracts[props.address]) {
       setStatus({contract: true})
     }
@@ -113,7 +112,7 @@ const Redeem = ({ amount, ethers, contractAddress, contractName, delta, styled, 
           placeholder="Certificate ID"
         />
         <Flex alignCenter>
-          <Button sm type='submit' {...props.styledButton}>
+          <Button sm type='submit' disabled={!status.contract} {...props.styledButton}>
             { deploying
               ? <Span>Confirming...</Span>
               : <Span>Tranfser {!status.contract && <Span xxs>Not Connected</Span> } </Span>

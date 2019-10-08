@@ -103,8 +103,6 @@ var Redeem = (_ref) => {
 
 
   var StatusEffect = () => (0, _react.useEffect)(() => {
-    console.log(props.address, 'redeem address');
-
     if (ethers.contracts[props.address]) {
       setStatus({
         contract: true
@@ -171,7 +169,8 @@ var Redeem = (_ref) => {
     alignCenter: true
   }, _react.default.createElement(_designSystem.Button, _extends({
     sm: true,
-    type: "submit"
+    type: "submit",
+    disabled: !status.contract
   }, props.styledButton), deploying ? _react.default.createElement(_designSystem.Span, null, "Confirming...") : _react.default.createElement(_designSystem.Span, null, "Tranfser ", !status.contract && _react.default.createElement(_designSystem.Span, {
     xxs: true
   }, "Not Connected"), " ")), _react.default.createElement(_designSystem.Toast, {
