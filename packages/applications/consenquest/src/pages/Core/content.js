@@ -12,7 +12,7 @@ export const Team = `
 
 **Build a 'Questing' platform that make the experience of 'a-ha' moments fun and easy.** Make the platform extensible enough to allow the community to easily create their own Quests. Make the platform not only interesting for new Ethereum developers, but also for those already involved in the space - to keep them around - by creating a platform which allows them to connect and collaborate.
 
-- **Main Features:** A curated 'A-Ha' Moment questing flow
+- **Main Features:** A series of quests focused on giving users their 'A-Ha' Moment
 - **Additional Features:** Rewards & Referrals
 - **Timeline:** 2 Weeks
 
@@ -43,9 +43,9 @@ How cool is that?
 ## Billy Luedkete
 #### Product Manager
 
-The gamification of educational or instructional material is not an entirely new concept; however, it is a concept which Ethereum makes immensely more valuable. In Web2.0 game platforms, the rewards you obtain and reputation you build are not portable - they do not exist outside of that specific game's platform. What if that platform becomes obsolete or unsupported? What if you want to show your achievements to the outside world?
+The gamification of educational or instructional material is not an entirely new concept; however, it is a concept which Ethereum makes immensely valuable. In Web2.0 game platforms, the rewards you obtain and reputation you build are not portable - they typically do not exist outside of that specific game's platform. What if that platform becomes obsolete or unsupported? What if you want to show your achievements to the outside world? What if you want to build another platform to interact with those rewards / reputation?
 
-By leveraging Ethereum, we can make an entirely new class of gamification platforms which can all easily interoperate with applications that have nothing to do with the games themselves. Composability at its finest.
+This is important because the stickiness of a platform is largely determined by whether or not the player feels as if he/she is achieving something. By leveraging Ethereum, we can build open, interoperable gamification platforms, where this sense of achievement is largely increased.
 
 This application is the first step in that direction.
 `
