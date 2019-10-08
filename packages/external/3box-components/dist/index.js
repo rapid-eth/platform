@@ -3,6 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+Object.defineProperty(exports, "UploadImage", {
+  enumerable: true,
+  get: function get() {
+    return _UploadImage.default;
+  }
+});
 Object.defineProperty(exports, "Branch", {
   enumerable: true,
   get: function get() {
@@ -237,6 +243,8 @@ Object.defineProperty(exports, "BoxVerified", {
     return _BoxVerified.default;
   }
 });
+
+var _UploadImage = _interopRequireDefault(require("./IPFS/UploadImage"));
 
 var _Branch = _interopRequireDefault(require("./CMS/Branch"));
 

@@ -42,6 +42,7 @@
     "@horizin/design-system": "^1.0.0",
     "@horizin/react-hooks-portal": "^1.0.0",
     "@horizin/react-hooks-tabs": "^1.0.0",
+    "buffer": "^5.4.3",
     "ethereum-blockies": "^0.1.1",
     "ethereum-blockies-base64": "^1.0.2",
     "idx": "^2.5.6",

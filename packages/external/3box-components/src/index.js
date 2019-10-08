@@ -1,5 +1,8 @@
 
 
+export { default as UploadImage } from './IPFS/UploadImage'
+
+// CMS
 export { default as Branch } from './CMS/Branch'
 export { default as Access } from './BoxAccess'
 export { default as Component } from './CMS/Component'
