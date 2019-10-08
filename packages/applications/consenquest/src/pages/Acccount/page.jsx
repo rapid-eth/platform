@@ -1,38 +1,26 @@
 /* eslint-disable no-negated-condition */
 import idx from 'idx';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
 import { BoxWrapper } from '@kames/3box-hooks/dist'
 import {
   BackgroundImage, Flex, Card, Box, Menu, Heading, HorizontalRule, Button, Toast, Container, Panel, Span, Absolute, Image, Modal
 } from '@horizin/design-system';
 import {
-  BoxAccess, BoxThreadPostList, BoxProfileRetrieve, BoxThreadPostDelete, BoxLoginCardVanity, Messaging, Reference
+  BoxLoginCardVanity,
 } from '@kames/3box-components/dist'
 
 
 import {
   TeamCreate, 
 } from '@kames/dao-system'
-
-import {
-  FormWebLandStatus
-} from "../../components/3Box";
-
-import DateTime from 'luxon/src/datetime.js'
-import Paragraph from '@horizin/design-system/dist/atoms/Paragraph';
-import ProjectCreateModal from './ProjectCreateModal'
-import PollCreateModal from './PollCreateModal'
-import StatusPublishModal from './StatusPublishModal'
 import Tabs from './tabs' 
-
-
 // CMS Global Configs
 const ROOT = process.env.REACT_APP_DEFAULT_ROOT
 const SPACE = process.env.REACT_APP_DEFAULT_SPACE
 const Account = ({box, styled, ...props }) =>
 !box.address ? (
-  <Flex gradient='blueDark'  center column minHeight='60vh' width='100%'>
+  <Flex  center column gradient='blueDark' minHeight='60vh' width='100%'>
     <Span><BoxLoginCardVanity /></Span>
   </Flex>
 ) :

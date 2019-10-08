@@ -23,6 +23,7 @@ import Account from '../pages/Acccount'
 import Tokens from '../pages/Tokens'
 import Community from '../pages/Community'
 import Proposal from '../pages/Proposal'
+import Contracts from '../pages/Contracts'
 
 // COre
 import { Start as Discover } from '../pages/Guided'
@@ -78,8 +79,7 @@ const SiteRoutes = props =>
         <Advanced path='/advanced/*' />
         <ATM path='/atm/*' />
         <PledgeList path='/pledges/*' />
-        <ContractConnect path='/contracts/*' />
-        <ContractConnect path='/admin/*' />
+        <Contracts path='/contracts/*' />
       </FadeTransitionRouter>
 
     <SiteFooter>
