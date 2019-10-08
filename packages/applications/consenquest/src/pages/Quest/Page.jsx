@@ -18,9 +18,6 @@ const QuestPage = ({ styled, ...props }) =>
   <Box width='100%'>
     {/* Header */}
     <Flex gradient='black' gradientDir='140' minHeight={380}>
-      <BackgroundImage
-        boxShadow='sunset' overflow='hidden' ratio={.3} opacity={.27}
-        src={'https://images.ui8.net/uploads/blockchain_platform_6_1527438185419.jpg'} />
         <Container maxWidth='90%' >
           <Flex fullWidth height='100%'>
             
@@ -61,7 +58,16 @@ const QuestPage = ({ styled, ...props }) =>
         <Flex width='100%'>
 
           <Box flex={7}>
-          <TabList tabGroup='account' tabIdSelected='details'>
+          <Box card m={5} p={3}>
+            {
+              props.content &&
+              <Markdown>
+                {props.content}
+              </Markdown>
+            }
+          </Box>
+
+          {/* <TabList tabGroup='account' tabIdSelected='details'>
             <Tab tabId='details'>Details</Tab>
             <Tab tabId='quests'>Instructions</Tab>
             <Tab tabId='help'>Help</Tab>
@@ -81,9 +87,9 @@ const QuestPage = ({ styled, ...props }) =>
             </TabPanel>
             <TabPanel tabGroup='account' tabId='details'>
               {
-                props.description &&
+                props.content &&
                 <Markdown>
-                  {props.description}
+                  {props.content}
                 </Markdown>
               }
             </TabPanel>
@@ -105,7 +111,7 @@ const QuestPage = ({ styled, ...props }) =>
                 />
               </BoxAccess>
             </TabPanel>
-            </Box>
+            </Box> */}
 
           </Box>
 

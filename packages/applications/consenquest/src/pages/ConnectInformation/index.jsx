@@ -1,10 +1,9 @@
 import React from 'react';
-import { Flex, Heading, BackgroundImage,Box, Button } from '@horizin/design-system';
+import { Flex, Heading, BackgroundImage,Box, Container, Button, Paragraph } from '@horizin/design-system';
 
 import {
   BoxLoginCard, BoxProfileRetrieve
 } from '@kames/3box-components/dist'
-import { Container } from '@horizin/design-system/dist/atoms';
 
 import {
   TransferEventList,
@@ -42,27 +41,21 @@ const ConnectInformation = props =>
     </Container>
   </Box>
 
-  <Container py={100}>
-    <Flex>
-      <Box flex={1} p={4} maxWidth={300}>
-        {/* <Transfer address='0x4c5effcd6eb5fa67e330c5d29f87df52dff01c05'/> */}
-      </Box>
-      <Box flex={1} p={4}>
-        <DeployERC20 />
-      </Box>
-      <Box flex={1} p={4}>
-        <InitializeERC20 address='0x4c5effcd6eb5fa67e330c5d29f87df52dff01c05' />
-        {/* <DetailsERC20 address='0x4c5effcd6eb5fa67e330c5d29f87df52dff01c05'/>
-        <TotalSupply address='0x4c5effcd6eb5fa67e330c5d29f87df52dff01c05'/>
-        <BoxProfileRetrieve address='0xfA67ddE98346d6033f3Da0b157b70fe8434a48cE' />
-        <Balance address='0x4c5effcd6eb5fa67e330c5d29f87df52dff01c05' balanceOf='0xfA67ddE98346d6033f3Da0b157b70fe8434a48cE' />
-        <BoxProfileRetrieve address='0x068a1a9b6da95e03b6a2716fdeee0854117300a3' />
-        <Balance address='0x4c5effcd6eb5fa67e330c5d29f87df52dff01c05' balanceOf='0x068a1a9b6da95e03b6a2716fdeee0854117300a3' /> */}
-      </Box>
-    </Flex>
-    <Box>
-      <TransferEventList address='0x4c5effcd6eb5fa67e330c5d29f87df52dff01c05' />
-    </Box>
+  <Container py={100} maxWidth={780}>
+      <Heading xxl>Collecting Referrals</Heading>
+      <Paragraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi accumsan felis lacus, id faucibus erat lacinia nec. Nullam luctus justo ac sem rutrum tincidunt. Suspendisse tempor, dui condimentum semper aliquet, dui dolor accumsan lorem, cursus porta metus eros at nunc. Integer a viverra nibh. Nunc condimentum libero ex. Aliquam erat volutpat. Mauris convallis dapibus mi non volutpat. Curabitur sagittis interdum ligula, in porta tortor pretium in. Proin vel tincidunt felis. Curabitur vitae nibh magna. Ut id tellus a ante vulputate mollis. Etiam finibus pellentesque eros ut maximus. Curabitur consectetur sit amet tortor nec pellentesque. Integer vitae urna massa.
+      </Paragraph>
+
+      <Heading xxl>Get Rewarded</Heading>
+      <Paragraph>
+        Ut tristique risus eget dolor imperdiet, in auctor ipsum commodo. Nulla facilisi. Cras vulputate, dolor a convallis tincidunt, mauris dolor placerat mauris, eget mollis lorem tellus molestie velit. Nulla consectetur est nec ipsum luctus mollis. Aenean ac urna porta, elementum odio vel, volutpat sapien. Vivamus dignissim ligula est, at tincidunt est dignissim vel. Nam risus tellus, gravida sit amet arcu sed, elementum venenatis urna. Praesent ac sollicitudin mauris.
+      </Paragraph>
+
+      <Heading xxl>Earn Reputation</Heading>
+      <Paragraph>
+        Sed ornare tincidunt dui, et facilisis ipsum tempus ac. Fusce suscipit id augue id egestas. Donec tempor, libero placerat pulvinar congue, nulla est volutpat quam, id volutpat ipsum felis at mauris. In scelerisque non risus aliquam pretium. Nunc condimentum enim id malesuada ullamcorper. Maecenas id rhoncus neque, vitae efficitur lacus. Quisque eleifend magna nec turpis molestie, eu dignissim mi aliquam. Suspendisse sit amet aliquet eros. Cras a felis commodo, cursus sem ut, auctor lectus. In egestas rhoncus scelerisque. Mauris viverra sed sapien sed feugiat. Fusce id ligula tristique purus accumsan gravida eget sed augue. Quisque eu lorem suscipit sapien auctor euismod eget vel elit. Praesent sit amet arcu eget neque blandit ultricies.
+      </Paragraph>
   </Container>
 </>
 
