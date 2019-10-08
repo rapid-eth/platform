@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Loading, Span, Flex, Heading, Image, BackgroundImage, 
+  Loading, Span, Flex, Heading, Image, BackgroundImage,
   Paragraph, Box, Container, Absolute, Link
 } from '@horizin/design-system';
 
@@ -15,10 +15,11 @@ const Home = ({ styled, ...props }) =>
           <Span thin tag='white' xxs ><strong><a href='#'>Contribute to DEVLand</a></strong></Span>
         </Absolute>
         <Box px={200}>
-          <Heading xl heavy><Span md thin>ETHEREUM MISSION</Span><br/><Span heavy>1 Million Developers</Span> </Heading>
+          <Heading xl heavy><Span md thin>OUR MISSION</Span><br /><Span heavy>1 Million Developers</Span> </Heading>
           <Paragraph mt={3}>
-            <strong>A core feature of blockchain is composability.</strong><br/>Help compose the future of Ethereum - contribute to an Open Catalog of smart contracts and libraries. 
+            <strong>Developers. Developers. Developers.</strong><br />The goal of this platform is to help play a role in the expansion of the Ethereum developer ecosystem. We believe that the continued success of Ethereum is reliant on the attraction of the best and brightest talent to the space.
           </Paragraph>
+
         </Box>
       </Flex>
 
@@ -37,35 +38,26 @@ const Home = ({ styled, ...props }) =>
         <Absolute layout='topRight' mr={30} mt={190} ><Loading type='ripple' /></Absolute>
       </Flex>
     </Flex>
-    {/* <DeveloperStatus /> */}
-    {/* <Container my={3} maxWidth={800}>
-      <Flex center column>
-        <Image src='https://imgur.com/NhCRGGI.png'/>
-        <Heading>Join Us on the March to 1,000,000 Developers</Heading>
-      </Flex>
-    </Container> */}
+
     <Box py={40}>
 
       <Container>
         <Flex alignCenter p={4}>
-        <Flex flex={2}>
-           <Box width='150%' ml='-50%'>
+          <Flex flex={2}>
+            <Box width='150%' ml='-50%'>
               <Image
-                maxWidth={600} borderRadius='0 100px 100px 0' p={1} 
-                src={'https://images.ui8.net/uploads/blockchain_platform_5_1527438188551.jpg'}/>
-           </Box>
+                maxWidth={600} borderRadius='0 100px 100px 0' p={1}
+                src={'https://images.ui8.net/uploads/blockchain_platform_5_1527438188551.jpg'} />
+            </Box>
           </Flex>
           <Box flex={3} p={5}>
-            <Heading lg heavy>Discover the <Span>"Ah-Ha"</Span> moment</Heading>
-            <Heading md thin>Find what makes blockchain great. <strong><em>Composability</em></strong>.</Heading>
+            <Heading lg heavy>Discover your <Span>"Ah-Ha"</Span> moment</Heading>
+            <Heading md thin>Find out what makes Ethereum great.</Heading>
             <Paragraph>
-              The Ethereum Blockchain is a global computer. The computer provides the building blocks for crafting composable functions.
+              A common thread amongst Ethereum ecosystem participants seems to be their experience of a revelation - an 'a-ha' moment when they finally grasped the potential of Ethereum and dropped everything to work on it.
             </Paragraph>
             <Paragraph>
-              <em><strong>The power is immense.</strong> What can be built is <strong>extraordinary</strong>.</em>
-            </Paragraph>
-            <Paragraph>
-              Discover the blockchain "ah-ha" moment by first understanding why <strong>global composability is world changing</strong>. 
+              Find your 'a-ha' moment by completing the interactive <strong>Adventures</strong> and <strong>Quests</strong> we've established to help introduce you to some of the most important aspects of Ethereum.
             </Paragraph>
             <Span pointer tag='green' >
               <Flex alignCenter>
@@ -74,18 +66,21 @@ const Home = ({ styled, ...props }) =>
                   <Span color='white !important' mx={3}>Discover <Span><strong> Your Ah-Ha </strong></Span> Moment</Span>
                 </Link>
               </Flex>
-              </Span>
+            </Span>
           </Box>
-          
+
         </Flex>
       </Container>
       <Container>
         <Flex alignCenter p={4}>
           <Box flex={3} p={5}>
-            <Heading lg heavy>Quest to <Span> Collect Precious DEV</Span> Token</Heading>
-            <Heading md thin>Earn reputation in the developer community. <strong><em>Earn DEV</em></strong>.</Heading>
+            <Heading lg heavy><Span> Collect Precious </Span>DEV Token</Heading>
+            <Heading md thin>Build reputation in the developer community. <strong><em>Earn DEV</em></strong>.</Heading>
             <Paragraph>
-              Start earning DEV
+              Have you already experienced your 'a-ha' moment?
+            </Paragraph>
+            <Paragraph>
+              Earn DEV token by completing quests or referring your friends!
             </Paragraph>
             <Span pointer tag='blue' >
               <Flex alignCenter>
@@ -94,20 +89,20 @@ const Home = ({ styled, ...props }) =>
                   <Span color='white !important' mx={3}>Earn<Span><strong> DEV </strong></Span> Token</Span>
                 </Link>
               </Flex>
-              </Span>
+            </Span>
           </Box>
 
           <Flex flex={2}>
-           <Box width='150%' mr='-50%'>
+            <Box width='150%' mr='-50%'>
               <Image
-                maxWidth={600} borderRadius='100px 0 0 100px' p={1} 
-                src='https://images.ui8.net/uploads/blockchain_platform_3_1527438195999.jpg'/>
-           </Box>
+                maxWidth={600} borderRadius='100px 0 0 100px' p={1}
+                src='https://images.ui8.net/uploads/blockchain_platform_3_1527438195999.jpg' />
+            </Box>
           </Flex>
-          
+
         </Flex>
       </Container>
-      
+
     </Box>
   </>
 
