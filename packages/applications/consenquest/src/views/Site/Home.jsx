@@ -4,7 +4,7 @@ import {
   Paragraph, Box, Container, Absolute, Link
 } from '@horizin/design-system';
 
-import { BoxLoginCard } from '@kames/3box-components/dist'
+import { BoxLoginCard, UploadImage } from '@kames/3box-components/dist'
 const Home = ({ styled, ...props }) =>
 
   <>
@@ -19,20 +19,6 @@ const Home = ({ styled, ...props }) =>
           <Paragraph mt={3}>
             <strong>A core feature of blockchain is composability.</strong><br/>Help compose the future of Ethereum - contribute to an Open Catalog of smart contracts and libraries. 
           </Paragraph>
-
-          {/* <Flex alignCenter>
-            <Span xs tag='blue'>Beginner</Span><br/>
-            <Span xxs  mx={3}>Enble Web3 Browser</Span>
-          </Flex>
-          <Flex alignCenter mt={3}>
-            <Span xs tag='green'>Intermediate</Span><br/>
-            <Span xxs mx={3}>Smart Contract Playground</Span>
-          </Flex>
-          <Flex alignCenter mt={3}>
-            <Span xs tag='red'>Advanced</Span><br/>
-            <Span xxs normal mx={3}>Submit Open Source Project</Span>
-          </Flex> */}
-          
         </Box>
       </Flex>
 

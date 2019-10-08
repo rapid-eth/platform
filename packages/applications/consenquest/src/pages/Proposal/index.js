@@ -9,18 +9,18 @@ import {
   ItemView,
 } from '@kames/dao-system'
 
-const QuestRoutes = ({ box, styled, ...props}) => {
-  const [ dispatched, setDispatched ] = useState()
-  const [ post, setPost ] = useState()
+const QuestRoutes = ({ box, styled, ...props }) => {
+  const [dispatched, setDispatched] = useState()
+  const [post, setPost] = useState()
 
-  useEffect( () => { 
-    if(!dispatched) {
+  useEffect(() => {
+    if (!dispatched) {
       const runEffect = async () => {
         console.log(box, 'box.static')
         const ipfs = await Box3.getIPFS()
         const post = await ipfs.dag.get(props.postId)
-        const postValues = idx(post, _=>_.value.payload.value)
-        if(postValues) {
+        const postValues = idx(post, _ => _.value.payload.value)
+        if (postValues) {
           setPost({
             message: postValues.message,
             postId: props.postId,
@@ -34,17 +34,18 @@ const QuestRoutes = ({ box, styled, ...props}) => {
     }
   }, [dispatched])
 
- return(
-  post ?
-  <Box gradient='blue' py={4}>
-    <BackgroundImage opacity={.16} ratio={.35} src='https://static.vecteezy.com/system/resources/previews/000/202/998/original/ethereum-currency-illustration-based-on-world-map-background-vector.jpg' />
-    {console.log(post, 'post render')}
-    <Container maxWidth={720} my={4}>
-      <ItemView isFullView {...post} />
-    </Container>
-  </Box>
-  : null
-)}
+  return (
+    post ?
+      <Box gradient='blue' py={4}>
+        <BackgroundImage opacity={.16} ratio={.35} src='https://static.vecteezy.com/system/resources/previews/000/202/998/original/ethereum-currency-illustration-based-on-world-map-background-vector.jpg' />
+        {console.log(post, 'post render')}
+        <Container maxWidth={720} my={4}>
+          <ItemView isFullView {...post} />
+        </Container>
+      </Box>
+      : null
+  )
+}
 
 QuestRoutes.defaultProps = {
   space: 'eth',
@@ -52,4 +53,4 @@ QuestRoutes.defaultProps = {
   key: 'quest'
 }
 
-export default props =><BoxWrapper><QuestRoutes {...props} /></BoxWrapper>
+export default props => <BoxWrapper><QuestRoutes {...props} /></BoxWrapper>

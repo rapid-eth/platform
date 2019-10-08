@@ -24,6 +24,7 @@ import Tokens from '../pages/Tokens'
 import Community from '../pages/Community'
 import Proposal from '../pages/Proposal'
 import Contracts from '../pages/Contracts'
+import Learn from '../pages/Learn'
 
 // COre
 import { Start as Discover } from '../pages/Guided'
@@ -44,7 +45,7 @@ const SiteRoutes = props =>
 
 
 
-      <FadeTransitionRouter primary={false}>
+      <Router primary={false}>
         <Home path='/*' />
 
         {/* Guided */}
@@ -66,6 +67,8 @@ const SiteRoutes = props =>
         <Feedback path='/feedback' />
         <Team path='/team' />
         <HowItWorks path='/how-it-works' />
+        <Learn path='/learn' />
+        <Learn path='/battle' />
 
         {/* Profiles */}
         <Account path='/account/*' />
@@ -75,12 +78,10 @@ const SiteRoutes = props =>
         <Resources path='/resources/*' />
         <Community path='/adventure/*' />
         <Beginner path='/beginner/*' />
-        <Intermediate path='/intermediate/*' />
         <Advanced path='/advanced/*' />
         <ATM path='/atm/*' />
-        <PledgeList path='/pledges/*' />
         <Contracts path='/contracts/*' />
-      </FadeTransitionRouter>
+      </Router>
 
     <SiteFooter>
       <Footer />
