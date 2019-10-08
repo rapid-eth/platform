@@ -24,11 +24,19 @@ const BoxLoginButton = ({ box, isMenuAvailable, styled, children, ...props }) =>
     }
   }, [props.auto])
 
-
   return (
     !props.auto ? !box.address 
-    ? <Button variant='dark' onClick={box.enable}>
-        <Flex alignCenter>
+    ?  box.isEnableRequested && !box.isEnableSuccess
+      ? <Button variant='white' onClick={box.enable}><Flex alignCenter>
+          <Box>
+            <Image maxWidth={36} mx={2} src='https://metamask.io/img/metamask.png' />
+          </Box>
+            <a href='https://metamask.io/' target='_blank'>
+              <Span>Install MetaMask to Enable</Span>
+            </a>
+        </Flex>
+      </Button>
+      : <Button variant='dark' onClick={box.enable}><Flex alignCenter>
           <Box>
             <Absolute top={-10} left={-2} ><Loading type='ripple' /></Absolute>
             <Image maxWidth={36} circle mx={2} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />
@@ -107,7 +115,7 @@ const ButtonLogin = ({ box, isLoggingIn, styled, children, ...props }) => {
 
 BoxLoginButton.defaultProps = {
   isMenuAvailable: true,
-  auto: true
+  auto: false
 }
 
 export default props =>

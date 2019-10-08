@@ -36,6 +36,47 @@ var effects = (callUseEffect, state, dispatch) => {
   /* -------------------------------- */
 
   /**
+     * @function requestEnabled
+     * @description Set global address parameter in 3box instance.
+     */
+
+  callUseEffect(() => {
+    if (state.isEnableRequested) {
+      var runEffect =
+      /*#__PURE__*/
+      function () {
+        var _ref = _asyncToGenerator(function* () {
+          try {
+            var accounts = yield window.ethereum.enable();
+            var address = accounts[0];
+
+            if (address) {
+              dispatch({
+                type: "ENABLE_SUCCESS"
+              });
+              dispatch({
+                type: "SET_ADDRESS",
+                address,
+                addressShortened: (0, _utilities.shortenAddress)(address, 6),
+                addressTrimmed: address.substring(0, 10)
+              });
+            }
+          } catch (error) {
+            dispatch({
+              type: "ENABLE_FAILURE"
+            });
+          }
+        });
+
+        return function runEffect() {
+          return _ref.apply(this, arguments);
+        };
+      }();
+
+      runEffect();
+    }
+  }, [state.isEnableRequested]);
+  /**
      * @function AutoLogin
      * @description Set global address parameter in 3box instance.
      */
@@ -53,7 +94,8 @@ var effects = (callUseEffect, state, dispatch) => {
      */
 
   callUseEffect(() => {
-    var address = window.ethereum.selectedAddress;
+    // const address = window.ethereum && window.ethereum.selectedAddress || null
+    var address = state.address;
 
     if ((0, _utilities.isAddress)(address)) {
       dispatch({
@@ -63,7 +105,7 @@ var effects = (callUseEffect, state, dispatch) => {
         addressTrimmed: address.substring(0, 10)
       });
     }
-  }, [window.ethereum.selectedAddress]);
+  }, [state.address]);
   /**
    * @function setProfile
    * @description Set global address parameter in 3box instance.
@@ -100,7 +142,7 @@ var effects = (callUseEffect, state, dispatch) => {
         var runEffect =
         /*#__PURE__*/
         function () {
-          var _ref = _asyncToGenerator(function* () {
+          var _ref2 = _asyncToGenerator(function* () {
             var instance = yield state.static.openBox(state.address, window.web3.currentProvider);
             var profile = state.profile ? state.profile : yield state.static.getProfile(state.address);
             var list = yield state.static.listSpaces(state.address);
@@ -125,7 +167,7 @@ var effects = (callUseEffect, state, dispatch) => {
           });
 
           return function runEffect() {
-            return _ref.apply(this, arguments);
+            return _ref2.apply(this, arguments);
           };
         }();
 
@@ -178,7 +220,7 @@ var effects = (callUseEffect, state, dispatch) => {
         var runEffect =
         /*#__PURE__*/
         function () {
-          var _ref2 = _asyncToGenerator(function* () {
+          var _ref3 = _asyncToGenerator(function* () {
             var profile = yield state.static.getProfile(selected.address);
             var verified = yield state.static.getVerifiedAccounts(profile);
             profile.verifications = verified;
@@ -193,7 +235,7 @@ var effects = (callUseEffect, state, dispatch) => {
           });
 
           return function runEffect() {
-            return _ref2.apply(this, arguments);
+            return _ref3.apply(this, arguments);
           };
         }();
 
@@ -215,7 +257,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref3 = _asyncToGenerator(function* () {
+            var _ref4 = _asyncToGenerator(function* () {
               var {
                 space,
                 address
@@ -240,7 +282,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref3.apply(this, arguments);
+              return _ref4.apply(this, arguments);
             };
           }();
 
@@ -265,7 +307,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref4 = _asyncToGenerator(function* () {
+            var _ref5 = _asyncToGenerator(function* () {
               var threads;
               var space = yield state.instance.openSpace(selected.space);
 
@@ -282,7 +324,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref4.apply(this, arguments);
+              return _ref5.apply(this, arguments);
             };
           }();
 
@@ -314,7 +356,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref5 = _asyncToGenerator(function* () {
+            var _ref6 = _asyncToGenerator(function* () {
               var listUpdated;
               var {
                 access,
@@ -407,7 +449,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref5.apply(this, arguments);
+              return _ref6.apply(this, arguments);
             };
           }();
 
@@ -432,7 +474,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref6 = _asyncToGenerator(function* () {
+            var _ref7 = _asyncToGenerator(function* () {
               var {
                 space,
                 // Initialize Space
@@ -470,7 +512,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref6.apply(this, arguments);
+              return _ref7.apply(this, arguments);
             };
           }();
 
@@ -496,7 +538,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref7 = _asyncToGenerator(function* () {
+            var _ref8 = _asyncToGenerator(function* () {
               var {
                 space,
                 access,
@@ -535,7 +577,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref7.apply(this, arguments);
+              return _ref8.apply(this, arguments);
             };
           }();
 
@@ -560,7 +602,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref8 = _asyncToGenerator(function* () {
+            var _ref9 = _asyncToGenerator(function* () {
               var {
                 space,
                 access,
@@ -599,7 +641,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref8.apply(this, arguments);
+              return _ref9.apply(this, arguments);
             };
           }();
 
@@ -624,7 +666,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref9 = _asyncToGenerator(function* () {
+            var _ref10 = _asyncToGenerator(function* () {
               var {
                 space,
                 access,
@@ -661,7 +703,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref9.apply(this, arguments);
+              return _ref10.apply(this, arguments);
             };
           }();
 
@@ -684,16 +726,15 @@ var effects = (callUseEffect, state, dispatch) => {
    */
 
   callUseEffect(() => {
-    if (state.store && state.store.threads) {
+    if (state.store && state.store.threadsGet) {
       try {
-        var selected = state.store.threads[0];
-        console.log(selected, 'selected thread');
+        var selected = state.store.threadsGet[0];
 
         if (selected) {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref10 = _asyncToGenerator(function* () {
+            var _ref11 = _asyncToGenerator(function* () {
               var {
                 space,
                 threadName,
@@ -705,7 +746,6 @@ var effects = (callUseEffect, state, dispatch) => {
               try {
                 var read;
                 read = yield state.static.getThread(space, threadName, firstModerator, members, options);
-                console.log(read, 'thread read');
                 dispatch({
                   type: 'GET_THREAD_SUCCESS',
                   space,
@@ -722,7 +762,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref10.apply(this, arguments);
+              return _ref11.apply(this, arguments);
             };
           }();
 
@@ -732,7 +772,7 @@ var effects = (callUseEffect, state, dispatch) => {
         console.log(error);
       }
     }
-  }, [state.store.threads]);
+  }, [state.store.threadsGet]);
   /**
    * @function ThreadPostDelete
    * @description Open Space
@@ -756,7 +796,7 @@ var effects = (callUseEffect, state, dispatch) => {
    */
 
   callUseEffect(() => {
-    if (state.store && state.store.threads) {
+    if (state.store && state.store.threads && state.data.spaces) {
       try {
         var selected = state.store.threads[0];
 
@@ -764,7 +804,7 @@ var effects = (callUseEffect, state, dispatch) => {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref11 = _asyncToGenerator(function* () {
+            var _ref12 = _asyncToGenerator(function* () {
               var thread, members, moderators;
               console.log(selected, 'thread select');
 
@@ -793,7 +833,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref11.apply(this, arguments);
+              return _ref12.apply(this, arguments);
             };
           }();
 
@@ -803,7 +843,7 @@ var effects = (callUseEffect, state, dispatch) => {
         console.log(error);
       }
     }
-  }, [state.store, state.store.threads]);
+  }, [state.store, state.store.threads, state.data.spaces]);
   /**
    * @function ThreadPost
    * @description Add Post to Thread
@@ -815,11 +855,11 @@ var effects = (callUseEffect, state, dispatch) => {
         var postSelected = state.store.posts[0];
         console.log(postSelected, 'postSelected');
 
-        if (postSelected && state.threads[postSelected.threadName]) {
+        if (postSelected && state.threads[postSelected.threadName].instance) {
           var runEffect =
           /*#__PURE__*/
           function () {
-            var _ref12 = _asyncToGenerator(function* () {
+            var _ref13 = _asyncToGenerator(function* () {
               var posts;
 
               switch (postSelected.type) {
@@ -865,7 +905,7 @@ var effects = (callUseEffect, state, dispatch) => {
             });
 
             return function runEffect() {
-              return _ref12.apply(this, arguments);
+              return _ref13.apply(this, arguments);
             };
           }();
 

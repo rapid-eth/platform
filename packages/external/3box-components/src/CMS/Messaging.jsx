@@ -18,7 +18,7 @@ const MessagingSelector = ({ box, selector, ...props }) => {
   const [ space, setSpace ] = useState(props.space)
   const [ firstModerator, setfirstModerator ] = useState(props.firstModerator)
   const [ threadName ] = useState(props.threadName)
-  const [ threadAddress, ] = useState(props.threadAddress)
+  const [ threadAddress ] = useState(props.threadAddress)
   const [ members ] = useState(props.members)
   const [ options ] = useState(props.options)
   
@@ -42,7 +42,6 @@ const MessagingSelector = ({ box, selector, ...props }) => {
    */
   const GetThreadEffect = () => useEffect( () => { 
     if(space && threadName && firstModerator && !dispatched) {
-      console.log('getting thread')
       if(threadAddress)
         box.getThreadByAddress({
           threadAddress,
@@ -80,7 +79,7 @@ const MessagingSelector = ({ box, selector, ...props }) => {
   if(props.isGlobalConfig) LoadGlobalConfigurationEffect()
   if(props.canRequestData) GetThreadEffect()
   if(props.isRefresh) SetSelectionEffect()
-  if(!props.isRefresh) SetSelectionOnceEffect()
+  // if(!props.isRefresh) SetSelectionOnceEffect()
   
   /* --- Return Component ---*/
   return <Component

@@ -8,6 +8,10 @@ export { default as Component } from './components/CMS/Component'
 export { default as ItemFromReference } from './components/CMS/ItemFromReference'
 
 
+// Core
+export { default as ItemPublish } from './components/Core/ItemPublish'
+export { default as ItemView } from './components/Core/ItemView'
+
 export { default as ContentDelete } from './components/ContentDelete'
 export { default as ContentImport } from './components/ContentImport'
 export { default as ContentTypeAdventure } from './components/ContentTypeAdventure'
@@ -47,6 +51,7 @@ export { default as OrganizationItem } from './components/Organization/component
 // Comment
 export { default as CommentPublish } from './components/Comment/CommentPublish'
 export { default as CommentList } from './components/Comment/CommentList'
+export { default as CommentItem } from './components/Comment/components/CommentItem'
 
 // User
 export { default as UserFollow } from './components/User/UserFollow'
@@ -73,5 +78,8 @@ export { default as ProjectItem } from './components/Project/ProjectItem'
 
 // Poll
 export { default as PollCreate } from './components/Poll/PollCreate'
+
 // Item
 export { default as ItemSmall } from './components/Item/ItemSmall'
+// Feedback
+export { default as FeedbackPost } from './components/Feedback/FeedbackPost'

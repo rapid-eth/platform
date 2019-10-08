@@ -53,7 +53,8 @@ var BoxProfileRetrieve = (_ref) => {
   }, [profile, (0, _idx.default)(box, _ => _.profiles[address])]);
   return _react.default.createElement(ProfileCard, {
     small: small,
-    profile: profile
+    profile: profile,
+    address: address
   });
 };
 
@@ -86,11 +87,13 @@ var ProfileCard = (_ref2) => {
     src: "https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg"
   })), _react.default.createElement(_designSystem.Box, {
     ml: 10
+  }, _react.default.createElement(_designSystem.Link, {
+    to: "/profile/".concat(props.address)
   }, _react.default.createElement(_designSystem.Heading, {
     md: true,
     heavy: true,
     noMargin: true
-  }, (0, _idx.default)(profile, _ => _.name)), _react.default.createElement(_designSystem.Heading, {
+  }, (0, _idx.default)(profile, _ => _.name))), _react.default.createElement(_designSystem.Heading, {
     sm: true,
     thin: true,
     noMargin: true,
@@ -110,12 +113,12 @@ var ProfileCard = (_ref2) => {
     borderRadius: 40,
     bg: "gray",
     p: 2,
-    width: 320
+    width: 160
   }), _react.default.createElement(_designSystem.Box, {
     borderRadius: 40,
     bg: "gray",
     p: 1,
-    width: 220,
+    width: 80,
     mt: 10
   })));
 };

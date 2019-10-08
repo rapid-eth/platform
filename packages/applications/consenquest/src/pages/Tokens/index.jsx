@@ -1,28 +1,28 @@
 /* --- Global Dependencies --- */
 import React from 'react';
 import {
-  BackgroundImage, Box, HorizontalRule, Flex, Heading, Menu, Span, Image, Button
+  Box, Flex, Menu, Image, Button
 } from '@horizin/design-system';
 import { Tab, TabList, TabPanel } from '@horizin/react-hooks-tabs'
+
 /* --- Local Dependencies --- */
 import MenuItems from '../../static/menus/tokens'
 import {
   TransferEventList,
-  DetailsERC20, Transfer, DeployERC20, InitializeERC20, TotalSupply, Balance,
+  DetailsERC20, InitializeERC20, TotalSupply,
   TransferToast, ApproveToast, BalanceOfToast
 } from '@rapid/eth-token-erc20'
 
 /* --- CMS Global Configs --- */
 const TOKEN = process.env.REACT_APP_DEFAULT_TOKEN
-const ROOT = process.env.REACT_APP_DEFAULT_ROOT
-const SPACE = process.env.REACT_APP_DEFAULT_SPACE
+
 
 /**
- * @function Resource
- * @description Resource Page
+ * @function Tokens
+ * @description Tokens Page
  * @return {Object} React Component
  */
-const Resource = () =>
+const Tokens = () =>
 <Flex minHeight='60vh'>
 <InitializeERC20 address={TOKEN} />
   <Flex column gradient='gray' boxShadow={4} flex={2} zIndex={100}>
@@ -48,7 +48,7 @@ w
                }}
                variant='symbol'/>
           </Flex>
-          {/* <Heading lg heavy>DEV <Span thin>Token</Span></Heading> */}
+
         </Flex>
           <Box textCenter flex={1}>
           <TransferToast address={TOKEN} >
@@ -66,6 +66,7 @@ w
         </Flex>
       </Flex>
     </Box>
+
     <Box bg='gray'  p={3} p={3}>
       <Flex alignCenter between>
         <Box>
@@ -82,12 +83,14 @@ w
     <Box p={50}>
 
     <InitializeERC20 address={TOKEN} />
+    <TabPanel tabGroup='tokens'  tabId='latest'>
     <Box>
       <TransferEventList address={TOKEN} />
     </Box>
+    </TabPanel>
 
     </Box>
   </Flex>
 </Flex>
 
-export default Resource
+export default Tokens

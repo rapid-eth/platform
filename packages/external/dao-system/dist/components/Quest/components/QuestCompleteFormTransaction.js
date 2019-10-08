@@ -11,6 +11,8 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _designSystem = require("@horizin/design-system");
 
+var _ethTokenErc = require("@rapid/eth-token-erc20");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
@@ -39,6 +41,7 @@ var ResourceItem = (_ref) => {
    */
 
   var submitHandler = values => {
+    console.log(props, 'submit handler');
     var url = props.lambo;
     window.fetch(url, {
       method: 'POST',
@@ -48,8 +51,9 @@ var ResourceItem = (_ref) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "questId": "12",
-        "address": window.ethereum.selectedAddress
+        "questId": Number(props.questId),
+        "address": window.ethereum.selectedAddress,
+        "transactionHash": values.transactionHash
       })
     }).then(res => {
       if (res.json) {
@@ -102,8 +106,12 @@ var ResourceItem = (_ref) => {
     width: "100%",
     my: 3
   }, _react.default.createElement(_designSystem.Toast, {
-    content: _react.default.createElement(RedeemCertificateForm, {
-      signature: certificate.signature
+    content: _react.default.createElement(_ethTokenErc.Redeem, {
+      address: "0x4b001411186583FD65b8C0b92A57Ff028A459F9F",
+      defaults: {
+        signature: certificate.signature,
+        certId: certificate.certificateId
+      }
     })
   }, _react.default.createElement(_designSystem.Button, {
     variant: "green"
@@ -119,7 +127,7 @@ var ResourceItem = (_ref) => {
     defaultValue: window.ethereum.selectedAddress,
     placeholder: "Address"
   }), _react.default.createElement(_designSystem.Field, {
-    name: "address",
+    name: "transactionHash",
     minHeight: 60,
     defaultValue: props.defaults.transactionHash,
     placeholder: "Transaction Hash"

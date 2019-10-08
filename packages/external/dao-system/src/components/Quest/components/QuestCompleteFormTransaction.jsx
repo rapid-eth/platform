@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types'
 import { Form, Field, Link, Span, Toast, Box, Flex, Button, Heading, Image, Paragraph } from '@horizin/design-system'
-
+import { Redeem } from '@rapid/eth-token-erc20'
 /**
  * @function ResourceItem
  * @description A default decentralized comment component.
@@ -18,6 +18,7 @@ const ResourceItem = ({ box,  ...props}) => {
    * @description Connect to Quest Backend System
    */
   const submitHandler = (values) => {
+    console.log(props, 'submit handler')
     const url = props.lambo
     window.fetch(url, {
       method: 'POST',
@@ -27,8 +28,9 @@ const ResourceItem = ({ box,  ...props}) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "questId": "12",
-        "address": window.ethereum.selectedAddress
+        "questId": Number(props.questId),
+        "address": window.ethereum.selectedAddress,
+        "transactionHash": values.transactionHash
       })
     })
     .then( res => {
@@ -68,7 +70,12 @@ const ResourceItem = ({ box,  ...props}) => {
       </Flex>
       <Flex between width='100%' my={3}>
         <Toast
-          content={<RedeemCertificateForm signature={certificate.signature} />}
+          content={<Redeem
+            address='0x4b001411186583FD65b8C0b92A57Ff028A459F9F'
+            defaults={{
+              signature: certificate.signature,
+              certId: certificate.certificateId
+            }}/>}
         >
           <Button variant='green' >Redeem Certifiate</Button>
         </Toast>
@@ -90,7 +97,7 @@ const ResourceItem = ({ box,  ...props}) => {
           placeholder="Address"
         />
         <Field
-          name="address"
+          name="transactionHash"
           minHeight={60}
           defaultValue={props.defaults.transactionHash}
           placeholder="Transaction Hash"

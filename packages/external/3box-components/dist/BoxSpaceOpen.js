@@ -67,6 +67,7 @@ BoxOpenSpace.defaultProps = {
   threadName: undefined,
   labelLoading: 'Loading Space...',
   styled: {
+    xs: true,
     fontWeight: 'normal',
     width: '100%'
   },

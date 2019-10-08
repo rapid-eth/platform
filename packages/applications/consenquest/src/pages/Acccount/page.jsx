@@ -31,10 +31,14 @@ import Tabs from './tabs'
 const ROOT = process.env.REACT_APP_DEFAULT_ROOT
 const SPACE = process.env.REACT_APP_DEFAULT_SPACE
 const Account = ({box, styled, ...props }) =>
-!box.address ? null :
-  <Box>
+!box.address ? (
+  <Flex gradient='blueDark'  center column minHeight='60vh' width='100%'>
+    <Span><BoxLoginCardVanity /></Span>
+  </Flex>
+) :
+  <Box width='100%'>
     {/* Header */}
-    <Flex gradient='blueDark' gradientDir='140' minHeight={300}>
+    <Flex gradient='blueDark' gradientDir='140' minHeight={300} width='100%'>
   
         <Container maxWidth='90%' >
           <Flex fullWidth height='100%'>

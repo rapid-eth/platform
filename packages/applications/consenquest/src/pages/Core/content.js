@@ -1,11 +1,55 @@
 /* -------------------- */
 /* Feedback
 /* -------------------- */
+export const Team = `
+# Project Overview
+**Build a decentralized application for Ethereum developers to connect and collabroate.** Enable sharing and guidance via a decentralized content management system. Plus, include offset gas costs for redeeming rewards to simplify onboarding experience.
+
+- Features: Social Curation of Quests
+- Timeline: 2 Weeks
+- Requirements: Rewards & Referrals
+
+## Mission Accepted
+
+<br/>
+<br/>
+# The Rapid Team
+The Rapid team is a small Research and Development team within ConsenSys. We focus on building prototypes and minimal viable products using decentralized technology.
+
+### Project Notes
+For the <strong>One Million Ethereum</strong> campaign we decided to push the limits of decentralized Authentication, Storage and Messaging. 3Box provides a suite of decentralized identity tools to enable rapid building of social applications.
+
+# Team
+<Image src='https://ipfs.io/ipfs/QmYGh4a6cjH7a3mw9xSYezp2WenGb3d7wj7Wwo9TV44knE'/>
+## Kames Geraghty
+#### Fullstack Javascript Developer
+The One Million Ethereum was an interesting project to build due to the feature requests of curation by decentralized identities. A core feature of the project had to include the ability for the community (i.e. ethereum developers) to share content with each other. First starting with quests (a glorified tasklist) for learning about Ethereum.
+
+<strong>The website use 3Box Storage and Threads entirely as a Content Management System.</strong>
+
+How cool is that?
+
+## Joe Bernit
+#### Infrastructure & Smart Contract Engineer
+
+
+## Billy Luedkete
+#### Product Manager
+
+
+
+`
+
+/* -------------------- */
+/* Feedback
+/* -------------------- */
 export const Feedback = `
 # How Are We Doing
-What do you think of our experiment?
+**What do you think of the experiment?** *Do you like it? Love it!? Let us know.*
 
-A website with content completely created and curated by decentralized identities. Pretty cool, huh?
+The website uses IPFS for **content management**, Decentralized Identity for **serverless authentication** and Ethereum blockchain to manage **peer-to-peer rewards**. In other words it's still a **Beta project.**
+
+Find a bug? Missing an important feature. **Let us know!**
 
 `
 

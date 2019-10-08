@@ -63,6 +63,12 @@ Object.defineProperty(exports, "DeployERC20", {
     return _Deploy.default;
   }
 });
+Object.defineProperty(exports, "Redeem", {
+  enumerable: true,
+  get: function get() {
+    return _Redeem.default;
+  }
+});
 Object.defineProperty(exports, "Transfer", {
   enumerable: true,
   get: function get() {
@@ -107,6 +113,8 @@ var _Allowance = _interopRequireDefault(require("./forms/Allowance"));
 var _Approve = _interopRequireDefault(require("./forms/Approve"));
 
 var _Deploy = _interopRequireDefault(require("./forms/Deploy"));
+
+var _Redeem = _interopRequireDefault(require("./forms/Redeem"));
 
 var _Transfer = _interopRequireDefault(require("./forms/Transfer"));
 

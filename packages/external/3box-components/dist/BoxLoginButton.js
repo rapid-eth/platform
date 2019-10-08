@@ -52,7 +52,19 @@ var BoxLoginButton = (_ref) => {
       box.open();
     }
   }, [props.auto]);
-  return !props.auto ? !box.address ? _react.default.createElement(_designSystem.Button, {
+  return !props.auto ? !box.address ? box.isEnableRequested && !box.isEnableSuccess ? _react.default.createElement(_designSystem.Button, {
+    variant: "white",
+    onClick: box.enable
+  }, _react.default.createElement(_designSystem.Flex, {
+    alignCenter: true
+  }, _react.default.createElement(_designSystem.Box, null, _react.default.createElement(_designSystem.Image, {
+    maxWidth: 36,
+    mx: 2,
+    src: "https://metamask.io/img/metamask.png"
+  })), _react.default.createElement("a", {
+    href: "https://metamask.io/",
+    target: "_blank"
+  }, _react.default.createElement(_designSystem.Span, null, "Install MetaMask to Enable")))) : _react.default.createElement(_designSystem.Button, {
     variant: "dark",
     onClick: box.enable
   }, _react.default.createElement(_designSystem.Flex, {
@@ -176,7 +188,7 @@ var ButtonLogin = (_ref3) => {
 
 BoxLoginButton.defaultProps = {
   isMenuAvailable: true,
-  auto: true
+  auto: false
 };
 
 var _default = props => _react.default.createElement(_dist.BoxWrapper, null, _react.default.createElement(BoxLoginButton, props));

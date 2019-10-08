@@ -6,10 +6,12 @@ import {
   Box, HorizontalRule, Heading, Image, Span, Flex,
 } from '@horizin/design-system';
 
-import ThreadAPI from './threadAPI'
-import NetworkThreads from './NetworkThreads'
-
-import { ProjectCreate } from '@kames/dao-system'
+import {
+  Messaging, Reference, ReferenceProfile
+} from '@kames/3box-components/dist'
+import {
+  QuestCatalogItem, UserItemSmall
+} from '@kames/dao-system'
 
 // CMS Global Configs
 const ROOT = process.env.REACT_APP_DEFAULT_ROOT
@@ -25,23 +27,17 @@ const Tabs = props => {
 
   return (
   <>
-    <TabList tabGroup='account' tabIdSelected='network'>
-      <Tab tabId='network'>
-        <Flex alignCenter center>
-          <Span circle card width={38} p={2} ><Image src='https://image.flaticon.com/icons/svg/1679/1679754.svg' /></Span>
-          <Span ml={3}>Network</Span>
-        </Flex>
-      </Tab>
-      <Tab tabId='projects'>
-        <Flex alignCenter center>
-          <Span circle card width={38} p={2} ><Image src='https://image.flaticon.com/icons/svg/1679/1679169.svg' /></Span>
-          <Span ml={3}>Projects</Span>
-        </Flex>
-      </Tab>
+    <TabList tabGroup='account' tabIdSelected='questing'>
       <Tab tabId='questing'>
         <Flex alignCenter center>
           <Span circle card width={38} p={2} ><Image src='https://image.flaticon.com/icons/svg/1673/1673599.svg' /></Span>
           <Span ml={3}>Questing</Span>
+        </Flex>
+      </Tab>
+      <Tab tabId='network'>
+        <Flex alignCenter center>
+          <Span circle card width={38} p={2} ><Image src='https://image.flaticon.com/icons/svg/1679/1679754.svg' /></Span>
+          <Span ml={3}>Network</Span>
         </Flex>
       </Tab>
     </TabList>
@@ -50,15 +46,52 @@ const Tabs = props => {
     <Box p={3}>
       <TabPanel tabGroup='account' tabId='network'>
         <Box p={3}>
-          <NetworkThreads address={props.address} />
+          <Heading>Followers <Span xxs tag='white'>ETH Space</Span></Heading>
+          <HorizontalRule my={3} />
+            <Messaging
+              space={SPACE}
+              threadName={props.address.toLowerCase()}
+              firstModerator={props.address}
+              component={ReferenceProfile}
+              members={false}
+              styled={{my: 3, p: 2}}
+              pass={{
+                space: SPACE, threadName: 'users', access: 'public', index:'users',
+                component: UserItemSmall
+              }}
+            />
+          {/* <NetworkThreads address={props.address} /> */}
         </Box>
       </TabPanel>
-      <TabPanel tabGroup='account' tabId='projects'>
-        <Heading>Projects</Heading>
-        <ProjectCreate />
-      </TabPanel>
+
+      {/* Quest Catalog */}
       <TabPanel tabGroup='account' tabId='questing'>
-        <Heading>Questing</Heading>
+        <Box p={3}>
+          <Heading>Quest Journal <Span xxs tag='white'>Public</Span></Heading>
+          <HorizontalRule my={3} />
+          <Messaging
+            space={SPACE}
+            threadName='quest_catalog'
+            firstModerator={props.address}
+            component={Reference}
+            styled={{my: 3}}
+            pass={{
+              space:SPACE, threadName: 'quest_catalog', access:'public', index:'quest',
+              component: QuestCatalogItem,
+              pass: {
+                space: SPACE, threadName: 'quest_catalog',
+                optionsThread: {
+                  members: true,
+                  firstModerator: props.address
+                },
+                styled: {
+                  m: 2,
+                  p: 2
+                }
+              }
+            }}
+          />
+        </Box>
       </TabPanel>
     </Box>
   </>

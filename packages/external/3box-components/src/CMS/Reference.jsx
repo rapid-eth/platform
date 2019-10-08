@@ -75,7 +75,7 @@ const BoxSelector = ({ box, children, ...props }) => {
   if(props.canRequestData) GetSpaceEffect()
   if(props.isRefresh) SetSelectionEffect()
   
-  return !data ? null : <Component selection={data} component={props.component} />
+  return !data ? null : <Component selection={data} component={props.component} pass={props.pass} />
 }
 
 BoxSelector.defaultProps = {

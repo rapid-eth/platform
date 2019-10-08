@@ -24,10 +24,10 @@ const Loading = styled(Box)
     border: 1px solid #fff;
     opacity: 1;
     border-radius: 50%;
-    animation: loading-ripple 3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    animation: loading-ripple 3.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   }
   &.loading-ripple div:nth-child(2) {
-    animation-delay: 2s;
+    animation-delay: .2s;
   }
   @keyframes loading-ripple {
     0% {

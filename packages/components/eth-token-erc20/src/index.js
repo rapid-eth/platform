@@ -14,6 +14,7 @@ export { default as BalanceFormatted } from './BalanceFormatted'
 export { default as Allowance } from './forms/Allowance'
 export { default as Approve } from './forms/Approve'
 export { default as DeployERC20 } from './forms/Deploy'
+export { default as Redeem } from './forms/Redeem'
 export { default as Transfer } from './forms/Transfer'
 
 // Helpers

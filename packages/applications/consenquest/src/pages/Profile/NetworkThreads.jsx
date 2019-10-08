@@ -13,11 +13,6 @@ const NetworkThreads = props => {
       summary='Public followers'
       threadName={`${props.address}`}
     />
-    <ThreadAPI
-      label='Apprentices'
-      summary='Registered via Connection Link'
-      threadName={`${props.address}_apprentices`}
-    />
   </>
 )}
 

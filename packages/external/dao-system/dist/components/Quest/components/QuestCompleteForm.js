@@ -39,7 +39,8 @@ var ResourceItem = (_ref) => {
    */
 
   var submitHandler = values => {
-    var url = 'https://brn68gkbcf.execute-api.us-east-1.amazonaws.com/cors/verify-balance';
+    console.log(props, 'submit handler');
+    var url = props.lambo;
     window.fetch(url, {
       method: 'POST',
       cache: 'no-cache',
@@ -48,7 +49,7 @@ var ResourceItem = (_ref) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "questId": "12",
+        "questId": props.questId,
         "address": window.ethereum.selectedAddress
       })
     }).then(res => {

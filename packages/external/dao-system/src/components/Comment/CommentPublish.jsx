@@ -1,8 +1,10 @@
 
 /* --- Global Dependencies --- */
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'
+import { Button, Field, Form, Loading, Span } from '@horizin/design-system'
 import { BoxWrapper } from '@kames/3box-hooks/dist'
-import { Button, Field, Form } from '@horizin/design-system'
+import { Access } from '@kames/3box-components/dist';
 
 /**
  * @function CommentPublish
@@ -51,7 +53,7 @@ const CommentPublish = ({ box,...props }) => {
 
   /* -------------------- */
   /* Comment Add
-  /* Aadd comment to 3Box thread.
+  /* Add comment to 3Box thread.
   /* type: 'comment_add'
   /* version: 1.0.0.
   /* -------------------- */
@@ -60,18 +62,29 @@ const CommentPublish = ({ box,...props }) => {
       <Field
         name="comment"
         inputAs='textarea' minHeight={120}
-        placeholder="Comment"
+        placeholder={props.placeholder}
       />
-      <Button type='submit' variant='green' width='100%'>Create Comment</Button>
+      <Access
+        spaceAuto threadAuto loginAuto
+        level='thread'
+        space={props.space}
+        threadName={props.threadName}
+        optionsThread={props.optionsThread}
+        componentLoading={<Button variant='white' width='100%'><Span mr={2}>Loading</Span> <Loading type='ring'/> </Button>}
+        >
+        <Button type='submit' variant='green' width='100%'>{props.label}</Button>
+      </Access>
     </Form>
   );
 }
 
 CommentPublish.defaultProps = {
-  threadName: 'quest_catalog'
+  label: 'Create Comment',
+  placeholder: 'Comment',
 }
 
-export default props =>
-  <BoxWrapper>
-    <CommentPublish {...props} />
-  </BoxWrapper>
+CommentPublish.propTypes = {
+  alias: PropTypes.string,
+}
+
+export default props =><BoxWrapper><CommentPublish {...props} /></BoxWrapper>

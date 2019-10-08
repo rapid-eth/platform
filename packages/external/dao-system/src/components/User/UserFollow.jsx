@@ -37,14 +37,14 @@ const UserAddToThread = ({ box,...props }) => {
 
   return (
     <Access
-      spaceAuto threadAuto loginAuto
+      threadAuto
       componentLoading={LoadingComponent}
       optionsThread={{
         members: false,
         firstModerator: props.firstModerator
       }}
       level='thread' space={'eth'} threadName={props.threadName.toLowerCase()} >
-        <Button xs onClick={followHandler} variant='green' width='100%'>Follow</Button>
+        <Button variant='green' width='100%' {...props.styled} onClick={followHandler}>Follow</Button>
     </Access>
   );
 }

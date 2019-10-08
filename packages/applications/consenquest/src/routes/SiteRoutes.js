@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Router, Link, Redirect, Location } from "@reach/router";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { Site, Span, Box, Flex, Heading, Image, Absolute } from '@horizin/design-system'
+import { Site, Span, Box, Flex, Heading, Image, Absolute, Modal } from '@horizin/design-system'
 import { SiteHeader, SiteFooter } from '@horizin/design-system/dist/templates/Site'
-import { Branding, Footer } from "../components";
+import { Branding, Footer, Drawer } from "../components";
 import {
     Home, Beginner, Intermediate, Advanced,
-    ATM, ContractConnect, PledgeList, Community, Compose,
+    ATM, ContractConnect, PledgeList, Compose,
   } from "../views/Site";
 
 
@@ -21,6 +21,8 @@ import Connect from '../pages/Connect'
 import ConnectInformation from '../pages/ConnectInformation'
 import Account from '../pages/Acccount'
 import Tokens from '../pages/Tokens'
+import Community from '../pages/Community'
+import Proposal from '../pages/Proposal'
 
 // COre
 import { Start as Discover } from '../pages/Guided'
@@ -28,9 +30,13 @@ import Contribute from '../pages/Core/Contribute'
 import Feedback from '../pages/Core/Feedback'
 import HowItWorks from '../pages/Core/HowItWorks'
 import Start from '../pages/Core/Start'
+import Team from '../pages/Core/Team'
+
+import InitDevQuest from '../components/DevQuestToken/Init'
 
 const SiteRoutes = props =>
   <Site>
+    <InitDevQuest address='0x4b001411186583FD65b8C0b92A57Ff028A459F9F' />
     <SiteHeader>
       <Branding />
     </SiteHeader>
@@ -50,12 +56,16 @@ const SiteRoutes = props =>
         <Connect path='/connect/:address' />
         <ConnectInformation path='/connect' />
         <Tokens path='/tokens/*' />
+        <Community path='/community/*' />
+        <Proposal path='/proposal/:postId' />
 
         {/* Core */}
         <Start path='/start' />
         <Contribute path='/contribute' />
         <Feedback path='/feedback' />
+        <Team path='/team' />
         <HowItWorks path='/how-it-works' />
+
         {/* Profiles */}
         <Account path='/account/*' />
         <Profile path='/profile/:address' />
@@ -74,8 +84,8 @@ const SiteRoutes = props =>
 
     <SiteFooter>
       <Footer />
+      <Drawer />
     </SiteFooter>
-    <Drawer />
   </Site>
 
 
@@ -98,68 +108,5 @@ const FadeTransitionRouter = props => {
   )
 }
 
-const Drawer = ({ styled, ...props}) => { 
-  const [ isOpen, setOpen ] = useState(false)
- return(
-  <Box fixed left={0} bottom={isOpen ? 0 : -70} right={0} p={2} bg='dark' zIndex={500} >
-      <Flex between>
-        <Flex alignCenter color='white'>
-          {/* <Heading noMargin>Adventures</Heading> */}
-          <Flex ml={5}>
-
-            <Link to='/adventure/adventure-intro'>
-              <Span pointer tag='white'>
-                <Flex alignCenter>
-                  <Span width={12} ><Image src='https://image.flaticon.com/icons/svg/2082/2082491.svg' /></Span>
-                  <Span xxs ml={2}>Introduction</Span>
-                </Flex>
-              </Span>
-            </Link>
-            
-            <Link to='/adventure/adventure-composability'>
-              <Span pointer tag='white' ml={2} opacity={0.7}>
-                <Flex alignCenter>
-                  <Span width={12} ><Image src='https://image.flaticon.com/icons/svg/993/993686.svg' /></Span>
-                  <Span xxs ml={2}>Composability</Span>
-                </Flex>
-              </Span>
-            </Link>
-            
-            <Link to='/adventure/adventure-digital-scarcity'>
-              <Span pointer tag='white' ml={2} opacity={0.7}>
-                <Flex alignCenter>
-                  <Span width={12} ><Image src='https://image.flaticon.com/icons/svg/2133/2133011.svg' /></Span>
-                  <Span xxs ml={2}>Scaricity</Span>
-                </Flex>
-              </Span>
-            </Link>
-            
-            <Link to='/adventure/adventure-global-open-permissionless'>
-              <Span pointer tag='white' ml={2} opacity={0.7}>
-                <Flex alignCenter>
-                  <Span width={12} ><Image src='https://image.flaticon.com/icons/svg/1279/1279546.svg' /></Span>
-                  <Span xxs ml={2}>Global</Span>
-                </Flex>
-              </Span>
-            </Link>
-
-          </Flex>
-        </Flex>
-
-        <Flex top={isOpen ? 0 : -60}>
-          <Link to='/contribute'>
-            <Span xxs mr={2} tag='blue'>Contribute</Span> 
-          </Link>
-          <Link to='/feedback'>
-            <Span xxs tag='green'>Feedback</Span> 
-          </Link>
-        </Flex>
-      </Flex>
-      <Absolute onClick={()=>setOpen(!isOpen)} top={isOpen ? -10 : -40} left={20} width={40}>
-          <Span pointer boxShadow='sunset' tag='white'>Ξ</Span>
-          {/* <Span xxs color='white'>Toggle</Span> */}
-      </Absolute>
-    </Box>
-)}
 
 export default SiteRoutes

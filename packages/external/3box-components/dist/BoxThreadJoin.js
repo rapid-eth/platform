@@ -27,17 +27,15 @@ var BoxOpenSpace = (_ref) => {
   var {
     box,
     auto,
-    space,
-    threadAddress,
-    threadName,
     styled,
     styledLoading,
     componentLoading,
     children
   } = _ref,
-      props = _objectWithoutProperties(_ref, ["box", "auto", "space", "threadAddress", "threadName", "styled", "styledLoading", "componentLoading", "children"]);
+      props = _objectWithoutProperties(_ref, ["box", "auto", "styled", "styledLoading", "componentLoading", "children"]);
 
   var [loading, setLoading] = (0, _react.useState)(false);
+  console.log(props, 'join thread props');
   /**
    * @function ComponentActionHandler
    * @description Handle component click event. 
@@ -45,9 +43,9 @@ var BoxOpenSpace = (_ref) => {
 
   var actionHandler = () => {
     box.joinThread({
-      threadAddress: threadAddress,
-      threadName: threadName,
-      space: space,
+      threadAddress: props.threadAddress,
+      threadName: props.threadName,
+      space: props.space,
       options: props.options
     });
     setLoading(true);
@@ -61,9 +59,9 @@ var BoxOpenSpace = (_ref) => {
   (0, _react.useEffect)(() => {
     if (auto) {
       box.joinThread({
-        threadAddress: threadAddress,
-        threadName: threadName,
-        space: space,
+        threadAddress: props.threadAddress,
+        threadName: props.threadName,
+        space: props.space,
         options: props.options
       });
       setLoading(true);

@@ -39,13 +39,13 @@ var effects = (callUseEffect, state, dispatch) => {
         payload: undefined
       });
     }
-  }, [window.web3.currentProvider]);
+  }, [window.web3 && window.web3.currentProvider]);
   /**
    * @function SetAddress
    */
 
   callUseEffect(() => {
-    var address = window.ethereum.selectedAddress;
+    var address = window.ethereum && window.ethereum.selectedAddress;
 
     if (address) {
       try {
@@ -60,7 +60,7 @@ var effects = (callUseEffect, state, dispatch) => {
         });
       }
     }
-  }, [window.ethereum.selectedAddress]);
+  }, [window.ethereum && window.ethereum.selectedAddress]);
   /**
    * @function SetWallet
    */

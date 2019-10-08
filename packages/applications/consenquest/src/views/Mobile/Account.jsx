@@ -4,36 +4,63 @@ import { BackgroundImage, Flex, Card, Box, Menu, Heading, HorizontalRule, Button
 import {
   BoxAccess, BoxThreadPostList, BoxSpaceOpen, BoxProfileRetrieve, BoxThreadPostDelete,
   BoxLoginCard, BoxLoginButton, BoxVerified } from '@kames/3box-components/dist'
-  
-
+ 
+  import {
+    Messaging, Reference, Access, Storage
+  } from '@kames/3box-components/dist'
+  import {
+    QuestCatalogItem, ItemSmall
+  } from '@kames/dao-system'
+    
 import {
   FormWebLandStatus
 } from "../../components/3Box";
+import QuestCatalog from '../QuestCatalog'
+  const SPACE = process.env.REACT_APP_DEFAULT_SPACE
+  // CMS Global Configs
 
 const Account = ({ styled, ...props }) =>
   <>
-    <Box>
-      <Flex gradient='purpink' gradientDir='145' >
-      <BackgroundImage
-        boxShadow='sunset' overflow='hidden' ratio={.3} opacity={.1}
-        src='https://cdn.dribbble.com/users/548267/screenshots/7111037/media/4d7376a05741d008464edb7d126d7334.png' />
+      <Flex center column bg='dark' gradientDir='145' py={80} p={30} minHeight={300} >
+        <BackgroundImage
+          boxShadow='sunset' overflow='hidden' ratio={.3} opacity={.1}
+          src='https://static.vecteezy.com/system/resources/previews/000/202/998/original/ethereum-currency-illustration-based-on-world-map-background-vector.jpg' />
 
-      <BoxLoginCard isFooterActive={false} styled={{width: '100%'}} />
-    </Flex>
-    <Container py={30} maxWidth={780}>
-      <Box>
-        <BoxAccess threadAuto spaceAuto space='web3' threadName='myupdates'>
-          <Heading cardHeader>Create A Post</Heading>
-          <FormWebLandStatus threadName='myupdates' />
-        </BoxAccess>
-
-        <BoxThreadPostList
-          threadName='pledges' component={Pledge}
-          threadAddress='/orbitdb/zdpuB3CYqBnBkyS7ZCyh5VpWgjsbHejfRz26ZKFvHkf3fBea5/3box.thread.web3.myupdates'
-        />
+        <BoxLoginCard isFooterActive={false} styled={{width: '100%'}} />
+      </Flex>
+      <Box p={5}>
+        <Access level='enabled'>
+          <BoxAccess threadAuto isLoginHidden spaceAuto level='space' space='web3' threadName='myupdates'>
+            <FormWebLandStatus threadName='myupdates' />
+          </BoxAccess>
+          <QuestCatalog address={window.ethereum && window.ethereum.selectedAddress} />
+        </Access>
+        {
+          window.ethereum && window.ethereum.selectedAddress &&
+          <Messaging
+          space={SPACE}
+          threadName='quest_catalog'
+          firstModerator={window.ethereum.selectedAddress}
+          component={Reference}
+          styled={{my: 3}}
+          pass={{
+            space:SPACE, threadName: 'quest_catalog', access:'public', index:'quest',
+            component: QuestCatalogItem,
+            pass: {
+              space: SPACE, threadName: 'quest_catalog',
+              optionsThread: {
+                members: true,
+                firstModerator: window.ethereum.selectedAddress
+              },
+              styled: {
+                m: 2,
+                p: 2
+              }
+            }
+          }}
+          />
+        }
       </Box>
-    </Container>
-    </Box>
   </>
 
 
@@ -43,45 +70,6 @@ Account.defaultProps = {
 
 Account.propTypes = {
   space: PropTypes.string.isRequired,
-}
-
-const Pledge = ({ styled, ...props}) => { 
-  return(
-   <Flex alignCenter column between fullWidth m={3}>
-     <Box card width='100%' p={0}>
-     <Box bg='gray' borderRoundedTop p={3} width='100%'>
-       <Flex alignCenter between width='100%'>
-         <BoxProfileRetrieve address={props.author} />
-         <Span><BoxThreadPostDelete threadName='pledges' postId={props.postId}/></Span>
-       </Flex>
-     </Box>
-     <Box p={3}>
-      {props.message.update}
-     </Box>
-     <Flex between gradient='gray' p={20} width='100%'>
-       <Flex column>
-         <Span>Created: {props.timestamp}</Span>
-         <Span xs>{props.postId}</Span>
-       </Flex>
-       <Panel label='Comment Thread' content={<CommentThread/>}>
-        <Button xs alignSelf='flex-end'>Comment Thread</Button>
-      </Panel>
-     </Flex>
-     </Box>
-       
-   </Flex>
- )
- }
-
-const CommentThread = ({ styled, ...props}) => { 
- return(
-  <Box>
-    <BoxAccess threadAuto spaceAuto space='web3' threadName='myupdates'>
-      <Heading cardHeader>Create A Post</Heading>
-      <FormWebLandStatus threadName='myupdates' />
-    </BoxAccess>
-  </Box>
-)
 }
 
 export default Account

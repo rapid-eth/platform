@@ -9,7 +9,7 @@ import Page from './page'
 import ProjectRetrieve from './ProjectRetrieve'
 const Account = props => {
   return (
-    <Box>
+    <Box width='100%'>
       <Router>
         <Page path='/' />
         <ProjectRetrieve path='/project/:alias' />

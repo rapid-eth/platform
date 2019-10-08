@@ -21,6 +21,16 @@ var _default = (state, action) => {
 
     /* Initilization
     /* ======================= */
+    case 'ENABLE_REQUEST':
+      return _dotPropImmutableChain.default.set(state, 'isEnableRequested', true);
+
+    case 'ENABLE_SUCCESS':
+      return _dotPropImmutableChain.default.set(state, 'isEnableSuccess', true);
+
+    case 'ENABLE_FAILURE':
+      return _dotPropImmutableChain.default.set(state, 'isEnableSuccess', false);
+      return _objectSpread({}, state, {}, action);
+
     case 'SET_ADDRESS':
       return _objectSpread({}, state, {}, action);
 
@@ -224,7 +234,7 @@ var _default = (state, action) => {
       return (0, _dotPropImmutableChain.default)(state).set("store.threads", [...state.store.threads, action]).value();
 
     case 'JOIN_THREAD_SUCCESS':
-      return (0, _dotPropImmutableChain.default)(state).set("threads.".concat(action.threadName), action).set("data.threads.".concat(action.threadName), action).value();
+      return (0, _dotPropImmutableChain.default)(state).set("threads.".concat(action.threadName), action).set("data.threads.".concat(action.threadName), action).set("store.threads", []).value();
 
     /* ------------------ */
 
@@ -232,15 +242,15 @@ var _default = (state, action) => {
     /* ------------------ */
 
     case 'GET_THREAD_REQUEST':
-      return (0, _dotPropImmutableChain.default)(state).set("store.threads", [...state.store.threads, action]).value();
+      return (0, _dotPropImmutableChain.default)(state).set("store.threadsGet", [...state.store.threadsGet, action]).value();
 
     case 'GET_THREAD_SUCCESS':
-      return (0, _dotPropImmutableChain.default)(state).set("threads.".concat(action.threadName, ".posts"), action.payload) // Deprecated path
+      return (0, _dotPropImmutableChain.default)(state).set("threadsGet.".concat(action.threadName, ".posts"), action.payload) // Deprecated path
       .set("data.threads.".concat(action.threadName, ".posts"), action.payload) // New path
-      .set("store.threads", []).value();
+      .set("store.threadsGet", []).value();
 
     case 'GET_THREAD_FAILURE':
-      return (0, _dotPropImmutableChain.default)(state).set("store.threads", []).value();
+      return (0, _dotPropImmutableChain.default)(state).set("store.threadsGet", []).value();
 
     case 'GET_THREAD_BY_ADDRESS_REQUEST':
       return (0, _dotPropImmutableChain.default)(state).set("store.threads", [...state.store.threads, action]).value();

@@ -46,25 +46,20 @@ var QuestCatalogItem = (_ref) => {
   })), _react.default.createElement(_designSystem.Box, {
     ml: 2,
     textAlign: "left"
+  }, _react.default.createElement(_designSystem.Link, {
+    to: "/quest/".concat(props.alias)
   }, _react.default.createElement(_designSystem.Heading, {
     noMargin: true,
     sm: true,
     heavy: true
-  }, props.properties.name), _react.default.createElement(_designSystem.Heading, {
+  }, props.properties.name)), _react.default.createElement(_designSystem.Heading, {
     noMargin: true,
     xs: true
-  }, props.properties.tagline))), console.log(props, 'qciisiqi'), _react.default.createElement(_designSystem.Flex, {
+  }, props.properties.tagline))), _react.default.createElement(_designSystem.Flex, {
     alignCenter: true,
-    flex: 1,
+    flex: 2,
     justifyContent: "flex-end"
-  }, _react.default.createElement(_designSystem.Link, {
-    to: "/quest/".concat(props.alias)
-  }, _react.default.createElement(_designSystem.Span, {
-    pointer: true,
-    justifySelf: "flex-end",
-    xxs: true,
-    tag: "white"
-  }, "View")), _react.default.createElement(_designSystem.Modal, {
+  }, props.validation && _react.default.createElement(FormSelection, props), _react.default.createElement(_designSystem.Modal, {
     content: _react.default.createElement(FeaturedQuestDetails, _extends({
       threadName: props.threadName,
       postId: props.postId
@@ -81,7 +76,7 @@ var QuestCatalogItem = (_ref) => {
     xxs: true,
     mx: 3,
     tag: "white"
-  }, "Manage")), props.validation && _react.default.createElement(FormSelection, props)));
+  }, "Manage"))));
 };
 
 var FormSelection = (_ref2) => {
@@ -90,8 +85,23 @@ var FormSelection = (_ref2) => {
   } = _ref2,
       props = _objectWithoutProperties(_ref2, ["styled"]);
 
-  return _react.default.createElement(_designSystem.Box, null, props.validation.type === 'balance' ? _react.default.createElement(_designSystem.Modal, {
+  console.log(props, 'form selection');
+  return _react.default.createElement(_dist.Access, {
+    threadAuto: true,
+    level: "thread",
+    space: props.space,
+    threadName: props.threadName,
+    isLoginDisabled: true,
+    optionsThread: props.optionsThread,
+    componentLoading: _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_designSystem.Span, {
+      xxs: true,
+      mr: 2
+    }, "Loading Space to Submit Evidence"), _react.default.createElement(_designSystem.Loading, {
+      type: "ring"
+    }))
+  }, _react.default.createElement(_designSystem.Box, null, props.validation.type === 'balance' ? _react.default.createElement(_designSystem.Modal, {
     content: _react.default.createElement(_QuestCompleteForm.default, {
+      questId: props.id,
       threadName: props.threadName,
       postId: props.postId,
       lambo: props.validation.lambdaURL
@@ -110,9 +120,10 @@ var FormSelection = (_ref2) => {
     tag: "red"
   }, "Submit Balance")) : _react.default.createElement(_designSystem.Modal, {
     content: _react.default.createElement(_QuestCompleteFormTransaction.default, {
+      questId: props.id,
+      lambo: props.validation.lambdaURL,
       threadName: props.threadName,
-      postId: props.postId,
-      lambo: props.validation.lambdaURL
+      postId: props.postId
     }),
     position: "default",
     variant: "default",
@@ -126,7 +137,7 @@ var FormSelection = (_ref2) => {
     justifySelf: "flex-end",
     mx: 2,
     tag: "red"
-  }, "Submit Transaction")));
+  }, "Submit Transaction"))));
 };
 
 var FeaturedQuestDetails = (_ref3) => {

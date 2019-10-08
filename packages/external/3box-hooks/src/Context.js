@@ -1,4 +1,4 @@
-import box from '3box/dist/3box';
+import box from '3box';
 import { createContext } from 'react';
 
 /**
@@ -19,6 +19,7 @@ const Context = createContext({
     open: {},
     spaces: [],
     threads: [],
+    threadsGet: [],
     profiles: [],
     posts: [],
     gets: [],

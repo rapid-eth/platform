@@ -10,6 +10,42 @@ const effects = (callUseEffect, state, dispatch) => {
 /* -------------------------------- */
 
 /**
+   * @function requestEnabled
+   * @description Set global address parameter in 3box instance.
+   */
+  callUseEffect(() => {
+    if(state.isEnableRequested) {
+
+      const runEffect = async () => {
+        try {
+          const accounts = await window.ethereum.enable()
+          const address = accounts[0]
+          if(address) {
+            dispatch({
+              type: "ENABLE_SUCCESS",
+            })
+            dispatch({
+              type: "SET_ADDRESS",
+              address,
+              addressShortened: shortenAddress(address, 6),
+              addressTrimmed: address.substring(0, 10)
+              
+            })
+          }
+        } catch (error) {
+          dispatch({
+            type: "ENABLE_FAILURE",
+          })
+        }
+      }
+      runEffect()
+      }
+      
+  }, [state.isEnableRequested])
+
+
+
+/**
    * @function AutoLogin
    * @description Set global address parameter in 3box instance.
    */
@@ -18,12 +54,16 @@ const effects = (callUseEffect, state, dispatch) => {
       dispatch({ type: 'OPEN_REQUEST' })
     }
   }, [state.isLoginAuto, state.address])
+
+
+
 /**
    * @function setAddress
    * @description Set global address parameter in 3box instance.
    */
   callUseEffect(() => {
-    const address = window.ethereum.selectedAddress
+    // const address = window.ethereum && window.ethereum.selectedAddress || null
+    const address = state.address
     if(isAddress(address)) {
       dispatch({
         type: "SET_ADDRESS",
@@ -33,7 +73,10 @@ const effects = (callUseEffect, state, dispatch) => {
         
       })
     }
-  }, [window.ethereum.selectedAddress])
+  }, [state.address])
+
+
+
 
   /**
    * @function setProfile
@@ -535,17 +578,15 @@ const effects = (callUseEffect, state, dispatch) => {
    * @description Get Thread List from Static Inputs
    */
   callUseEffect(() => {
-    if (state.store && state.store.threads) {
+    if (state.store && state.store.threadsGet) {
       try {
-        const selected = state.store.threads[0]
-        console.log(selected, 'selected thread')
+        const selected = state.store.threadsGet[0]
         if (selected) {
         const runEffect = async () => {
           const { space, threadName, firstModerator, members, options } = selected
           try {
             let read
             read = await state.static.getThread(space, threadName, firstModerator, members, options)
-            console.log(read, 'thread read')
             dispatch({
               type: 'GET_THREAD_SUCCESS',
               space,
@@ -568,7 +609,7 @@ const effects = (callUseEffect, state, dispatch) => {
         console.log(error)
       }
     }
-  }, [state.store.threads])
+  }, [state.store.threadsGet])
 
 
   /**
@@ -594,7 +635,7 @@ const effects = (callUseEffect, state, dispatch) => {
    * @description Open Space
    */
   callUseEffect(() => {
-    if (state.store && state.store.threads) {
+    if (state.store && state.store.threads && state.data.spaces) {
       try {
         const selected = state.store.threads[0]
         if (selected && state.spaces[selected.space].instance) {
@@ -627,7 +668,7 @@ const effects = (callUseEffect, state, dispatch) => {
         console.log(error)
       }
     }
-  }, [state.store, state.store.threads])
+  }, [state.store, state.store.threads, state.data.spaces])
 
   /**
    * @function ThreadPost
@@ -638,7 +679,7 @@ const effects = (callUseEffect, state, dispatch) => {
       try {
         const postSelected = state.store.posts[0]
         console.log(postSelected, 'postSelected')
-        if (postSelected && state.threads[postSelected.threadName]) {
+        if (postSelected && state.threads[postSelected.threadName].instance) {
           const runEffect = async () => {
             let posts
             switch (postSelected.type) {

@@ -35,19 +35,7 @@ const Provider = ({ children, ...props }) => {
 
       login: () => dispatch({ type: 'OPEN_REQUEST' }),
       logout: () => dispatch({ type: 'logout' }),
-      enable: async () => {
-        const accounts = await window.ethereum.enable()
-        const address = accounts[0]
-        if(address) {
-          dispatch({
-            type: "SET_ADDRESS",
-            address,
-            addressShortened: shortenAddress(address, 6),
-            addressTrimmed: address.substring(0, 10)
-            
-          })
-        }
-      },
+      enable:() => dispatch({ type: 'ENABLE_REQUEST' }),
       /* -------------------------------- */
       /* Static
       /* -------------------------------- */

@@ -30,13 +30,13 @@ const effects = (callUseEffect, state, dispatch) => {
         payload: undefined
       })
     }
-  }, [window.web3.currentProvider])
+  }, [(window.web3 && window.web3.currentProvider)])
 
   /**
    * @function SetAddress
    */
   callUseEffect( () => { 
-    const address = window.ethereum.selectedAddress
+    const address = window.ethereum && window.ethereum.selectedAddress
     if(address) {
       try {
         dispatch({
@@ -50,7 +50,7 @@ const effects = (callUseEffect, state, dispatch) => {
         })
       }
     }
-  }, [window.ethereum.selectedAddress])
+  }, [(window.ethereum && window.ethereum.selectedAddress)])
 
   /**
    * @function SetWallet

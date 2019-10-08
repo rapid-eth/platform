@@ -50,7 +50,12 @@ var BoxThreadPostDelete = (_ref) => {
     };
   }();
 
-  return box.instance ? _react.default.createElement(_designSystem.Button, {
+  return box.instance ? children ? _react.default.createElement(_designSystem.Span, {
+    onClick: () => clickHandler({
+      threadName,
+      postId
+    })
+  }, children) : _react.default.createElement(_designSystem.Button, {
     xs: true,
     variant: "red",
     onClick: () => clickHandler({

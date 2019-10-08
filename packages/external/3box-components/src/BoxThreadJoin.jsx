@@ -5,18 +5,18 @@ import { Box, Button, Span } from '@horizin/design-system'
 import { BoxWrapper } from '@kames/3box-hooks/dist'
 
 /* --- React Component --- */
-const BoxOpenSpace = ({ box, auto, space, threadAddress, threadName, styled, styledLoading, componentLoading, children, ...props }) => {
+const BoxOpenSpace = ({ box, auto, styled, styledLoading, componentLoading, children, ...props }) => {
   const [ loading, setLoading ] = useState(false)
-
+  console.log(props, 'join thread props')
   /**
    * @function ComponentActionHandler
    * @description Handle component click event. 
    */
   const actionHandler = () => {
     box.joinThread({
-      threadAddress: threadAddress,
-      threadName: threadName,
-      space: space,
+      threadAddress: props.threadAddress,
+      threadName: props.threadName,
+      space: props.space,
       options: props.options
     });
     setLoading(true)
@@ -29,9 +29,9 @@ const BoxOpenSpace = ({ box, auto, space, threadAddress, threadName, styled, sty
   useEffect(() => {
     if(auto) {
       box.joinThread({
-        threadAddress: threadAddress,
-        threadName: threadName,
-        space: space,
+        threadAddress: props.threadAddress,
+        threadName: props.threadName,
+        space: props.space,
         options: props.options
       });
       setLoading(true)

@@ -18,7 +18,8 @@ const ResourceItem = ({ box,  ...props}) => {
    * @description Connect to Quest Backend System
    */
   const submitHandler = (values) => {
-    const url = 'https://brn68gkbcf.execute-api.us-east-1.amazonaws.com/cors/verify-balance'
+    console.log(props, 'submit handler')
+    const url = props.lambo
     window.fetch(url, {
       method: 'POST',
       cache: 'no-cache',
@@ -27,7 +28,7 @@ const ResourceItem = ({ box,  ...props}) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "questId": "12",
+        "questId": props.questId,
         "address": window.ethereum.selectedAddress
       })
     })

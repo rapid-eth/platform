@@ -110,7 +110,8 @@ var BoxSelector = (_ref) => {
   if (props.isRefresh) SetSelectionEffect();
   return !data ? null : _react.default.createElement(_Component.default, {
     selection: data,
-    component: props.component
+    component: props.component,
+    pass: props.pass
   });
 };
 

@@ -41,7 +41,9 @@ var BoxAccess = (_ref) => {
   } = _ref,
       props = _objectWithoutProperties(_ref, ["box", "level"]);
 
-  return _react.default.createElement(_react.default.Fragment, null, level === 'disabled' && props.children, level === 'login' && _react.default.createElement(LevelLogin, _extends({
+  return _react.default.createElement(_react.default.Fragment, null, level === 'disabled' && props.children, level === 'enabled' && _react.default.createElement(LevelEnabled, _extends({
+    box: box
+  }, props)), level === 'login' && _react.default.createElement(LevelLogin, _extends({
     box: box
   }, props)), level === 'space' && _react.default.createElement(LevelSpace, _extends({
     box: box
@@ -52,7 +54,7 @@ var BoxAccess = (_ref) => {
 
 BoxAccess.defaultProps = {
   componentLogin: _react.default.createElement(_BoxLoginButton.default, null),
-  componentLoading: _react.default.createElement("div", null, "ls"),
+  componentLoading: null,
   threadName: undefined,
   loginAuto: false,
   spaceAuto: false,
@@ -80,29 +82,41 @@ BoxAccess.propTypes = {
 
 var _default = props => _react.default.createElement(_dist.BoxWrapper, null, _react.default.createElement(BoxAccess, props));
 /**
- * @function LevelLogin
+ * @function LevelEnabled
  * @param {*} props 
  */
 
 
 exports.default = _default;
 
-var LevelLogin = (_ref2) => {
+var LevelEnabled = (_ref2) => {
+  var {
+    box,
+    children
+  } = _ref2;
+  return box.isEnableSuccess ? children : null;
+};
+/**
+ * @function LevelLogin
+ * @param {*} props 
+ */
+
+
+var LevelLogin = (_ref3) => {
   var {
     box,
     styled,
     styledLogin,
-    isLoginDisabled,
     variant,
     componentLogin,
     children
-  } = _ref2,
-      props = _objectWithoutProperties(_ref2, ["box", "styled", "styledLogin", "isLoginDisabled", "variant", "componentLogin", "children"]);
+  } = _ref3,
+      props = _objectWithoutProperties(_ref3, ["box", "styled", "styledLogin", "variant", "componentLogin", "children"]);
 
   var {
     isLoggedIn
   } = box;
-  return _react.default.createElement(_react.default.Fragment, null, !isLoggedIn ? componentLogin ? componentLogin : isLoginDisabled ? null : null : children);
+  return props.isLoginHidden ? null : !isLoggedIn ? componentLogin ? componentLogin : props.isLoginDisabled ? null : null : children;
 };
 /**
  * @function LevelSpace
@@ -110,7 +124,7 @@ var LevelLogin = (_ref2) => {
  */
 
 
-var LevelSpace = (_ref3) => {
+var LevelSpace = (_ref4) => {
   var {
     box,
     space,
@@ -121,12 +135,11 @@ var LevelSpace = (_ref3) => {
     styled,
     styledLogin,
     styledSpace,
-    isLoginDisabled,
     componentSpace,
     componentLogin,
     children
-  } = _ref3,
-      props = _objectWithoutProperties(_ref3, ["box", "space", "threadName", "threadAuto", "spaceAuto", "variant", "styled", "styledLogin", "styledSpace", "isLoginDisabled", "componentSpace", "componentLogin", "children"]);
+  } = _ref4,
+      props = _objectWithoutProperties(_ref4, ["box", "space", "threadName", "threadAuto", "spaceAuto", "variant", "styled", "styledLogin", "styledSpace", "componentSpace", "componentLogin", "children"]);
 
   var {
     isLoggedIn
@@ -137,7 +150,7 @@ var LevelSpace = (_ref3) => {
       setSpace(true);
     }
   }, [(0, _idx.default)(box, _ => _.spaces[space].instance)]);
-  return _react.default.createElement(_react.default.Fragment, null, !isLoggedIn && !spaceLoaded ? componentLogin ? componentLogin : isLoginDisabled ? null : null : null, isLoggedIn && !spaceLoaded && _react.default.createElement(_index.BoxSpaceOpen, {
+  return _react.default.createElement(_react.default.Fragment, null, !isLoggedIn && !spaceLoaded ? props.isLoginDisabled ? null : componentLogin : null, isLoggedIn && !spaceLoaded && _react.default.createElement(_index.BoxSpaceOpen, {
     auto: spaceAuto,
     space: space
   }, _react.default.createElement(_react.default.Fragment, null, componentSpace ? componentSpace : _react.default.createElement(_designSystem.Button, styledSpace, "open ", space, " space"))), isLoggedIn && spaceLoaded && children);
@@ -148,7 +161,7 @@ var LevelSpace = (_ref3) => {
  */
 
 
-var LevelThread = (_ref4) => {
+var LevelThread = (_ref5) => {
   var {
     box,
     space,
@@ -160,12 +173,11 @@ var LevelThread = (_ref4) => {
     styledLogin,
     styledSpace,
     styledThread,
-    isLoginDisabled,
     componentSpace,
     componentThread,
     componentLogin
-  } = _ref4,
-      props = _objectWithoutProperties(_ref4, ["box", "space", "threadName", "threadAuto", "spaceAuto", "variant", "styled", "styledLogin", "styledSpace", "styledThread", "isLoginDisabled", "componentSpace", "componentThread", "componentLogin"]);
+  } = _ref5,
+      props = _objectWithoutProperties(_ref5, ["box", "space", "threadName", "threadAuto", "spaceAuto", "variant", "styled", "styledLogin", "styledSpace", "styledThread", "componentSpace", "componentThread", "componentLogin"]);
 
   var {
     isLoggedIn
@@ -182,9 +194,7 @@ var LevelThread = (_ref4) => {
       setThread(true);
     }
   }, [(0, _idx.default)(box, _ => _.threads[threadName])]);
-  return _react.default.createElement(_react.default.Fragment, null, !isLoggedIn && !spaceLoaded && !threadLoaded ? componentLogin ? componentLogin : _react.default.createElement(_BoxLoginButton.default, {
-    auto: props.loginAuto
-  }) : null, isLoggedIn && !spaceLoaded && _react.default.createElement(_index.BoxSpaceOpen, {
+  return _react.default.createElement(_react.default.Fragment, null, props.componentLoading ? !spaceLoaded && !spaceAuto : props.componentLoading, !isLoggedIn && !spaceLoaded && !threadLoaded ? props.isLoginDisabled ? null : componentLogin : null, isLoggedIn && !spaceLoaded && _react.default.createElement(_index.BoxSpaceOpen, {
     auto: spaceAuto,
     space: space
   }, _react.default.createElement(_react.default.Fragment, null, componentSpace ? componentSpace : _react.default.createElement(_designSystem.Button, styledSpace, "open ", space, " space"))), isLoggedIn && spaceLoaded && !threadLoaded && _react.default.createElement(_index.BoxThreadJoin, {
@@ -192,7 +202,5 @@ var LevelThread = (_ref4) => {
     space: space,
     threadName: threadName,
     options: props.optionsThread
-  }, _react.default.createElement(_react.default.Fragment, null, componentThread ? componentThread : _react.default.createElement(_designSystem.Button, styledThread, "Join ", threadName, " Thread"))), isLoggedIn && spaceLoaded && threadLoaded ? props.children : props.componentLoading ? _react.default.createElement(_Component.default, {
-    component: props.componentLoading
-  }) : null);
+  }, _react.default.createElement(_react.default.Fragment, null, componentThread ? componentThread : _react.default.createElement(_designSystem.Button, styledThread, "Join ", threadName, " Thread"))), isLoggedIn && spaceLoaded && threadLoaded ? props.children : null);
 };

@@ -13,11 +13,11 @@ import {
   UserItemSmall
 } from '@kames/dao-system'
 
-
 // CMS Global Configs
 const SPACE = process.env.REACT_APP_DEFAULT_SPACE
 
 const UserThreadAPI = ({ styled, ...props}) => { 
+  console.log(props, 'UserThreadAPI')
  return(
   <>
     <Flex alignCenter between>

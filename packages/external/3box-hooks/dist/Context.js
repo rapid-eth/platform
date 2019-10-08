@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _box = _interopRequireDefault(require("3box/dist/3box"));
+var _box = _interopRequireDefault(require("3box"));
 
 var _react = require("react");
 
@@ -29,6 +29,7 @@ var Context = (0, _react.createContext)({
     open: {},
     spaces: [],
     threads: [],
+    threadsGet: [],
     profiles: [],
     posts: [],
     gets: [],

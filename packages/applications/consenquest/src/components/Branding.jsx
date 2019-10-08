@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Box, Flex, Image, Link, Heading, Span, Panel, Popover, Menu } from '@horizin/design-system';
-import { BoxLoginProfile } from '@kames/3box-components/dist'
+import { BoxLoginButton, BoxLoginProfile } from '@kames/3box-components/dist'
 import MenuItems from '../static/menus/mobile'
 
 const Branding = ({ styled, ...props }) =>
@@ -8,7 +8,7 @@ const Branding = ({ styled, ...props }) =>
   <Flex alignCenter flex={1}>
     <Box>
       <Link to='/' color='#FFF !important' >
-      <Flex alignCenter>
+        <Flex alignCenter>
           <Span circle width={25} mt={1} mr={2}><Image src='https://image.flaticon.com/icons/svg/2165/2165602.svg' /></Span>
           <Flex column>
             <Heading fontSize={3} thin noMargin>ETHEREUM</Heading>
@@ -28,14 +28,15 @@ const Branding = ({ styled, ...props }) =>
     <Link to='/discover'>
         <Span xxs tag='green'>Discover</Span>
     </Link>
-    <Link to='/adventures'>
-      <Span xxs mx={3} tag='blue'>Pick Adventure</Span>
+    <Link to='/community'>
+      <Span xxs mx={3} tag='blue'>Community</Span>
     </Link>
     <Box alignSelf='flex-end'>
       <Link to='/account'>
         <Button xs>Account</Button>
       </Link>
     </Box>
+    
   </Flex>
 </Flex>
 

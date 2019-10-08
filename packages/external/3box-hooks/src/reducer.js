@@ -8,6 +8,17 @@ export default (state, action) => {
     /* Initilization
     /* ======================= */
 
+    case 'ENABLE_REQUEST':
+      return dot.set(state, 'isEnableRequested', true)
+    case 'ENABLE_SUCCESS':
+      return dot.set(state, 'isEnableSuccess', true)
+    case 'ENABLE_FAILURE':
+      return dot.set(state, 'isEnableSuccess', false)
+    return {
+        ...state,
+        ...action
+      };
+
     case 'SET_ADDRESS':
       return {
         ...state,
@@ -202,27 +213,28 @@ export default (state, action) => {
     /* Thread             */
     /* ------------------ */
     case 'JOIN_THREAD_REQUEST':
-        return dot(state).set(`store.threads`, [ ...state.store.threads, action]).value()
+      return dot(state).set(`store.threads`, [ ...state.store.threads, action]).value()
         
     case 'JOIN_THREAD_SUCCESS':
     return dot(state)
       .set(`threads.${action.threadName}`, action)
       .set(`data.threads.${action.threadName}`, action)
+      .set(`store.threads`, [])
       .value()
 
     /* ------------------ */
     /* Thread Get
     /* ------------------ */
     case 'GET_THREAD_REQUEST':
-      return dot(state).set(`store.threads`, [ ...state.store.threads, action]).value()
+      return dot(state).set(`store.threadsGet`, [ ...state.store.threadsGet, action]).value()
     case 'GET_THREAD_SUCCESS':
       return dot(state)
-        .set(`threads.${action.threadName}.posts`, action.payload) // Deprecated path
+        .set(`threadsGet.${action.threadName}.posts`, action.payload) // Deprecated path
         .set(`data.threads.${action.threadName}.posts`, action.payload) // New path
-        .set(`store.threads`, [])
+        .set(`store.threadsGet`, [])
         .value()
     case 'GET_THREAD_FAILURE':
-      return dot(state).set(`store.threads`, []).value()
+      return dot(state).set(`store.threadsGet`, []).value()
 
     case 'GET_THREAD_BY_ADDRESS_REQUEST':
       return dot(state).set(`store.threads`, [ ...state.store.threads, action]).value()

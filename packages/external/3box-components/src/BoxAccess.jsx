@@ -2,7 +2,7 @@
 import idx from 'idx'
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Box } from '@horizin/design-system'
+import { Button, Loading } from '@horizin/design-system'
 import { BoxWrapper } from '@kames/3box-hooks/dist'
 import { BoxSpaceOpen, BoxThreadJoin } from './index'
 import BoxLoginButton from './BoxLoginButton'
@@ -18,6 +18,10 @@ const BoxAccess = ({
     {
       level === 'disabled' &&
       props.children
+    }
+    {
+      level === 'enabled' &&
+      <LevelEnabled box={box} {...props} />
     }
     {
       level === 'login' &&
@@ -38,7 +42,7 @@ const BoxAccess = ({
 
 BoxAccess.defaultProps = {
   componentLogin: <BoxLoginButton />,
-  componentLoading: <div>ls</div>,
+  componentLoading: null,
   threadName: undefined,
   loginAuto: false,
   spaceAuto: false,
@@ -71,25 +75,27 @@ export default props =>
 </BoxWrapper>
 
 /**
+ * @function LevelEnabled
+ * @param {*} props 
+ */
+const LevelEnabled = ({ box, children }) => box.isEnableSuccess ? children : null
+
+/**
  * @function LevelLogin
  * @param {*} props 
  */
 const LevelLogin = ({
-  box, styled, styledLogin,
-  isLoginDisabled, variant,
+  box, styled, styledLogin, variant,
   componentLogin, children, ...props
 }) => { 
   const { isLoggedIn } = box
  return(
-  <>
-    {
-      !isLoggedIn
-      ? componentLogin
-        ? componentLogin
-        : isLoginDisabled ? null :  null
-      : children
-    }
-  </>
+  props.isLoginHidden ? null :
+  !isLoggedIn
+  ? componentLogin
+    ? componentLogin
+    : props.isLoginDisabled ? null :  null
+  : children
 )}
 
 /**
@@ -99,7 +105,7 @@ const LevelLogin = ({
 const LevelSpace = ({
   box,
   space, threadName, threadAuto, spaceAuto, variant,
-  styled, styledLogin, styledSpace, isLoginDisabled, componentSpace, componentLogin,
+  styled, styledLogin, styledSpace, componentSpace, componentLogin,
   children, ...props
 }) => { 
   const { isLoggedIn } = box
@@ -115,9 +121,8 @@ const LevelSpace = ({
   <>
       {
         !isLoggedIn && !spaceLoaded
-        ? componentLogin
-          ? componentLogin
-          : isLoginDisabled ? null :  null
+        ? props.isLoginDisabled ? null 
+          : componentLogin
         : null
       }
 
@@ -153,7 +158,6 @@ const LevelThread = ({
   box,
   space, threadName, threadAuto, spaceAuto, variant,
   styled, styledLogin, styledSpace, styledThread,
-  isLoginDisabled,
   componentSpace, componentThread, componentLogin, ...props
 }) => { 
   const { isLoggedIn } = box
@@ -175,12 +179,18 @@ const LevelThread = ({
 
  return(
   <>
-  {
+
+      {
+        props.componentLoading ?
+        !spaceLoaded && !spaceAuto
+          : props.componentLoading
+      }
+
+      {
         !isLoggedIn && !spaceLoaded && !threadLoaded 
-        ? componentLogin
-          ? componentLogin
-          : <BoxLoginButton auto={props.loginAuto} />
-        : null
+        ? props.isLoginDisabled ? null 
+          : componentLogin
+      : null
       }
 
       {
@@ -222,7 +232,7 @@ const LevelThread = ({
         
         isLoggedIn && spaceLoaded && threadLoaded 
         ? props.children
-        : props.componentLoading ? <Component component={props.componentLoading} /> : null
+        :  null
       }
       
     </>

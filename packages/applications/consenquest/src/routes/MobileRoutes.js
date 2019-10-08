@@ -5,7 +5,7 @@ import { SiteHeader, SiteFooter } from '@horizin/design-system/dist/templates/Si
 import { Branding, Footer } from "../components";
 import {
     Account
-  } from "../views/Site";
+  } from "../views/Mobile";
 
 const MobileRoutes = ({ styled, ...props }) => {
   const [ address, setAddress ] = useState()

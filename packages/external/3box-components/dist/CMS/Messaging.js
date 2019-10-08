@@ -72,7 +72,6 @@ var MessagingSelector = (_ref) => {
 
   var GetThreadEffect = () => (0, _react.useEffect)(() => {
     if (space && threadName && firstModerator && !dispatched) {
-      console.log('getting thread');
       if (threadAddress) box.getThreadByAddress({
         threadAddress
       });else box.getThread({
@@ -109,8 +108,8 @@ var MessagingSelector = (_ref) => {
 
   if (props.isGlobalConfig) LoadGlobalConfigurationEffect();
   if (props.canRequestData) GetThreadEffect();
-  if (props.isRefresh) SetSelectionEffect();
-  if (!props.isRefresh) SetSelectionOnceEffect();
+  if (props.isRefresh) SetSelectionEffect(); // if(!props.isRefresh) SetSelectionOnceEffect()
+
   /* --- Return Component ---*/
 
   return _react.default.createElement(_Component.default, {

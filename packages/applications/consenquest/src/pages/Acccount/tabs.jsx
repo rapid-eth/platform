@@ -86,19 +86,39 @@ const Tabs = props => {
         />
       </TabPanel>
 
-
+      {/* <Messaging
+        space={SPACE}
+        threadName='feedback'
+        firstModerator={ROOT}
+        members={false}
+        component={FeedbackItem}
+        pass={{
+          threadName: 'feedback',
+        }}
+      /> */}
 
       <TabPanel tabGroup='account' tabId='questing'>
         {/* <Heading>Questing</Heading> */}
         <Messaging
           space={SPACE}
           threadName='quest_catalog'
+          firstModerator={props.address}
           component={Reference}
+          styled={{my: 3}}
           pass={{
-            space:SPACE, access:'public', index:'quest',
+            space:SPACE, threadName: 'quest_catalog', access:'public', index:'quest',
             component: QuestCatalogItem,
-            m: 3,
-            p: 4
+            pass: {
+              space: SPACE, threadName: 'quest_catalog',
+              optionsThread: {
+                members: true,
+                firstModerator: props.address
+              },
+              styled: {
+                m: 2,
+                p: 2
+              }
+            }
           }}
         />
       </TabPanel>

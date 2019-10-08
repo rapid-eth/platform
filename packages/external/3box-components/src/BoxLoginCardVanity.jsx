@@ -68,7 +68,9 @@ return(
       <Span mb={3}>{ 
         isImage
         ? <Box circle p={0} boxShadow={4} maxWidth={140} mt={-180} ><Image circle p={2} bg='#ffffff8c' src={GenerateImage(profile.image)} boxShadow={'sunset'} /></Box>
-        : <Image card circle boxShadow={'sunset'} p={20} src='https://icon-library.net/images/ethereum-icon/ethereum-icon-4.jpg' />
+        : <Box circle p={0} boxShadow={4} maxWidth={140} mt={-180}>
+          <Image card circle boxShadow={'sunset'} p={20} src='https://icon-library.net/images/ethereum-icon/ethereum-icon-4.jpg' />
+        </Box>
           
       }</Span>
       <Absolute layout='topRight' mt={-20} mx={3}>

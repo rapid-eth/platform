@@ -173,9 +173,9 @@ const ProfileLineItem = ({
 }
 
 ProfileLineItem.defaultProps = {
-  name: 'Kames Geraghty',
-  tagline: 'The Baddest JS Developer Around',
-  image: 'https://ipfs.io/ipfs/QmYGh4a6cjH7a3mw9xSYezp2WenGb3d7wj7Wwo9TV44knE'
+  name: '',
+  tagline: '',
+  image: ''
 }
 
 export default QuestItem

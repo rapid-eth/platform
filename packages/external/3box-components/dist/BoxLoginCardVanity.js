@@ -128,13 +128,19 @@ var BoxLoginCard = (_ref) => {
     bg: "#ffffff8c",
     src: (0, _utilities.GenerateImage)(profile.image),
     boxShadow: 'sunset'
-  })) : _react.default.createElement(_designSystem.Image, {
+  })) : _react.default.createElement(_designSystem.Box, {
+    circle: true,
+    p: 0,
+    boxShadow: 4,
+    maxWidth: 140,
+    mt: -180
+  }, _react.default.createElement(_designSystem.Image, {
     card: true,
     circle: true,
     boxShadow: 'sunset',
     p: 20,
     src: "https://icon-library.net/images/ethereum-icon/ethereum-icon-4.jpg"
-  })), _react.default.createElement(_designSystem.Absolute, {
+  }))), _react.default.createElement(_designSystem.Absolute, {
     layout: "topRight",
     mt: -20,
     mx: 3
