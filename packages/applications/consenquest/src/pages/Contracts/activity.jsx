@@ -23,7 +23,7 @@ const Earn = () => {
   const [ address, setAddress ] = useState()
 
   const actionHAndler = (values) => { 
-    console.log(values)
+    console.log(values, 'values submit')
     setAddress(values.address)
   }
 

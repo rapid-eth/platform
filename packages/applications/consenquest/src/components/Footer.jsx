@@ -27,9 +27,10 @@ const Footer = ({ styled, ...props }) =>
       <Flex column mx={20} >
         <Span heavy >Tools</Span>
         <HorizontalRule dash my={10} />
-        <Link to='/account'><Span sm>Create Decentralized Profile <Span xxs mx={2} tag='blue'>3Box</Span></Span></Link>
-        <Link to='/cms'><Span sm>Content Management System<Span xxs my={2} mx={2} tag='green'>Beta</Span></Span></Link>
-        <Link to='/atm'><Span sm >Bank & ATM Deploy<Span xxs mx={2} tag='green'>Beta</Span></Span></Link>
+        <Link to='/contracts'><Span sm mb={3}>Deploy Tokens Contracts <Span xxs mx={2} tag='blue'>Developer</Span></Span></Link>
+        <Link to='/account'><Span sm mb={3}>Create Decentralized Profile <Span xxs mx={2} tag='blue'>3Box</Span></Span></Link>
+        <Link to='/cms'><Span sm mb={3}>Content Management System<Span xxs my={2} mx={2} tag='green'>Beta</Span></Span></Link>
+        <Link to='/atm'><Span sm mb={3}>Bank & ATM Deploy<Span xxs mx={2} tag='green'>Beta</Span></Span></Link>
       </Flex>
       <Flex column mx={50} >
         <Span heavy >Community</Span>
