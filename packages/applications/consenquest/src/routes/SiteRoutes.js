@@ -35,10 +35,10 @@ import Start from '../pages/Core/Start'
 import Team from '../pages/Core/Team'
 
 import InitDevQuest from '../components/DevQuestToken/Init'
-
+const TOKEN = process.env.REACT_APP_DEFAULT_TOKEN
 const SiteRoutes = props =>
   <Site>
-    <InitDevQuest address='0x4b001411186583FD65b8C0b92A57Ff028A459F9F' />
+    <InitDevQuest address={TOKEN}/>
     <SiteHeader>
       <Branding />
     </SiteHeader>

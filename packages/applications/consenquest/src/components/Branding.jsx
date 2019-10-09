@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Box, Flex, Image, Link, Heading, Span, Panel, Popover, Menu } from '@horizin/design-system';
 import { BoxLoginButton, BoxLoginProfile } from '@kames/3box-components/dist'
 import MenuItems from '../static/menus/mobile'
+import MenuDrop from './Menu'
 
 const Branding = ({ styled, ...props }) =>
   <Flex between alignCenter {...styled}>
@@ -18,16 +19,18 @@ const Branding = ({ styled, ...props }) =>
         </Link>
       </Box>
       <Flex alignCenter between ml={20} >
-        <StartJourneyPopover />
+        {/* <StartJourneyPopover /> */}
+        {/* <MenuDrop /> */}
+        <Link to='/discover'>
+          <Span xxs tag='green'>Discover</Span>
+        </Link>
       </Flex>
     </Flex>
     <Flex alignCenter justifyEnd flex={1} width={.5}>
       <Link to='/how-it-works'>
         <Span xxs mr={3}>Platform Guide</Span>
       </Link>
-      <Link to='/discover'>
-        <Span xxs tag='green'>Discover</Span>
-      </Link>
+      
       <Link to='/community'>
         <Span xxs mx={3} tag='blue'>Community</Span>
       </Link>

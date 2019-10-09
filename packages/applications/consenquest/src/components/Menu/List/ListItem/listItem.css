@@ -1,0 +1,19 @@
+
+.list-item:hover{
+  width:110%;
+  background-color:#58B3AE;
+  transition-duration: .3s;
+  background-color:rgba(56,183,153 .85);
+  color:#fff;
+  box-shadow:
+    0 .05em .25em 0 rgba(, 0, 0, .35),
+    inset 0 0 0 2em rgba(0, 0, 0, .3);
+}
+
+
+.item-icon {
+  width: 2.5vw;
+  height: 2.5vw;
+  border-radius: 100px;
+  border-color: 1px lightgrey solid
+}
