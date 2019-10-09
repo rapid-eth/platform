@@ -44,19 +44,7 @@ const Page = ({ styled, ...props }) => {
             {
               label: 'Quests',
               to: '/cms/quests'
-            },
-            {
-              label: 'Resources',
-              to: '/cms/resources'
-            },
-            {
-              label: 'Curation',
-              to: '/cms/curation'
-            },
-            {
-              label: 'Organization',
-              to: '/cms/organization'
-            },
+            }
           ]}
         />
       </Flex>
