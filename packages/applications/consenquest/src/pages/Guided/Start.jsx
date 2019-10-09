@@ -59,13 +59,13 @@ const Page = ({ styled, ...props }) => {
           </Box>
 
           <Box flex={1} p={4}>
-            <Heading heavy>Example 'a-ha' Moment</Heading>
+            <Heading heavy>An 'a-ha' Moment</Heading>
             <Paragraph>
-              <strong><i>Back when I was first learning Ethereum, one of the first things I thought was really cool about it was just that, woah, I don't have to run my own servers. I don't have to provision my own servers, I don't have to maintain servers—it's just Ethereum, and it's always there. I thought that was really cool on its own.</i></strong>
+              <i>"Back when I was first learning Ethereum, one of the first things I thought was really cool about it was just that, woah, I don't have to run my own servers. I don't have to provision my own servers, I don't have to maintain servers—it's just Ethereum, and it's always there. I thought that was really cool on its own."</i>
             </Paragraph>
 
             <Paragraph>
-              Mike Goldin, <br />
+              -Mike Goldin, <br />
               ConsenSys
             </Paragraph>
 
