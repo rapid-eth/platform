@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _reactDom = require("react-dom");
 
-var _portalContext = _interopRequireDefault(require("../portalContext"));
+var _PortalContext = _interopRequireDefault(require("../PortalContext"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16,7 +16,7 @@ var Portal = (_ref) => {
     id,
     children
   } = _ref;
-  var target = (0, _portalContext.default)(id);
+  var target = (0, _PortalContext.default)(id);
   console.log(target, 'target');
   return (0, _reactDom.createPortal)(children, target);
 };

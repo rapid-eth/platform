@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import usePortal from '../portalContext';
+import usePortal from '../PortalContext';
 
 const Portal = ({ id, children }) => {
   const target = usePortal(id);
