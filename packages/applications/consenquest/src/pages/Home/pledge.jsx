@@ -28,7 +28,7 @@ const Component = props => {
         if (res.json) res.json().then(msg => {
           console.log(msg);
           setPercent(MILLION / 100000)
-          setPledge(utils.commify(msg.pledgeCount + 100000))
+          setPledge(utils.commify(msg.pledgeCount + 200000))
         });
       })
       .catch(err => {
@@ -44,32 +44,32 @@ const Component = props => {
           percent={percent}
           theme={{
             success: {
-              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg'/>,
+              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />,
               color: 'rgb(223, 105, 180)',
               trailColor: 'pink',
             },
             active: {
-              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg'/>,
+              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />,
               color: 'rgb(223, 105, 180)',
               trailColor: 'pink',
             },
             default: {
-              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg'/>,
+              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />,
               color: 'rgb(223, 105, 180)',
               trailColor: 'pink',
             }
           }}
-        
-        type="circle" percent={percent} status="success" />
+
+          type="circle" percent={percent} status="success" />
       </Box>
       <Heading xl center thin><Span fontWeight={700}>{pledge}+ </Span> Active Developers</Heading>
       {
         window.ethereum && window.ethereum.selectedAddress &&
         <>
-        <Link to={`onemilliondevelopers.com/connect/${window.ethereum.selectedAddress}`}>
-          <Span xs bg='white' py={2}> {`onemilliondevelopers.com/connect/${window.ethereum.selectedAddress}`} </Span>
-        </Link>
-        <Span xxs tag='white'>Share Your Referral Code</Span>
+          <Link to={`onemilliondevelopers.com/connect/${window.ethereum.selectedAddress}`}>
+            <Span xs bg='white' py={2}> {`onemilliondevelopers.com/connect/${window.ethereum.selectedAddress}`} </Span>
+          </Link>
+          <Span xxs tag='white'>Share Your Referral Code</Span>
         </>
       }
     </>
