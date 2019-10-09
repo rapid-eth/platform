@@ -1,8 +1,8 @@
 import React from 'react';
-import { Flex, Heading, Modal, BackgroundImage, Paragraph, Box, Button, Span, Absolute, Image } from '@horizin/design-system';
+import { Flex, Heading, Modal, BackgroundImage, Paragraph, Box, Button, Span, Absolute, Image, Link } from '@horizin/design-system';
 
 import {
-  BoxLoginCard, BoxProfileRetrieve
+  BoxLoginCard, BoxProfileRetrieve, BoxLoginCardReferal
 } from '@kames/3box-components/dist'
 
 const ATM = props =>
@@ -19,31 +19,22 @@ const ATM = props =>
           <BoxProfileRetrieve address={props.address} />
         </Box>
         <Flex>
-            <Button sm variant='white'>Follow Friend</Button>
-            <Button sm variant='white' mx={3}>View Profile</Button>
+          <Link to={`/profile/${props.address}`}>
+            <Button sm variant='blue'>View Developer Profile</Button>
+          </Link>
         </Flex>
       </Box>
-        <Box alignSelf='flex-end' mt='auto'>
+        <Box  mt='auto'>
           <Paragraph xs>
-            The ETHub network is a place for Ethereum developers to connect. A place to share projects, code and ideas. And even level up skills.
+            Get rewarded for signing registering via a friend's link. <strong>You will have rewards automatically issued to your address.</strong>
           </Paragraph>
-          <Modal
-            content={<div />}
-            label='The Network'
-            styled={{
-              position: 'fullScreen',
-              m: 80
-            }}
-          >
-            <Button sm variant='blue' mt={20}>View Network Activity</Button>
-          </Modal>
         </Box>
     </Flex>
 
 
     <Flex center column flex={2} py={100} >
       <BackgroundImage ratio={.75} backgroundPosition='100px -215px' backgroundSize='150%'  src='https://images.ui8.net/uploads/blockchain_platform_5_1527438188551.jpg' />
-      <Absolute top={0} bottom={0} left={0}>
+      {/* <Absolute top={0} bottom={0} left={0}>
         <Flex center column height='100%'>
           <Flex center column card circle  boxShadow='sunset' ml={-85} p={4} maxWidth={250}>
             <Image card circle boxShadow='sunset' p={2} mt={-60} mb={2} maxWidth={80} src='https://icon-library.net/images/ethereum-icon/ethereum-icon-4.jpg'/>
@@ -52,8 +43,8 @@ const ATM = props =>
             <Span xxs tag='white'>Learn More</Span>
           </Flex>
         </Flex>
-      </Absolute>
-      <BoxLoginCard />
+      </Absolute> */}
+      <BoxLoginCardReferal addressReferrer={props.address} />
     </Flex>
   </Flex>
 

@@ -18,28 +18,14 @@ const Branding = ({ styled, ...props }) =>
           </Flex>
         </Link>
       </Box>
-      <Flex alignCenter between ml={20} >
-        {/* <StartJourneyPopover /> */}
-        {/* <MenuDrop /> */}
+      {/* <Flex alignCenter between ml={20} >
         <Link to='/discover'>
           <Span xxs tag='green'>Discover</Span>
         </Link>
-      </Flex>
+      </Flex> */}
     </Flex>
     <Flex alignCenter justifyEnd flex={1} width={.5}>
-      <Link to='/how-it-works'>
-        <Span xxs mr={3}>Platform Guide</Span>
-      </Link>
-      
-      <Link to='/community'>
-        <Span xxs mx={3} tag='blue'>Community</Span>
-      </Link>
-      <Box alignSelf='flex-end'>
-        <Link to='/account'>
-          <Button xs>Account</Button>
-        </Link>
-      </Box>
-
+      <Button xs variant='white'>DApp Coming Soon</Button>
     </Flex>
   </Flex>
 

@@ -112,7 +112,7 @@ var effects = (callUseEffect, state, dispatch) => {
 
             switch (messageRequest.type) {
               case 'SIGN_TYPED_MESSAGE_REQUEST':
-                signature = yield state.provider.send('eth_signTypedData', [messageRequest.payload, state.address]);
+                signature = yield state.provider.injected.send('eth_signTypedData', [messageRequest.payload, state.address]);
                 break;
 
               default:

@@ -135,6 +135,18 @@ Object.defineProperty(exports, "BoxProfileRetrieve", {
     return _BoxProfileRetrieve.default;
   }
 });
+Object.defineProperty(exports, "BoxLoginCardPledge", {
+  enumerable: true,
+  get: function get() {
+    return _BoxLoginCardPledge.default;
+  }
+});
+Object.defineProperty(exports, "BoxLoginCardReferal", {
+  enumerable: true,
+  get: function get() {
+    return _BoxLoginCardReferal.default;
+  }
+});
 Object.defineProperty(exports, "BoxSelector", {
   enumerable: true,
   get: function get() {
@@ -285,6 +297,10 @@ var _BoxLoginCard = _interopRequireDefault(require("./BoxLoginCard"));
 var _BoxLoginCardVanity = _interopRequireDefault(require("./BoxLoginCardVanity"));
 
 var _BoxProfileRetrieve = _interopRequireDefault(require("./BoxProfileRetrieve"));
+
+var _BoxLoginCardPledge = _interopRequireDefault(require("./BoxLoginCardPledge"));
+
+var _BoxLoginCardReferal = _interopRequireDefault(require("./BoxLoginCardReferal"));
 
 var _BoxSelector = _interopRequireDefault(require("./BoxSelector"));
 

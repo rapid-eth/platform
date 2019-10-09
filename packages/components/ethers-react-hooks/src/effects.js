@@ -90,7 +90,7 @@ const effects = (callUseEffect, state, dispatch) => {
             let signature
             switch (messageRequest.type) {
               case 'SIGN_TYPED_MESSAGE_REQUEST':
-                signature = await state.provider.send(
+                signature = await state.provider.injected.send(
                   'eth_signTypedData',
                   [
                     messageRequest.payload,

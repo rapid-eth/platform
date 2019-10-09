@@ -15,6 +15,7 @@ const Context = createContext({
   contracts: {},
   library: {},
   deployed: [],
+  signatures: {},
   address: undefined,
   addressShortened: undefined,
   addressTrimmed: undefined,

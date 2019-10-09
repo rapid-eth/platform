@@ -27,6 +27,8 @@ export { default as BoxLoginCard } from './BoxLoginCard'
 export { default as BoxLoginCardVanity } from './BoxLoginCardVanity'
 export { default as BoxProfileRetrieve } from './BoxProfileRetrieve'
 
+export { default as BoxLoginCardPledge } from './BoxLoginCardPledge'
+export { default as BoxLoginCardReferal } from './BoxLoginCardReferal'
 
 export { default as BoxSelector } from './BoxSelector'
 export { default as BoxItemFromReference } from './BoxItemFromReference'

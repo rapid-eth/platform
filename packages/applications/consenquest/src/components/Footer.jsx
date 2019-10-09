@@ -24,7 +24,7 @@ const Footer = ({ styled, ...props }) =>
         </Paragraph>
         </Flex>
       
-      <Flex column mx={20} >
+      {/* <Flex column mx={20} >
         <Span heavy >Tools</Span>
         <HorizontalRule dash my={10} />
         <Link to='/contracts'><Span sm mb={3}>Deploy Tokens Contracts <Span xxs mx={2} tag='blue'>Developer</Span></Span></Link>
@@ -37,7 +37,7 @@ const Footer = ({ styled, ...props }) =>
         <HorizontalRule dash my={10} />
         <Link to='/adventures'><Span sm >Adventures</Span></Link>
         <Link to='/quests'><Span sm mt={3} >Quests</Span></Link>
-      </Flex>
+      </Flex> */}
     </Flex>
     
 

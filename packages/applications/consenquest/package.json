@@ -1,7 +1,7 @@
 {
   "name": "@rapid/consenquest",
   "version": "1.0.0",
-  "homepage": "https://onemilliondevs.com/",
+  "homepage": "https://rapid-eth.github.io/platform/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
