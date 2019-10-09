@@ -74,7 +74,7 @@ const Home = ({ styled, ...props }) =>
       <Container>
         <Flex alignCenter p={4}>
           <Box flex={3} p={5}>
-            <Heading lg heavy><Span> Collect Precious </Span>DEV Token</Heading>
+            <Heading lg heavy><Span> Collect Precious </Span> DEV Token</Heading>
             <Heading md thin>Build reputation in the developer community. <strong><em>Earn DEV</em></strong>.</Heading>
             <Paragraph>
               Have you already experienced your 'a-ha' moment?
