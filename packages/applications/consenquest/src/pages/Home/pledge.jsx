@@ -43,32 +43,39 @@ const Component = props => {
           percent={percent}
           theme={{
             success: {
-              symbol: <Image circle maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg'/>,
+              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />,
               color: 'rgb(223, 105, 180)',
               trailColor: 'rgba(255,255,255, 0.4)',
             },
             active: {
-              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg'/>,
+              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />,
               color: 'rgb(223, 105, 180)',
               trailColor: 'pink',
             },
             default: {
-              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg'/>,
+              symbol: <Image maxWidth={150} src='https://images.assetsdelivery.com/compings_v2/mingirov/mingirov1904/mingirov190400568.jpg' />,
               color: 'rgb(223, 105, 180)',
               trailColor: 'pink',
             }
           }}
-        
-        type="circle" percent={percent} status="success" />
+
+          type="circle" percent={percent} status="success" />
       </Box>
       <Heading xl center thin><Span fontWeight={700}>{pledge}+ </Span> Active Developers</Heading>
       {
         window.ethereum && window.ethereum.selectedAddress &&
         <>
-        <a target='_blank' href={`https://onemilliondevs.com/#/connect/${window.ethereum.selectedAddress}`}>
-          <Span xs p={3}> {`/connect/${window.ethereum.selectedAddress}`} </Span>
-        </a>
-        <Span xxs tag='white'>Share Your Referral Code</Span>
+<<<<<<< HEAD
+  <a target='_blank' href={`https://onemilliondevs.com/#/connect/${window.ethereum.selectedAddress}`}>
+    <Span xs p={3}> {`/connect/${window.ethereum.selectedAddress}`} </Span>
+  </a>
+    <Span xxs tag='white'>Share Your Referral Code</Span>
+=======
+          <Link to={`onemilliondevelopers.com/connect/${window.ethereum.selectedAddress}`}>
+            <Span xs bg='white' py={2}> {`onemilliondevelopers.com/connect/${window.ethereum.selectedAddress}`} </Span>
+          </Link>
+          <Span xxs tag='white'>Share Your Referral Code</Span>
+>>>>>>> 1d81097a6ace835557ec818cb0d60e8679d01953
         </>
       }
     </>
