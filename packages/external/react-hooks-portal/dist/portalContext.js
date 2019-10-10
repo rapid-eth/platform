@@ -44,14 +44,12 @@ function usePortal(id) {
     // Look for existing target dom element to append to
     var existingParent = document.querySelector("#".concat(id)); // Parent is either a new root or the existing dom element
 
-    var parentElem = existingParent || createRootElement(id);
-    console.log(parentElem, 'parentElem'); // If there is no existing DOM element, add a new one.
+    var parentElem = existingParent || createRootElement(id); // If there is no existing DOM element, add a new one.
 
     if (!existingParent) {
       addRootElement(parentElem);
-    }
+    } // Add the detached element to the parent
 
-    console.log(parentElem, 'parentElem'); // Add the detached element to the parent
 
     parentElem.appendChild(rootElemRef.current);
     return function removeElement() {

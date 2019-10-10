@@ -102,7 +102,7 @@ const Home = ({ styled, ...props }) =>
               <Image
                 boxShadow='sunset'
                 maxWidth={600} borderRadius='100px 0 0 100px' p={1}
-                src={'https://i.imgur.com/vaTcwti.png'} />
+                src='https://i.imgur.com/Xx9tjc4.png' />
             </Box>
           </Flex>
 
@@ -116,21 +116,24 @@ const Home = ({ styled, ...props }) =>
               <Image
                 boxShadow='sunset'
                 maxWidth={600} borderRadius='0 70px 70px 0' p={1}
-                src='https://i.imgur.com/Xx9tjc4.png' />
+                src={'https://i.imgur.com/vaTcwti.png'} />
             </Box>
           </Flex>
           <Box flex={3} p={5}>
-            <Heading xxl>Community-Curated Adventures</Heading>
-            <Heading lg>Share your ‘ah-ha’ moment</Heading>
+            <Heading xxl>Interactive Quests & Adventures</Heading>
+            <Heading lg>Discover your ‘ah-ha’ moment</Heading>
 
             <Paragraph>
-            Have you had an ‘ah-ha’ Ethereum moment yourself? Create your own Adventures and Quests to introduce others to that moment, or to introduce others to the platforms, tools, or projects you’ve been working on or obsessed with.
+              A common thread amongst Ethereum ecosystem participants seems to be their experience of a revelation - an 'ah-ha' moment when they finally grasped the potential of Ethereum and dropped everything to participate in the Web3 movement.
           </Paragraph>
 
             <Paragraph>
-            Using our extensible 3box-enabled platform, easily curate an interactive, immersive, and rewarding experience for users to guide them through an experience you believe is valuable. 
+              Find your Ethereum 'ah-ha' moment by completing interactive Adventures and Quests which introduce you to amazing tools and concepts around our equally amazing ecosystem.
           </Paragraph>
 
+            <Paragraph>
+              And, earn rewards for doing so!
+          </Paragraph>
           </Box>
 
         </Flex>

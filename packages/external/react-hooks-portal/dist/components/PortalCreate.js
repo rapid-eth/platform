@@ -17,7 +17,6 @@ var Portal = (_ref) => {
     children
   } = _ref;
   var target = (0, _PortalContext.default)(id);
-  console.log(target, 'target');
   return (0, _reactDom.createPortal)(children, target);
 };
 

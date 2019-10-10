@@ -31,22 +31,17 @@ const Branding = ({ styled, ...props }) =>
 
 const Mobile = ({ styled, ...props }) =>
   <Flex between alignCenter {...styled}>
-    <Flex alignCenter flex={1}>
-      <Heading thin noMargin fontSize={[3]}>Web<strong>ΞLand</strong></Heading>
-    </Flex>
+    <Flex alignCenter>
+            <Span circle width={25} mt={1} mr={2}><Image src='https://image.flaticon.com/icons/svg/2165/2165602.svg' /></Span>
+            <Flex column>
+              <Heading fontSize={3} thin noMargin>ETHEREUM</Heading>
+              <Span xxs>1 Million Developers</Span>
+            </Flex>
+          </Flex>
 
 
     <Flex alignCenter justifyEnd flex={1} width={.5}>
-      <Box alignSelf='flex-end' mr={3}>
-        <Link to='/account'>
-          <Button xs >ΞID</Button>
-        </Link>
-      </Box>
-      <Panel
-        label='Web3 Land Menu'
-        content={<MobilePanel />}>
-        <Link to='/community'><Button xs><Span>MENU</Span></Button></Link>
-      </Panel>
+        <Button xs variant='white'>DApp Coming Soon</Button>
     </Flex>
   </Flex>
 

@@ -41,14 +41,10 @@ function usePortal(id) {
     // Parent is either a new root or the existing dom element
     const parentElem = existingParent || createRootElement(id);
 
-    console.log(parentElem, 'parentElem')
-
     // If there is no existing DOM element, add a new one.
     if (!existingParent) {
       addRootElement(parentElem);
     }
-
-    console.log(parentElem, 'parentElem')
 
     // Add the detached element to the parent
     parentElem.appendChild(rootElemRef.current);

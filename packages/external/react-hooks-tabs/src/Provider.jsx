@@ -63,7 +63,6 @@ const TabProvider = ({ children, ...props }) => {
   // Fix ReferenceError: exports is not defined
   const state = reducer[0]
   const dispatch = reducer[1]
-  console.log(state, 'Tab State')
   useEffect(() => {
     dispatch({
       type: 'setTabsTemplate',

@@ -26,6 +26,7 @@ const Component = props => {
     })
       .then(res => {
         if (res.json) res.json().then(msg => {
+          console.log(msg);
           setPercent(MILLION / 100000)
           setPledge(utils.commify(msg.pledgeCount + 200000))
         });
@@ -65,9 +66,9 @@ const Component = props => {
       {
         window.ethereum && window.ethereum.selectedAddress &&
         <>
-        <a target='_blank' href={`https://onemilliondevs.com/#/connect/${window.ethereum.selectedAddress}`}>
-          <Span xs p={3}> {`/connect/${window.ethereum.selectedAddress}`} </Span>
-        </a>
+        <Link to={`onemilliondevelopers.com/connect/${window.ethereum.selectedAddress}`}>
+          <Span xs p={3}> {`onemilliondevelopers.com/connect/${window.ethereum.selectedAddress}`} </Span>
+        </Link>
         <Span xxs tag='white'>Share Your Referral Code</Span>
         </>
       }

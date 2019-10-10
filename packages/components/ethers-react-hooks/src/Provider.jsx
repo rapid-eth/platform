@@ -9,18 +9,17 @@ const Provider = ({ children, ...props }) => {
   const initialState = useContext(Context)
   const [state, dispatch] = useReducer(reducerActions, initialState);
   ProviderEffects(useEffect, state, dispatch)
-  
-  console.log(state, 'Ethers State')
+
   const stringToArrayPath = data => typeof data === 'string' ? data.split('.') : data
   const idxx = (state, nest) =>
-  [state, ...stringToArrayPath(nest)]
-  .reduce((branch, index) => {
-    if(typeof index === 'string' && branch) {
-      return branch[index]
-    } else {
-      nest = index
-    }
-  })
+    [state, ...stringToArrayPath(nest)]
+      .reduce((branch, index) => {
+        if (typeof index === 'string' && branch) {
+          return branch[index]
+        } else {
+          nest = index
+        }
+      })
 
   return (
     <Context.Provider value={{
@@ -28,11 +27,11 @@ const Provider = ({ children, ...props }) => {
       dispatch: dispatch,
       selector: (select) => idxx(state, select),
       enable: () => window.ethereum.enable(),
-      setProvider: ({provider, delta}) => dispatch({
+      setProvider: ({ provider, delta }) => dispatch({
         type: 'SET_PROVIDER',
         payload: provider,
       }),
-      setProviderStatus: ({provider, delta}) => dispatch({
+      setProviderStatus: ({ provider, delta }) => dispatch({
         type: 'SET_PROVIDER',
         payload: provider,
       }),
@@ -63,7 +62,7 @@ const Provider = ({ children, ...props }) => {
           contractName,
         }
       }),
-      deployContract: ({contract, delta, values}) => dispatch({
+      deployContract: ({ contract, delta, values }) => dispatch({
         type: 'DEPLOY_CONTRACT_REQUEST',
         payload: {
           contract,
@@ -76,7 +75,7 @@ const Provider = ({ children, ...props }) => {
         input: bytecode,
         delta: delta || hashCode(abi)
       }),
-      signMessageTyped: ({message, delta}) => dispatch({
+      signMessageTyped: ({ message, delta }) => dispatch({
         type: 'SIGN_TYPED_MESSAGE_REQUEST',
         payload: message,
         id: delta || hashCode(message.toString())

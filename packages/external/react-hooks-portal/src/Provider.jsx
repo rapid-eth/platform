@@ -6,8 +6,7 @@ const Provider = ({ children, ...props }) => {
   const initialState = useContext(Context)
   const [state, dispatch] = useReducer(reducerActions, initialState);
   ProviderEffects(useEffect, state, dispatch)
-  
-  console.log(state, 'Panel Provider')
+
   return (
     <Context.Provider value={{
       ...state,

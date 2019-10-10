@@ -1,7 +1,6 @@
 const uuidv1 = require('uuid/v1');
 const reducerActions = (state, action) => {
   const { id, type, payload, instance } = action
-  console.log(action, 'actionaction')
   switch (action.type) {
     case 'CLOSE_PORTAL':
 

@@ -42,7 +42,6 @@ var Provider = (_ref) => {
 
   var state = reducer[0];
   var dispatch = reducer[1];
-  console.log(state, 'Box Provider State');
   (0, _effects.default)(_react.useEffect, state, dispatch);
 
   var stringToArrayPath = data => typeof data === 'string' ? data.split('.') : data;

@@ -10,36 +10,34 @@ const Provider = ({ children, ...props }) => {
   // Fix ReferenceError: exports is not defined
   const state = reducer[0]
   const dispatch = reducer[1]
-
-  console.log(state, 'Box Provider State')
   ProviderEffects(useEffect, state, dispatch)
 
   const stringToArrayPath = data => typeof data === 'string' ? data.split('.') : data
   const idxx = (state, nest) =>
-  [state, ...stringToArrayPath(nest)]
-    .reduce((branch, index) => {
-      if (typeof index === 'string' && branch) {
-        return branch[index]
-      } else {
-        nest = index
-      }
-    })
+    [state, ...stringToArrayPath(nest)]
+      .reduce((branch, index) => {
+        if (typeof index === 'string' && branch) {
+          return branch[index]
+        } else {
+          nest = index
+        }
+      })
 
   return (
     <Context.Provider value={{
       ...state,
       dispatch: dispatch,
-      setConfig: (config) => ({...state.config, ...config}),
+      setConfig: (config) => ({ ...state.config, ...config }),
       selector: (select) => idxx(state, select),
       open: () => dispatch({ type: 'OPEN_REQUEST' }), // deprecate
 
       login: () => dispatch({ type: 'OPEN_REQUEST' }),
       logout: () => dispatch({ type: 'logout' }),
-      enable:() => dispatch({ type: 'ENABLE_REQUEST' }),
+      enable: () => dispatch({ type: 'ENABLE_REQUEST' }),
       /* -------------------------------- */
       /* Static
       /* -------------------------------- */
-      
+
       /* --- Profiles (https://docs.3box.io/api/profiles#get) --- */
       getProfile: (address) => dispatch({
         type: 'GET_PROFILE_REQUEST',
@@ -61,7 +59,7 @@ const Provider = ({ children, ...props }) => {
         address,
         space,
       }),
-      
+
       /* --- Threads (https://docs.3box.io/api/messaging#static-1) --- */
       getThread: ({ space, threadName, firstModerator, members, options }) => dispatch({
         type: 'GET_THREAD_REQUEST',
@@ -75,7 +73,7 @@ const Provider = ({ children, ...props }) => {
         type: 'GET_THREAD_BY_ADDRESS_REQUEST',
         threadAddress
       }),
-      
+
       /* -------------------------------- */
       /* Stateful
       /* -------------------------------- */
@@ -84,7 +82,7 @@ const Provider = ({ children, ...props }) => {
         type: 'OPEN_SPACE_REQUEST',
         space
       }),
-      
+
       /* --- Storage (https://docs.3box.io/api/storage) --- */
       // Default 3Box CRUD
       get: ({ key, access, space }) => dispatch({
@@ -93,7 +91,7 @@ const Provider = ({ children, ...props }) => {
         access,
         key,
       }),
-      set: ({keys, key, insert, inputs, access, space, append, update}) => dispatch({
+      set: ({ keys, key, insert, inputs, access, space, append, update }) => dispatch({
         type: 'SET_REQUEST',
         append: insert || append,
         keys,
@@ -112,13 +110,13 @@ const Provider = ({ children, ...props }) => {
         space,
         update
       }),
-      remove: ({key, access, space }) => dispatch({
+      remove: ({ key, access, space }) => dispatch({
         type: 'REMOVE_REQUEST',
         key,
         access,
         space
       }),
-      
+
       // Enhanced 3Box CRUD
       /**
        * @function insert
@@ -145,7 +143,7 @@ const Provider = ({ children, ...props }) => {
         index,
         key,
       }),
-      
+
       /* --- Messageing (https://docs.3box.io/api/messaging) --- */
       joinThread: ({ threadName, threadAddress, space, options }) => dispatch({
         type: 'JOIN_THREAD_REQUEST',

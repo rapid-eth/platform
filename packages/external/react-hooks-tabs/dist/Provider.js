@@ -91,7 +91,6 @@ var TabProvider = (_ref) => {
 
   var state = reducer[0];
   var dispatch = reducer[1];
-  console.log(state, 'Tab State');
   (0, _react.useEffect)(() => {
     dispatch({
       type: 'setTabsTemplate',

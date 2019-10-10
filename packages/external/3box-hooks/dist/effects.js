@@ -265,7 +265,6 @@ var effects = (callUseEffect, state, dispatch) => {
 
               try {
                 var read = yield state.static.getSpace(address, space);
-                console.log(read, 'static read');
                 dispatch({
                   type: 'GET_SPACE_SUCCESS',
                   space,
@@ -806,7 +805,6 @@ var effects = (callUseEffect, state, dispatch) => {
           function () {
             var _ref12 = _asyncToGenerator(function* () {
               var thread, members, moderators;
-              console.log(selected, 'thread select');
 
               if (selected.threadAddress) {
                 thread = yield state.spaces[selected.space].instance.joinThreadByAddress(selected.threadAddress, selected.options);
@@ -853,7 +851,6 @@ var effects = (callUseEffect, state, dispatch) => {
     if (state.store && state.store.posts) {
       try {
         var postSelected = state.store.posts[0];
-        console.log(postSelected, 'postSelected');
 
         if (postSelected && state.threads[postSelected.threadName].instance) {
           var runEffect =

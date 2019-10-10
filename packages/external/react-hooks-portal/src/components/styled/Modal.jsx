@@ -65,8 +65,6 @@ ModalInner.defaultProps = {
 const ModalActions = ({ portal, label, content, styled, styledLabel, variant, variantInner, id, ...props}) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
-  console.log(variant, 'variantInner')
-
   const closeHandler = () => {
     setIsAnimating(false)
     setTimeout(() => {

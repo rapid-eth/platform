@@ -5,22 +5,22 @@ import { Span } from '@horizin/design-system/dist/atoms';
 
 const effects = (callUseEffect, state, dispatch) => {
   const portal = useContext(PortalContext)
-/* -------------------------------- */
-/* General Functions                */
-/* -------------------------------- */
+  /* -------------------------------- */
+  /* General Functions                */
+  /* -------------------------------- */
 
-/**
-   * @function requestEnabled
-   * @description Set global address parameter in 3box instance.
-   */
+  /**
+     * @function requestEnabled
+     * @description Set global address parameter in 3box instance.
+     */
   callUseEffect(() => {
-    if(state.isEnableRequested) {
+    if (state.isEnableRequested) {
 
       const runEffect = async () => {
         try {
           const accounts = await window.ethereum.enable()
           const address = accounts[0]
-          if(address) {
+          if (address) {
             dispatch({
               type: "ENABLE_SUCCESS",
             })
@@ -29,7 +29,7 @@ const effects = (callUseEffect, state, dispatch) => {
               address,
               addressShortened: shortenAddress(address, 6),
               addressTrimmed: address.substring(0, 10)
-              
+
             })
           }
         } catch (error) {
@@ -39,38 +39,38 @@ const effects = (callUseEffect, state, dispatch) => {
         }
       }
       runEffect()
-      }
-      
+    }
+
   }, [state.isEnableRequested])
 
 
 
-/**
-   * @function AutoLogin
-   * @description Set global address parameter in 3box instance.
-   */
+  /**
+     * @function AutoLogin
+     * @description Set global address parameter in 3box instance.
+     */
   callUseEffect(() => {
-    if(state.isLoginAuto && state.address) {
+    if (state.isLoginAuto && state.address) {
       dispatch({ type: 'OPEN_REQUEST' })
     }
   }, [state.isLoginAuto, state.address])
 
 
 
-/**
-   * @function setAddress
-   * @description Set global address parameter in 3box instance.
-   */
+  /**
+     * @function setAddress
+     * @description Set global address parameter in 3box instance.
+     */
   callUseEffect(() => {
     // const address = window.ethereum && window.ethereum.selectedAddress || null
     const address = state.address
-    if(isAddress(address)) {
+    if (isAddress(address)) {
       dispatch({
         type: "SET_ADDRESS",
         address,
         addressShortened: shortenAddress(address, 6),
         addressTrimmed: address.substring(0, 10)
-        
+
       })
     }
   }, [state.address])
@@ -100,9 +100,9 @@ const effects = (callUseEffect, state, dispatch) => {
   }, [state.address])
 
 
-/* -------------------------------- */
-/* Login State                      */
-/* -------------------------------- */
+  /* -------------------------------- */
+  /* Login State                      */
+  /* -------------------------------- */
 
   /**
    * @function OpenBox
@@ -154,15 +154,15 @@ const effects = (callUseEffect, state, dispatch) => {
     if (state.isLoggingOut) {
       try {
         state.instance.logout()
-        .then(res => {
-          dispatch({
-            type: "LOGOUT_SUCCESS",
-          })
-          portal.openToast({
-            label: 'Goodbye',
-            closeOnClick: true,
-            closeTimer: 3000,
-          })
+          .then(res => {
+            dispatch({
+              type: "LOGOUT_SUCCESS",
+            })
+            portal.openToast({
+              label: 'Goodbye',
+              closeOnClick: true,
+              closeTimer: 3000,
+            })
           })
       } catch (error) {
         console.log(error)
@@ -212,27 +212,26 @@ const effects = (callUseEffect, state, dispatch) => {
         if (selected) {
 
 
-        const runEffect = async () => {
-          const { space, address } = selected
-          try {
-            const read = await state.static.getSpace(address, space)
-            console.log(read, 'static read')
-            dispatch({
-              type: 'GET_SPACE_SUCCESS',
-              space,
-              access: 'public',
-              payload: read
-            })
-          } catch (error) {
-            console.log(error)
-            dispatch({
-              type: 'GET_SPACE_FAILURE',
-              payload: error
-            })
+          const runEffect = async () => {
+            const { space, address } = selected
+            try {
+              const read = await state.static.getSpace(address, space)
+              dispatch({
+                type: 'GET_SPACE_SUCCESS',
+                space,
+                access: 'public',
+                payload: read
+              })
+            } catch (error) {
+              console.log(error)
+              dispatch({
+                type: 'GET_SPACE_FAILURE',
+                payload: error
+              })
+            }
           }
-        }
 
-        runEffect();
+          runEffect();
         }
       } catch (error) {
         console.log(error)
@@ -253,7 +252,7 @@ const effects = (callUseEffect, state, dispatch) => {
           const runEffect = async () => {
             let threads
             const space = await state.instance.openSpace(selected.space)
-            if(space.all) {
+            if (space.all) {
               threads = await space.subscribedThreads()
             }
             dispatch({
@@ -284,94 +283,94 @@ const effects = (callUseEffect, state, dispatch) => {
       try {
         const selected = state.store.sets[Object.keys(state.store.sets)[0]]
         console.log(selected, 'selected')
-        if(selected) {
+        if (selected) {
 
 
-        const runEffect = async () => {
-          let listUpdated
-          const { access, key, keys, inputs, space, append, override } = selected
-          try {
-            if(space) {
-              if(append) {
-                const data = await state.spaces[space].instance[access].get(append)
-                if(data) {
-                  /**
-                   * IF : key
-                   * TRUE : Update object 
-                   * FALSE : Update array 
-                   */
-                  if(key) {
-                    listUpdated = {
-                      ...data,
-                      [key]: inputs
+          const runEffect = async () => {
+            let listUpdated
+            const { access, key, keys, inputs, space, append, override } = selected
+            try {
+              if (space) {
+                if (append) {
+                  const data = await state.spaces[space].instance[access].get(append)
+                  if (data) {
+                    /**
+                     * IF : key
+                     * TRUE : Update object 
+                     * FALSE : Update array 
+                     */
+                    if (key) {
+                      listUpdated = {
+                        ...data,
+                        [key]: inputs
+                      }
+                    } else {
+                      listUpdated = Array.isArray(data) ? [...data, inputs] : [data, inputs]
                     }
                   } else {
-                    listUpdated = Array.isArray(data) ? [...data, inputs] : [data, inputs]
+                    if (key) {
+                      listUpdated = { [key]: inputs }
+                    } else {
+                      listUpdated = [inputs]
+                    }
+                  }
+                  const list = await state.spaces[space].instance[access].set(append, listUpdated)
+                  dispatch({
+                    type: "SET_SUCCESS",
+                    payload: list
+                  })
+                  if (selected.update) {
+                    dispatch({
+                      type: "GET_REQUEST",
+                      access,
+                      key: selected.update,
+                      space,
+                    })
                   }
                 } else {
-                  if(key) {
-                    listUpdated = {[key]: inputs}
+                  await state.spaces[space].instance[access].setMultiple(keys, inputs)
+                  dispatch({
+                    type: "SET_SUCCESS",
+                  })
+                  if (selected.update) {
+                    dispatch({
+                      type: "GET_REQUEST",
+                      access,
+                      key: selected.update,
+                      space,
+                    })
+                  }
+                }
+
+              } else {
+                if (append) {
+                  const data = await state.instance[access].get(append)
+                  if (data) {
+                    listUpdated = Array.isArray(data) ? [...data, inputs] : [data, inputs]
                   } else {
                     listUpdated = [inputs]
                   }
-                }
-                const list = await state.spaces[space].instance[access].set(append, listUpdated)
-                dispatch({
-                  type: "SET_SUCCESS",
-                  payload: list
-                })
-                if(selected.update) {
-                  dispatch({
-                    type: "GET_REQUEST",
-                    access,
-                    key: selected.update,
-                    space,
-                  })
-                }
-              } else {
-                await state.spaces[space].instance[access].setMultiple(keys, inputs)
-                dispatch({
-                  type: "SET_SUCCESS",
-                })
-                if(selected.update) {
-                  dispatch({
-                    type: "GET_REQUEST",
-                    access,
-                    key: selected.update,
-                    space,
-                  })
-                }
-              }
-              
-            } else {
-              if(append) {
-                const data = await state.instance[access].get(append)
-                if(data) {
-                  listUpdated = Array.isArray(data) ? [...data, inputs] : [data, inputs]
-                } else {
-                  listUpdated = [inputs]
-                }
-                Array.isArray(data)
-                  ? await state.instance[access].set(append, listUpdated)
-                  : !override // todo set system for overriding data... add to backup space? 
+                  Array.isArray(data)
                     ? await state.instance[access].set(append, listUpdated)
-                    : null
-  
-              } else {
-                // await state.instance[access].setMultiple(keys, inputs)
+                    : !override // todo set system for overriding data... add to backup space? 
+                      ? await state.instance[access].set(append, listUpdated)
+                      : null
+
+                } else {
+                  // await state.instance[access].setMultiple(keys, inputs)
+                }
               }
+            } catch (error) {
+              console.log(error)
+              dispatch({
+                type: "SET_REQUEST_FAILURE",
+              })
             }
-          } catch (error) {
-            console.log(error)
-            dispatch({
-              type: "SET_REQUEST_FAILURE",
-            })
+
+
           }
-
-
+          runEffect();
         }
-        runEffect();
-      }
       } catch (error) {
         console.log(error)
       }
@@ -432,41 +431,41 @@ const effects = (callUseEffect, state, dispatch) => {
         const selected = state.store.gets[Object.keys(state.store.gets)[0]]
         console.log(selected, 'getting')
         if (selected) {
-        const runEffect = async () => {
-          const { space, access, key } = selected
-          try {
-            let read
-            if(space) {
-              read = await state.spaces[space].instance[access].get(key)
-              console.log(read, 'read success')
+          const runEffect = async () => {
+            const { space, access, key } = selected
+            try {
+              let read
+              if (space) {
+                read = await state.spaces[space].instance[access].get(key)
+                console.log(read, 'read success')
+                dispatch({
+                  type: 'GET_SUCCESS',
+                  id: key,
+                  access: access || 'public',
+                  space,
+                  payload: read
+                })
+              } else {
+                read = await state.instance[access].get(key)
+                dispatch({
+                  type: 'GET_SUCCESS',
+                  id: key,
+                  access,
+                  payload: read
+                })
+              }
+            } catch (error) {
+              console.log(error)
               dispatch({
-                type: 'GET_SUCCESS',
-                id: key,
-                access: access || 'public',
-                space,
-                payload: read
-              })
-            } else {
-              read = await state.instance[access].get(key)
-              dispatch({
-                type: 'GET_SUCCESS',
-                id: key,
-                access,
-                payload: read
+                type: 'GET_FAILURE',
+                payload: error
               })
             }
-          } catch (error) {
-            console.log(error)
-            dispatch({
-              type: 'GET_FAILURE',
-              payload: error
-            })
+
+
           }
-
-
+          runEffect();
         }
-        runEffect();
-      }
       } catch (error) {
         console.log(error)
       }
@@ -482,40 +481,40 @@ const effects = (callUseEffect, state, dispatch) => {
       try {
         const selected = state.store.removes[Object.keys(state.store.removes)[0]]
         if (selected) {
-        const runEffect = async () => {
-          const { space, access, key } = selected
-          console.log(selected, 'remove selected')
-          try {
-            let read
-            if(space) {
-              read = await state.spaces[space].instance[access].remove(key)
-            } else {
-              read = await state.instance[access].remove(key)
+          const runEffect = async () => {
+            const { space, access, key } = selected
+            console.log(selected, 'remove selected')
+            try {
+              let read
+              if (space) {
+                read = await state.spaces[space].instance[access].remove(key)
+              } else {
+                read = await state.instance[access].remove(key)
+              }
+              dispatch({
+                type: 'REMOVE_SUCCESS',
+                id: key,
+                space,
+                payload: read
+              })
+              dispatch({
+                type: "GET_REQUEST",
+                access,
+                key,
+                space,
+              })
+            } catch (error) {
+              console.log(error)
+              dispatch({
+                type: 'REMOVE_FAILURE',
+                payload: error
+              })
             }
-            dispatch({
-              type: 'REMOVE_SUCCESS',
-              id: key,
-              space,
-              payload: read
-            })
-            dispatch({
-              type: "GET_REQUEST",
-              access,
-              key,
-              space,
-            })
-          } catch (error) {
-            console.log(error)
-            dispatch({
-              type: 'REMOVE_FAILURE',
-              payload: error
-            })
+
+
           }
-
-
+          runEffect();
         }
-        runEffect();
-      }
       } catch (error) {
         console.log(error)
       }
@@ -531,37 +530,37 @@ const effects = (callUseEffect, state, dispatch) => {
       try {
         const selected = state.store.deletes[Object.keys(state.store.deletes)[0]]
         if (selected) {
-        const runEffect = async () => {
-          const { space, access, key, keyChild } = selected
-          try {
-            let read, write
-            if(space) {
-              read = state.spaces[space][access][key].payload
-              delete read[keyChild]
-              write = await state.spaces[space].instance[access].set(key, read)
-            } else {
-              read = state[access][key]
-              delete read[keyChild]
-              write = await state.instance[access].set(read)
+          const runEffect = async () => {
+            const { space, access, key, keyChild } = selected
+            try {
+              let read, write
+              if (space) {
+                read = state.spaces[space][access][key].payload
+                delete read[keyChild]
+                write = await state.spaces[space].instance[access].set(key, read)
+              } else {
+                read = state[access][key]
+                delete read[keyChild]
+                write = await state.instance[access].set(read)
+              }
+              dispatch({
+                type: 'DELETE_SUCCESS',
+                id: key,
+                space,
+                payload: read
+              })
+            } catch (error) {
+              console.log(error)
+              dispatch({
+                type: 'DELETE_FAILURE',
+                payload: error
+              })
             }
-            dispatch({
-              type: 'DELETE_SUCCESS',
-              id: key,
-              space,
-              payload: read
-            })
-          } catch (error) {
-            console.log(error)
-            dispatch({
-              type: 'DELETE_FAILURE',
-              payload: error
-            })
+
+
           }
-
-
+          runEffect();
         }
-        runEffect();
-      }
       } catch (error) {
         console.log(error)
       }
@@ -582,29 +581,29 @@ const effects = (callUseEffect, state, dispatch) => {
       try {
         const selected = state.store.threadsGet[0]
         if (selected) {
-        const runEffect = async () => {
-          const { space, threadName, firstModerator, members, options } = selected
-          try {
-            let read
-            read = await state.static.getThread(space, threadName, firstModerator, members, options)
-            dispatch({
-              type: 'GET_THREAD_SUCCESS',
-              space,
-              threadName,
-              payload: read
-            })
-          } catch (error) {
-            console.log(error)
-            dispatch({
-              type: 'GET_THREAD_FAILURE',
-              payload: error
-            })
+          const runEffect = async () => {
+            const { space, threadName, firstModerator, members, options } = selected
+            try {
+              let read
+              read = await state.static.getThread(space, threadName, firstModerator, members, options)
+              dispatch({
+                type: 'GET_THREAD_SUCCESS',
+                space,
+                threadName,
+                payload: read
+              })
+            } catch (error) {
+              console.log(error)
+              dispatch({
+                type: 'GET_THREAD_FAILURE',
+                payload: error
+              })
+            }
+
+
           }
-
-
+          runEffect();
         }
-        runEffect();
-      }
       } catch (error) {
         console.log(error)
       }
@@ -641,7 +640,6 @@ const effects = (callUseEffect, state, dispatch) => {
         if (selected && state.spaces[selected.space].instance) {
           const runEffect = async () => {
             let thread, members, moderators
-            console.log(selected, 'thread select')
             if (selected.threadAddress) {
               thread = await state.spaces[selected.space].instance.joinThreadByAddress(selected.threadAddress, selected.options)
             } else {
@@ -678,7 +676,6 @@ const effects = (callUseEffect, state, dispatch) => {
     if (state.store && state.store.posts) {
       try {
         const postSelected = state.store.posts[0]
-        console.log(postSelected, 'postSelected')
         if (postSelected && state.threads[postSelected.threadName].instance) {
           const runEffect = async () => {
             let posts
@@ -698,7 +695,7 @@ const effects = (callUseEffect, state, dispatch) => {
                 })
                 break;
 
-              
+
               case 'THREAD_POST_DELETE_REQUEST':
                 await state.threads[postSelected.threadName].instance.deletePost(postSelected.postId)
                 posts = await state.threads[postSelected.threadName].instance.getPosts()

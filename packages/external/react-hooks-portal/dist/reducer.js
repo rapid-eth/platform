@@ -20,7 +20,6 @@ var reducerActions = (state, action) => {
     payload,
     instance
   } = action;
-  console.log(action, 'actionaction');
 
   switch (action.type) {
     case 'CLOSE_PORTAL':

@@ -106,23 +106,7 @@ var BoxLoginCard = (_ref) => {
     maxWidth: 80,
     mt: -80,
     src: "https://icon-library.net/images/ethereum-icon/ethereum-icon-4.jpg"
-  }), _react.default.createElement(_designSystem.Box, {
-    mb: 10,
-    mt: isImage ? -30 : -2
-  }, _react.default.createElement(_designSystem.QRDisplayModal, {
-    value: "ethereum:".concat(box.address),
-    styledContainer: {
-      card: true
-    }
-  }, _react.default.createElement(_designSystem.Span, {
-    pointer: true
-  }, _react.default.createElement(_designSystem.Image, {
-    card: true,
-    circle: true,
-    p: 1,
-    maxWidth: 32,
-    src: "https://cdn0.iconfinder.com/data/icons/material-style/48/qrcode-512.png"
-  })))), isName && _react.default.createElement(_designSystem.Heading, {
+  }), isName && _react.default.createElement(_designSystem.Heading, {
     heavy: true,
     md: true,
     mt: -20,
@@ -134,7 +118,7 @@ var BoxLoginCard = (_ref) => {
     fontSize: [2]
   }, profile.job, " ", profile.employer && _react.default.createElement(_designSystem.Span, null, "at ", profile.employer)), _react.default.createElement(_designSystem.Box, null, _react.default.createElement(_SignPledge.default, {
     delta: "pledge"
-  })), _react.default.createElement(_BoxVerified.default, null), !isName || !isJob && _react.default.createElement(_BoxFormProfileBasics.default, null))), isFooterActive && _react.default.createElement(_designSystem.Flex, {
+  })))), isFooterActive && _react.default.createElement(_designSystem.Flex, {
     center: true,
     card: true,
     flex: 1,
@@ -148,25 +132,7 @@ var BoxLoginCard = (_ref) => {
     fullWidth: true
   }, _react.default.createElement(_designSystem.Span, null, _react.default.createElement(_designSystem.Button, {
     xs: true
-  }, box.addressShortened)), _react.default.createElement(_designSystem.Toast, {
-    label: "Profile Edit",
-    content: _react.default.createElement(ProfileEdit, null)
-  }, _react.default.createElement(_designSystem.Span, {
-    pointer: true,
-    xxs: true,
-    tag: "white"
-  }, _react.default.createElement(_designSystem.Flex, {
-    alignCenter: true
-  }, _react.default.createElement(_designSystem.Image, {
-    card: true,
-    circle: true,
-    p: 1,
-    maxWidth: 24,
-    src: "https://cdn.iconscout.com/icon/free/png-512/account-185-461747.png"
-  }), _react.default.createElement(_designSystem.Span, {
-    pointer: true,
-    mx: 2
-  }, "Edit Profile")))))))));
+  }, box.addressShortened)))))));
 };
 
 BoxLoginCard.defaultProps = {

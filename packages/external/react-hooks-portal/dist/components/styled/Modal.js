@@ -109,7 +109,6 @@ var ModalActions = (_ref) => {
 
   var [isAnimating, setIsAnimating] = (0, _react.useState)(false);
   var [isOpening, setIsOpening] = (0, _react.useState)(false);
-  console.log(variant, 'variantInner');
 
   var closeHandler = () => {
     setIsAnimating(false);
